@@ -1,0 +1,28 @@
+{
+  "version": "independent",
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.test.js",
+        "*.spec.js"
+      ],
+      "message": "chore(release): publish"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    },
+    "run": {
+      "stream": true
+    }
+  },
+  "packages": [
+    "packages/*"
+  ],
+  "useWorkspaces": true
+}
+

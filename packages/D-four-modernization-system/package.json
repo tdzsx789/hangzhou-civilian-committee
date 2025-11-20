@@ -1,0 +1,34 @@
+{
+  "name": "@hangzhou-civilian-committee/d-four-modernization-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "提高社会化、法治化、智能化、专业化水平，构建富有活力和效率的新型基层社会治理体系 - D馆",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

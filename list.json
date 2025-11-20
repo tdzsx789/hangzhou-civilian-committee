@@ -1,0 +1,142 @@
+[
+    {
+        "name": "新中国第一个居民委员会",
+        "id": "A-first-residents",
+        "gallery": "A馆"
+    },
+    {
+        "name": "基层组织制度历史回眸",   
+        "id": "A-grassroots-history",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市居民委员会发展1",
+        "id": "A-development-1",
+        "gallery": "A馆"
+    },
+    {
+        "name": "视频基石",
+        "id": "A-video-cornerstone",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市居民委员会发展2",
+        "id": "A-development-2",
+        "gallery": "A馆"
+    },
+    {
+        "name": "\"基层组织选举\"互动游戏",
+        "id": "A-election-game",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市社区治理发展历程1",
+        "id": "A-community-governance-1",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市社区治理发展历程2",
+        "id": "A-community-governance-2",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市社区治理发展历程3",
+        "id": "A-community-governance-3",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市社区治理发展历程4",
+        "id": "A-community-governance-4",
+        "gallery": "A馆"
+    },
+    {
+        "name": "城市社区治理发展历程5",
+        "id": "A-community-governance-5",
+        "gallery": "A馆"
+    },
+    {
+        "name": "萌发",
+        "id": "B-germination",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2012年11月-2017年9月）-竖屏1",
+        "id": "B-new-2012-2017-1",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2012年11月-2017年9月）-竖屏2",
+        "id": "B-new-2012-2017-2",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2017年10月-2022年9月）-竖屏1",
+        "id": "B-new-2017-2022-1",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2017年10月-2022年9月）-竖屏2",
+        "id": "B-new-2017-2022-2",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2022年10月-至今）-竖屏1",
+        "id": "B-new-2022-now-1",
+        "gallery": "B馆"
+    },
+    {
+        "name": "新时代基层治理发展（2022年10月-至今）-竖屏2",
+        "id": "B-new-2022-now-2",
+        "gallery": "B馆"    
+    },
+    {
+        "name": "实践经验篇1",
+        "id": "C-practice-experience-1",
+        "gallery": "C馆"
+    },
+    {
+        "name": "视频播放器",
+        "id": "D-video-xi",
+        "gallery": "D馆"
+    },
+    {
+        "name": "提高社会化、法治化、智能化、专业化水平，构建富有活力和效率的新型基层社会治理体系",
+        "id": "D-four-modernization-system",
+        "gallery": "D馆"
+    },
+    {
+        "name": "坚持和发展新时代\"枫桥经验\"",
+        "id": "D-fengqiao-experience",
+        "gallery": "D馆"
+    },
+    {
+        "name": "坚持大抓基层的鲜明导向，推进以党建引领基层治理",
+        "id": "D-party-building-governance",
+        "gallery": "D馆"
+    },
+    {
+        "name": "党建引领基层治理先进个人、先进组织",
+        "id": "D-advanced-examples",
+        "gallery": "D馆"
+    },
+    {
+        "name": "新中国第一个居民委员会寻访历程",
+        "id": "E-first-journey",
+        "gallery": "公区更新"
+    },
+    {
+        "name": "社会工作未来展望",
+        "id": "E-future",
+        "gallery": "公区更新"
+    },
+    {
+        "name": "入口区落地55寸触摸屏",
+        "id": "E-entrance-touchscreen",
+        "gallery": "公区更新"
+    },
+    {
+        "name": "总前言墙LED多媒体大屏",
+        "id": "E-ai-wall-led",
+        "gallery": "公区更新"
+    }
+]
