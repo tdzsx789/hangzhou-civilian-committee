@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Home from './pages/Home';
+import Detail from './pages/Detail';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const handleLearnMore = () => {
+    setCurrentPage('detail');
+  };
+
+  const handleBack = () => {
+    setCurrentPage('home');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>基层组织制度历史回眸</h1>
-        <p>A馆 - A-grassroots-history</p>
-      </header>
+      {currentPage === 'home' ? (
+        <Home onLearnMore={handleLearnMore} />
+      ) : (
+        <Detail name="基层组织制度历史回眸" gallery="A馆" onBack={handleBack} />
+      )}
     </div>
   );
 }

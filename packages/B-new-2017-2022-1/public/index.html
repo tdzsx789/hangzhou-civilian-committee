@@ -6,6 +6,45 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="杭州市民委员会 - 新时代基层治理发展（2017年10月-2022年9月）-竖屏1" />
     <title>新时代基层治理发展（2017年10月-2022年9月）-竖屏1</title>
+    <style>
+      * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+    <script>
+      // 禁止右键菜单
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      // 禁止触摸长按
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      });
+      
+      let touchTimer;
+      document.addEventListener('touchstart', function(e) {
+        touchTimer = setTimeout(function() {
+          e.preventDefault();
+        }, 500);
+      });
+      
+      document.addEventListener('touchend', function() {
+        clearTimeout(touchTimer);
+      });
+      
+      document.addEventListener('touchmove', function() {
+        clearTimeout(touchTimer);
+      });
+    </script>
   </head>
   <body>
     <noscript>您需要启用JavaScript才能运行此应用程序。</noscript>

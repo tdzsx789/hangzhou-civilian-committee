@@ -37,7 +37,8 @@ function createExhibition(exhibition) {
   const dirs = [
     exhibitionPath,
     path.join(exhibitionPath, 'public'),
-    path.join(exhibitionPath, 'src')
+    path.join(exhibitionPath, 'src'),
+    path.join(exhibitionPath, 'src', 'assets')
   ];
   
   dirs.forEach(dir => {
