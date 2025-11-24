@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-community-governance-5",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "城市社区治理发展历程5 - A馆",
   "dependencies": {
     "react": "^18.2.0",

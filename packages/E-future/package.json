@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/e-future",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "社会工作未来展望 - 公区更新",
   "dependencies": {
     "react": "^18.2.0",

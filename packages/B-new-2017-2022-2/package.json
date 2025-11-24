@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/b-new-2017-2022-2",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "新时代基层治理发展（2017年10月-2022年9月）-竖屏2 - B馆",
   "dependencies": {
     "react": "^18.2.0",

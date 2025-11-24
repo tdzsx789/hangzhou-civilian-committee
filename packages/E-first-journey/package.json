@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/e-first-journey",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "新中国第一个居民委员会寻访历程 - 公区更新",
   "dependencies": {
     "react": "^18.2.0",

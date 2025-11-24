@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/e-entrance-touchscreen",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "入口区落地55寸触摸屏 - 公区更新",
   "dependencies": {
     "react": "^18.2.0",

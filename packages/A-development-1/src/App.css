@@ -1,3 +1,11 @@
+/* 字体定义 */
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('./assets/FZCuHeiSong-B-JF.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   width: 1920px;
   height: 1080px;

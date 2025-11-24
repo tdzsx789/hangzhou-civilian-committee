@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-election-game",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "\"基层组织选举\"互动游戏 - A馆",
   "dependencies": {
     "react": "^18.2.0",

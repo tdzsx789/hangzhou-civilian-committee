@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-development-2",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "城市居民委员会发展2 - A馆",
   "dependencies": {
     "react": "^18.2.0",

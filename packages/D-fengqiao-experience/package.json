@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/d-fengqiao-experience",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "坚持和发展新时代\"枫桥经验\" - D馆",
   "dependencies": {
     "react": "^18.2.0",

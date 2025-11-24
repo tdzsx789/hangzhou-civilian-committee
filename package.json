@@ -2,6 +2,7 @@
   "name": "hangzhou-civilian-committee",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "杭州市民委员会 - 30个Web展项Monorepo项目",
   "workspaces": [
     "packages/*"

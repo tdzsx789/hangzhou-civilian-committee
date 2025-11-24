@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/d-party-building-governance",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "坚持大抓基层的鲜明导向，推进以党建引领基层治理 - D馆",
   "dependencies": {
     "react": "^18.2.0",

@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/d-four-modernization-system",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "提高社会化、法治化、智能化、专业化水平，构建富有活力和效率的新型基层社会治理体系 - D馆",
   "dependencies": {
     "react": "^18.2.0",

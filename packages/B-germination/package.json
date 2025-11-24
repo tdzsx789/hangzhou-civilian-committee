@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/b-germination",
   "version": "1.0.0",
   "private": true,
+"homepage": ".",
   "description": "萌发 - B馆",
   "dependencies": {
     "react": "^18.2.0",

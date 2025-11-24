@@ -2,6 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-first-residents",
   "version": "1.0.0",
   "private": true,
+  "homepage": ".",
   "description": "新中国第一个居民委员会 - A馆",
   "dependencies": {
     "react": "^18.2.0",
