@@ -30,8 +30,8 @@
 
 .learn-more-btn {
   position: absolute;
-  bottom: 100px;
-  left: 50%;
+  top: 621px;
+  left: 20%;
   transform: translateX(-50%);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -48,27 +48,23 @@
 
 .learn-more-btn img {
   display: block;
-  max-width: 100%;
   height: auto;
 }
-
-
-
 
 
 /* 呼吸灯动画关键帧 - 变大变小效果，带中间停顿 */
 @keyframes breathe {
   0% {
-    transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(1);
   }
   40% {
-    transform: translateX(-50%) scale(1.1);
+    transform: translateX(-50%) scale(1.05);
   }
   60% {
-    transform: translateX(-50%) scale(1.1);
+    transform: translateX(-50%) scale(1.05);
   }
   100% {
-    transform: translateX(-50%) scale(0.95);
+    transform: translateX(-50%) scale(1);
   }
 }
 
@@ -78,5 +74,71 @@
 }
 
 .learn-more-btn:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+
+.learn-more-btn2 {
+  position: absolute;
+  top: 621px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 呼吸灯动画 - 变大变小效果，带中间停顿 */
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.learn-more-btn2 img {
+  display: block;
+  height: auto;
+}
+
+.learn-more-btn2:hover {
+  transform: translateX(-50%) scale(1.15);
+  animation: none; /* 悬停时暂停呼吸动画 */
+}
+
+.learn-more-btn2:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+
+.learn-more-btn3 {
+  position: absolute;
+  top: 621px;
+  left: 80%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 呼吸灯动画 - 变大变小效果，带中间停顿 */
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.learn-more-btn3 img {
+  display: block;
+  height: auto;
+}
+
+.learn-more-btn3:hover {
+  transform: translateX(-50%) scale(1.15);
+  animation: none; /* 悬停时暂停呼吸动画 */
+}
+
+.learn-more-btn3:active {
   transform: translateX(-50%) scale(0.98);
 }
