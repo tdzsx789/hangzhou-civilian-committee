@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Detail from './pages/Detail';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
-  const handleLearnMore = () => {
-    setCurrentPage('detail');
-  };
+  // const handleLearnMore = () => {
+  //   setCurrentPage('detail');
+  // };
 
   const handleBack = () => {
     setCurrentPage('home');
@@ -16,11 +16,11 @@ function App() {
 
   return (
     <div className="App">
-      {currentPage === 'home' ? (
+      {/* {currentPage === 'home' ? (
         <Home onLearnMore={handleLearnMore} />
-      ) : (
-        <Detail name="城市社区治理发展历程5" gallery="A馆" onBack={handleBack} />
-      )}
+      ) : ( */}
+      <Detail name="城市社区治理发展历程1" gallery="A馆" onBack={handleBack} />
+      {/* )} */}
     </div>
   );
 }
