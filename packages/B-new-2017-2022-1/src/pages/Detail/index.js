@@ -1,17 +1,27 @@
 import React from 'react';
 import './index.css';
+import bg2 from '../../assets/bg2.jpg';
 
-function Detail({ name, gallery, onBack }) {
+function Detail({ name, gallery, onBack, onOpenDetail2 }) {
+  const handleEnterDetail2 = () => {
+    if (onOpenDetail2) {
+      onOpenDetail2();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleEnterDetail2();
+    }
+  };
+
   return (
-    <div className="detail-page">
-      <header className="detail-header">
-        <button className="back-btn" onClick={onBack}>返回</button>
-        <h1>新时代基层治理发展（2017年10月-2022年9月）-竖屏1</h1>
-        <p>B馆 - 详情页</p>
-      </header>
-      <div className="detail-content">
-        <p>这里是详情页内容</p>
-      </div>
+    <div className="detail-page" style={{ backgroundImage: `url(${bg2})` }}>
+      <div className="page2-button1" role="button" tabIndex={0} onClick={handleEnterDetail2} onKeyDown={handleKeyDown}></div>
+      <div className="page2-button2" role="button" tabIndex={0} onClick={handleEnterDetail2} onKeyDown={handleKeyDown}></div>
+      <div className="page2-button3" role="button" tabIndex={0} onClick={handleEnterDetail2} onKeyDown={handleKeyDown}></div>
+      <div className="page2-button4" role="button" tabIndex={0} onClick={handleEnterDetail2} onKeyDown={handleKeyDown}></div>
     </div>
   );
 }
