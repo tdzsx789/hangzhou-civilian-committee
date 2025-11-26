@@ -19,7 +19,7 @@ function App() {
       {currentPage === 'home' ? (
         <Home onLearnMore={handleLearnMore} />
       ) : (
-        <Detail name="入口区落地55寸触摸屏" gallery="公区更新" onBack={handleBack} />
+        <Detail onBack={handleBack} />
       )}
     </div>
   );
