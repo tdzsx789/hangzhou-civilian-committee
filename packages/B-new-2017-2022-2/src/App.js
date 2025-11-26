@@ -1,26 +1,84 @@
 import React, { useState } from 'react';
 import './App.css';
 import Home from './pages/Home';
-import Detail from './pages/Detail';
+import Detail1 from './pages/Detail1';
+import Detail1Second from './pages/Detail1_2';
+import Detail2 from './pages/Detail2';
+import Detail2Second from './pages/Detail2_2';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
   const handleLearnMore = () => {
-    setCurrentPage('detail');
+    setCurrentPage('detail1');
   };
 
-  const handleBack = () => {
+  const handleBackToHome = () => {
     setCurrentPage('home');
   };
 
+  const handleEnterDetail1_2 = () => {
+    setCurrentPage('detail1_2');
+  };
+
+  const handleEnterDetail2 = () => {
+    setCurrentPage('detail2');
+  };
+
+  const handleEnterDetail2_2 = () => {
+    setCurrentPage('detail2_2');
+  };
+
+  const handleBackToDetail = () => {
+    setCurrentPage('detail1');
+  };
+
+  const handleBackToDetail2 = () => {
+    setCurrentPage('detail2');
+  };
+
+  let pageContent = null;
+
+  if (currentPage === 'home') {
+    pageContent = <Home onLearnMore={handleLearnMore} />;
+  } else if (currentPage === 'detail1') {
+    pageContent = (
+      <Detail1
+        name="新时代基层治理发展（2012年11月-2017年9月）-竖屏1"
+        gallery="B馆"
+        onBack={handleBackToHome}
+        onOpenDetail2={handleEnterDetail2}
+        onOpenDetail1_2={handleEnterDetail1_2}
+      />
+    );
+  } else if (currentPage === 'detail1_2') {
+    pageContent = (
+      <Detail1Second
+        name="新时代基层治理发展（2012年11月-2017年9月）-竖屏2"
+        gallery="B馆"
+        onBack={handleBackToDetail}
+        onOpenDetail2={handleEnterDetail2}
+      />
+    );
+  } else if (currentPage === 'detail2') {
+    pageContent = (
+      <Detail2
+        onBack={handleBackToDetail}
+        onOpenDetail2_2={handleEnterDetail2_2}
+      />
+    );
+  } else {
+    pageContent = (
+      <Detail2Second
+        onBackToDetail1={handleBackToDetail}
+        onOpenDetail2={handleBackToDetail2}
+      />
+    );
+  }
+
   return (
     <div className="App">
-      {currentPage === 'home' ? (
-        <Home onLearnMore={handleLearnMore} />
-      ) : (
-        <Detail name="新时代基层治理发展（2017年10月-2022年9月）-竖屏2" gallery="B馆" onBack={handleBack} />
-      )}
+      {pageContent}
     </div>
   );
 }

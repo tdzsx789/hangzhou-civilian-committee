@@ -1,0 +1,59 @@
+/* 详情页样式 */
+.detail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.link2_2 {
+  position: absolute;
+  top: 368px;
+  left: 218px;
+  width: 288px;
+  height: 105px;
+}
+
+.before2_2 {
+  position: absolute;
+  top: 1108px;
+  left: 31px;
+  width: 100px;
+  height: 100px;
+}
+
+.after2_2 {
+  position: absolute;
+  top: 1108px;
+  left: 952px;
+  width: 100px;
+  height: 100px;
+}
+
+.back-button {
+  position: absolute;
+  right: 22px;
+  bottom: 0;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.back-button img {
+  width: auto;
+  height: auto;
+  display: block;
+}

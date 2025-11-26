@@ -1,10 +1,13 @@
 /* 详情页样式 */
 .detail-page {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -24,7 +27,7 @@
   color: #333;
   border: none;
   border-radius: 25px;
-  cursor: pointer;
+  
   transition: all 0.3s ease;
   font-weight: bold;
   -webkit-touch-callout: none;
@@ -65,4 +68,39 @@
 .detail-content p {
   font-size: 24px;
   line-height: 1.8;
+}
+
+.page2-button {
+  position: absolute;
+  left: 80px;
+  top: 530px;
+  width: 920px;
+  height: 132px;
+  
+  outline: none;
+}
+
+.page2-button1 {
+  top: 388px;
+}
+
+.page2-button2 {
+  top: 708px;
+}
+
+.page2-button3 {
+  top: 1026px;
+}
+
+.page2-button4 {
+  top: 1346px;
+}
+
+.link1 {
+  position: absolute;
+  top: 368px;
+  left: 578px;
+  width: 288px;
+  height: 105px;
+  
 }
