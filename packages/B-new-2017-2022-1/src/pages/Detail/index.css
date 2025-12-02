@@ -27,7 +27,7 @@
   color: #333;
   border: none;
   border-radius: 25px;
-  cursor: pointer;
+  
   transition: all 0.3s ease;
   font-weight: bold;
   -webkit-touch-callout: none;
@@ -78,7 +78,7 @@
   left: 130px;
   width: 812px;
   height: 280px;
-  cursor: pointer;
+  
   outline: none;
 }
 

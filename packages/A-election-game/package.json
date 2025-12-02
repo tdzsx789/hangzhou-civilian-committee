@@ -7,13 +7,19 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:client": "react-scripts start",
+    "build:client": "react-scripts build",
+    "start:server": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "build:server": "npm --prefix server run build"
   },
   "eslintConfig": {
     "extends": [

@@ -37,3 +37,7 @@ coverage/
 *.tmp
 .cache/
 
+packages/A-election-game/src/assets/gameDemo.mp4
+packages/A-election-game/src/assets/gameDemo2.mp4
+packages/A-election-game/src/assets/screen.mp4
+

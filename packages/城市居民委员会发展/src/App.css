@@ -1,0 +1,39 @@
+/* 字体定义 */
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('./assets/FZCuHeiSong-B-JF.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-container.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.page-container.inactive {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}

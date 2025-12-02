@@ -1,0 +1,125 @@
+.screen-page {
+  width: 100%;
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 21, 42, 0.7);
+}
+
+.screen-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  width: min(1200px, 90vw);
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.screen-content header h1 {
+  margin: 8px 0 16px;
+  font-size: 64px;
+}
+
+.screen-content header .sub-title {
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.connection {
+  margin: 0;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.status-panel {
+  display: flex;
+  gap: 24px;
+}
+
+.status-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.status-card .value {
+  font-size: 48px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.status-card .label {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.timeline {
+  display: flex;
+  gap: 16px;
+}
+
+.timeline-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.timeline-item .bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.timeline-item.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.timeline-item.active .bullet,
+.timeline-item.passed .bullet {
+  background: #38bdf8;
+}
+
+.timeline-item.passed {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.players {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.player {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.player.ready {
+  background: rgba(74, 222, 128, 0.25);
+}

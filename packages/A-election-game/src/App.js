@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
-import Detail from './pages/Detail';
+import ScreenPage from './pages/Screen';
+import GamePage from './pages/Game';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const handleLearnMore = () => {
-    setCurrentPage('detail');
-  };
-
-  const handleBack = () => {
-    setCurrentPage('home');
-  };
-
   return (
-    <div className="App">
-      {currentPage === 'home' ? (
-        <Home onLearnMore={handleLearnMore} />
-      ) : (
-        <Detail name=""基层组织选举"互动游戏" gallery="A馆" onBack={handleBack} />
-      )}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/screen" element={<ScreenPage />} />
+        <Route path="/game/:gameId" element={<GamePage />} />
+        <Route path="*" element={<Navigate to="/screen" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

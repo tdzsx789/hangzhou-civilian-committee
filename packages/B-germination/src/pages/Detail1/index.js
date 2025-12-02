@@ -170,7 +170,6 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3 }) {
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
           style={{
-            cursor: isDragging ? 'grabbing' : 'grab',
             transform: `translateY(-${scrollTop}px)`,
           }}
         >

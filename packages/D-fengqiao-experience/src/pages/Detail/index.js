@@ -1,17 +1,11 @@
 import React from 'react';
 import './index.css';
+import page1Img from '../../assets/page1.jpg';
 
 function Detail({ name, gallery, onBack }) {
   return (
-    <div className="detail-page">
-      <header className="detail-header">
-        <button className="back-btn" onClick={onBack}>返回</button>
-        <h1>坚持和发展新时代"枫桥经验"</h1>
-        <p>D馆 - 详情页</p>
-      </header>
-      <div className="detail-content">
-        <p>这里是详情页内容</p>
-      </div>
+    <div className="detail-page" style={{ backgroundImage: `url(${page1Img})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <div className="back-btn" onClick={onBack}></div>
     </div>
   );
 }

@@ -1,0 +1,118 @@
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('../../assets/FZCuHeiSong-B-JF.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.game-page {
+  min-height: 100vh;
+  padding: 48px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), #c6d8ff);
+  color: #1f2a44;
+  position: relative;
+}
+
+.game-page-waiting {
+  align-items: center;
+  justify-content: center;
+}
+
+.game-page header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.game-page header .sub-title {
+  color: #637099;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 32px rgba(30, 41, 59, 0.15);
+  max-width: 560px;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.stage-description {
+  margin-bottom: 0;
+  font-size: 18px;
+  color: #4b5563;
+}
+
+.primary-btn {
+  width: 898px;
+  height: 205px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.waiting-others-btn {
+  width: 898px;
+  height: 205px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../assets/waiting_others.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #334155;
+}
+
+.game-page footer {
+  color: #475569;
+}
+
+.game-demo-video {
+  position: absolute;
+  left: 50%;
+  top: 274px;
+  width: 1240px;
+  height: 698px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.election-method-text {
+  position: absolute;
+  width: 240px;
+  height: 97px;
+  left: 840px;
+  top: 100px;
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 97px;
+  text-align: center;
+  color: #000000;
+}
+

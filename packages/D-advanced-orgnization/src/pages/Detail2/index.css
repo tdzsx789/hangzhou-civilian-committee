@@ -1,0 +1,38 @@
+.detail-page2 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../assets/bg2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail2-page {
+  align-items: center;
+  justify-content: center;
+}
+
+.detail2-back-btn {
+  position: absolute;
+  left: 1794px;
+  top: 142px;
+  width: 75px;
+  height: 75px;
+  z-index: 99;
+  background-image: url('../../assets/backButton.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.detail2-info {
+  position: absolute;
+  left: 88px;
+  top: 180px;
+  max-width: calc(100% - 176px);
+  height: auto;
+}
