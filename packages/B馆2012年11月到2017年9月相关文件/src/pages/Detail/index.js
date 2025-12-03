@@ -8,6 +8,14 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
   const [showHand, setShowHand] = useState(true);
   const scrollContainerRef = useRef(null);
 
+  // 重置滚动位置
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container && isActive) {
+      container.scrollTop = 0;
+    }
+  }, [isActive]);
+
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!isActive || !container) {
