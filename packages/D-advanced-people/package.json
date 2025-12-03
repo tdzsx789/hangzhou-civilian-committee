@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/d-advanced-people",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "党建引领基层治理先进个人、先进组织 - D馆",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=D-advanced-people react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

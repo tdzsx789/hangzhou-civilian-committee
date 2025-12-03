@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-grassroots-history",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "基层组织制度历史回眸 - A馆",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=基层组织制度历史回眸 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

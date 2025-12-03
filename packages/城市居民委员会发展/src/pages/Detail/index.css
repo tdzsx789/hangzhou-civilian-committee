@@ -153,20 +153,40 @@
 
 @keyframes handSwipe {
   0% {
-    left: 1100px;
+    left: 1400px;
   }
   20% {
-    left: 1100px;
+    left: 1400px;
   }
   80% {
-    left: 1400px;
+    left: 1100px;
   }
   100% {
-    left: 1400px;
+    left: 1100px;
+  }
+}
+
+@keyframes handSwipePage3 {
+  0% {
+    left: 1000px;
+  }
+  20% {
+    left: 1000px;
+  }
+  80% {
+    left: 700px;
+  }
+  100% {
+    left: 700px;
   }
 }
 
 .hand-swipe-animation {
   animation: handSwipe 2s infinite;
+  animation-timing-function: linear;
+}
+
+.hand-swipe-animation-page3 {
+  animation: handSwipePage3 2s infinite;
   animation-timing-function: linear;
 }

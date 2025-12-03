@@ -1,0 +1,24 @@
+.json-editor-container {
+  min-width: 400px;
+  .form-item {
+    width: 80%;
+  }
+  .json-item {
+    .editor-wrapper {
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all 0.3s;
+      &:hover {
+        border-color: #40a9ff;
+      }
+    }
+    .has-error {
+      border-color: #ff4d4f;
+    }
+    .error-msg {
+      margin-top: 10px;
+      color: red;
+    }
+  }
+}

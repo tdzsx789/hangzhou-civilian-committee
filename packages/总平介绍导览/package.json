@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/e-entrance-touchscreen",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "入口区落地55寸触摸屏 - 公区更新",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=总平介绍导览 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

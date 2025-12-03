@@ -33,7 +33,6 @@
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  cursor: pointer;
   transition: all 0.3s ease;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -79,4 +78,37 @@
 
 .learn-more-btn:active {
   transform: translateX(-50%) scale(0.98);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.chat-btn-container {
+  display: flex;
+  margin: 10px 0;
+}
+
+.chat-btn-container button {
+  margin: 0 10px;
+}
+
+.chat-video-container {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+
+.chat-local-render-container {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
 }

@@ -19,7 +19,7 @@ function App() {
       {currentPage === 'home' ? (
         <Home onLearnMore={handleLearnMore} />
       ) : (
-        <Detail name="总前言墙LED多媒体大屏" gallery="公区更新" onBack={handleBack} />
+        <Detail name="社会工作未来展望" gallery="公区更新" onBack={handleBack} />
       )}
     </div>
   );

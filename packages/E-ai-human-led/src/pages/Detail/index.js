@@ -6,7 +6,7 @@ function Detail({ name, gallery, onBack }) {
     <div className="detail-page">
       <header className="detail-header">
         <button className="back-btn" onClick={onBack}>返回</button>
-        <h1>总前言墙LED多媒体大屏</h1>
+        <h1>社会工作未来展望</h1>
         <p>公区更新 - 详情页</p>
       </header>
       <div className="detail-content">

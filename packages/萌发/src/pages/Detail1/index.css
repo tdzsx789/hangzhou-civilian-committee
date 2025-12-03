@@ -1,0 +1,176 @@
+/* 详情页样式 */
+.detail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.detail-header {
+  padding: 40px 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.back-btn {
+  padding: 12px 30px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: none;
+  border-radius: 25px;
+  
+  transition: all 0.3s ease;
+  font-weight: bold;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.back-btn:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+.back-btn:active {
+  transform: scale(0.98);
+}
+
+.detail-header h1 {
+  font-size: 48px;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.detail-header p {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.detail-content {
+  flex: 1;
+  padding: 60px;
+  color: white;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-content p {
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+.page2-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 132px;
+  outline: none;
+}
+
+.page2-button1 {
+  top: 388px;
+}
+
+.page2-button2 {
+  top: 708px;
+}
+
+.page2-button3 {
+  top: 1026px;
+}
+
+.page2-button4 {
+  top: 1346px;
+}
+
+.link1 {
+  position: absolute;
+  top: 368px;
+  left: 578px;
+  width: 288px;
+  height: 105px;
+  
+}
+
+.slides-container {
+  position: absolute;
+  left: 98px;
+  top: 465px;
+  width: 884px;
+  height: 1090px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.slides-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.slides-image-wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.back-button {
+  position: absolute;
+  right: 22px;
+  bottom: 0;
+  z-index: 10;
+  
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.back-button img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+@keyframes handSwipe {
+  0% {
+    top: 1200px;
+  }
+  20% {
+    top: 1200px;
+  }
+  80% {
+    top: 800px;
+  }
+  100% {
+    top: 800px;
+  }
+}
+
+.hand-swipe-animation {
+  width: 100px;
+  height: 100px;
+  animation: handSwipe 2s infinite;
+  animation-timing-function: linear;
+}

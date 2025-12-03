@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/d-party-building-governance",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "坚持大抓基层的鲜明导向，推进以党建引领基层治理 - D馆",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=D-party-building-governance react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

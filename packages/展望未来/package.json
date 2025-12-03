@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/e-future",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "社会工作未来展望 - 公区更新",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=展望未来 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

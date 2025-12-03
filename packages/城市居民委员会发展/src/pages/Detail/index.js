@@ -326,10 +326,10 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
         <img
           src={handImg}
           alt="hand"
-          className="hand-swipe-animation"
+          className={selectedSelectKey === 'page3' ? 'hand-swipe-animation-page3' : 'hand-swipe-animation'}
           style={{
             position: 'absolute',
-            left: '1100px',
+            left: selectedSelectKey === 'page3' ? '1000px' : '1400px',
             top: selectedSelectKey === 'page3' ? '820px' : '690px'
           }}
         />

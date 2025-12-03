@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/a-election-game",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "\"基层组织选举\"互动游戏 - A馆",
   "dependencies": {
     "react": "^18.2.0",
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=A-election-game react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:client": "react-scripts start",

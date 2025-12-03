@@ -2,7 +2,7 @@
   "name": "@hangzhou-civilian-committee/b-new-2012-2017-2",
   "version": "1.0.0",
   "private": true,
-"homepage": ".",
+  "homepage": ".",
   "description": "新时代基层治理发展（2012年11月-2017年9月）-竖屏2 - B馆",
   "dependencies": {
     "react": "^18.2.0",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH=B-new-2012-2017-2 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
