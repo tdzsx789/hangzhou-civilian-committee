@@ -11,15 +11,6 @@
   overflow: hidden;
 }
 
-.detail-header {
-  padding: 40px 60px;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
 .back-btn2 {
   position: absolute;
   top: 1600px;
@@ -28,66 +19,67 @@
   height: 100px;
 }
 
-.detail-header h1 {
-  font-size: 48px;
-  color: white;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.detail-header p {
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
-.detail-content {
-  flex: 1;
-  padding: 60px;
-  color: white;
+.detail2-scroll {
+  position: absolute;
+  left: 130px;
+  top: 230px;
+  width: 825px;
+  height: 1220px;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
   -webkit-overflow-scrolling: touch;
+  color: #fff;
 }
 
-.detail-content p {
+.detail2-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.detail2-scroll {
+  scrollbar-width: none;
+}
+
+.detail2-scroll {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  font-style: normal;
+  font-weight: 400;
   font-size: 24px;
-  line-height: 1.8;
+  line-height: 48px;
+  /* or 200% */
+  text-align: justify;
+  color: #2D2A28;
 }
 
-.detail2-back-btn {
-  position: absolute;
-  top: 40px;
-  left: 40px;
+.detail2-scroll strong {
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 56px;
+  /* or 165% */
+  text-align: center;
+  color: #B1150F;
+  white-space: pre-line; /* 支持字符串中的 \n 换行 */
 }
 
-.page2-button1 {
-  position: absolute;
-  top: 388px;
-  left: 130px;
-  width: 812px;
-  height: 280px;
+.detail2-scroll p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
 }
 
-.page2-button2 {
-  position: absolute;
-  top: 708px;
-  left: 130px;
-  width: 812px;
-  height: 280px;
-}
+.detail2-scroll b {
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 56px;
+  /* or 233% */
+  text-align: center;
 
-.page2-button3 {
-  position: absolute;
-  top: 1026px;
-  left: 130px;
-  width: 812px;
-  height: 280px;
-}
-
-.page2-button4 {
-  position: absolute;
-  top: 1346px;
-  left: 130px;
-  width: 812px;
-  height: 280px;
+  color: #B1150F;
 }

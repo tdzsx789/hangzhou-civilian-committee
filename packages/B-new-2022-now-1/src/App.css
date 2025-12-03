@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('./assets/FZCuHeiSong-B-JF.TTF');
+}
+
+@font-face {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  src: url('./assets/FZLanTingHeiS-DB-GB.TTF');
+}
+
+@font-face {
+  font-family: 'DIN';
+  src: url('./assets/DIN-Bold.otf');
+}
+
 .App {
   width: 1080px;
   height: 1920px;
@@ -5,4 +20,18 @@
   position: relative;
   margin: 0;
   padding: 0;
+  background-color: #000;
+}
+
+.page-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.page-layer--active {
+  opacity: 1;
+  pointer-events: auto;
 }
