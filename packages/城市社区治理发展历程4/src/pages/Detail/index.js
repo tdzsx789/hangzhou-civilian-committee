@@ -58,7 +58,6 @@ function Detail({ name, gallery, onBack }) {
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          cursor: 'pointer'
         }}
       ></div>
     </div>

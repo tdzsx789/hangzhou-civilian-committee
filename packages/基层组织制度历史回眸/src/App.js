@@ -23,7 +23,7 @@ function App() {
       }
       autoReturnTimer = setTimeout(() => {
         setCurrentPage('home');
-      }, 120000); // 2分钟 = 120000毫秒
+      }, 300000); // 2分钟 = 300000毫秒
     };
 
     const handleTouchStart = () => {
@@ -70,7 +70,12 @@ function App() {
           transition: 'opacity 0.3s ease'
         }}
       >
-        <Detail name="基层组织制度历史回眸" gallery="A馆" onBack={handleBack} />
+        <Detail
+          name="基层组织制度历史回眸"
+          gallery="A馆"
+          onBack={handleBack}
+          active={currentPage === 'detail'}
+        />
       </div>
     </div>
   );

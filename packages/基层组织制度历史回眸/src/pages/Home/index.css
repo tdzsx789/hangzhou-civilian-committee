@@ -67,12 +67,3 @@
     transform: translateX(-50%) scale(0.95);
   }
 }
-
-.learn-more-btn:hover {
-  transform: translateX(-50%) scale(1.15);
-  animation: none; /* 悬停时暂停呼吸动画 */
-}
-
-.learn-more-btn:active {
-  transform: translateX(-50%) scale(0.98);
-}

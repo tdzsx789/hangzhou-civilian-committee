@@ -45,15 +45,6 @@
   user-select: none;
 }
 
-.back-btn:hover {
-  background-color: white;
-  transform: scale(1.05);
-}
-
-.back-btn:active {
-  transform: scale(0.98);
-}
-
 .detail-header h1 {
   font-size: 48px;
   color: white;

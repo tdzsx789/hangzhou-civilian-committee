@@ -1,0 +1,122 @@
+/* 详情页样式 */
+.detail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.detail-header {
+  padding: 40px 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.back-btn {
+  padding: 12px 30px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: none;
+  border-radius: 25px;
+  
+  transition: all 0.3s ease;
+  font-weight: bold;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.detail-header h1 {
+  font-size: 48px;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.detail-header p {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.detail-content {
+  flex: 1;
+  padding: 60px;
+  color: white;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-content p {
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+.scroll-container {
+  position: absolute;
+  width: 940px;
+  height: 1240px;
+  top: 520px;
+  left: 66px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-container:active {
+  
+}
+
+.card-item {
+  width: 100%;
+  min-height: 150px;
+  margin-bottom: 4px;
+  background-image: url('../../assets/slideBg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  outline: none;
+  transition: transform 0.2s ease;
+  padding-left: 72px;
+  padding-top: 32px;
+  box-sizing: border-box;
+}
+
+.card-content {
+  font-family: 'FZCuHeiSong-B-JF', 'Alibaba-PuHuiTi-Bold';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 42px;
+  color: #634531;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+.link1 {
+  position: absolute;
+  top: 368px;
+  left: 578px;
+  width: 288px;
+  height: 105px;
+  
+}

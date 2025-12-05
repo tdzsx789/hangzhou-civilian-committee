@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=B-new-2017-2022-1 react-scripts build",
+    "build": "BUILD_PATH=B馆2017年10月到2022年9月相关文件 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

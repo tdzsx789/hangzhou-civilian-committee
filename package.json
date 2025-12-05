@@ -19,7 +19,8 @@
     "new": "node scripts/create-exhibition.js",
     "create:all": "node scripts/create-all-exhibitions.js",
     "install:all": "lerna exec -- npm install",
-    "clean:build": "lerna exec -- rm -rf build dist"
+    "clean:build": "lerna exec -- rm -rf build dist",
+    "clean:packages": "node scripts/clean-package-builds.js"
   },
   "devDependencies": {
     "lerna": "^8.0.0"

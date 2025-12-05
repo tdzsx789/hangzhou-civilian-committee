@@ -68,15 +68,6 @@
   }
 }
 
-.learn-more-btn:hover {
-  transform: translateX(-50%) scale(1.15);
-  animation: none; /* 悬停时暂停呼吸动画 */
-}
-
-.learn-more-btn:active {
-  transform: translateX(-50%) scale(0.98);
-}
-
 
 .learn-more-btn2 {
   position: absolute;
@@ -101,16 +92,6 @@
   height: auto;
 }
 
-.learn-more-btn2:hover {
-  transform: translateX(-50%) scale(1.15);
-  animation: none; /* 悬停时暂停呼吸动画 */
-}
-
-.learn-more-btn2:active {
-  transform: translateX(-50%) scale(0.98);
-}
-
-
 .learn-more-btn3 {
   position: absolute;
   top: 621px;
@@ -127,18 +108,4 @@
   
   /* 呼吸灯动画 - 变大变小效果，带中间停顿 */
   animation: breathe 4s ease-in-out infinite;
-}
-
-.learn-more-btn3 img {
-  display: block;
-  height: auto;
-}
-
-.learn-more-btn3:hover {
-  transform: translateX(-50%) scale(1.15);
-  animation: none; /* 悬停时暂停呼吸动画 */
-}
-
-.learn-more-btn3:active {
-  transform: translateX(-50%) scale(0.98);
 }

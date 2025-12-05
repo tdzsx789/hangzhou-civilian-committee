@@ -26,6 +26,14 @@
       "react-app"
     ]
   },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-classes"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

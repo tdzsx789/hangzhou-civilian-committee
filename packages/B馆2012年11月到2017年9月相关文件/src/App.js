@@ -106,7 +106,7 @@ function App() {
       }
       autoReturnTimer = setTimeout(() => {
         setCurrentPage('home');
-      }, 120000); // 2分钟 = 120000毫秒
+      }, 300000); // 2分钟 = 300000毫秒
     };
 
     const handleTouchStart = () => {

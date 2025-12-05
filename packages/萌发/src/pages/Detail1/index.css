@@ -35,15 +35,6 @@
   user-select: none;
 }
 
-.back-btn:hover {
-  background-color: white;
-  transform: scale(1.05);
-}
-
-.back-btn:active {
-  transform: scale(0.98);
-}
-
 .detail-header h1 {
   font-size: 48px;
   color: white;
@@ -137,14 +128,6 @@
   z-index: 10;
   
   transition: transform 0.2s ease;
-}
-
-.back-button:hover {
-  transform: scale(1.05);
-}
-
-.back-button:active {
-  transform: scale(0.95);
 }
 
 .back-button img {

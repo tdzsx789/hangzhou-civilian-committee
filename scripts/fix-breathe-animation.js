@@ -71,7 +71,7 @@ function fixBreatheAnimation(exhibition) {
   color: #333;
   border: none;
   border-radius: 50px;
-  cursor: pointer;
+  
   transition: all 0.3s ease;
   font-weight: bold;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);

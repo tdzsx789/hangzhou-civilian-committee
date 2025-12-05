@@ -1,0 +1,296 @@
+/* 详情页样式 */
+.detail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.detail-header {
+  padding: 40px 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.back-btn2 {
+  position: absolute;
+  top: 1600px;
+  left: 760px;
+  width: 240px;
+  height: 100px;
+}
+
+.detail-header h1 {
+  font-size: 48px;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.detail-header p {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.detail-content {
+  flex: 1;
+  padding: 60px;
+  color: white;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-content p {
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+.detail2-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.page2-button1 {
+  position: absolute;
+  top: 388px;
+  left: 130px;
+  width: 812px;
+  height: 280px;
+}
+
+.page2-button2 {
+  position: absolute;
+  top: 708px;
+  left: 130px;
+  width: 812px;
+  height: 280px;
+}
+
+.page2-button3 {
+  position: absolute;
+  top: 1026px;
+  left: 130px;
+  width: 812px;
+  height: 280px;
+}
+
+.page2-button4 {
+  position: absolute;
+  top: 1346px;
+  left: 130px;
+  width: 812px;
+  height: 280px;
+}
+
+.link2 {
+  position: absolute;
+  top: 368px;
+  left: 218px;
+  width: 288px;
+  height: 105px;
+}
+
+/* .before2 {
+  position: absolute;
+  top: 1108px;
+  left: 31px;
+  width: 100px;
+  height: 100px;
+}
+
+.after2 {
+  position: absolute;
+  top: 1108px;
+  left: 952px;
+  width: 100px;
+  height: 100px;
+} */
+
+.docx-scroll-container {
+  position: absolute;
+  width: 820px;
+  height: 1111px;
+  left: 130px;
+  top: 575px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.docx-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.docx-content {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.docx-content p {
+  margin: 8px 0;
+  text-indent: 2em; /* 首行缩进2个汉字 */
+}
+
+/* 列表项也添加首行缩进 */
+.docx-content li {
+  text-indent: 2em;
+}
+
+/* 标题样式优化 - 标题不需要首行缩进 */
+.docx-content h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 24px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #333;
+  line-height: 1.4;
+  text-indent: 0; /* 标题不缩进 */
+}
+
+.docx-content h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2a2a2a;
+  margin: 20px 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #666;
+  line-height: 1.4;
+  text-indent: 0; /* 标题不缩进 */
+}
+
+.docx-content h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 18px 0 8px 0;
+  line-height: 1.4;
+  text-indent: 0; /* 标题不缩进 */
+}
+
+.docx-content h4,
+.docx-content h5,
+.docx-content h6 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+  margin: 16px 0 8px 0;
+  line-height: 1.4;
+  text-indent: 0; /* 标题不缩进 */
+}
+
+/* 表格样式优化 */
+.docx-content table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  table-layout: auto;
+  font-size: 13px;
+}
+
+.docx-content table th,
+.docx-content table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.docx-content table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  white-space: nowrap;
+}
+
+.docx-content table td {
+  background-color: #fff;
+  color: #333;
+  text-indent: 2em; /* 表格单元格文字首行缩进2个汉字 */
+}
+
+.docx-content table td p {
+  text-indent: 0; /* 表格单元格内的段落不重复缩进 */
+  margin: 4px 0;
+}
+
+.docx-content table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.docx-content table tr:hover td {
+  background-color: #f0f0f0;
+}
+
+/* 图片样式优化 */
+.docx-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  padding: 4px;
+  clear: both;
+}
+
+/* 图片容器优化 */
+.docx-content p img,
+.docx-content div img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+/* 包含图片的段落居中 */
+.docx-content p {
+  text-align: left;
+}
+
+/* 单独图片段落居中 */
+.docx-content p:only-child img {
+  margin: 20px auto;
+}
+
+/* 图片前后间距优化 */
+.docx-content img + p,
+.docx-content p + img {
+  margin-top: 20px;
+}
+
+/* 表格包装器，处理宽表格 */
+.docx-content {
+  overflow-x: visible;
+  max-width: 100%;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 50px;
+  color: #333;
+  font-size: 18px;
+}

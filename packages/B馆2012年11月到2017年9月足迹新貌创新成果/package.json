@@ -1,0 +1,36 @@
+{
+  "name": "@hangzhou-civilian-committee/b-new-2012-2017-2",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": ".",
+  "description": "新时代基层治理发展（2012年11月-2017年9月）-竖屏2 - B馆",
+  "dependencies": {
+    "mammoth": "^1.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "BUILD_PATH=B馆2012年11月到2017年9月足迹新貌创新成果 react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

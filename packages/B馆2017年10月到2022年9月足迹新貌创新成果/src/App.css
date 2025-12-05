@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('./assets/FZCuHeiSong-B-JF.TTF');
+}
+
+@font-face {
+  font-family: 'Alibaba-PuHuiTi-Bold';
+  src: url('./assets/Alibaba-PuHuiTi-Bold.otf');
+}
+
+@font-face {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  src: url('./assets/FZLanTingHeiS-DB-GB.TTF');
+}
+
+.App {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-container.active {
+  opacity: 1;
+  pointer-events: auto;
+}

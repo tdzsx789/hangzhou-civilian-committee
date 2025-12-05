@@ -61,7 +61,7 @@ export default Home;`;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  cursor: pointer;
+  
   transition: all 0.3s ease;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

@@ -29,10 +29,6 @@ html, body {
   user-select: none;
 }
 
-body {
-  transform: scale(2);
-  transform-origin: 0 0;
-}
 
 #root {
   width: 2301px;

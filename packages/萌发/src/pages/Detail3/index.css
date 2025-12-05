@@ -44,14 +44,6 @@
   transition: transform 0.2s ease;
 }
 
-.back-button:hover {
-  transform: scale(1.05);
-}
-
-.back-button:active {
-  transform: scale(0.95);
-}
-
 .back-button img {
   width: auto;
   height: auto;

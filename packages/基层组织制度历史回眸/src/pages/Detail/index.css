@@ -35,15 +35,6 @@
   user-select: none;
 }
 
-.back-btn:hover {
-  background-color: white;
-  transform: scale(1.05);
-}
-
-.back-btn:active {
-  transform: scale(0.98);
-}
-
 .detail-header h1 {
   font-size: 48px;
   color: white;
@@ -103,19 +94,25 @@
 
 .slides-container {
   position: absolute;
-  left: 620px;
-  top: 207px;
+  left: 580px;
+  top: 187px;
   width: 1160px;
-  height: 690px;
+  height: 720px;
   overflow: hidden;
   overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 108px;
   
   -webkit-overflow-scrolling: touch;
 }
 
-.slides-container:active {
-  
+.qita-item {
+  position: absolute;
+  width: 313px;
+  height: 237px;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -127,11 +124,97 @@
   scrollbar-width: none;
 }
 
-.slides-image {
-  height: 100%;
-  width: auto;
+.slides-image,
+.nanjing-image,
+.gongchandang-image {
   display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
+}
+/* 
+.clickable-image {
+  cursor: pointer;
+} */
+
+.nanjing-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, max-content);
+  gap: 60px 108px;
+  align-items: start;
+}
+
+.nanjing-item {
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.nanjing-thumb {
+  width: 312px;
+  height: 234px;
+  background: #FDFAEE;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
+.nanjing-caption {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: left;
+  text-indent: 2em;
+  color: #000000;
+  max-width: 312px;
+  display: inline-block;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.gongchandang-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, max-content);
+  gap: 60px 108px;
+  align-items: start;
+}
+
+.gongchandang-item {
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.gongchandang-thumb {
+  width: 312px;
+  height: 234px;
+  background: #FDFAEE;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
+.gongchandang-caption {
+  font-family: 'FZLanTingHeiS-DB-GB', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: left;
+  text-indent: 2em;
+  color: #000000;
+  max-width: 312px;
+  display: inline-block;
+  word-break: break-word;
+  white-space: normal;
 }

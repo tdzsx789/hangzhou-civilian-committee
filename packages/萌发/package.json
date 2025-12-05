@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=B-germination react-scripts build",
+    "build": "BUILD_PATH=萌发 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

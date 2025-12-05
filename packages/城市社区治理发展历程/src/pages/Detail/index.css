@@ -23,15 +23,6 @@
   background-repeat: no-repeat;
 }
 
-.back-button:hover {
-  background-color: white;
-  transform: scale(1.05);
-}
-
-.back-button:active {
-  transform: scale(0.98);
-}
-
 .detail-header {
   padding: 40px 60px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -54,15 +45,6 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-}
-
-.back-btn:hover {
-  background-color: white;
-  transform: scale(1.05);
-}
-
-.back-btn:active {
-  transform: scale(0.98);
 }
 
 .detail-header h1 {
