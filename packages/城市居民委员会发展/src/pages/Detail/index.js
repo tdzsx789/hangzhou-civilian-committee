@@ -186,6 +186,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   const [showHand, setShowHand] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const galleryContainerRef = useRef(null);
   const page2Container1Ref = useRef(null);
   const page2Container2Ref = useRef(null);
@@ -275,24 +276,49 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   };
 
   const handleSelectClick = (selectKey) => {
-    setSelectedSelectKey(selectKey);
+    if (selectKey !== selectedSelectKey) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedSelectKey(selectKey);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 300);
+    }
   };
 
   const handleDownButtonClick = () => {
+    let newKey;
     if (selectedSelectKey === 'select1') {
-      setSelectedSelectKey('select2');
+      newKey = 'select2';
     } else if (selectedSelectKey === 'select2') {
-      setSelectedSelectKey('select1');
+      newKey = 'select1';
     } else if (selectedSelectKey === 'select3') {
-      setSelectedSelectKey('select4');
+      newKey = 'select4';
     } else if (selectedSelectKey === 'select4') {
-      setSelectedSelectKey('select3');
+      newKey = 'select3';
+    }
+    
+    if (newKey && newKey !== selectedSelectKey) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedSelectKey(newKey);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 300);
     }
   };
 
   const handleBackClick = () => {
     if (selectedSelectKey === 'select3' || selectedSelectKey === 'select4') {
-      setSelectedSelectKey('select1');
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedSelectKey('select1');
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 300);
     } else {
       onBack();
     }
@@ -309,7 +335,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${detailBgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className={`detail-page ${isTransitioning ? 'page-transitioning' : ''}`} style={{ backgroundImage: `url(${detailBgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="select-image" style={{ top: `${selectedItem.top}px` }}>
         <img src={selectImg} alt="select" />
         <div className="select-text">

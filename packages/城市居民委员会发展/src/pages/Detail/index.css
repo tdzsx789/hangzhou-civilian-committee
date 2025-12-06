@@ -13,6 +13,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.detail-page > * {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .detail-header {
@@ -199,6 +204,16 @@
 .hand-swipe-animation-page3 {
   animation: handSwipePage3 2s infinite;
   animation-timing-function: linear;
+}
+
+/* 页面切换转场效果 */
+.page-transitioning {
+  opacity: 0.5;
+}
+
+.page-transitioning > * {
+  opacity: 0.5;
+  transform: scale(0.98);
 }
 
 /* 图片画廊样式 */

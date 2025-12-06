@@ -64,7 +64,7 @@ function App() {
           pointerEvents: currentPage === 'detail' ? 'auto' : 'none'
         }}
       >
-        <Detail name="新中国第一个居民委员会" gallery="A馆" onBack={handleBack} />
+        <Detail name="新中国第一个居民委员会" gallery="A馆" onBack={handleBack} isVisible={currentPage === 'detail'} />
       </div>
     </div>
   );

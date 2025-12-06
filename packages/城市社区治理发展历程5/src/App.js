@@ -49,30 +49,24 @@ function App() {
   return (
     <div className="App">
       <div style={{ 
-        position: 'relative', 
+        position: 'absolute', 
         width: '100%', 
-        height: '100%' 
+        height: '100%',
+        opacity: currentPage === 'home' ? 1 : 0,
+        pointerEvents: currentPage === 'home' ? 'auto' : 'none',
+        transition: 'opacity 0.3s ease'
       }}>
-        <div style={{ 
-          position: 'absolute', 
-          width: '100%', 
-          height: '100%',
-          opacity: currentPage === 'home' ? 1 : 0,
-          pointerEvents: currentPage === 'home' ? 'auto' : 'none',
-          transition: 'opacity 0.3s ease'
-        }}>
-          <Home onLearnMore={handleLearnMore} />
-        </div>
-        <div style={{ 
-          position: 'absolute', 
-          width: '100%', 
-          height: '100%',
-          opacity: currentPage === 'detail' ? 1 : 0,
-          pointerEvents: currentPage === 'detail' ? 'auto' : 'none',
-          transition: 'opacity 0.3s ease'
-        }}>
-          <Detail name="城市社区治理发展历程1" gallery="A馆" onBack={handleBack} />
-        </div>
+        <Home onLearnMore={handleLearnMore} />
+      </div>
+      <div style={{ 
+        position: 'absolute', 
+        width: '100%', 
+        height: '100%',
+        opacity: currentPage === 'detail' ? 1 : 0,
+        pointerEvents: currentPage === 'detail' ? 'auto' : 'none',
+        transition: 'opacity 0.3s ease'
+      }}>
+        <Detail name="城市社区治理发展历程1" gallery="A馆" onBack={handleBack} isVisible={currentPage === 'detail'} />
       </div>
     </div>
   );

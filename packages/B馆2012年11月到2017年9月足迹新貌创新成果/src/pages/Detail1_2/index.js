@@ -101,6 +101,12 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1_2})` }}>
       <div className="content-wrapper">
+
+        {/* 标题 */}
+        {selectedItem.address && (
+          <div className="content-title">{selectedItem.address}</div>
+        )}
+
         {/* 图片区域 */}
         {images.length > 0 && (
           <div className={`images-container ${hasTwoImages ? 'two-images' : 'one-image'}`}>
@@ -116,11 +122,6 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
               </div>
             ))}
           </div>
-        )}
-
-        {/* 标题 */}
-        {selectedItem.address && (
-          <div className="content-title">{selectedItem.address}</div>
         )}
 
         {/* 正文滚动容器 */}

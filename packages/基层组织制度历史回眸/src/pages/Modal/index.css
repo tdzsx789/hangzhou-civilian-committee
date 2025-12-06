@@ -32,7 +32,7 @@
     height: 800px;
     object-fit: contain;
     /* background: #FDFAEE; */
-    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2); */
 }
 
 .modal-caption {
