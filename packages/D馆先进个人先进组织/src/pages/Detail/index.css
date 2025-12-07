@@ -7,6 +7,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'FZCuHeiSong-B-JF';
+  src: url('../../assets/FZCuHeiSong-B-JF.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .detail-page {
   width: 100%;
   min-height: 100vh;
@@ -168,6 +176,22 @@
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
+}
+
+.detail-title {
+  position: absolute;
+  left: 50%;
+  top: 220px;
+  transform: translateX(-50%);
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
+  color: #AC080F;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 10;
 }
 
 .child-item {

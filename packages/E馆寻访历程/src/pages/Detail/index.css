@@ -1,0 +1,185 @@
+/* 详情页样式：全屏背景图 + 右上角返回按钮 */
+.detail-page {
+  width: 100vw;
+  height: 100vh;
+  background: url('../../assets/bg1.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-back-btn {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  width: 120px;
+  height: 120px;
+  z-index: 10;
+}
+
+.detail-card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 200px 40px 40px 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.detail-card-nav-btn {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+}
+
+.detail-card-nav-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.detail-card-nav-left {
+  left: 80px;
+}
+
+.detail-card-nav-right {
+  right: 80px;
+}
+
+.detail-card-nav-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.detail-card {
+  width: 100%;
+  height: 960px;
+  /* max-width: 1400px; */
+  background-image: url('../../assets/slideBg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 80px 150px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.detail-title {
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 46px;
+  text-align: center;
+  background: linear-gradient(180deg, #916F41 0%, #544025 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 16px 0 100px 0;
+}
+
+.detail-summary {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: justify;
+  color: #544025;
+  margin: 0 0 30px 0;
+}
+
+.detail-images-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  padding-bottom: 100px;
+}
+
+.detail-images-grid {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  align-items: flex-start;
+}
+
+.detail-image-card {
+  width: 365px;
+  background: #F1E3CD;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 2px solid #BF9A7D;
+  align-self: flex-start;
+  height: auto;
+}
+
+.detail-image {
+  width: 320px;
+  height: 240px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.detail-image-caption {
+  font-family: 'FZLanTingHeiS-DB-GB';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: justify;
+  color: #544025;
+  width: 320px;
+  margin: 0 auto;
+  text-indent: 2em;
+}
+
+.detail-nav-btn {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  bottom: 20px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 5;
+}
+
+.detail-nav-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.detail-nav-left {
+  left: 500px;
+}
+
+.detail-nav-right {
+  right: 500px;
+}
+
+.detail-nav-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
