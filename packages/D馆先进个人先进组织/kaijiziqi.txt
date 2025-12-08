@@ -1,0 +1,9 @@
+ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+sudo vim /etc/systemd/system/rc-local.service
+
+
+[Install]
+  WantedBy=multi-user.target
+  Alias=rc-local.service
+
+sudo chmod +x /etc/rc.local

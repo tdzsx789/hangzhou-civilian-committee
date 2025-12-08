@@ -4,11 +4,33 @@ import button1 from '../../assets/button1.png';
 import listBg2 from '../../assets/listBg2.png';
 import listBg from '../../assets/list.png';
 import backButton from '../../assets/backButton.png';
+import handImg from '../../assets/hand.png';
 
-function Detail3({ name, gallery, onBack, onSelectDetail, data = [] }) {
+function Detail3({ name, gallery, onBack, onSelectDetail, data = [], isActive }) {
+  const [showHand, setShowHand] = useState(true);
   const [selectedProvinceIndex, setSelectedProvinceIndex] = useState(null);
   const provinceScrollRef = useRef(null);
   const childrenScrollRef = useRef(null);
+
+  // 根据当前显示的是省市列表还是children列表来决定使用哪个容器
+  useEffect(() => {
+    const container = selectedProvinceIndex === null ? provinceScrollRef.current : childrenScrollRef.current;
+    if (!isActive || !container) {
+      setShowHand(false);
+      return undefined;
+    }
+
+    setShowHand(true);
+    const hideHand = () => setShowHand(false);
+    const timer = setTimeout(hideHand, 6000);
+
+    container.addEventListener('touchstart', hideHand);
+
+    return () => {
+      clearTimeout(timer);
+      container.removeEventListener('touchstart', hideHand);
+    };
+  }, [isActive, selectedProvinceIndex]);
 
   // 按children数量从高到低排序
   const sortedData = useMemo(() => {
@@ -128,6 +150,22 @@ function Detail3({ name, gallery, onBack, onSelectDetail, data = [] }) {
           </button>
         ))}
       </div>
+      {/* 省市列表的手势提示 */}
+      {showHand && selectedProvinceIndex === null && (
+        <img
+          src={handImg}
+          alt="hand"
+          className="hand-swipe-animation hand-province"
+        />
+      )}
+      {/* Children列表的手势提示 */}
+      {showHand && selectedProvinceIndex !== null && (
+        <img
+          src={handImg}
+          alt="hand"
+          className="hand-swipe-animation hand-children"
+        />
+      )}
     </div>
   );
 }

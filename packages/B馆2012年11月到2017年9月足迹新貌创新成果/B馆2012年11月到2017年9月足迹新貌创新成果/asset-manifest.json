@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "./static/css/main.2bc26f4a.css",
+    "main.js": "./static/js/main.08556ef6.js",
+    "static/media/Alibaba-PuHuiTi-Bold.otf": "./static/media/Alibaba-PuHuiTi-Bold.fc4f40f33824d7265152.otf",
+    "static/media/军门社区居民恳谈日.png": "./static/media/军门社区居民恳谈日.70c33aae359411eda402.png",
+    "static/media/军门社区外景.png": "./static/media/军门社区外景.b712bec0b0868f1f5afa.png",
+    "static/media/爱民社区整体面貌.png": "./static/media/爱民社区整体面貌.84547ab4fba8dca217df.png",
+    "static/media/爱民社区医保服务站.png": "./static/media/爱民社区医保服务站.3b113bbcc544f50a5db7.png",
+    "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
+    "static/media/result3.docx": "./static/media/result3.cecb7161201d8d3cfa78.docx",
+    "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
+    "static/media/cover.jpg": "./static/media/cover.4d6a80bdffbb2f96a50f.jpg",
+    "static/media/bg1_1.jpg": "./static/media/bg1_1.11bae974dace9db8ddba.jpg",
+    "static/media/bg2_2.jpg": "./static/media/bg2_2.f00f11d6e95a1f03313f.jpg",
+    "static/media/bg1_2.jpg": "./static/media/bg1_2.acc796368e2956fb8f2a.jpg",
+    "static/media/bg2_1.jpg": "./static/media/bg2_1.60edf7d781144d6dd970.jpg",
+    "static/media/社区整体面貌照.png": "./static/media/社区整体面貌照.52f9e82957637323495a.png",
+    "static/media/辽宁省沈阳市和平区南湖街道多福社区.png": "./static/media/辽宁省沈阳市和平区南湖街道多福社区.2ae27c3d306a888da20b.png",
+    "static/media/渔民村文化长廊新颜.png": "./static/media/渔民村文化长廊新颜.a8ae5100714fb72b1ea9.png",
+    "static/media/西安市雁塔区电子城街道二〇五所社区卫生服务站.png": "./static/media/西安市雁塔区电子城街道二〇五所社区卫生服务站.4db22a2a99f7b321a0d9.png",
+    "static/media/开展丰富多彩的文体活动.png": "./static/media/开展丰富多彩的文体活动.972aa66653e9a9b5a9e6.png",
+    "static/media/社区办公楼新旧对比.png": "./static/media/社区办公楼新旧对比.029ec2b2b3f422ad4c23.png",
+    "static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比.png": "./static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比.778a7a1a7334e21504ea.png",
+    "static/media/渔民村文化长廊旧貌.png": "./static/media/渔民村文化长廊旧貌.61bed3f08f1a6fb55d27.png",
+    "static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比2.png": "./static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比2.490bf666a6d14a27dc15.png",
+    "static/media/start.png": "./static/media/start.2439c59b4854d4f05681.png",
+    "static/media/result1.docx": "./static/media/result1.9fcfb9904d6500c8cf3b.docx",
+    "static/media/result2.docx": "./static/media/result2.03dfd39016b015e48293.docx",
+    "static/media/slideBg.png": "./static/media/slideBg.5c6f664c017f0140b306.png",
+    "index.html": "./index.html",
+    "main.2bc26f4a.css.map": "./static/css/main.2bc26f4a.css.map",
+    "main.08556ef6.js.map": "./static/js/main.08556ef6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2bc26f4a.css",
+    "static/js/main.08556ef6.js"
+  ]
+}

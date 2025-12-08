@@ -94,6 +94,7 @@ function App() {
           onBack={handleBackHome}
           onSelectDetail={handleEnterDetail2}
           data={peopleData}
+          isActive={currentPage === 'detail'}
         />
       </div>
       <div className={`page-container ${currentPage === 'detail2' ? 'active' : 'inactive'}`}>
@@ -108,6 +109,7 @@ function App() {
           onBack={handleBackHome}
           onSelectDetail={handleEnterDetail4}
           data={zuzhiData}
+          isActive={currentPage === 'detail3'}
         />
       </div>
       <div className={`page-container ${currentPage === 'detail4' ? 'active' : 'inactive'}`}>

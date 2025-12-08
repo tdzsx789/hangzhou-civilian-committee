@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "./static/css/main.6c5b1d24.css",
+    "main.js": "./static/js/main.5cc0d1e8.js",
+    "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
+    "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
+    "static/media/bg1.jpg": "./static/media/bg1.d356fa5c7ee7b0290215.jpg",
+    "static/media/cover.jpg": "./static/media/cover.2163421f996a6c97771a.jpg",
+    "static/media/announcement-2008-06-28.png": "./static/media/announcement-2008-06-28.994f870e284d3ff9c495.png",
+    "static/media/beijing-forum-2007-09-09.png": "./static/media/beijing-forum-2007-09-09.bbe661cbaa72de79d5fa.png",
+    "static/media/expert-forum-2008-06-13.png": "./static/media/expert-forum-2008-06-13.d352e6ec255ac2219ec3.png",
+    "static/media/ministry-meeting-2007-08-27.png": "./static/media/ministry-meeting-2007-08-27.4e4d8856f5f624737fe8.png",
+    "static/media/group-photo-qian-shanhu.png": "./static/media/group-photo-qian-shanhu.0a6e37bf5720e5754d88.png",
+    "static/media/cai-qi-visit-2007-06-05.png": "./static/media/cai-qi-visit-2007-06-05.1761583254c2ed73c4d0.png",
+    "static/media/he-guanxin-meeting-2007-06-28.png": "./static/media/he-guanxin-meeting-2007-06-28.eabb087fb95dd3ae79d2.png",
+    "static/media/zhan-chengfu-report-2007-08-04.png": "./static/media/zhan-chengfu-report-2007-08-04.4154644ff7d5c9150ad7.png",
+    "static/media/qian-shanhu.png": "./static/media/qian-shanhu.6c951058941235cc876f.png",
+    "static/media/investigation-report-1952.png": "./static/media/investigation-report-1952.7b46b647e310d0f28c92.png",
+    "static/media/start.png": "./static/media/start.d8c7541abdc955fd95d7.png",
+    "static/media/chen-fulin-chen-daozhang-handshake.png": "./static/media/chen-fulin-chen-daozhang-handshake.796d66ba1095895f485e.png",
+    "static/media/slideBg.png": "./static/media/slideBg.8909fcc449e0d69fceaa.png",
+    "static/media/beijing-expert-forum-2008-06-19.png": "./static/media/beijing-expert-forum-2008-06-19.d8b11c0e6cebdf48ced8.png",
+    "static/media/leftArrow.png": "./static/media/leftArrow.3170ee46c3eeb4eec33d.png",
+    "static/media/rightArrow.png": "./static/media/rightArrow.e60dbdd6b48ba595d94c.png",
+    "index.html": "./index.html",
+    "main.6c5b1d24.css.map": "./static/css/main.6c5b1d24.css.map",
+    "main.5cc0d1e8.js.map": "./static/js/main.5cc0d1e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c5b1d24.css",
+    "static/js/main.5cc0d1e8.js"
+  ]
+}

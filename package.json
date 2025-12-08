@@ -12,6 +12,7 @@
     "clean": "lerna clean",
     "build": "lerna run build",
     "build:all": "lerna run build --parallel",
+    "build:apps": "node scripts/build-to-apps.js",
     "start": "lerna run start --parallel",
     "start:single": "lerna run start --scope",
     "test": "lerna run test",

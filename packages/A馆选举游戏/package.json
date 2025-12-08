@@ -1,0 +1,47 @@
+{
+  "name": "@hangzhou-civilian-committee/a-election-game",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": ".",
+  "description": "\"基层组织选举\"互动游戏 - A馆",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "BUILD_PATH=A-election-game react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start:client": "react-scripts start",
+    "build:client": "react-scripts build",
+    "build:screen": "REACT_APP_BUILD_TARGET=screen BUILD_PATH=screen react-scripts build",
+    "build:game1": "REACT_APP_BUILD_TARGET=game1 BUILD_PATH=game1 react-scripts build",
+    "build:game2": "REACT_APP_BUILD_TARGET=game2 BUILD_PATH=game2 react-scripts build",
+    "build:game3": "REACT_APP_BUILD_TARGET=game3 BUILD_PATH=game3 react-scripts build",
+    "build:game4": "REACT_APP_BUILD_TARGET=game4 BUILD_PATH=game4 react-scripts build",
+    "build:game5": "REACT_APP_BUILD_TARGET=game5 BUILD_PATH=game5 react-scripts build",
+    "start:server": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "build:server": "npm --prefix server run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

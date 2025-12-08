@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.7835ffc3.css",
+    "main.js": "./static/js/main.a4cbbac0.js",
+    "static/media/图为安远县开展防溺水宣传活动.jpg": "./static/media/图为安远县开展防溺水宣传活动.9926574d9746b5c9c752.jpg",
+    "static/media/wuzhen.JPG": "./static/media/wuzhen.82b7640844926be286c0.JPG",
+    "static/media/图为政法干警走访帮教.jpg": "./static/media/图为政法干警走访帮教.696c53739bcf63187d38.jpg",
+    "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
+    "static/media/cover.jpg": "./static/media/cover.43051534a418bda1755f.jpg",
+    "static/media/page1.jpg": "./static/media/page1.a28c94af4ef64f153f36.jpg",
+    "static/media/page3.jpg": "./static/media/page3.990dda5d90e09794b967.jpg",
+    "static/media/page2.jpg": "./static/media/page2.bf216ab2413685182456.jpg",
+    "static/media/shanghai.png": "./static/media/shanghai.a65270b004b3a995dcbd.png",
+    "static/media/hongshan.jpg": "./static/media/hongshan.26ccd16fd2b8ace70491.jpg",
+    "static/media/图为蟠龙社区开展第六届红色经典咏流传红色诗歌大会，辖区内许多企事业单位响应参与.jpeg": "./static/media/图为蟠龙社区开展第六届红色经典咏流传红色诗歌大会，辖区内许多企事业单位响应参与.888930c526b8a7ce677d.jpeg",
+    "static/media/图为北苑街道小志愿者服务队开展文明引导.jpg": "./static/media/图为北苑街道小志愿者服务队开展文明引导.07d062a03d808e0f5ddf.jpg",
+    "static/media/start2.png": "./static/media/start2.cdc87df5f010f528fa85.png",
+    "static/media/start.png": "./static/media/start.dcb9b1580e30581a9ad1.png",
+    "static/media/start3.png": "./static/media/start3.37370f5e4ab848e99179.png",
+    "static/media/button1.png": "./static/media/button1.474af33a17def7c29c45.png",
+    "static/media/leftArrow.png": "./static/media/leftArrow.3170ee46c3eeb4eec33d.png",
+    "static/media/rightArrow.png": "./static/media/rightArrow.e60dbdd6b48ba595d94c.png",
+    "index.html": "./index.html",
+    "main.7835ffc3.css.map": "./static/css/main.7835ffc3.css.map",
+    "main.a4cbbac0.js.map": "./static/js/main.a4cbbac0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7835ffc3.css",
+    "static/js/main.a4cbbac0.js"
+  ]
+}

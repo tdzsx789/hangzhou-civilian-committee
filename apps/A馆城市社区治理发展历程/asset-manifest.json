@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "./static/css/main.396a6065.css",
+    "main.js": "./static/js/main.9f924c9b.js",
+    "static/media/gudang-evolution.jpg": "./static/media/gudang-evolution.f9afddd4484f0c0a33ef.jpg",
+    "static/media/cover.jpg": "./static/media/cover.59221f83b0cf3b7ca85b.jpg",
+    "static/media/slides1.png": "./static/media/slides1.19ee9f3a4a46dfee59c5.png",
+    "static/media/bg1.jpg": "./static/media/bg1.2cc258b71ec432038c68.jpg",
+    "static/media/cpc-14th-congress.jpg": "./static/media/cpc-14th-congress.c984b36d525cf332a2f3.jpg",
+    "static/media/urbanization-acceleration.jpg": "./static/media/urbanization-acceleration.b040138deacd82478ae5.jpg",
+    "static/media/shaoxing-market.jpg": "./static/media/shaoxing-market.e147259da2753a8b71e1.jpg",
+    "static/media/urban-count-chart.jpg": "./static/media/urban-count-chart.c962a5f4c95950cd9a2e.jpg",
+    "static/media/urban-population-chart.jpg": "./static/media/urban-population-chart.0188595f1a07f458bfae.jpg",
+    "static/media/social-security-system.jpg": "./static/media/social-security-system.38f6dc243e4aee3c605f.jpg",
+    "static/media/neighborhood-committee.jpg": "./static/media/neighborhood-committee.e9996d03a547054438a7.jpg",
+    "static/media/migrant-workers.jpg": "./static/media/migrant-workers.e4a09de975e98e459a3b.jpg",
+    "static/media/back.png": "./static/media/back.2d15495d7f1fff27a1c5.png",
+    "static/media/start.png": "./static/media/start.503dfdebc50b5cfcdbf7.png",
+    "static/media/button1.png": "./static/media/button1.70dd47d1b0227d40bbbb.png",
+    "index.html": "./index.html",
+    "main.396a6065.css.map": "./static/css/main.396a6065.css.map",
+    "main.9f924c9b.js.map": "./static/js/main.9f924c9b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.396a6065.css",
+    "static/js/main.9f924c9b.js"
+  ]
+}

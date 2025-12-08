@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "./static/css/main.d316912e.css",
+    "main.js": "./static/js/main.d2adc756.js",
+    "static/media/image1993_05.jpg": "./static/media/image1993_05.dcfb4daf008146becec3.jpg",
+    "static/media/cover.jpg": "./static/media/cover.59221f83b0cf3b7ca85b.jpg",
+    "static/media/bg1.jpg": "./static/media/bg1.b357f4d7f7262b3336e4.jpg",
+    "static/media/image1989.jpg": "./static/media/image1989.ada425560a924a3badd8.jpg",
+    "static/media/image1992_06.jpg": "./static/media/image1992_06.7da7a70abfbf0f171c84.jpg",
+    "static/media/image1990.jpg": "./static/media/image1990.90f3008d54e49bafc2dc.jpg",
+    "static/media/image1991_07.jpg": "./static/media/image1991_07.de91c4bdcb94d5469329.jpg",
+    "static/media/image1991_03.jpg": "./static/media/image1991_03.93ec2b0346d9265d9c13.jpg",
+    "static/media/image1993_09.jpg": "./static/media/image1993_09.b5d8d17a788ba949c3ff.jpg",
+    "static/media/back.png": "./static/media/back.2d15495d7f1fff27a1c5.png",
+    "static/media/start.png": "./static/media/start.503dfdebc50b5cfcdbf7.png",
+    "static/media/button1.png": "./static/media/button1.70dd47d1b0227d40bbbb.png",
+    "index.html": "./index.html",
+    "main.d316912e.css.map": "./static/css/main.d316912e.css.map",
+    "main.d2adc756.js.map": "./static/js/main.d2adc756.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d316912e.css",
+    "static/js/main.d2adc756.js"
+  ]
+}

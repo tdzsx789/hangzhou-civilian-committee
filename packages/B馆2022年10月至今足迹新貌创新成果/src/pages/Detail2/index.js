@@ -1,43 +1,89 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import bg2_1 from '../../assets/bg2_1.jpg';
+import backButton from '../../assets/backButton.png';
 import * as mammoth from 'mammoth';
+import result1Docx from '../../assets/result1.docx';
+import result2Docx from '../../assets/result2.docx';
+import result3Docx from '../../assets/result3.docx';
+import result4Docx from '../../assets/result4.docx';
+
+const list = [
+  { name: '一、中央社会工作部工作职责及重点工作相关内容', file: 'result1.docx' },
+  { name: '二、完整社区试点名单', file: 'result2.docx' },
+  { name: '三、基层党组织、新时代"枫桥经验"各地实践、全过程人民民主、基层矛盾化解、志愿服务、社会工作队伍建设等相关图表', file: 'result3.docx' },
+  { name: '四、相关书籍手册实物展示', file: 'result4.docx' },
+]
+
+const docxFiles = {
+  'result1.docx': result1Docx,
+  'result2.docx': result2Docx,
+  'result3.docx': result3Docx,
+  'result4.docx': result4Docx
+};
 
 function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   const [docxContent, setDocxContent] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const scrollContainerRef = useRef(null);
+  const listScrollContainerRef = useRef(null);
 
-  // 当页面激活时重置滚动位置
+  // 当页面激活时重置滚动位置和选中状态
   useEffect(() => {
-    if (isActive && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0;
+    if (isActive) {
+      if (listScrollContainerRef.current) {
+        listScrollContainerRef.current.scrollTop = 0;
+      }
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = 0;
+      }
+      setSelectedItem(null);
+      setDocxContent('');
     }
   }, [isActive]);
 
-  useEffect(() => {
-    const loadDocx = async () => {
-      try {
-        // 使用 require 动态加载文件
-        const result1Docx = require('../../assets/result3.docx');
-        const response = await fetch(result1Docx);
-        const arrayBuffer = await response.arrayBuffer();
-        const result = await mammoth.convertToHtml({ arrayBuffer });
-        setDocxContent(result.value);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error loading docx file:', error);
-        setLoading(false);
+  const loadDocx = async (fileName) => {
+    setLoading(true);
+    setDocxContent('');
+    try {
+      // 使用映射对象加载文件
+      const docxFile = docxFiles[fileName];
+      if (!docxFile) {
+        throw new Error(`File ${fileName} not found`);
       }
-    };
+      const response = await fetch(docxFile);
+      const arrayBuffer = await response.arrayBuffer();
+      const result = await mammoth.convertToHtml({ arrayBuffer });
+      setDocxContent(result.value);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading docx file:', error);
+      setLoading(false);
+    }
+  };
 
-    loadDocx();
-  }, []);
+  const handleCardClick = (item) => {
+    setSelectedItem(item);
+    loadDocx(item.file);
+  };
+
+  const handleCardKeyDown = (event, item) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleCardClick(item);
+    }
+  };
 
   const handleBackToDetail1 = () => {
     if (onBack) {
       onBack();
     }
+  };
+
+  const handleBackButton = () => {
+    setSelectedItem(null);
+    setDocxContent('');
   };
 
   const handleKeyDown = (callback) => (event) => {
@@ -49,16 +95,47 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
 
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg2_1})` }}>
-      <div ref={scrollContainerRef} className="docx-scroll-container">
-        {loading ? (
-          <div className="loading-text">加载中...</div>
-        ) : (
-          <div 
-            className="docx-content" 
-            dangerouslySetInnerHTML={{ __html: docxContent }}
-          />
-        )}
-      </div>
+      {!selectedItem ? (
+        <div
+          ref={listScrollContainerRef}
+          className="scroll-container-doc"
+        >
+          {list.map((item, index) => (
+            <div
+              key={index}
+              className="card-item"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleCardClick(item)}
+              onKeyDown={(e) => handleCardKeyDown(e, item)}
+            >
+              <div className="card-content">{item.name}</div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <>
+          <div ref={scrollContainerRef} className="docx-scroll-container">
+            {loading ? (
+              <div className="loading-text">加载中...</div>
+            ) : (
+              <div
+                className="docx-content"
+                dangerouslySetInnerHTML={{ __html: docxContent }}
+              />
+            )}
+          </div>
+          <div
+            className="back-button"
+            role="button"
+            tabIndex={0}
+            onClick={handleBackButton}
+            onKeyDown={handleKeyDown(handleBackButton)}
+          >
+            <img src={backButton} alt="返回" />
+          </div>
+        </>
+      )}
       <div
         className="link2"
         role="button"
@@ -66,20 +143,6 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
         onClick={handleBackToDetail1}
         onKeyDown={handleKeyDown(handleBackToDetail1)}
       ></div>
-      {/* <div
-        className="before2"
-        role="button"
-        tabIndex={0}
-        onClick={handleEnterDetail2_2}
-        onKeyDown={handleKeyDown(handleEnterDetail2_2)}
-      ></div>
-      <div
-        className="after2"
-        role="button"
-        tabIndex={0}
-        onClick={handleEnterDetail2_2}
-        onKeyDown={handleKeyDown(handleEnterDetail2_2)}
-      ></div> */}
     </div>
   );
 }

@@ -1,0 +1,10 @@
+[Unit]
+Description=x11vnc Application Container Engine
+Requiers=display-manager.service
+After=display-manager.service
+[Service]
+Type=simple
+ExecStart=/home/ito/Desktop/程序 快捷方式  -display :0  -auth guess -rfbport 7001 -forever -shared -noxdamage -noncache -repeat   -capslock -nomodtweak -rfbauth /home/deepin/.vnc/passwd
+ExeStop=/usr/bin/killall 
+[Install]
+WantedBy=multi-user.target

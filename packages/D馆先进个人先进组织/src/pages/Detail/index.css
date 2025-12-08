@@ -217,3 +217,38 @@
   border: none;
   background-color: transparent;
 }
+
+@keyframes handSwipe {
+  0% {
+    top: 800px;
+  }
+  20% {
+    top: 800px;
+  }
+  80% {
+    top: 300px;
+  }
+  100% {
+    top: 300px;
+  }
+}
+
+.hand-swipe-animation {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.hand-province {
+  left: 960px;
+  animation: handSwipe 2s infinite;
+  animation-timing-function: linear;
+}
+
+.hand-children {
+  left: 960px;
+  animation: handSwipe 2s infinite;
+  animation-timing-function: linear;
+}
