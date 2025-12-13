@@ -10,7 +10,7 @@ import result3Docx from '../../assets/result3.docx';
 const list = [
   { name: '一、第一至第四批全国社区治理和服务创新实验区名单及主题。', file: 'result1.docx' },
   { name: '二、中国社区治理十大创新成果（2013-2015）', file: 'result2.docx' },
-  { name: '三、社区建设、居民自治、社区议事协商、网格化管理、城乡发展一体化、"三社联动"相关图表', file: 'result3.docx' }
+  { name: '三、社区建设、居民自治、社区议事协商、网格化管理、城乡发展一体化、“三社联动”相关图表', file: 'result3.docx' }
 ]
 
 const docxFiles = {

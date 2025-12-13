@@ -12,10 +12,11 @@
 
 .screen-video {
   position: absolute;
-  top: 280px;
-  left: 340px;
-  width: 1245px;
-  height: 685px;
+  top: 265px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: 723px;
   z-index: 0;
 }
 
@@ -131,4 +132,22 @@
 
 .player.ready {
   background: rgba(74, 222, 128, 0.25);
+}
+
+.sound-btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: 1px solid rgba(51, 36, 36, 0.6);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+  opacity: 0;
+}
+
+.sound-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
 }

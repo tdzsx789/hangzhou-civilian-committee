@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.96d5522c.css",
-    "main.js": "./static/js/main.b4aae7f2.js",
+    "main.css": "./static/css/main.5087ce4a.css",
+    "main.js": "./static/js/main.c30b2842.js",
     "static/media/weixinminhui-baijia-drill.jpg": "./static/media/weixinminhui-baijia-drill.67a4df3d9858ddf184c6.jpg",
     "static/media/1942-jul-anzjiafei-receipt.jpg": "./static/media/1942-jul-anzjiafei-receipt.ec4d18d807c055a07dc8.jpg",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
     "static/media/baojia-soldier-card.jpg": "./static/media/baojia-soldier-card.642b19b1ec2eeb6c25d0.jpg",
     "static/media/minguo-currency.jpg": "./static/media/minguo-currency.3e1fc560e438bdc2592d.jpg",
-    "static/media/slides1.png": "./static/media/slides1.abcb75ce0330fddc913f.png",
+    "static/media/slides1.png": "./static/media/slides1.6ea71fa1eb10934d0ed5.png",
     "static/media/cover.jpg": "./static/media/cover.9b2b50f4779095e8da7b.jpg",
     "static/media/mao-soviet-inscription.jpg": "./static/media/mao-soviet-inscription.54515334a1cfde5d9025.jpg",
     "static/media/land-reform-baxian-book.jpg": "./static/media/land-reform-baxian-book.710131dc1c9624450cbf.jpg",
@@ -31,9 +31,9 @@
     "static/media/元朝村社里甲制.jpg": "./static/media/元朝村社里甲制.a7531733df9b554624e3.jpg",
     "static/media/汉.jpg": "./static/media/汉.76359ca5df760701e4db.jpg",
     "static/media/夏商.jpg": "./static/media/夏商.34755321e8a13b2304f6.jpg",
-    "static/media/gongchandang.png": "./static/media/gongchandang.0a50d0f0d23a4d4ea00f.png",
+    "static/media/gongchandang.png": "./static/media/gongchandang.1763cf1dad1a8af209e6.png",
     "static/media/start.png": "./static/media/start.7aa781f049efc749a3ff.png",
-    "static/media/nanjing.png": "./static/media/nanjing.3a9c133ba7dca7493f0d.png",
+    "static/media/nanjing.png": "./static/media/nanjing.5f468391466669fe77b2.png",
     "static/media/明朝里甲制.jpeg": "./static/media/明朝里甲制.a5f6f08935c7ac9e293f.jpeg",
     "static/media/清朝保甲制.webp": "./static/media/清朝保甲制.87be9e3475730be6198c.webp",
     "static/media/back.png": "./static/media/back.2d15495d7f1fff27a1c5.png",
@@ -41,11 +41,11 @@
     "static/media/唐里保邻制.jpeg": "./static/media/唐里保邻制.3f23784923ce5296bb14.jpeg",
     "static/media/button1.png": "./static/media/button1.9d91d77bd11bd4511830.png",
     "index.html": "./index.html",
-    "main.96d5522c.css.map": "./static/css/main.96d5522c.css.map",
-    "main.b4aae7f2.js.map": "./static/js/main.b4aae7f2.js.map"
+    "main.5087ce4a.css.map": "./static/css/main.5087ce4a.css.map",
+    "main.c30b2842.js.map": "./static/js/main.c30b2842.js.map"
   },
   "entrypoints": [
-    "static/css/main.96d5522c.css",
-    "static/js/main.b4aae7f2.js"
+    "static/css/main.5087ce4a.css",
+    "static/js/main.c30b2842.js"
   ]
 }

@@ -32,7 +32,6 @@
   left: 490px;
   width: 100px;
   height: 100px;
-  cursor: pointer;
   z-index: 10;
   outline: none;
   transition: transform 0.2s ease;

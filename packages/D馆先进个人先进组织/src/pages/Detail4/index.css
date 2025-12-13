@@ -35,7 +35,7 @@
 .detail2-back-btn {
   position: absolute;
   left: 1794px;
-  top: 142px;
+  bottom: 50px;
   width: 75px;
   height: 75px;
   z-index: 99;
@@ -86,7 +86,7 @@
 .detail2-child-summary-scroll {
   position: absolute;
   width: 860px;
-  height: 468px;
+  height: 492px;
   left: 160px;
   top: 396px;
   overflow-y: auto;
@@ -107,7 +107,23 @@
   line-height: 36px;
   text-align: justify;
   color: #281507;
+}
+
+.detail2-child-summary p {
   text-indent: 2em;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.detail2-child-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.detail2-image-container {
+  position: absolute;
+  left: 1175px;
+  top: 380px;
+  width: 520px;
 }
 
 .detail2-images-wrapper {
@@ -139,6 +155,25 @@
 
 .detail2-nav-btn.disabled {
   opacity: 0.5;
+}
+
+.detail2-nav-btn2 {
+  position: absolute;
+  width: 56px;
+  height: 27px;
+  top: 870px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s;
+}
+
+.detail2-nav-left2 {
+  left: 1319px;
+}
+
+.detail2-nav-right2 {
+  left: 1495px;
 }
 
 .detail2-images-container {

@@ -156,7 +156,7 @@ function updateStage(nextStage) {
     photoDonePlayers.clear();
     photoTimer = setTimeout(() => {
       updateStage(STAGE.COMPLETE);
-    }, 15000); // 15秒 = 15000毫秒
+    }, 20000); // 20秒 = 20000毫秒
   }
 
   if (nextStage === STAGE.COMPLETE) {
@@ -173,8 +173,8 @@ function updateStage(nextStage) {
       broadcastStage();
       broadcastReadyList();
       console.log('[ws] auto reset completed, stage is now:', currentStage);
-    }, 15000);
-    console.log('[ws] complete timer started, will reset in 15s');
+    }, 20000);
+    console.log('[ws] complete timer started, will reset in 20s');
   }
 
   if (nextStage !== STAGE.PHOTO) {
@@ -267,4 +267,3 @@ function safeParse(buffer) {
     return null;
   }
 }
-

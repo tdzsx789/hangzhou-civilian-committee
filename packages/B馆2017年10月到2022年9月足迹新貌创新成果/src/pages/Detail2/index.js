@@ -8,7 +8,7 @@ import result2Docx from '../../assets/result2.docx';
 
 const list = [
   { name: '一、优秀社区工作法100例', file: 'result1.docx' },
-  { name: '二、多方参与基层治理、"三治融合"、基层赋能减负、"五社联动"、社会组织相关图表', file: 'result2.docx' },
+  { name: '二、多方参与基层治理、“三治融合”、基层赋能减负、“五社联动”、社会组织相关图表', file: 'result2.docx' },
 ]
 
 const docxFiles = {

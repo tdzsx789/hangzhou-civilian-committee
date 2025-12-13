@@ -94,9 +94,9 @@
 
 .slides-container {
   position: absolute;
-  left: 580px;
+  left: 400px;
   top: 187px;
-  width: 1160px;
+  width: 1480px;
   height: 720px;
   overflow: hidden;
   overflow-x: auto;
@@ -143,7 +143,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, max-content);
-  gap: 60px 108px;
+  gap: 60px 60px;
   align-items: start;
 }
 
@@ -180,10 +180,11 @@
 }
 
 .gongchandang-grid {
+  margin-left: -60px;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, max-content);
-  gap: 60px 108px;
+  gap: 60px 60px;
   align-items: start;
 }
 

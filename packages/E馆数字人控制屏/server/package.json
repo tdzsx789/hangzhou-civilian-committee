@@ -1,0 +1,13 @@
+{
+  "name": "e-ai-control-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UDP relay server for E馆数字人控制屏",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "coreDependencies": [
+    "http",
+    "dgram"
+  ]
+}

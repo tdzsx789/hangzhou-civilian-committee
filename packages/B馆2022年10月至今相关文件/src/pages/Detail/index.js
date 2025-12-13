@@ -53,6 +53,8 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
       <div className="page2-button-scroll" ref={scrollContainerRef}>
         {(data || []).map((item, idx) => {
           const numberLabel = String(idx + 1).padStart(2, '0');
+          const name = item?.name || '';
+          const isLongName = name.length > 50;
           return (
             <div
               key={numberLabel}
@@ -64,7 +66,12 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
               style={{ backgroundImage: `url(${slideBg})` }}
             >
               <div className="page2-button-number">{numberLabel}</div>
-              <div className="page2-button-name">{item?.name || ''}</div>
+              <div
+                className="page2-button-name"
+                style={isLongName ? { top: 95 } : undefined}
+              >
+                {name}
+              </div>
             </div>
           );
         })}

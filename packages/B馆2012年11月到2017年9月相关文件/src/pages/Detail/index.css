@@ -115,11 +115,12 @@
   font-size: 34px;
   line-height: 41px;
   text-align: justify;
+  text-indent: 2em;
   color: #b1150f;
   max-width: 600px;
   position: absolute;
   left: 155px;
-  top: 120px;
+  top: 110px;
 }
 
 @keyframes handSwipe {

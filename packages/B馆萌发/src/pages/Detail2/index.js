@@ -5,6 +5,33 @@ import startButton from '../../assets/start.png';
 
 function Detail2({ onBack, onOpenDetail3, selectedKey, list }) {
   const textContent = selectedKey && list && list[selectedKey] ? list[selectedKey].text : '';
+
+  const renderQuotedBold = (text) => {
+    if (!text) return null;
+    const nodes = [];
+    const regex = /“([^”]*)”/g;
+    let lastIndex = 0;
+    let match;
+    while ((match = regex.exec(text)) !== null) {
+      const start = match.index;
+      const end = regex.lastIndex;
+      if (start > lastIndex) {
+        nodes.push(text.slice(lastIndex, start));
+      }
+      const inner = match[1] || '';
+      const innerLen = inner.replace(/\s/g, '').length;
+      if (innerLen > 10) {
+        nodes.push(<strong key={`q-${start}`}>{match[0]}</strong>);
+      } else {
+        nodes.push(match[0]);
+      }
+      lastIndex = end;
+    }
+    if (lastIndex < text.length) {
+      nodes.push(text.slice(lastIndex));
+    }
+    return nodes;
+  };
   
   const handleBackToDetail1 = () => {
     if (onBack) {
@@ -45,7 +72,7 @@ function Detail2({ onBack, onOpenDetail3, selectedKey, list }) {
       </div>
       {textContent && (
         <div className="detail-text-content">
-          <p>{textContent}</p>
+          <p>{renderQuotedBold(textContent)}</p>
         </div>
       )}
       <div

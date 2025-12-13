@@ -1,19 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import coverImg from '../../assets/cover.jpg';
 import screenStartImg from '../../assets/screen_start.jpg';
 import screenPrepareImg from '../../assets/screen_prepare.jpg';
 import screenPhotoImg from '../../assets/screen_photo.jpg';
 import screenCompleteImg from '../../assets/screen_complete.jpg';
-import screenVideo from '../../assets/screen.mp4';
 import { STAGE, STAGE_LABEL } from '../../constants/stages';
 import { useElectionChannel } from '../../hooks/useElectionChannel';
+
+import video1 from '../../assets/videos/背箱法.mp4';
+import video2 from '../../assets/videos/豆选法.mp4';
+import video3 from '../../assets/videos/喊选法.mp4';
+import video4 from '../../assets/videos/举手法.mp4';
+import video5 from '../../assets/videos/票选法.mp4';
+import video6 from '../../assets/videos/烧洞法.mp4';
+import video7 from '../../assets/videos/投纸团法.mp4';
+
+const videoList = [
+  { name: '背箱法', url: video1 },
+  { name: '豆选法', url: video2 },
+  { name: '喊选法', url: video3 },
+  { name: '举手法', url: video4 },
+  { name: '票选法', url: video5 },
+  { name: '烧洞法', url: video6 },
+  { name: '投纸团法', url: video7 },
+]
 
 function ScreenPage() {
   const {
     stage,
     meta: { readyPlayers = [], totalPlayers, connectionState },
   } = useElectionChannel({ role: 'screen' });
+
+  const [shuffledVideos, setShuffledVideos] = useState([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRef = useRef(null);
+  const [needsUserAction, setNeedsUserAction] = useState(false);
 
   const timeline = [
     { key: STAGE.WAITING, label: '等待开始' },
@@ -27,6 +49,50 @@ function ScreenPage() {
   const isPhoto = stage === STAGE.PHOTO;
   const isComplete = stage === STAGE.COMPLETE;
   
+  useEffect(() => {
+    if (isWaiting) {
+      const arr = [...videoList];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      setShuffledVideos(arr);
+      setCurrentVideoIndex(0);
+      setNeedsUserAction(false);
+    }
+  }, [isWaiting]);
+
+  useEffect(() => {
+    if (!isWaiting) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const run = async () => {
+      try {
+        el.muted = false;
+        el.volume = 1;
+        await el.play();
+        setNeedsUserAction(false);
+      } catch (e) {
+        try {
+          el.muted = true;
+          await el.play();
+        } catch (_) {}
+        setNeedsUserAction(true);
+      }
+    };
+    run();
+    return () => {
+      el.pause();
+    };
+  }, [isWaiting, currentVideoIndex, shuffledVideos]);
+
+  const playNext = () => {
+    setCurrentVideoIndex((idx) => {
+      const len = shuffledVideos.length || 1;
+      return (idx + 1) % len;
+    });
+  };
+
   let backgroundImage = coverImg;
   if (isWaiting) {
     backgroundImage = screenStartImg;
@@ -47,16 +113,35 @@ function ScreenPage() {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      {isWaiting && (
+      {isWaiting && shuffledVideos.length > 0 && (
         <video
+          key={shuffledVideos[currentVideoIndex]?.url}
           className="screen-video"
-          src={screenVideo}
+          src={shuffledVideos[currentVideoIndex]?.url}
           autoPlay
-          loop
-          muted
+          ref={videoRef}
           playsInline
           controls={false}
+          onEnded={playNext}
+          onError={playNext}
         />
+      )}
+      {isWaiting && needsUserAction && (
+        <button
+          className="sound-btn"
+          onClick={async () => {
+            const el = videoRef.current;
+            if (!el) return;
+            try {
+              el.muted = false;
+              el.volume = 1;
+              await el.play();
+              setNeedsUserAction(false);
+            } catch (_) {}
+          }}
+        >
+          点击开启声音
+        </button>
       )}
       {shouldShowContent && <div className="screen-overlay" />}
       {shouldShowContent && (

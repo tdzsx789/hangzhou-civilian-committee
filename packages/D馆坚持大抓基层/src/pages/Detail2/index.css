@@ -114,12 +114,16 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
-  text-align: justify;
   color: #281507;
   overflow-y: auto;
   overflow-x: hidden;
+  white-space: pre-wrap;
+}
+
+.card-summary p {
+  margin: 0 0 8px 0;
   text-indent: 2em;
-  white-space: pre-line;
+  text-align: justify;
 }
 
 /* 隐藏滚动条 */

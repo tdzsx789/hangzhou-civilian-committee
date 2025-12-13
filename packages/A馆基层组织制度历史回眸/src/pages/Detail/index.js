@@ -36,6 +36,7 @@ import qitaBeiWeiSanzhang from '../../assets/qita/北魏孝文帝三长制.jpg';
 import qitaYuanCunShe from '../../assets/qita/元朝村社里甲制.jpg';
 import qitaTangLiBao from '../../assets/qita/唐里保邻制.jpeg';
 import qitaQingBaoJia from '../../assets/qita/清朝保甲制.webp';
+import slideButton from '../../assets/slideButton.png';
 
 export const imageList = [
   { name: '1942年7月，派募壮丁安家费收据。', url: nj1942PaimuZhuangdingAnjiafei, from: 'nanjing' },
@@ -51,12 +52,12 @@ export const imageList = [
   { name: '民国时期保甲壮丁团员必携', url: njBaojiaZhuangdingTuanYuan, from: 'nanjing' },
   { name: '民国时期伪新民会保甲团在进行体操训练', url: njWeixinminHuatiCao, from: 'nanjing' },
   { name: '拉壮丁告示', url: njLazhuangdingGaoshi, from: 'nanjing' },
-  { name: '农民协会是中国共产党首次在农村建立的基层社会组织。图为彭湃在广东省海丰县建立的农民协会旧址', url: gcdNongminXiehuiJiuzhi, from: 'gongchandang' },
-  { name: '江西省吉安农民协会会员徽章', url: gcdJiangxiJianNongminXiehuiHuizhang, from: 'gongchandang' },
-  { name: '土地革命时期重庆市巴县土地改革纪念册', url: gcdTudiGemingJiniance, from: 'gongchandang' },
-  { name: '1933年12月，《中华苏维埃共和国地方苏维埃暂行组织法（草案）》对乡苏维埃这一组织形式作出规定。图为中华苏维埃共和国临时中央政府旧址', url: gcd1933ZhonghuaSuWeiAiZuzhifa, from: 'gongchandang' },
   { name: '毛泽东同志为苏维埃政府题词：“苏维埃是工农劳苦群众自己管理自己生活的机关，是革命战争的组织者与领导者。”', url: gcdMaoZedongTici, from: 'gongchandang' },
   { name: '1949年4月23日，南京国民党政府的覆灭，为新中国城市居民委员会制度的创立开辟了道路。图为解放军把胜利的红旗插上了蒋介石“总统府”的门楼上', url: gcd1949NanjingGuomindangGov, from: 'gongchandang' },
+  { name: '土地革命时期重庆市巴县土地改革纪念册', url: gcdTudiGemingJiniance, from: 'gongchandang' },
+  { name: '农民协会是中国共产党首次在农村建立的基层社会组织。图为彭湃在广东省海丰县建立的农民协会旧址', url: gcdNongminXiehuiJiuzhi, from: 'gongchandang' },
+  { name: '江西省吉安农民协会会员徽章', url: gcdJiangxiJianNongminXiehuiHuizhang, from: 'gongchandang' },
+  { name: '1933年12月，《中华苏维埃共和国地方苏维埃暂行组织法（草案）》对乡苏维埃这一组织形式作出规定。图为中华苏维埃共和国临时中央政府旧址', url: gcd1933ZhonghuaSuWeiAiZuzhifa, from: 'gongchandang' },
 ];
 
 const nanjingList = imageList.filter((item) => item.from === 'nanjing');
@@ -118,6 +119,12 @@ function Detail({ name, gallery, onBack, active }) {
     scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  const handleJumpTo7835 = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 7550;
+    }
+  };
+
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1})` }}>
       <div
@@ -136,6 +143,22 @@ function Detail({ name, gallery, onBack, active }) {
         }}
       ></div>
       <div
+        className="jump-button"
+        onClick={handleJumpTo7835}
+        style={{
+          position: 'absolute',
+          left: '1300px',
+          top: '100px',
+          width: '487px',
+          height: '48px',
+          backgroundImage: `url(${slideButton})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          cursor: 'pointer',
+        }}
+      ></div>
+      <div
         className="slides-container"
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
@@ -150,7 +173,7 @@ function Detail({ name, gallery, onBack, active }) {
           onClick={() => openModal({ url: slides1, name: '历史图片1' })}
         />
         {qitaList.map((ele) => {
-          return <div className="qita-item" style={{ position: 'absolute', left: ele.left, top: ele.top }} onClick={() => openModal(ele)}></div>
+          return <div key={ele.url} className="qita-item" style={{ position: 'absolute', left: ele.left, top: ele.top }} onClick={() => openModal(ele)}></div>
         })}
         <img
           src={slidesNanjing}

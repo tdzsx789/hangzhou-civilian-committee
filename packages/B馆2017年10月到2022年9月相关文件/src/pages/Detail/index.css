@@ -128,7 +128,8 @@
   max-width: 600px;
   position: absolute;
   left: 155px;
-  top: 120px;
+  top: 110px;
+  text-indent: 2em;
 }
 
 @keyframes handSwipe {

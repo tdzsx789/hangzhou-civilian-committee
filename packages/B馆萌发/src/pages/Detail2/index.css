@@ -133,7 +133,7 @@
 
 .detail-text-content {
   position: absolute;
-  top: 588px;
+  top: 540px;
   left: 115px;
   right: 0;
   bottom: 0;
@@ -143,18 +143,26 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 1;
+  display: flex;
+  align-items: center;
 }
 
 .detail-text-content p {
   font-family: 'FZLanTingHeiS-DB-GB', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
-  line-height: 48px;
+  font-size: 30px;
+  line-height: 50px;
   text-align: justify;
   color: #2D2A28;
   text-indent: 2em;
   white-space: pre-wrap;
   word-wrap: break-word;
   margin: 0;
+  letter-spacing: 4px;
+}
+
+.detail-text-content p strong {
+  font-weight: bolder;
+  color: #000000;
 }

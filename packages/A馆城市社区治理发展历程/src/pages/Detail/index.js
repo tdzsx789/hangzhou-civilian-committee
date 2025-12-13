@@ -17,13 +17,13 @@ import Modal from '../Modal';
 const list = [
   { name: '全国城市数量发展变化图', url: urbanCountChart, left: 0, top: 0 },
   { name: '全国城市人口数量发展变化图', url: urbanPopulationChart, left: 430, top: 0 },
-  { name: '城市化进程加快。', url: urbanizationAcceleration, left: 860, top: 0 },
-  { name: '党的十四大明确提出了我国经济体制改革的目标是建立社会主义市场经济体制。图为党的十四大会议现场。', url: cpc14thCongress, left: 1290, top: 0 },
-  { name: '同志，有事情找居民委员会。', url: neighborhoodCommittee, left: 1720, top: 0 },
-  { name: '绍兴集镇交易市场。', url: shaoxingMarket, left: 2150, top: 0 },
-  { name: '日新月异——1982年、1998年、2004年三个时期的杭州市古荡（组图展示）。', url: gudangEvolution, width: 1260, left: 0, top: 400 },
-  { name: '建立独立于企业事业单位之外的社会保障体系和社会化服务网络，需要社区发挥作用。', url: socialSecuritySystem, left: 1290, top: 400 },
-  { name: '大量民工涌向城市。', url: migrantWorkers, left: 1720, top: 400 },
+  { name: '城市化进程加。', url: urbanizationAcceleration, left: 860, top: 0 },
+  { name: '党的十四大明确提出了我国经济体制改革的目标是建立社会主义市场经济体制。图为党的十四大会议现场', url: cpc14thCongress, left: 1290, top: 0 },
+  { name: '同志，有事情找居民委员会', url: neighborhoodCommittee, left: 1720, top: 0 },
+  { name: '绍兴集镇交易市场', url: shaoxingMarket, left: 2150, top: 0 },
+  { name: '日新月异——1982年、1998年、2004年三个时期的杭州市古荡（组图展示）', url: gudangEvolution, width: 1260, left: 0, top: 400 },
+  { name: '建立独立于企业事业单位之外的社会保障体系和社会化服务网络，需要社区发挥作用', url: socialSecuritySystem, left: 1290, top: 400 },
+  { name: '大量民工涌向城市', url: migrantWorkers, left: 1720, top: 400 },
 ]
 
 function Detail({ name, gallery, onBack, isVisible }) {

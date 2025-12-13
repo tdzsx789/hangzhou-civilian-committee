@@ -118,8 +118,7 @@
   color: #281507;
   overflow-y: auto;
   overflow-x: hidden;
-  text-indent: 2em;
-  white-space: pre-line;
+  white-space: normal;
 }
 
 /* 隐藏滚动条 */
@@ -130,6 +129,12 @@
 .card-summary {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.card-summary p {
+  /* margin: 0 0 8px; */
+  text-indent: 2em;
+  white-space: pre-wrap;
 }
 
 /* 图片 */

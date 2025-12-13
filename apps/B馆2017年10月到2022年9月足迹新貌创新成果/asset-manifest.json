@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "./static/css/main.2ac48927.css",
-    "main.js": "./static/js/main.84aa2aa2.js",
-    "static/media/result2.docx": "./static/media/result2.d8224a5cb8517c6fdc82.docx",
+    "main.css": "./static/css/main.4fcc5735.css",
+    "main.js": "./static/js/main.7353638a.js",
+    "static/media/result2.docx": "./static/media/result2.78ba882bdfb0a056c3a5.docx",
     "static/media/Alibaba-PuHuiTi-Bold.otf": "./static/media/Alibaba-PuHuiTi-Bold.fc4f40f33824d7265152.otf",
     "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
@@ -35,13 +35,14 @@
     "static/media/武汉市东湖新城社区荣获全国先进基层党组织证书.png": "./static/media/武汉市东湖新城社区荣获全国先进基层党组织证书.7547e4935d4df7b355a4.png",
     "static/media/社区内古北市民中心.png": "./static/media/社区内古北市民中心.6f2ec8f574d4d114bcfc.png",
     "static/media/start.png": "./static/media/start.2439c59b4854d4f05681.png",
+    "static/media/result1.docx": "./static/media/result1.ef871b29dfc14892d4b6.docx",
     "static/media/slideBg.png": "./static/media/slideBg.5c6f664c017f0140b306.png",
     "index.html": "./index.html",
-    "main.2ac48927.css.map": "./static/css/main.2ac48927.css.map",
-    "main.84aa2aa2.js.map": "./static/js/main.84aa2aa2.js.map"
+    "main.4fcc5735.css.map": "./static/css/main.4fcc5735.css.map",
+    "main.7353638a.js.map": "./static/js/main.7353638a.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ac48927.css",
-    "static/js/main.84aa2aa2.js"
+    "static/css/main.4fcc5735.css",
+    "static/js/main.7353638a.js"
   ]
 }

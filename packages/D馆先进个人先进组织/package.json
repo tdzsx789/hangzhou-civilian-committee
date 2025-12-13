@@ -5,13 +5,14 @@
   "homepage": ".",
   "description": "党建引领基层治理先进个人、先进组织 - D馆",
   "dependencies": {
+    "echarts": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=D-advanced-people react-scripts build",
+    "build": "BUILD_PATH=D馆先进个人先进组织 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

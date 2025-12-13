@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "./static/css/main.add9e449.css",
-    "main.js": "./static/js/main.e8ab245d.js",
-    "static/media/result3.docx": "./static/media/result3.72e823194a386e4f9dfc.docx",
+    "main.css": "./static/css/main.0c97421b.css",
+    "main.js": "./static/js/main.195973f2.js",
+    "static/media/result3.docx": "./static/media/result3.d4da288f1eb0adff1dd2.docx",
     "static/media/Alibaba-PuHuiTi-Bold.otf": "./static/media/Alibaba-PuHuiTi-Bold.fc4f40f33824d7265152.otf",
     "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
@@ -22,14 +22,17 @@
     "static/media/永济秀园小区整洁的小区道路.png": "./static/media/永济秀园小区整洁的小区道路.156bceec0c3b72f52342.png",
     "static/media/宁夏银川市金凤区长城花园社区日间照料中心.png": "./static/media/宁夏银川市金凤区长城花园社区日间照料中心.542f69af71c0d59084f0.png",
     "static/media/兰州市安宁区枣林西社区炫彩夕阳舞蹈团排练舞蹈.png": "./static/media/兰州市安宁区枣林西社区炫彩夕阳舞蹈团排练舞蹈.c5c753a5e50af4994de6.png",
+    "static/media/result4.docx": "./static/media/result4.6942e4552db164e7278a.docx",
     "static/media/start.png": "./static/media/start.2439c59b4854d4f05681.png",
+    "static/media/result2.docx": "./static/media/result2.f2053066d215218e0e2e.docx",
+    "static/media/result1.docx": "./static/media/result1.abbe4e84c26660018743.docx",
     "static/media/slideBg.png": "./static/media/slideBg.5c6f664c017f0140b306.png",
     "index.html": "./index.html",
-    "main.add9e449.css.map": "./static/css/main.add9e449.css.map",
-    "main.e8ab245d.js.map": "./static/js/main.e8ab245d.js.map"
+    "main.0c97421b.css.map": "./static/css/main.0c97421b.css.map",
+    "main.195973f2.js.map": "./static/js/main.195973f2.js.map"
   },
   "entrypoints": [
-    "static/css/main.add9e449.css",
-    "static/js/main.e8ab245d.js"
+    "static/css/main.0c97421b.css",
+    "static/js/main.195973f2.js"
   ]
 }

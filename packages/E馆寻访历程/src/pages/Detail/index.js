@@ -4,6 +4,7 @@ import leftImg from '../../assets/left.png';
 import rightImg from '../../assets/right.png';
 import leftArrowImg from '../../assets/leftArrow.png';
 import rightArrowImg from '../../assets/rightArrow.png';
+import Modal from '../Modal';
 
 function Detail({ onBack, list }) {
   // 显示所有项，包括没有图片的
@@ -18,8 +19,11 @@ function Detail({ onBack, list }) {
   
   // 当前显示的卡片索引（list 中的项）
   const [cardIndex, setCardIndex] = useState(getInitialCardIndex);
+  // 卡片切换方向（用于动效）
+  const [cardDirection, setCardDirection] = useState('next');
   // 当前卡片内图片的索引（用于图片轮播）
   const [imageIndex, setImageIndex] = useState(0);
+  const [modalImage, setModalImage] = useState(null);
   
   // 如果没有数据，显示空状态
   if (allItems.length === 0) {
@@ -39,6 +43,7 @@ function Detail({ onBack, list }) {
   // 切换卡片（上一张/下一张）
   const handleCardPrev = () => {
     if (cardIndex > 0) {
+      setCardDirection('prev');
       setCardIndex(cardIndex - 1);
       setImageIndex(0); // 切换卡片时重置图片索引
     }
@@ -46,6 +51,7 @@ function Detail({ onBack, list }) {
   
   const handleCardNext = () => {
     if (cardIndex < allItems.length - 1) {
+      setCardDirection('next');
       setCardIndex(cardIndex + 1);
       setImageIndex(0); // 切换卡片时重置图片索引
     }
@@ -63,6 +69,7 @@ function Detail({ onBack, list }) {
   };
   
   const visibleImages = images.slice(imageIndex, imageIndex + 4);
+  const fewImages = visibleImages.length < 4;
   
   return (
     <div className="detail-page">
@@ -77,7 +84,12 @@ function Detail({ onBack, list }) {
           <img src={leftArrowImg} alt="上一张卡片" />
         </button>
         
-        <div className="detail-card">
+        <div
+          key={cardIndex}
+          className={`detail-card ${
+            cardDirection === 'next' ? 'card-enter-right' : 'card-enter-left'
+          }`}
+        >
           <h1 className="detail-title">{currentItem.name}</h1>
           <p className="detail-summary">{currentItem.summary}</p>
           
@@ -93,9 +105,12 @@ function Detail({ onBack, list }) {
                 </button>
               )}
               
-              <div className="detail-images-grid">
+              <div
+                className="detail-images-grid"
+                style={fewImages ? { display: 'flex', justifyContent: 'center' } : undefined}
+              >
                 {visibleImages.map((image, index) => (
-                  <div key={index} className="detail-image-card">
+                  <div key={index} className="detail-image-card" onClick={() => setModalImage(image)}>
                     {image.url && (
                       <div 
                         className="detail-image"
@@ -130,6 +145,7 @@ function Detail({ onBack, list }) {
           <img src={rightArrowImg} alt="下一张卡片" />
         </button>
       </div>
+      <Modal image={modalImage} onClose={() => setModalImage(null)} />
     </div>
   );
 }

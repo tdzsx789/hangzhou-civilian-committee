@@ -19,7 +19,7 @@
 .menu-page .back-btn {
   position: absolute;
   right: 50px;
-  top: 78px;
+  bottom: 40px;
   width: 150px;
   height: 66px;
 }

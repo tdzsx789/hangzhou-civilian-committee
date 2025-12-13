@@ -6,9 +6,27 @@ import gameWaitingImg from '../../assets/game_waiting.jpg';
 import gamePrepareImg from '../../assets/game_prepare.jpg';
 import gameCompleteImg from '../../assets/game_complete.jpg';
 import photoBgImg from '../../assets/photo_bg.jpg';
-import gameDemoVideo from '../../assets/gameDemo.mp4';
 import takePhotoImg from '../../assets/takephoto.png';
+import waitForPhotoImg from '../../assets/wait_for_photo.jpg';
 import './index.css';
+
+import video1 from '../../assets/videos/背箱法.mp4';
+import video2 from '../../assets/videos/豆选法.mp4';
+import video3 from '../../assets/videos/喊选法.mp4';
+import video4 from '../../assets/videos/举手法.mp4';
+import video5 from '../../assets/videos/票选法.mp4';
+import video6 from '../../assets/videos/烧洞法.mp4';
+import video7 from '../../assets/videos/投纸团法.mp4';
+
+const videoList = [
+  { name: '背箱法', url: video1 },
+  { name: '豆选法', url: video2 },
+  { name: '喊选法', url: video3 },
+  { name: '举手法', url: video4 },
+  { name: '票选法', url: video5 },
+  { name: '烧洞法', url: video6 },
+  { name: '投纸团法', url: video7 },
+]
 
 function StageDescription({ stage, countdown, photoCountdown, completeCountdown }) {
   if (stage === STAGE.PREPARE) {
@@ -48,8 +66,8 @@ const ELECTION_METHODS = [
 function GamePage() {
   const { gameId = '1' } = useParams();
   const [countdown, setCountdown] = useState(15);
-  const [photoCountdown, setPhotoCountdown] = useState(15);
-  const [completeCountdown, setCompleteCountdown] = useState(15);
+  const [photoCountdown, setPhotoCountdown] = useState(20);
+  const [completeCountdown, setCompleteCountdown] = useState(20);
   const [hasAnnouncedPhoto, setHasAnnouncedPhoto] = useState(false);
   const [photoCompleteSent, setPhotoCompleteSent] = useState(false);
   const [resetRequested, setResetRequested] = useState(false);
@@ -58,8 +76,13 @@ function GamePage() {
   const [stream, setStream] = useState(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [isPhotoCaptured, setIsPhotoCaptured] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const videoRef = useRef(null);
   const cameraVideoRef = useRef(null);
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const lastTouchTimeRef = useRef(0);
+  const redButtonRef = useRef(null);
   const {
     stage,
     send,
@@ -99,6 +122,67 @@ function GamePage() {
     completeCountdown,
   ]);
 
+  useEffect(() => {
+    const buttonElement = redButtonRef.current;
+    if (!buttonElement) return;
+    const handleRedButtonTouch = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const currentTime = Date.now();
+      if (currentTime - lastTouchTimeRef.current < 1000 && lastTouchTimeRef.current > 0) {
+        setShowPasswordInput(true);
+        setPasswordInput('');
+        lastTouchTimeRef.current = 0;
+      } else {
+        lastTouchTimeRef.current = currentTime;
+      }
+    };
+    buttonElement.addEventListener('touchstart', handleRedButtonTouch, { passive: false });
+    return () => {
+      buttonElement.removeEventListener('touchstart', handleRedButtonTouch);
+    };
+  }, []);
+
+  const handlePasswordSubmit = () => {
+    if (passwordInput === '20251212') {
+      if (typeof window.electron !== 'undefined') {
+        if (window.electron.ipcRenderer) {
+          window.electron.ipcRenderer.send('quit-app');
+        } else if (window.electron.remote && window.electron.remote.app) {
+          window.electron.remote.app.quit();
+        } else if (window.electron.quit) {
+          window.electron.quit();
+        } else if (window.electron.exit) {
+          window.electron.exit();
+        } else if (window.electron.app && window.electron.app.quit) {
+          window.electron.app.quit();
+        }
+      } else if (window.require) {
+        try {
+          const { ipcRenderer } = window.require('electron');
+          ipcRenderer.send('quit-app');
+        } catch (e) {
+          try {
+            const { remote } = window.require('electron');
+            if (remote && remote.app) {
+              remote.app.quit();
+            }
+          } catch (e2) {
+            window.close();
+          }
+        }
+      } else {
+        window.close();
+        setTimeout(() => {
+          window.location.href = 'about:blank';
+        }, 100);
+      }
+    } else {
+      alert('密码错误');
+      setPasswordInput('');
+    }
+  };
+
   const handleStart = useCallback(() => {
     if (!isWaiting) return;
     setHasClickedStart(true);
@@ -114,7 +198,7 @@ function GamePage() {
         // 这样所有终端在同一个时间段内会得到相同的打乱顺序
         const seed = Math.floor(Date.now() / (1000 * 60)); // 每分钟变化一次
         const methodsToUse = ELECTION_METHODS.slice(0, 7);
-        
+
         // 创建一个确定性但看起来随机的打乱顺序（改进的 Fisher-Yates 洗牌）
         const shuffledMethods = [...methodsToUse];
         for (let i = shuffledMethods.length - 1; i > 0; i--) {
@@ -125,7 +209,7 @@ function GamePage() {
             shuffledMethods[i],
           ];
         }
-        
+
         // 每个终端根据 playerIndex 选择对应的方法（取前5个，确保不重复）
         setElectionMethod(shuffledMethods[playerIndex]);
       }
@@ -133,6 +217,23 @@ function GamePage() {
       setElectionMethod('');
     }
   }, [isPrepare, gameId, electionMethod]);
+
+  useEffect(() => {
+    if (isPrepare && !selectedVideo) {
+      const playerIndex = parseInt(gameId, 10) - 1;
+      if (playerIndex >= 0 && playerIndex < 5) {
+        const seed = Math.floor(Date.now() / (1000 * 60));
+        const shuffled = [...videoList];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const pseudoRandom = ((seed * 7919 + i * 9973) % 2147483647) % (i + 1);
+          [shuffled[i], shuffled[pseudoRandom]] = [shuffled[pseudoRandom], shuffled[i]];
+        }
+        setSelectedVideo(shuffled[playerIndex]);
+      }
+    } else if (!isPrepare) {
+      setSelectedVideo(null);
+    }
+  }, [isPrepare, gameId, selectedVideo]);
 
   useEffect(() => {
     if (!isPrepare) {
@@ -147,13 +248,13 @@ function GamePage() {
     }
 
     // 进入 PREPARE 阶段时播放视频
-    if (videoRef.current) {
+    if (videoRef.current && !hasAnnouncedPhoto) {
       videoRef.current.currentTime = 0; // 确保从开始播放
       videoRef.current.play().catch((err) => {
         console.warn('Video autoplay failed:', err);
       });
     }
-  }, [isPrepare]);
+  }, [isPrepare, selectedVideo, hasAnnouncedPhoto]);
 
   // 启动摄像头
   useEffect(() => {
@@ -192,12 +293,12 @@ function GamePage() {
 
   useEffect(() => {
     if (!isPhoto) {
-      setPhotoCountdown(15);
+      setPhotoCountdown(20);
       setPhotoCompleteSent(false);
       return undefined;
     }
 
-    setPhotoCountdown(15);
+    setPhotoCountdown(20);
     const interval = setInterval(() => {
       setPhotoCountdown((prev) => Math.max(prev - 1, 0));
     }, 1000);
@@ -221,27 +322,27 @@ function GamePage() {
   // 拍照功能（通用函数，可用于手动和自动拍照）
   const capturePhoto = useCallback(() => {
     if (!cameraVideoRef.current) return false;
-    
+
     const video = cameraVideoRef.current;
     // 如果视频还没有加载或没有流，尝试使用当前的 stream
     if (!video.videoWidth || !video.videoHeight) {
       return false;
     }
-    
+
     const canvas = document.createElement('canvas');
     canvas.width = 685;
     canvas.height = 685;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
+
     const photoDataUrl = canvas.toDataURL('image/png');
     setCapturedPhoto(photoDataUrl);
     setIsPhotoCaptured(true);
-    
+
     // 保存到 localStorage
     const storageKey = `photo_${gameId}`;
     localStorage.setItem(storageKey, photoDataUrl);
-    
+
     return true;
   }, [gameId]);
 
@@ -259,11 +360,11 @@ function GamePage() {
 
   useEffect(() => {
     if (!isComplete) {
-      setCompleteCountdown(15);
+      setCompleteCountdown(20);
       return undefined;
     }
 
-    setCompleteCountdown(15);
+    setCompleteCountdown(20);
     const interval = setInterval(() => {
       setCompleteCountdown((prev) => {
         const next = Math.max(prev - 1, 0);
@@ -293,7 +394,7 @@ function GamePage() {
   // 手动拍照按钮处理
   const handleCapturePhoto = useCallback(() => {
     if (!stream) return;
-    
+
     const success = capturePhoto();
     if (success) {
       // 停止摄像头
@@ -306,7 +407,7 @@ function GamePage() {
   const handleRetakePhoto = useCallback(async () => {
     setIsPhotoCaptured(false);
     setCapturedPhoto(null);
-    
+
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: 685, height: 685 }
@@ -343,29 +444,203 @@ function GamePage() {
             backgroundRepeat: 'no-repeat',
           }
           : isPrepare
-          ? {
-            backgroundImage: `url(${gamePrepareImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }
-          : isPhoto
-          ? {
-            backgroundImage: `url(${photoBgImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }
-          : isComplete
-          ? {
-            backgroundImage: `url(${gameCompleteImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }
-          : {}
+            ? {
+              backgroundImage: `url(${gamePrepareImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }
+            : isPhoto
+              ? {
+                backgroundImage: `url(${photoBgImg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }
+              : isComplete
+                ? {
+                  backgroundImage: `url(${gameCompleteImg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }
+                : {}
       }
     >
+      <div
+        ref={redButtonRef}
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          width: '150px',
+          height: '150px',
+          backgroundColor: 'transparent',
+          zIndex: 99999,
+          cursor: 'none',
+          userSelect: 'none',
+          WebkitUserSelect: 'none'
+        }}
+      />
+
+      {showPasswordInput && (
+        <div
+          className="password-input-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowPasswordInput(false);
+              setPasswordInput('');
+            }
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            zIndex: 10000
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'fixed',
+              left: '10px',
+              top: '160px',
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '10px',
+              minWidth: '350px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+            }}
+          >
+            <div style={{
+              fontSize: '20px',
+              marginBottom: '15px',
+              textAlign: 'center',
+              fontWeight: 'bold'
+            }}>请输入密码</div>
+            <div style={{
+              fontSize: '28px',
+              textAlign: 'center',
+              marginBottom: '15px',
+              minHeight: '35px',
+              letterSpacing: '6px',
+              fontFamily: 'monospace',
+              padding: '10px',
+              backgroundColor: '#f5f5f5',
+              borderRadius: '5px'
+            }}>{passwordInput || ''}</div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '8px',
+              marginBottom: '8px'
+            }}>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                <button
+                  key={num}
+                  onClick={() => setPasswordInput(prev => prev + String(num))}
+                  style={{
+                    padding: '15px',
+                    fontSize: '20px',
+                    border: '1px solid #ccc',
+                    borderRadius: '5px',
+                    cursor: 'none',
+                    backgroundColor: '#f0f0f0',
+                    transition: 'background-color 0.2s',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none'
+                  }}
+                  onTouchEnd={(e) => {
+                    e.target.style.backgroundColor = '#f0f0f0';
+                  }}
+                  onTouchStart={(e) => {
+                    e.target.style.backgroundColor = '#e0e0e0';
+                  }}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '8px'
+            }}>
+              <button
+                onClick={() => setPasswordInput(prev => prev + '0')}
+                style={{
+                  padding: '15px',
+                  fontSize: '20px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#f0f0f0',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#f0f0f0';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#e0e0e0';
+                }}
+              >
+                0
+              </button>
+              <button
+                onClick={() => setPasswordInput(prev => prev.slice(0, -1))}
+                style={{
+                  padding: '15px',
+                  fontSize: '18px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#ff6b6b',
+                  color: 'white',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#ff6b6b';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#ff5252';
+                }}
+              >
+                删除
+              </button>
+              <button
+                onClick={handlePasswordSubmit}
+                style={{
+                  padding: '15px',
+                  fontSize: '18px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#4caf50',
+                  color: 'white',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#4caf50';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#45a049';
+                }}
+              >
+                确定
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {!isWaiting && !isPrepare && !isPhoto && !isComplete && (
         <>
           <header>
@@ -392,19 +667,28 @@ function GamePage() {
 
       {isPrepare && (
         <>
-          <video
-            ref={videoRef}
-            className="game-demo-video"
-            src={gameDemoVideo}
-            autoPlay
-            // muted
-            playsInline
-            controls={false}
-            disablePictureInPicture
-            disableRemotePlayback
-            onEnded={handleVideoEnded}
-            onContextMenu={handleVideoContextMenu}
-          />
+          {!hasAnnouncedPhoto && (
+            <video
+              ref={videoRef}
+              className="game-demo-video"
+              src={selectedVideo ? selectedVideo.url : ''}
+              autoPlay
+              // muted
+              playsInline
+              controls={false}
+              disablePictureInPicture
+              disableRemotePlayback
+              onEnded={handleVideoEnded}
+              onContextMenu={handleVideoContextMenu}
+            />
+          )}
+          {hasAnnouncedPhoto && (
+            <img
+              src={waitForPhotoImg}
+              alt="等待其他玩家视频结束"
+              className="wait-for-photo"
+            />
+          )}
           {electionMethod && (
             <div className="election-method-text">{electionMethod}</div>
           )}
@@ -413,47 +697,26 @@ function GamePage() {
 
       {isPhoto && (
         <>
-          <div className="countdown-display">
-            倒计时：{photoCountdown}秒
-          </div>
+          <div className="countdown-display">倒计时：{photoCountdown}秒</div>
           {!isPhotoCaptured && (
-            <>
-              <video
-                ref={cameraVideoRef}
-                className="camera-video"
-                autoPlay
-                playsInline
-                muted
-              />
-              <button 
-                className="photo-btn" 
-                onClick={handleCapturePhoto}
-                style={{
-                  backgroundImage: `url(${takePhotoImg})`,
-                }}
-              >
-                拍照
-              </button>
-            </>
+            <video
+              ref={cameraVideoRef}
+              className="camera-video"
+              autoPlay
+              playsInline
+              muted
+            />
           )}
           {isPhotoCaptured && (
-            <>
-              <img
-                src={capturedPhoto}
-                alt="已拍摄"
-                className="captured-photo"
-              />
-              <button 
-                className="photo-btn" 
-                onClick={handleRetakePhoto}
-                style={{
-                  backgroundImage: `url(${takePhotoImg})`,
-                }}
-              >
-                重拍
-              </button>
-            </>
+            <img src={capturedPhoto} alt="已拍摄" className="captured-photo" />
           )}
+          <button
+            className="photo-btn"
+            onClick={isPhotoCaptured ? handleRetakePhoto : handleCapturePhoto}
+            style={{ backgroundImage: `url(${takePhotoImg})` }}
+          >
+            {isPhotoCaptured ? '重拍' : '拍照'}
+          </button>
         </>
       )}
 
@@ -486,4 +749,3 @@ function GamePage() {
 }
 
 export default GamePage;
-

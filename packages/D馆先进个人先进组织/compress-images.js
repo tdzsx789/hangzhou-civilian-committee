@@ -31,8 +31,9 @@ function isImageFile(filePath) {
 function compressImageWithSips(filePath) {
   try {
     const tempPath = filePath + '.tmp';
-    // 使用 sips 压缩，质量设置为 80
-    execSync(`sips -s format jpeg -s formatOptions 80 "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
+    // 先应用方向信息（自动旋转），然后再压缩，质量设置为 80
+    // -r auto 会自动根据 EXIF 方向信息旋转图片
+    execSync(`sips -r auto -s format jpeg -s formatOptions 80 "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
     
     // 如果压缩后的文件更小，替换原文件
     if (fs.existsSync(tempPath)) {
@@ -49,7 +50,7 @@ function compressImageWithSips(filePath) {
         let attempts = 0;
         
         while (quality >= 50 && attempts < 5) {
-          execSync(`sips -s format jpeg -s formatOptions ${quality} "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
+          execSync(`sips -r auto -s format jpeg -s formatOptions ${quality} "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
           const currentSize = getFileSize(tempPath);
           
           if (currentSize <= TARGET_SIZE) {
@@ -87,8 +88,8 @@ function compressImageWithSips(filePath) {
             const newWidth = Math.floor(width * scale);
             const newHeight = Math.floor(height * scale);
             
-            // 先调整尺寸
-            execSync(`sips -z ${newHeight} ${newWidth} "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
+            // 先应用方向信息并调整尺寸
+            execSync(`sips -r auto -z ${newHeight} ${newWidth} "${filePath}" --out "${tempPath}"`, { stdio: 'ignore' });
             
             // 再调整质量
             const tempPath2 = tempPath + '.2';

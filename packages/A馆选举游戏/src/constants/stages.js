@@ -13,6 +13,7 @@ export const STAGE_LABEL = {
 };
 
 export const GAME_COUNT = 5;
+const DEV_WS = 'ws://localhost:5260';
+const PROD_WS = 'ws://192.168.22.16:5260';
 export const DEFAULT_WS_URL =
-  process.env.REACT_APP_WS_URL || 'ws://localhost:5260';
-
+  process.env.NODE_ENV === 'development' ? DEV_WS : PROD_WS;

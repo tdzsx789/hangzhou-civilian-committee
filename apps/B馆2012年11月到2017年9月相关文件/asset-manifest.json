@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.92e1938b.css",
-    "main.js": "./static/js/main.7b306224.js",
+    "main.css": "./static/css/main.687b0d16.css",
+    "main.js": "./static/js/main.bcee7644.js",
     "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
     "static/media/cover.jpg": "./static/media/cover.bc398db45d54b394381d.jpg",
@@ -13,11 +13,11 @@
     "static/media/right.png": "./static/media/right.2e17ced6905bd166e827.png",
     "static/media/left.png": "./static/media/left.fcd9701068ee1015f3d7.png",
     "index.html": "./index.html",
-    "main.92e1938b.css.map": "./static/css/main.92e1938b.css.map",
-    "main.7b306224.js.map": "./static/js/main.7b306224.js.map"
+    "main.687b0d16.css.map": "./static/css/main.687b0d16.css.map",
+    "main.bcee7644.js.map": "./static/js/main.bcee7644.js.map"
   },
   "entrypoints": [
-    "static/css/main.92e1938b.css",
-    "static/js/main.7b306224.js"
+    "static/css/main.687b0d16.css",
+    "static/js/main.bcee7644.js"
   ]
 }

@@ -131,7 +131,7 @@
 
 .back-to-home-btn {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   width: 200px;
   height: 112px;
@@ -152,9 +152,9 @@
   width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
-  text-align: center;
+  text-align: left;
 }
 
 .nanjing-thumb {
@@ -175,7 +175,5 @@
   text-indent: 2em;
   color: #000000;
   max-width: 400px;
-  display: inline-block;
-  word-break: break-word;
-  white-space: normal;
+  text-align: justify;
 }

@@ -11,8 +11,8 @@
 }
 
 html, body {
-  width: 2160px;
-  height: 2160px;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -31,8 +31,8 @@ html, body {
 
 
 #root {
-  width: 2160px;
-  height: 2160px;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
   position: relative;
 }
@@ -40,4 +40,16 @@ html, body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* 全局隐藏鼠标与禁止文本选择 */
+* {
+  cursor: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+html, body {
+  cursor: none !important;
 }

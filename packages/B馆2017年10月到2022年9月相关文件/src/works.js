@@ -335,7 +335,7 @@ export const work4 = `<div class="pages_content" id="UCAP-CONTENT">
 
 export const work5 = `<div class="pages_content" id="UCAP-CONTENT">
 <p style=" text-align: center;"><span style="color: rgb(51, 51, 153);"><span style=""><strong>中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》</strong></span><br>
-                <p style="text-indent: 2em;  "><span style=" text-indent: 2em;">新华社北京5月8日电 近日，中共中央办公厅印发了《关于加强和改进城市基层党的建设工作的意见》，并发出通知，要求各地区各部门结合实际认真贯彻落实。</span></p>
+                <p style="text-indent: 2em;  "><span style=" text-indent: 2em;">近日，中共中央办公厅印发了《关于加强和改进城市基层党的建设工作的意见》，并发出通知，要求各地区各部门结合实际认真贯彻落实。</span></p>
 <p style="text-indent: 2em;  ">《关于加强和改进城市基层党的建设工作的意见》全文如下。</p>
 <p style="text-indent: 2em;  ">为深入贯彻习近平新时代中国特色社会主义思想，深入贯彻党的十九大和十九届二中、三中全会精神，认真落实全国组织工作会议精神，切实加强党对城市工作的领导，推动城市经济社会发展，根据党章和有关法律法规，现就加强和改进城市基层党的建设工作（以下简称城市基层党建工作）提出如下意见。</p>
 <p style="text-indent: 2em;  "><span style="">一、加强和改进城市基层党建工作的重要性紧迫性</span></p>
@@ -2788,23 +2788,7 @@ export const work6 = `
 `
 
 export const work7 = `<div class="b12c pages_content" id="UCAP-CONTENT">
-                    <p style="margin-top: 0px; margin-bottom: 0px; text-align: center; "><span style=" "><strong>国务院办公厅关于印发“十四五”</strong></span></p>
-<p style="margin-top: 0px; margin-bottom: 0px; text-align: center; "><span style=" "><strong>城乡社区服务体系建设规划的通知</strong></span></p>
-<p style="margin-top: 0px; margin-bottom: 0px; text-align: center;"><span style=""><b>国办发〔2021〕56号</b></span></p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; "><br>
-</p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-align: justify; ">各省、自治区、直辖市人民政府，国务院各部委、各直属机构：</p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; ">《“十四五”城乡社区服务体系建设规划》已经国务院同意，现印发给你们，请认真贯彻执行。</p>
-<p style="margin-top: 0px; margin-bottom: 0px; text-align: right;padding-right:14.8%; ">国务院办公厅</p>
-<p style="margin-top: 0px; margin-bottom: 0px; text-align: right; padding-right:13%;">2021年12月27日</p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; ">（此件公开发布）</p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; "><br>
-</p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; "><br>
-</p>
-<p style="margin-top: 0px; margin-bottom: 0px; text-align: center; "><span style=" ">“十四五”城乡社区服务体系建设规划</span></p>
-<p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; "><br>
-</p>
+<p style="margin-top: 0px; margin-bottom: 0px; text-align: center; "><span style=" "><strong>“十四五”城乡社区服务体系建设规划</strong></span></p>
 <p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; ">社区服务关系民生、连着民心，不断强化社区为民、便民、安民功能，是落实以人民为中心发展思想、践行党的群众路线、推进基层治理现代化建设的必然要求。为贯彻落实党中央、国务院决策部署，夯实基层基础，让人民生活更加美好，依据《中华人民共和国国民经济和社会发展第十四个五年规划和2035年远景目标纲要》，编制本规划。</p>
 <p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; "><span style="">一、谱写城乡社区服务体系建设新篇章</span></p>
 <p align="" style="margin-top: 0px; margin-bottom: 0px; text-indent: 2em; text-align: justify; ">城乡社区服务体系，是指党委统一领导、政府依法履责、社会多方参与，以村（社区）为基本单元，以村（社区）居民、驻区单位为对象，以各类社区服务设施为依托，以满足村（社区）居民生活需求、提高生活品质为目标，以公共服务、便民利民服务、志愿服务为主要内容的服务网络和运行机制。</p>

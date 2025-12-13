@@ -13,7 +13,7 @@
 
 .back-button {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   width: 200px;
   height: 112px;

@@ -1,0 +1,39 @@
+/* 首页样式 */
+.home-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url('../../assets/cover.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.home-bg-video {
+  position: absolute;
+  left: 26.24%; /* 549 / 2092 = 26.24% */
+  top: 50%; /* 217 / 1151 = 18.86% */
+  transform: translateY(-50%);
+  bottom: 0;
+  width: 65.01%; /* 1360 / 2092 = 65.01% */
+  object-fit: fill; /* 拉伸填充，允许变形 */
+  pointer-events: none;
+}
+
+.sound-btn {
+  position: absolute;
+  right: 0.76%; /* 16 / 2092 = 0.76% */
+  bottom: 1.39%; /* 16 / 1151 = 1.39% */
+  padding: 0.87% 1.02%; /* 约等于 10px 14px 的相对值 */
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  font-size: 0.96%; /* 相对字体大小，可根据需要调整 */
+  white-space: nowrap;
+}
+
+.sound-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}

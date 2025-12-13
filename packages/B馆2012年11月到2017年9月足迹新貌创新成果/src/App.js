@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Detail1 from './pages/Detail1';
@@ -41,9 +41,9 @@ const list = [
   {
     name: '广东省深圳市罗湖区南湖街道渔邨社区\n2012年12月8日',
     address: '广东省深圳市罗湖区南湖街道渔邨社区',
-    text: `2012年12月8日，习近平总书记考察深圳渔邨社区，称赞其"历史性跨越"，勉励居民"用勤劳双手创造更幸福生活"。社区总面积0.51平方公里，管理人口1.1万余人，党委下辖14个党支部、218名党员。十余年来，社区牢记嘱托实现跨越式发展：建成350米文化长廊和278平方米村史馆，累计接待参观4.2万人次；集体经济年收入从900万元增至1348万元，户均资产达6200万元；打造全市首个多功能党群服务中心，实现431项政务"一站通办"。
-在基层治理方面，社区创新构建"三级架构"组织体系，形成"居民点单、部门统筹"服务模式，船步街旧改创下99.7%签约率的"渔邨速度"。通过"五家+"工作法、9支志愿队伍等机制动员居民参与治理，党群服务中心周人流量从360人次跃升至5000人次。推进"多网合一"改革，将15个网格整合为4个综合网格，开展2000余人次的便民服务。针对港籍居民占30%的特点，设立港人服务中心，组建深圳首支港人志愿服务队，业委会港籍成员占比达80%。
-社区先后获"全国示范性老年友好型社区"等国家级荣誉6项，接待各地调研1574批次，其"政府+公益+商业"党群服务模式、"深港协同"治理经验被《中国组织人事报》等媒体专题报道，成为超大城市基层治理的示范样板。`,
+    text: `2012年12月8日，习近平总书记考察深圳渔邨社区，称赞其“历史性跨越”，勉励居民“用勤劳双手创造更幸福生活”。社区总面积0.51平方公里，管理人口1.1万余人，党委下辖14个党支部、218名党员。十余年来，社区牢记嘱托实现跨越式发展：建成350米文化长廊和278平方米村史馆，累计接待参观4.2万人次；集体经济年收入从900万元增至1348万元，户均资产达6200万元；打造全市首个多功能党群服务中心，实现431项政务“一站通办”。
+在基层治理方面，社区创新构建“三级架构”组织体系，形成“居民点单、部门统筹”服务模式，船步街旧改创下99.7%签约率的“渔邨速度”。通过“五家+”工作法、9支志愿队伍等机制动员居民参与治理，党群服务中心周人流量从360人次跃升至5000人次。推进“多网合一”改革，将15个网格整合为4个综合网格，开展2000余人次的便民服务。针对港籍居民占30%的特点，设立港人服务中心，组建深圳首支港人志愿服务队，业委会港籍成员占比达80%。
+社区先后获“全国示范性老年友好型社区”等国家级荣誉6项，接待各地调研1574批次，其“政府+公益+商业”党群服务模式、“深港协同”治理经验被《中国组织人事报》等媒体专题报道，成为超大城市基层治理的示范样板。`,
     images: [
       {
         url: '',
@@ -73,9 +73,9 @@ const list = [
     name: '内蒙古自治区锡林浩特市楚古兰街道爱民社区\n2014年1月27日',
     address: '内蒙古自治区锡林浩特市楚古兰街道爱民社区',
     text: `2014年1月27日，习近平总书记来到楚古兰街道爱民社区视察指导，他表示，社区党组织和党员干部要千方百计使群众生活更方便一些，使群众表达诉求渠道更畅通一些，把党和政府的温暖送到千家万户。他的殷殷嘱托，对推进城市基层治理体系和治理能力现代化确立了更高标准，对加强和改进城市基层党建工作赋予了新的内涵和使命，也为街道、社区做好各项工作指明了方向，提供了根本遵循。
-爱民社区位于锡林浩特市楚古兰街道，成立于2002年，辖区面积0.77平方公里，服务居民2828户、6041人。2014年1月27日，习近平总书记亲临社区视察，强调"社区虽小，却连着千家万户"，叮嘱要"把人民放在心中最高位置"。社区党委下设3个党支部，党员119名，建成2000平方米党群服务中心，内设便民服务大厅、民惠超市等多个功能室。
-社区牢记总书记嘱托，创新打造"红色网格"治理体系，划分12个网格并建立党支部，形成"党委-党支部-党小组-党员"组织架构。推行"'五心'工作法"，近两年解决群众需求260多个，满意率达100%。建立9支"暖心服务小分队"，2024年开展"敲门服务"18次，为民办实事200余件。创新实施互嵌式社区治理模式，处理各类纠纷365件，实现"小纠纷不出社区"。
-在民生服务方面，社区民惠超市商品种类增至3000种，2023年惠民金额达7.4万元；卫生服务站工作人员从2人增至5人，居民健康档案覆盖率达95%；引进"三宽苑"家庭教育中心，提供心理咨询服务。通过20多项便民举措，切实将总书记的嘱托转化为服务群众的实际行动，先后荣获多项荣誉称号，成为边疆民族地区社区治理的典范。`,
+爱民社区位于锡林浩特市楚古兰街道，成立于2002年，辖区面积0.77平方公里，服务居民2828户、6041人。2014年1月27日，习近平总书记亲临社区视察，强调“社区虽小，却连着千家万户”，叮嘱要“把人民放在心中最高位置”。社区党委下设3个党支部，党员119名，建成2000平方米党群服务中心，内设便民服务大厅、民惠超市等多个功能室。
+社区牢记总书记嘱托，创新打造“红色网格”治理体系，划分12个网格并建立党支部，形成“党委-党支部-党小组-党员”组织架构。推行“'五心'工作法”，近两年解决群众需求260多个，满意率达100%。建立9支“暖心服务小分队”，2024年开展“敲门服务”18次，为民办实事200余件。创新实施互嵌式社区治理模式，处理各类纠纷365件，实现“小纠纷不出社区”。
+在民生服务方面，社区民惠超市商品种类增至3000种，2023年惠民金额达7.4万元；卫生服务站工作人员从2人增至5人，居民健康档案覆盖率达95%；引进“三宽苑”家庭教育中心，提供心理咨询服务。通过20多项便民举措，切实将总书记的嘱托转化为服务群众的实际行动，先后荣获多项荣誉称号，成为边疆民族地区社区治理的典范。`,
     images: [
       {
         url: '',
@@ -123,9 +123,9 @@ const list = [
   {
     name: '陕西省西安市雁塔区电子城街道二〇五所社区\n2015年2月15日',
     address: '陕西省西安市雁塔区电子城街道二〇五所社区',
-    text: `二〇五所社区位于西安市雁塔区电子城街道，是中国兵器工业第205研究所建设的单位型社区，现有居民1800多户、3700余人。2015年2月15日，习近平总书记亲临社区视察时强调"社区工作是一门学问"，为社区发展指明方向。十年来，社区牢记嘱托，建成1026平方米党群服务中心，创新打造"五级组织链条"治理体系，通过"红石榴驿站"、"凉亭议事会"等平台解决民生问题千余件，获"全国民主法治示范社区"等30余项荣誉。
-社区创新实施"百千万"服务机制："百事帮"邻里互助队解决居民日常困难；"千户访"活动收集并解决操场改造等民生诉求；"万家和"平台营造和谐社区氛围。针对"一老一小"需求，建成嵌入式服务中心，开设寒假托管班等特色服务。2017年建成的社区卫生服务站与多家三甲医院建立医联体，中医文化街区成为特色品牌。社区还打造了西安市首个家风家训馆、非遗工作室等文化阵地，84岁剪纸艺人马月娥等民间艺术家在此传承技艺。
-通过党建引领、服务创新和文化培育，社区老年人口占比36%的居民获得感持续提升。2023年成为中国延安干部学院社会实践教学点，其"党建+治理+服务"模式成为城市社区建设的典范，生动践行了习近平总书记"让千家万户感受到党和政府温暖"的殷切嘱托。`,
+    text: `二〇五所社区位于西安市雁塔区电子城街道，是中国兵器工业第205研究所建设的单位型社区，现有居民1800多户、3700余人。2015年2月15日，习近平总书记亲临社区视察时强调“社区工作是一门学问”，为社区发展指明方向。十年来，社区牢记嘱托，建成1026平方米党群服务中心，创新打造“五级组织链条”治理体系，通过“红石榴驿站”、“凉亭议事会”等平台解决民生问题千余件，获“全国民主法治示范社区”等30余项荣誉。
+社区创新实施“百千万”服务机制：“百事帮”邻里互助队解决居民日常困难；“千户访”活动收集并解决操场改造等民生诉求；“万家和”平台营造和谐社区氛围。针对“一老一小”需求，建成嵌入式服务中心，开设寒假托管班等特色服务。2017年建成的社区卫生服务站与多家三甲医院建立医联体，中医文化街区成为特色品牌。社区还打造了西安市首个家风家训馆、非遗工作室等文化阵地，84岁剪纸艺人马月娥等民间艺术家在此传承技艺。
+通过党建引领、服务创新和文化培育，社区老年人口占比36%的居民获得感持续提升。2023年成为中国延安干部学院社会实践教学点，其“党建+治理+服务”模式成为城市社区建设的典范，生动践行了习近平总书记“让千家万户感受到党和政府温暖”的殷切嘱托。`,
     images: [
       {
         url: '',
@@ -137,9 +137,9 @@ const list = [
     name: '江西省南昌市东湖区彭家桥街道光明社区\n2016年2月3日',
     address: '江西省南昌市东湖区彭家桥街道光明社区',
     text: `2016年2月3日，在东湖区彭家桥街道光明社区，习近平视察社区宣传栏和社区服务站办事大厅，了解社区党建工作、便民服务、创建和谐等情况。他指出培育社会主义核心价值观是一件大事，全社会都要努力抓，社区要利用自己的平台和优势做好。
-光明社区位于南昌市东湖区彭家桥街道，成立于2007年7月，辖区面积12.5万平方米，服务居民1677户、4191人，其中60岁以上老年人1078人。社区党委下设7个实体党支部和10支"趣缘型"党支部，党员276名。近年来，社区深入贯彻落实习近平总书记重要指示精神，创新打造"党建+服务"模式，先后荣获"全国先进基层党组织"等100余项市级以上荣誉称号。
-社区以"老有所养、老有所乐"为目标，全面推进适老化改造：一是构建"15分钟生活圈"，配备医疗机构、超市、学校等便民设施；二是建成功能完善的居家养老服务中心，设立老年食堂、健康小屋等场所；三是实施"一户一策"适老化改造，已完成4户家庭改造。同时，社区创新志愿服务模式，开展"1+X搭把手"志愿活动，为老年人提供生活照料、健康管理等服务。
-在智慧社区建设方面，社区定期开展"智慧助老"培训活动，帮助老年人跨越数字鸿沟；建立各类微信群，实现"线上点单、志愿者接单"服务模式。文化生活方面，社区打造了"红歌嘹亮"合唱团等19个特色品牌项目，建成孝老文化长廊，丰富居民精神生活。通过党建引领、服务创新，光明社区切实提升了老年人的获得感、幸福感和安全感，成为新时代社区治理的典范。`,
+光明社区位于南昌市东湖区彭家桥街道，成立于2007年7月，辖区面积12.5万平方米，服务居民1677户、4191人，其中60岁以上老年人1078人。社区党委下设7个实体党支部和10支“趣缘型”党支部，党员276名。近年来，社区深入贯彻落实习近平总书记重要指示精神，创新打造“党建+服务”模式，先后荣获“全国先进基层党组织”等100余项市级以上荣誉称号。
+社区以“老有所养、老有所乐”为目标，全面推进适老化改造：一是构建“15分钟生活圈”，配备医疗机构、超市、学校等便民设施；二是建成功能完善的居家养老服务中心，设立老年食堂、健康小屋等场所；三是实施“一户一策”适老化改造，已完成4户家庭改造。同时，社区创新志愿服务模式，开展“1+X搭把手”志愿活动，为老年人提供生活照料、健康管理等服务。
+在智慧社区建设方面，社区定期开展“智慧助老”培训活动，帮助老年人跨越数字鸿沟；建立各类微信群，实现“线上点单、志愿者接单”服务模式。文化生活方面，社区打造了“红歌嘹亮”合唱团等19个特色品牌项目，建成孝老文化长廊，丰富居民精神生活。通过党建引领、服务创新，光明社区切实提升了老年人的获得感、幸福感和安全感，成为新时代社区治理的典范。`,
     images: [
       {
         url: '',
@@ -169,6 +169,94 @@ const list = [
 ]
 
 function App() {
+
+  // 密码输入功能
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const lastTouchTimeRef = useRef(0);
+  const redButtonRef = useRef(null);
+
+  // 使用原生事件监听器，设置 passive: false 以允许 preventDefault
+  useEffect(() => {
+    const buttonElement = redButtonRef.current;
+    if (!buttonElement) return;
+
+    // 处理触摸双击检测（1秒内两次touchstart）
+    const handleRedButtonTouch = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const currentTime = Date.now();
+      if (currentTime - lastTouchTimeRef.current < 1000 && lastTouchTimeRef.current > 0) {
+        // 双击检测成功
+        setShowPasswordInput(true);
+        setPasswordInput('');
+        lastTouchTimeRef.current = 0;
+      } else {
+        lastTouchTimeRef.current = currentTime;
+      }
+    };
+
+    buttonElement.addEventListener('touchstart', handleRedButtonTouch, { passive: false });
+    return () => {
+      buttonElement.removeEventListener('touchstart', handleRedButtonTouch);
+    };
+  }, []);
+
+  // 处理密码提交
+  const handlePasswordSubmit = () => {
+    if (passwordInput === '20251212') {
+      // 退出整个浏览器/应用
+      // 优先尝试 Electron 的退出方法
+      if (typeof window.electron !== 'undefined') {
+        // 尝试多种 Electron 退出方式
+        if (window.electron.ipcRenderer) {
+          // 通过 IPC 发送退出信号（需要主进程监听 'quit-app' 事件）
+          window.electron.ipcRenderer.send('quit-app');
+        } else if (window.electron.remote && window.electron.remote.app) {
+          // Electron 旧版本 API
+          window.electron.remote.app.quit();
+        } else if (window.electron.quit) {
+          window.electron.quit();
+        } else if (window.electron.exit) {
+          window.electron.exit();
+        } else if (window.electron.app && window.electron.app.quit) {
+          window.electron.app.quit();
+        }
+      } else if (window.require) {
+        // 尝试通过 require 获取 Electron 模块
+        try {
+          const { ipcRenderer } = window.require('electron');
+          ipcRenderer.send('quit-app');
+        } catch (e) {
+          try {
+            const { remote } = window.require('electron');
+            if (remote && remote.app) {
+              remote.app.quit();
+            }
+          } catch (e2) {
+            // 如果都不行，尝试关闭窗口
+            window.close();
+          }
+        }
+      } else {
+        // 普通浏览器环境：尝试关闭窗口
+        // 注意：JavaScript 无法直接关闭整个浏览器，只能关闭由脚本打开的窗口
+        window.close();
+        // 如果 window.close() 不起作用，延迟后尝试其他方法
+        setTimeout(() => {
+          window.location.href = 'about:blank';
+        }, 100);
+      }
+    } else {
+      alert('密码错误');
+      setPasswordInput('');
+    }
+  };
+
+
+
+
+
   const [currentPage, setCurrentPage] = useState('home');
 
   // 处理 list，自动填充缺失的图片 URL
@@ -219,7 +307,7 @@ function App() {
   const handleBackToDetail2 = () => {
     setCurrentPage('detail2');
   };
-  // 2分钟无交互自动返回Home页
+  // 1个小时无交互自动返回Home页
   useEffect(() => {
     let autoReturnTimer = null;
 
@@ -229,7 +317,7 @@ function App() {
       }
       autoReturnTimer = setTimeout(() => {
         setCurrentPage('home');
-      }, 300000); // 2分钟 = 300000毫秒
+      }, 3600000); // 1个小时 = 3600000毫秒
     };
 
     const handleTouchStart = () => {
@@ -254,12 +342,191 @@ function App() {
 
   return (
     <div className="App">
-      <div 
+
+      {/* 红色按钮 - 双击打开密码输入 */}
+      <div
+        ref={redButtonRef}
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          width: '150px',
+          height: '150px',
+          backgroundColor: 'transparent',
+          zIndex: 99999,
+          cursor: 'none',
+          userSelect: 'none',
+          WebkitUserSelect: 'none'
+        }}
+      />
+
+      {/* 密码输入界面 */}
+      {showPasswordInput && (
+        <div
+          className="password-input-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowPasswordInput(false);
+              setPasswordInput('');
+            }
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            zIndex: 10000
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'fixed',
+              left: '10px',
+              top: '160px',
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '10px',
+              minWidth: '350px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+            }}
+          >
+            <div style={{
+              fontSize: '20px',
+              marginBottom: '15px',
+              textAlign: 'center',
+              fontWeight: 'bold'
+            }}>请输入密码</div>
+            <div style={{
+              fontSize: '28px',
+              textAlign: 'center',
+              marginBottom: '15px',
+              minHeight: '35px',
+              letterSpacing: '6px',
+              fontFamily: 'monospace',
+              padding: '10px',
+              backgroundColor: '#f5f5f5',
+              borderRadius: '5px'
+            }}>{passwordInput || ''}</div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '8px',
+              marginBottom: '8px'
+            }}>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                <button
+                  key={num}
+                  onClick={() => setPasswordInput(prev => prev + String(num))}
+                  style={{
+                    padding: '15px',
+                    fontSize: '20px',
+                    border: '1px solid #ccc',
+                    borderRadius: '5px',
+                    cursor: 'none',
+                    backgroundColor: '#f0f0f0',
+                    transition: 'background-color 0.2s',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none'
+                  }}
+                  onTouchEnd={(e) => {
+                    e.target.style.backgroundColor = '#f0f0f0';
+                  }}
+                  onTouchStart={(e) => {
+                    e.target.style.backgroundColor = '#e0e0e0';
+                  }}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '8px'
+            }}>
+              <button
+                onClick={() => setPasswordInput(prev => prev + '0')}
+                style={{
+                  padding: '15px',
+                  fontSize: '20px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#f0f0f0',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#f0f0f0';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#e0e0e0';
+                }}
+              >
+                0
+              </button>
+              <button
+                onClick={() => setPasswordInput(prev => prev.slice(0, -1))}
+                style={{
+                  padding: '15px',
+                  fontSize: '18px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#ff6b6b',
+                  color: 'white',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#ff6b6b';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#ff5252';
+                }}
+              >
+                删除
+              </button>
+              <button
+                onClick={handlePasswordSubmit}
+                style={{
+                  padding: '15px',
+                  fontSize: '18px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'none',
+                  backgroundColor: '#4caf50',
+                  color: 'white',
+                  transition: 'background-color 0.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none'
+                }}
+                onTouchEnd={(e) => {
+                  e.target.style.backgroundColor = '#4caf50';
+                }}
+                onTouchStart={(e) => {
+                  e.target.style.backgroundColor = '#45a049';
+                }}
+              >
+                确定
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
+      <div
         className={`page-container ${currentPage === 'home' ? 'active' : ''}`}
       >
         <Home onLearnMore={handleLearnMore} />
       </div>
-      <div 
+      <div
         className={`page-container ${currentPage === 'detail1' ? 'active' : ''}`}
       >
         <Detail1
@@ -272,7 +539,7 @@ function App() {
           isActive={currentPage === 'detail1'}
         />
       </div>
-      <div 
+      <div
         className={`page-container ${currentPage === 'detail1_2' ? 'active' : ''}`}
       >
         <Detail1Second
@@ -284,7 +551,7 @@ function App() {
           isActive={currentPage === 'detail1_2'}
         />
       </div>
-      <div 
+      <div
         className={`page-container ${currentPage === 'detail2' ? 'active' : ''}`}
       >
         <Detail2
@@ -293,7 +560,7 @@ function App() {
           isActive={currentPage === 'detail2'}
         />
       </div>
-      <div 
+      <div
         className={`page-container ${currentPage === 'detail2_2' ? 'active' : ''}`}
       >
         <Detail2Second

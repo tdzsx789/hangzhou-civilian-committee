@@ -1,0 +1,30 @@
+/* 详情页样式 */
+.detail-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.learn-more-btn {
+  position: absolute;
+  bottom: 130px;
+  left: 621px;
+  width: 327px;
+  height: 120px;
+}
+
+.visitor-media {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  width: 1000px;
+  height: 1000px;
+  object-fit: contain;
+  pointer-events: none;
+}

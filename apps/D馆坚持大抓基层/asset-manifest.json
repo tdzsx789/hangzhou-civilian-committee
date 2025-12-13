@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.b43e8731.css",
-    "main.js": "./static/js/main.8fafcaeb.js",
+    "main.css": "./static/css/main.d77e0b3e.css",
+    "main.js": "./static/js/main.9e0d4b14.js",
     "static/media/图为市民参与现场志愿服务展台活动.png": "./static/media/图为市民参与现场志愿服务展台活动.ff22608fb68939b3ffb0.png",
     "static/media/shenka.jpg": "./static/media/shenka.87b3d5cdaa0438c7f2d4.jpg",
     "static/media/图为桂城创熟嘉年华现场各社区邻里文化展示.JPG": "./static/media/图为桂城创熟嘉年华现场各社区邻里文化展示.92b2350fa704b7c910cb.JPG",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
     "static/media/cover.jpg": "./static/media/cover.938a3704525d481cdf88.jpg",
-    "static/media/page1.jpg": "./static/media/page1.71a49cc9807b2bf3d1da.jpg",
+    "static/media/page1.jpg": "./static/media/page1.87d4bba866d5bdbb0584.jpg",
     "static/media/图为非公企业党委参与志愿服务.JPG": "./static/media/图为非公企业党委参与志愿服务.00bd6f9c663b16d51276.JPG",
-    "static/media/page3.jpg": "./static/media/page3.7c3999705e86cfea1abb.jpg",
+    "static/media/page3.jpg": "./static/media/page3.558b934c1f6350cf28c4.jpg",
     "static/media/page2.jpg": "./static/media/page2.796e663c47ec049523a8.jpg",
     "static/media/yiheduoquan.png": "./static/media/yiheduoquan.9f4ba4a0e0871ef974cd.png",
     "static/media/图为加吉博洛镇治渠街社区石榴红微心愿集中圆梦主题党日活动.png": "./static/media/图为加吉博洛镇治渠街社区石榴红微心愿集中圆梦主题党日活动.be60e993c1de667483ec.png",
@@ -24,11 +24,11 @@
     "static/media/leftArrow.png": "./static/media/leftArrow.3170ee46c3eeb4eec33d.png",
     "static/media/rightArrow.png": "./static/media/rightArrow.e60dbdd6b48ba595d94c.png",
     "index.html": "./index.html",
-    "main.b43e8731.css.map": "./static/css/main.b43e8731.css.map",
-    "main.8fafcaeb.js.map": "./static/js/main.8fafcaeb.js.map"
+    "main.d77e0b3e.css.map": "./static/css/main.d77e0b3e.css.map",
+    "main.9e0d4b14.js.map": "./static/js/main.9e0d4b14.js.map"
   },
   "entrypoints": [
-    "static/css/main.b43e8731.css",
-    "static/js/main.8fafcaeb.js"
+    "static/css/main.d77e0b3e.css",
+    "static/js/main.9e0d4b14.js"
   ]
 }

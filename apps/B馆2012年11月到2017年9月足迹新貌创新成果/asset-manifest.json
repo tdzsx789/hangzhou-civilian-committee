@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "./static/css/main.add9e449.css",
-    "main.js": "./static/js/main.dd603a22.js",
+    "main.css": "./static/css/main.078ee969.css",
+    "main.js": "./static/js/main.5e1de3f7.js",
     "static/media/Alibaba-PuHuiTi-Bold.otf": "./static/media/Alibaba-PuHuiTi-Bold.fc4f40f33824d7265152.otf",
     "static/media/军门社区居民恳谈日.png": "./static/media/军门社区居民恳谈日.70c33aae359411eda402.png",
     "static/media/军门社区外景.png": "./static/media/军门社区外景.b712bec0b0868f1f5afa.png",
     "static/media/爱民社区整体面貌.png": "./static/media/爱民社区整体面貌.84547ab4fba8dca217df.png",
     "static/media/爱民社区医保服务站.png": "./static/media/爱民社区医保服务站.3b113bbcc544f50a5db7.png",
     "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
-    "static/media/result1.docx": "./static/media/result1.99c204a4146e1f705151.docx",
+    "static/media/result3.docx": "./static/media/result3.cecb7161201d8d3cfa78.docx",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
     "static/media/cover.jpg": "./static/media/cover.4d6a80bdffbb2f96a50f.jpg",
     "static/media/bg1_1.jpg": "./static/media/bg1_1.11bae974dace9db8ddba.jpg",
@@ -25,13 +25,15 @@
     "static/media/渔民村文化长廊旧貌.png": "./static/media/渔民村文化长廊旧貌.61bed3f08f1a6fb55d27.png",
     "static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比2.png": "./static/media/福祥社区推进南锣鼓巷四条胡同修缮整治新旧对比2.490bf666a6d14a27dc15.png",
     "static/media/start.png": "./static/media/start.2439c59b4854d4f05681.png",
+    "static/media/result1.docx": "./static/media/result1.9fcfb9904d6500c8cf3b.docx",
+    "static/media/result2.docx": "./static/media/result2.03dfd39016b015e48293.docx",
     "static/media/slideBg.png": "./static/media/slideBg.5c6f664c017f0140b306.png",
     "index.html": "./index.html",
-    "main.add9e449.css.map": "./static/css/main.add9e449.css.map",
-    "main.dd603a22.js.map": "./static/js/main.dd603a22.js.map"
+    "main.078ee969.css.map": "./static/css/main.078ee969.css.map",
+    "main.5e1de3f7.js.map": "./static/js/main.5e1de3f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.add9e449.css",
-    "static/js/main.dd603a22.js"
+    "static/css/main.078ee969.css",
+    "static/js/main.5e1de3f7.js"
   ]
 }

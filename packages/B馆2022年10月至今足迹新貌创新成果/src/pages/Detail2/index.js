@@ -11,7 +11,7 @@ import result4Docx from '../../assets/result4.docx';
 const list = [
   { name: '一、中央社会工作部工作职责及重点工作相关内容', file: 'result1.docx' },
   { name: '二、完整社区试点名单', file: 'result2.docx' },
-  { name: '三、基层党组织、新时代"枫桥经验"各地实践、全过程人民民主、基层矛盾化解、志愿服务、社会工作队伍建设等相关图表', file: 'result3.docx' },
+  { name: '三、基层党组织、新时代“枫桥经验”各地实践、全过程人民民主、基层矛盾化解、志愿服务、社会工作队伍建设等相关图表', file: 'result3.docx' },
   { name: '四、相关书籍手册实物展示', file: 'result4.docx' },
 ]
 

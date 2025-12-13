@@ -13,11 +13,14 @@
 
 .detail-back-btn {
   position: absolute;
-  top: 40px;
-  right: 48px;
-  width: 120px;
-  height: 120px;
+  bottom: 30px;
+  right: 96px;
+  width: 100px;
+  height: 100px;
   z-index: 10;
+  background-image: url(../../assets/back.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .detail-card-container {
@@ -74,6 +77,37 @@
   position: relative;
 }
 
+/* 卡片切换动效 */
+.card-enter-right {
+  animation: cardEnterFromRight 320ms ease;
+}
+
+.card-enter-left {
+  animation: cardEnterFromLeft 320ms ease;
+}
+
+@keyframes cardEnterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes cardEnterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 .detail-title {
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
@@ -99,6 +133,7 @@
   text-align: justify;
   color: #544025;
   margin: 0 0 30px 0;
+  text-indent: 2em;
 }
 
 .detail-images-wrapper {
@@ -128,7 +163,7 @@
   gap: 12px;
   border: 2px solid #BF9A7D;
   align-self: flex-start;
-  height: auto;
+  height: 386px;
 }
 
 .detail-image {

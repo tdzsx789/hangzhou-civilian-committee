@@ -1,0 +1,42 @@
+{
+  "summary": {
+    "totalProvinces": 30,
+    "matchedProvinces": 28,
+    "unmatchedProvinces": 2,
+    "totalCommunities": 340,
+    "matchedCommunities": 336,
+    "unmatchedCommunities": 4
+  },
+  "unmatchedProvinces": [
+    {
+      "folder": "14.河南省（6个）",
+      "extractedName": "河南省"
+    },
+    {
+      "folder": "7. 黑龙江省（1个）",
+      "extractedName": "黑龙江省"
+    }
+  ],
+  "unmatchedCommunities": [
+    {
+      "province": "福建省",
+      "folder": "4. 福建省福州市鼓楼区东街街道军门社区－全国民主法治示范村（社区）、全国三八红旗集体（无图片）",
+      "extractedName": "福建省福州市鼓楼区东街街道军门社区"
+    },
+    {
+      "province": "江西省",
+      "folder": "6. 江西省南昌市西湖区铁路二村社区－全国先进基层群众性自治组织",
+      "extractedName": "江西省南昌市西湖区铁路二村社区"
+    },
+    {
+      "province": "天津市",
+      "folder": "21.天津市西青区赤龙南街道佳和荣庭社区－全国示范性老年友好型社区",
+      "extractedName": "天津市西青区赤龙南街道佳和荣庭社区"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "folder": "11. 新疆维吾尔自治区吐鲁番市托克逊县托克逊真玉泉社区－全国民主法治示范村（社区）",
+      "extractedName": "新疆维吾尔自治区吐鲁番市托克逊县托克逊真玉泉社区"
+    }
+  ]
+}

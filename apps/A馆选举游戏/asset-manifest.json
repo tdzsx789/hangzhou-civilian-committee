@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.13477128.css",
-    "main.js": "./static/js/main.8ad12f64.js",
+    "main.css": "./static/css/main.9d32142a.css",
+    "main.js": "./static/js/main.91933c72.js",
     "static/media/screen.mp4": "./static/media/screen.48014dfe899073bf1c10.mp4",
     "static/media/FZCuHeiSong-B-JF.ttf": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.ttf",
     "static/media/game_complete.jpg": "./static/media/game_complete.fc3ed07a741f02231be8.jpg",
@@ -17,11 +17,11 @@
     "static/media/waiting_others.png": "./static/media/waiting_others.59f91e2b1fa1b99f4484.png",
     "static/media/takephoto.png": "./static/media/takephoto.496725563dfffb143022.png",
     "index.html": "./index.html",
-    "main.13477128.css.map": "./static/css/main.13477128.css.map",
-    "main.8ad12f64.js.map": "./static/js/main.8ad12f64.js.map"
+    "main.9d32142a.css.map": "./static/css/main.9d32142a.css.map",
+    "main.91933c72.js.map": "./static/js/main.91933c72.js.map"
   },
   "entrypoints": [
-    "static/css/main.13477128.css",
-    "static/js/main.8ad12f64.js"
+    "static/css/main.9d32142a.css",
+    "static/js/main.91933c72.js"
   ]
 }

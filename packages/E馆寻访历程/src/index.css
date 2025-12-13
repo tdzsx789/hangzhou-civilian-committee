@@ -41,3 +41,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* 全局隐藏鼠标与禁止文本选择 */
+* {
+  cursor: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+html, body {
+  cursor: none !important;
+}
