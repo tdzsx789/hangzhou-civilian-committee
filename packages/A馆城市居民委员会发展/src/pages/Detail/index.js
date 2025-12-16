@@ -14,6 +14,7 @@ import handImg from '../../assets/hand.png';
 import pageSlides1Img from '../../assets/pageSlides1.png';
 import pageSlides2Img from '../../assets/pageSlides2.png';
 import pageSlides3Img from '../../assets/pageSlides3.png';
+import beforeNextImg from '../../assets/beforeNext.png';
 
 // 导入 chubujianli 文件夹的图片
 import chubujianli1 from '../../assets/chubujianli/1952-east-china-military-administrative-committee-pilot-scheme.jpg';
@@ -159,10 +160,10 @@ const selectList = [
 
 const selectParams = {
   select1: {
-    left: 444, top: 101, url: select1Img, downButtonLeft: 1252, downButtonTop: 900, upButtonTop: 253, upButtonRight: 50
+    left: 444, top: 101, url: select1Img, downButtonLeft: 1252, downButtonTop: 900, upButtonTop: 253, upButtonRight: 50, beforeButtonTop: 840, beforeButtonRight: 50
   },
   select2: {
-    left: 444, top: 101, url: select2Img, downButtonLeft: 987, downButtonTop: 910, upButtonTop: 253, upButtonRight: 50
+    left: 444, top: 101, url: select2Img, downButtonLeft: 987, downButtonTop: 910, upButtonTop: 253, upButtonRight: 50, beforeButtonTop: 840, beforeButtonRight: 50
   },
   select3: {
     left: 444, top: 101, url: select3Img, downButtonLeft: 1252, downButtonTop: 822,
@@ -171,13 +172,13 @@ const selectParams = {
     left: 444, top: 101, url: select4Img, downButtonLeft: 987, downButtonTop: 972,
   },
   page2: {
-    left: 444, top: 101, url: page2Img
+    left: 444, top: 101, url: page2Img, beforeButtonTop: 920, beforeButtonRight: 642
   },
   page3: {
-    left: 444, top: 101, url: page3Img
+    left: 444, top: 101, url: page3Img, beforeButtonTop: 986, beforeButtonRight: 642
   },
   page4: {
-    left: 444, top: 101, url: page4Img
+    left: 444, top: 101, url: page4Img, beforeButtonTop: 886, beforeButtonRight: 642
   },
 }
 
@@ -195,6 +196,16 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   useEffect(() => {
     setSelectedSelectKey(index);
   }, [index]);
+
+  useEffect(() => {
+    if ((selectedSelectKey === 'select1' || selectedSelectKey === 'select2') && galleryContainerRef.current) {
+      if (selectedSelectKey === 'select2') {
+        galleryContainerRef.current.scrollLeft = 1821;
+      } else {
+        galleryContainerRef.current.scrollLeft = 0;
+      }
+    }
+  }, [selectedSelectKey]);
 
   // 当进入 select1、select2、page2、page3 或 page4 时显示 hand，6秒后隐藏
   useEffect(() => {
@@ -234,7 +245,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
       }
     }
 
-    const handleScroll = () => {
+    const handleScroll = (e) => {
       setShowHand(false);
     };
 
@@ -257,6 +268,8 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
     // 粗略估算：如果文字长度超过18个字符，可能换行
     return text.length > 18;
   };
+
+  
 
   // 根据 selectKey 获取对应的图片列表
   const getImagesBySelectKey = (selectKey) => {
@@ -307,6 +320,27 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           setIsTransitioning(false);
         }, 50);
       }, 300);
+    }
+  };
+
+  const handleBeforeNextClick = (e) => {
+    const el = (selectedSelectKey === 'select1' || selectedSelectKey === 'select2')
+      ? galleryContainerRef.current
+      : (selectedSelectKey === 'page2')
+        ? page2Container1Ref.current
+        : (selectedSelectKey === 'page3' || selectedSelectKey === 'page4')
+          ? page3ContainerRef.current
+          : null;
+    if (!el) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = rect.width / 2;
+    const step = 4 * (324 + 40);
+    if (x < half) {
+      el.scrollBy({ left: -step, behavior: 'smooth' });
+    } else {
+      el.scrollBy({ left: step, behavior: 'smooth' });
     }
   };
 
@@ -389,9 +423,9 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           ref={galleryContainerRef}
           style={{
             position: 'absolute',
-            left: '444px',
+            left: '434px',
             top: '460px',
-            width: '1420px',
+            width: '1440px',
             overflowX: 'auto',
             overflowY: 'hidden',
             scrollbarWidth: 'none',
@@ -494,36 +528,28 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
         </div>
       )}
       {(selectedSelectKey === 'page3') && (
-        // <>
-        //   <div
-        //     ref={page3ContainerRef}
-        //     style={{
-        //       position: 'absolute',
-        //       left: '444px',
-        //       top: '600px',
-        //       width: '688px',
-        //       height: '403px',
-        //       overflowX: 'auto',
-        //       overflowY: 'hidden',
-        //       scrollbarWidth: 'none',
-        //       msOverflowStyle: 'none',
-        //     }}
-        //     className="slides-container"
-        //   >
-        //     <img
-        //       src={pageSlides3Img}
-        //       alt="pageSlides1"
-        //       style={{
-        //         height: '100%',
-        //         width: 'auto'
-        //       }}
-        //     />
-        //   </div>
-        // </>
-        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 630 }}>
+        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 600 }}>
           <div className="gallery-images-list">
             {getImagesBySelectKey(selectedSelectKey).map((img, index) => {
               const multiLine = isMultiLine(img.name);
+              if (index === 2) {
+                return (
+                  <div key={index} className="double-slot">
+                    <div className="gallery-image-item">
+                      <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
+                        <img
+                          src={img.url}
+                          alt={img.name}
+                          className="gallery-image"
+                        />
+                      </div>
+                      <div className={`gallery-image-caption ${multiLine ? 'multi-line' : ''}`}>
+                        {img.name}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <div key={index} className="gallery-image-item">
                   <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
@@ -540,13 +566,34 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
               );
             })}
           </div>
+          
         </div>
       )}
       {(selectedSelectKey === 'page4') && (
-        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 470 }}>
-          <div className="gallery-images-list">
+        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 520 }}>
+          <div className="gallery-images-list page4">
             {getImagesBySelectKey(selectedSelectKey).map((img, index) => {
               const multiLine = isMultiLine(img.name);
+              const isFirstTwo = index < 2;
+              if (isFirstTwo) {
+                const containerAlign = index === 0 ? 'align-right' : 'align-left';
+                return (
+                  <div key={index} className={`double-slot ${containerAlign}`}>
+                    <div className="gallery-image-item">
+                      <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
+                        <img
+                          src={img.url}
+                          alt={img.name}
+                          className="gallery-image"
+                        />
+                      </div>
+                      <div className={`gallery-image-caption ${multiLine ? 'multi-line' : ''}`}>
+                        {img.name}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <div key={index} className="gallery-image-item">
                   <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
@@ -563,6 +610,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
               );
             })}
           </div>
+          
         </div>
       )}
       {(selectedSelectKey === 'select1' || selectedSelectKey === 'select2' ||
@@ -579,6 +627,14 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
             }}
           />
         )}
+      {currentImageParam && currentImageParam.beforeButtonTop && (
+        <img
+          src={beforeNextImg}
+          alt="beforeNext"
+          onClick={handleBeforeNextClick}
+          style={{ position: 'absolute', width: 250, height: 60, right: currentImageParam.beforeButtonRight, top: currentImageParam.beforeButtonTop, cursor: 'pointer', userSelect: 'none' }}
+        />
+      )}
       <div className="back-btn2" onClick={handleBackClick}></div>
       {selectList.map((ele, i) => {
         return <div key={i} className={`selectButton${i + 1}`} onClick={() => handleSelectClick(ele.selectKey)}></div>

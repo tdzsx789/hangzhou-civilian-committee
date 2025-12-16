@@ -19,15 +19,18 @@
   left: 108px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+
   user-select: none;
   -webkit-user-select: none;
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .card-item {
@@ -183,17 +186,20 @@
 .docx-scroll-container {
   position: absolute;
   width: 820px;
-  height: 1111px;
+  height: 1088px;
   left: 130px;
-  top: 575px;
+  top: 560px;
   overflow-y: auto;
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .docx-scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .docx-content {
@@ -207,7 +213,8 @@
 
 .docx-content p {
   margin: 8px 0;
-  text-indent: 2em; /* 首行缩进2个汉字 */
+  text-indent: 2em;
+  /* 首行缩进2个汉字 */
 }
 
 /* 列表项也添加首行缩进 */
@@ -224,7 +231,8 @@
   padding-bottom: 8px;
   border-bottom: 2px solid #333;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h2 {
@@ -235,7 +243,8 @@
   padding-bottom: 6px;
   border-bottom: 1px solid #666;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h3 {
@@ -244,7 +253,8 @@
   color: #333;
   margin: 18px 0 8px 0;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h4,
@@ -255,7 +265,8 @@
   color: #444;
   margin: 16px 0 8px 0;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 /* 表格样式优化 */
@@ -292,11 +303,13 @@
 .docx-content table td {
   background-color: #fff;
   color: #333;
-  text-indent: 2em; /* 表格单元格文字首行缩进2个汉字 */
+  text-indent: 2em;
+  /* 表格单元格文字首行缩进2个汉字 */
 }
 
 .docx-content table td p {
-  text-indent: 0; /* 表格单元格内的段落不重复缩进 */
+  text-indent: 0;
+  /* 表格单元格内的段落不重复缩进 */
   margin: 4px 0;
 }
 
@@ -341,8 +354,8 @@
 }
 
 /* 图片前后间距优化 */
-.docx-content img + p,
-.docx-content p + img {
+.docx-content img+p,
+.docx-content p+img {
   margin-top: 20px;
 }
 
@@ -357,4 +370,24 @@
   padding: 50px;
   color: #333;
   font-size: 18px;
+}
+
+.view-more-button {
+  position: absolute;
+  right: 130px;
+  bottom: 200px;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  /* opacity: 0.8; */
 }

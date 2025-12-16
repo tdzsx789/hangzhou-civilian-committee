@@ -7,16 +7,36 @@ const STAGE = {
   WAITING: 'waiting',
   PREPARE: 'prepare',
   PHOTO: 'photo',
+  GAMING: 'gaming',
+  ELECTION: 'election',
   COMPLETE: 'complete',
 };
+const METHODS = [
+  '背箱法',
+  '豆选法',
+  '喊选法',
+  '举手法',
+  '票选法',
+  '烧洞法',
+  '投纸团法',
+];
 
 const server = new WebSocket.Server({ port: PORT });
 const clients = new Set();
 const readyPlayers = new Set();
 const photoPlayers = new Set();
 const photoDonePlayers = new Set();
+const humanPlayers = new Set();
+const npcPlayers = new Set();
+let startWindowActive = false;
+let startWindowTimer = null;
+let waitingCountdown = 0;
+let waitingInterval = null;
 let photoTimer = null;
 let completeTimer = null;
+let gamingTimer = null;
+let electionTimer = null;
+let championPlayerId = '';
 
 let currentStage = STAGE.WAITING;
 
@@ -29,10 +49,15 @@ server.on('connection', (ws, request) => {
 
   console.log(`[ws] client connected role=${role} id=${playerId || '-'}`);
 
-  ws.on('message', (buffer) => {
-    const message = safeParse(buffer);
-    if (!message) return;
-    handleMessage(client, message);
+  ws.on('message', (data) => {
+    const message = safeParse(data);
+    if (message) {
+      handleMessage(client, message);
+      return;
+    }
+    if (Buffer.isBuffer(data)) {
+      handleBinaryMessage(client, data);
+    }
   });
 
   ws.on('close', () => {
@@ -77,6 +102,12 @@ function handleMessage(client, message) {
     case 'admin:reset':
       resetState();
       break;
+    case 'gaming:show':
+      handleGamingShow(client, message);
+      break;
+    case 'champion:update':
+      handleChampionUpdate(client, message);
+      break;
     default:
       console.warn('[ws] unknown message type', type);
   }
@@ -85,12 +116,46 @@ function handleMessage(client, message) {
 function handleGameStart(client, message) {
   const playerId = getPlayerId(client, message);
   if (!playerId) return;
-  readyPlayers.add(playerId);
-  photoPlayers.delete(playerId);
-  broadcastReadyList();
-
-  if (readyPlayers.size >= GAME_COUNT && currentStage !== STAGE.PREPARE) {
-    updateStage(STAGE.PREPARE);
+  if (currentStage === STAGE.WAITING) {
+    readyPlayers.add(playerId);
+    humanPlayers.add(playerId);
+    npcPlayers.delete(playerId);
+    broadcastReadyList();
+    broadcastRoles();
+    if (!startWindowActive) {
+      startWindowActive = true;
+      waitingCountdown = 10;
+      broadcast({ type: 'waiting:countdown', payload: { seconds: waitingCountdown } });
+      if (waitingInterval) {
+        clearInterval(waitingInterval);
+        waitingInterval = null;
+      }
+      waitingInterval = setInterval(() => {
+        waitingCountdown = Math.max(waitingCountdown - 1, 0);
+        broadcast({ type: 'waiting:countdown', payload: { seconds: waitingCountdown } });
+        if (waitingCountdown <= 0) {
+          clearInterval(waitingInterval);
+          waitingInterval = null;
+        }
+      }, 1000);
+      startWindowTimer = setTimeout(() => {
+        startWindowTimer = null;
+        startWindowActive = false;
+        waitingCountdown = 0;
+        for (let i = 1; i <= GAME_COUNT; i++) {
+          const pid = String(i);
+          if (!humanPlayers.has(pid)) {
+            npcPlayers.add(pid);
+          }
+        }
+        broadcastRoles();
+        updateStage(STAGE.PREPARE);
+      }, 10000);
+    }
+  } else {
+    readyPlayers.add(playerId);
+    photoPlayers.delete(playerId);
+    broadcastReadyList();
   }
 }
 
@@ -112,7 +177,7 @@ function handleGamePhotoDone(client, message) {
   photoDonePlayers.add(playerId);
 
   if (photoDonePlayers.size >= GAME_COUNT) {
-    updateStage(STAGE.COMPLETE);
+    updateStage(STAGE.GAMING);
   }
 }
 
@@ -120,6 +185,12 @@ function handleGameReset(client, message) {
   const playerId = getPlayerId(client, message);
   if (!playerId) return;
   resetState();
+}
+
+function handleGamingShow(client, message) {
+  const playerId = getPlayerId(client, message);
+  if (!playerId) return;
+  broadcast({ type: 'gaming:show', payload: { playerId } });
 }
 
 function handleClientReload() {
@@ -143,6 +214,14 @@ function updateStage(nextStage) {
     clearTimeout(completeTimer);
     completeTimer = null;
   }
+  if (gamingTimer) {
+    clearTimeout(gamingTimer);
+    gamingTimer = null;
+  }
+  if (electionTimer) {
+    clearTimeout(electionTimer);
+    electionTimer = null;
+  }
 
   currentStage = nextStage;
 
@@ -150,13 +229,46 @@ function updateStage(nextStage) {
     readyPlayers.clear();
     photoPlayers.clear();
     photoDonePlayers.clear();
+    humanPlayers.clear();
+    npcPlayers.clear();
+    championPlayerId = '';
+    if (startWindowTimer) {
+      clearTimeout(startWindowTimer);
+      startWindowTimer = null;
+    }
+    startWindowActive = false;
+    waitingCountdown = 0;
+    if (waitingInterval) {
+      clearInterval(waitingInterval);
+      waitingInterval = null;
+    }
+    broadcastRoles();
+    broadcast({ type: 'champion:update', payload: { playerId: championPlayerId } });
+  }
+
+  if (nextStage === STAGE.PREPARE) {
+    const order = generatePlaylist();
+    broadcast({ type: 'playlist:update', payload: { methods: order } });
+    broadcastRoles();
   }
 
   if (nextStage === STAGE.PHOTO) {
     photoDonePlayers.clear();
     photoTimer = setTimeout(() => {
+      updateStage(STAGE.GAMING);
+    }, 15000);
+  }
+
+  if (nextStage === STAGE.GAMING) {
+    gamingTimer = setTimeout(() => {
+      updateStage(STAGE.ELECTION);
+    }, 6000);
+  }
+
+  if (nextStage === STAGE.ELECTION) {
+    electionTimer = setTimeout(() => {
       updateStage(STAGE.COMPLETE);
-    }, 20000); // 20秒 = 20000毫秒
+    }, 10000);
   }
 
   if (nextStage === STAGE.COMPLETE) {
@@ -169,12 +281,17 @@ function updateStage(nextStage) {
       readyPlayers.clear();
       photoPlayers.clear();
       photoDonePlayers.clear();
+      humanPlayers.clear();
+      npcPlayers.clear();
+      championPlayerId = '';
       // 广播状态更新
       broadcastStage();
       broadcastReadyList();
+      broadcastRoles();
+      broadcast({ type: 'champion:update', payload: { playerId: championPlayerId } });
       console.log('[ws] auto reset completed, stage is now:', currentStage);
-    }, 20000);
-    console.log('[ws] complete timer started, will reset in 20s');
+    }, 15000);
+    console.log('[ws] complete timer started, will reset in 15s');
   }
 
   if (nextStage !== STAGE.PHOTO) {
@@ -192,6 +309,21 @@ function broadcastStage() {
   };
   broadcast(message);
   console.log('[ws] stage ->', currentStage, 'broadcasted to', clients.size, 'clients');
+}
+
+function generatePlaylist() {
+  const arr = METHODS.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  const must = '豆选法';
+  const idx = arr.indexOf(must);
+  if (idx !== -1 && idx >= GAME_COUNT) {
+    const target = 0;
+    [arr[target], arr[idx]] = [arr[idx], arr[target]];
+  }
+  return arr;
 }
 
 function broadcastReadyList() {
@@ -214,6 +346,35 @@ function sendStateSnapshot(ws) {
       payload: { playerIds: Array.from(readyPlayers) },
     }),
   );
+  ws.send(
+    JSON.stringify({
+      type: 'players:roles',
+      payload: {
+        humans: Array.from(humanPlayers),
+        npcs: Array.from(npcPlayers),
+      },
+    }),
+  );
+  ws.send(
+    JSON.stringify({
+      type: 'champion:update',
+      payload: { playerId: championPlayerId },
+    }),
+  );
+  if (startWindowActive) {
+    ws.send(
+      JSON.stringify({
+        type: 'waiting:countdown',
+        payload: { seconds: waitingCountdown },
+      }),
+    );
+  }
+}
+
+function handleChampionUpdate(client, message) {
+  const pid = getPlayerId(client, message);
+  championPlayerId = String(pid || '');
+  broadcast({ type: 'champion:update', payload: { playerId: championPlayerId } });
 }
 
 function resetState() {
@@ -226,6 +387,7 @@ function resetState() {
   // 直接调用 updateStage，它会处理定时器清除、状态更新和广播
   updateStage(STAGE.WAITING);
   broadcastReadyList();
+  broadcastRoles();
   console.log('[ws] reset state completed, stage should be waiting');
 }
 
@@ -258,6 +420,36 @@ function broadcast(data) {
     }
   }
 }
+
+function broadcastRoles() {
+  broadcast({
+    type: 'players:roles',
+    payload: {
+      humans: Array.from(humanPlayers),
+      npcs: Array.from(npcPlayers),
+    },
+  });
+}
+
+function handleBinaryMessage(client, data) {
+  try {
+    if (!Buffer.isBuffer(data) || data.length < 4) return;
+    const headerLen = data.readUInt32BE(0);
+    const start = 4;
+    const end = start + headerLen;
+    if (end > data.length) return;
+    const headerBuf = data.slice(start, end);
+    const headerStr = headerBuf.toString();
+    const header = JSON.parse(headerStr);
+    if (!header || header.type !== 'photo:bin') return;
+    for (const c of clients) {
+      if (c.role === 'screen' && c.ws.readyState === WebSocket.OPEN) {
+        c.ws.send(data);
+      }
+    }
+  } catch (_) {}
+}
+
 
 function safeParse(buffer) {
   try {

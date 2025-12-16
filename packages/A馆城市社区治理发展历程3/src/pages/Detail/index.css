@@ -63,7 +63,7 @@
 
 .slide-button {
   position: absolute;
-  left: 50%;
+  left: 1090px;
   top: 970px;
   transform: translateX(-50%);
   width: 300px;

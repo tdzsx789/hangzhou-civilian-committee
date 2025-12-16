@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 import bg1 from '../../assets/bg1.jpg';
-import button1 from '../../assets/button1.png';
+import beforeNext from '../../assets/beforeNext.png';
 import backImg from '../../assets/back.png';
 import Modal from '../Modal';
 import image001 from '../../assets/images/image001.jpg';
@@ -21,6 +21,7 @@ import image014 from '../../assets/images/image014.jpg';
 import image015 from '../../assets/images/image015.jpg';
 import image016 from '../../assets/images/image016.jpg';
 import image017 from '../../assets/images/image017.jpg';
+import image018 from '../../assets/images/image018.jpg';
 
 export const imageList = [
   {
@@ -40,8 +41,8 @@ export const imageList = [
     url: image013
   },
   {
-    name: '2009年12月21日，中国社区建设展示中心落成典礼',
-    url: image016
+    name: '2009年12月21日，时任杭州市市长蔡奇同志主持中国社区建设展示中心落成典礼',
+    url: image018
   },
   {
     name: '2009年7月，杭州市城乡和谐社区建设结对签约仪式',
@@ -99,6 +100,18 @@ function Detail({ name, gallery, onBack, isVisible }) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const handleBeforeNextClick = (e) => {
+    if (!scrollContainerRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = rect.width / 2;
+    const step = scrollContainerRef.current.clientWidth;
+    if (x < half) {
+      scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
+    } else {
+      scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  };
 
   // 进入页面时重置滚动位置
   useEffect(() => {
@@ -168,7 +181,11 @@ function Detail({ name, gallery, onBack, isVisible }) {
           ))}
         </div>
       </div>
-      <button className="slide-button" style={{ backgroundImage: `url(${button1})` }}></button>
+      <button
+        className="slide-button"
+        style={{ backgroundImage: `url(${beforeNext})`, width: 329, height: 79 }}
+        onClick={handleBeforeNextClick}
+      ></button>
       <div
         className="back-to-home-btn"
         onClick={onBack}

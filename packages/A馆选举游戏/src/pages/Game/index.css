@@ -25,35 +25,6 @@
   justify-content: center;
 }
 
-.game-page header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-.game-page header .sub-title {
-  color: #637099;
-  margin-bottom: 8px;
-  font-size: 18px;
-}
-
-.card {
-  padding: 32px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 32px rgba(30, 41, 59, 0.15);
-  max-width: 560px;
-}
-
-.card h2 {
-  margin-top: 0;
-  font-size: 28px;
-}
-
-.stage-description {
-  margin-bottom: 0;
-  font-size: 18px;
-  color: #4b5563;
-}
 
 .primary-btn {
   width: 898px;
@@ -83,9 +54,6 @@
   color: #334155;
 }
 
-.game-page footer {
-  color: #475569;
-}
 
 .game-demo-video {
   position: absolute;
@@ -149,6 +117,65 @@
   top: 280px;
   object-fit: cover;
   border-radius: 8px;
+  transition: border-radius 1s ease-in-out;
+  border: 6px solid #000;
+}
+
+.captured-photo-circle {
+  border-radius: 50%;
+}
+
+.gaming-photo-anim {
+  animation: roundThenFly 1s ease-in-out forwards;
+  will-change: transform, border-radius;
+}
+
+@keyframes roundThenFly {
+  0% {
+    border-radius: 8px;
+    transform: translate(-50%, 0);
+  }
+
+  33.333% {
+    border-radius: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    border-radius: 50%;
+    transform: translate(-50%, -120vh);
+  }
+}
+
+.gaming-center-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1600px;
+  text-align: center;
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 120px;
+  line-height: 146px;
+  color: #3C0505;
+  white-space: pre-line;
+  opacity: 0;
+}
+
+.gaming-center-text-show {
+  animation: gamingCenterFadeIn 2s ease-in forwards;
+}
+
+@keyframes gamingCenterFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .photo-controls {
@@ -183,19 +210,13 @@
   justify-content: center;
 }
 
-.photo-btn:hover {
-  opacity: 0.9;
-}
-
-.complete-photo {
+.complete-bg {
   position: absolute;
-  width: 168px;
-  height: 168px;
-  left: 612px;
-  top: 478px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
   object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .countdown-display {
@@ -207,6 +228,27 @@
   font-weight: 400;
   font-size: 40px;
   line-height: 49px;
+  color: #000000;
+}
+
+.connecting-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  font-size: 14px;
+  color: #475569;
+  opacity: 0.8;
+}
+
+.complete-date {
+  position: absolute;
+  left: 1141px;
+  top: 694px;
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
   color: #000000;
 }
 

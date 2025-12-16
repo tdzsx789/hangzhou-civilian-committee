@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 import bg1 from '../../assets/bg1.jpg';
-import button1 from '../../assets/button1.png';
+import beforeNext from '../../assets/beforeNext.png';
 import slides1 from '../../assets/slides1.png';
 import cpc14thCongress from '../../assets/images/cpc-14th-congress.jpg';
 import urbanPopulationChart from '../../assets/images/urban-population-chart.jpg';
@@ -32,6 +32,18 @@ function Detail({ name, gallery, onBack, isVisible }) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const handleBeforeNextClick = (e) => {
+    if (!scrollContainerRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = rect.width / 2;
+    const step = scrollContainerRef.current.clientWidth;
+    if (x < half) {
+      scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
+    } else {
+      scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  };
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -96,7 +108,11 @@ function Detail({ name, gallery, onBack, isVisible }) {
         })}
         <img src={slides1} alt="历史图片" className="slides-image" />
       </div>
-      <button className="slide-button" style={{ backgroundImage: `url(${button1})` }}></button>
+      <button
+        className="slide-button"
+        style={{ backgroundImage: `url(${beforeNext})`, width: 329, height: 79 }}
+        onClick={handleBeforeNextClick}
+      ></button>
       <Modal image={selectedImage} onClose={handleCloseModal} />
     </div>
   );

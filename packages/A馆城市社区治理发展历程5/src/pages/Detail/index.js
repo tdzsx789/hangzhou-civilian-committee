@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 import bg1 from '../../assets/bg1.jpg';
-import button1 from '../../assets/button1.png';
+import beforeNext from '../../assets/beforeNext.png';
 import backImg from '../../assets/back.png';
 import Modal from '../Modal';
 import image1 from '../../assets/images/image1.jpg';
@@ -59,6 +59,18 @@ function Detail({ name, gallery, onBack, isVisible }) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const handleBeforeNextClick = (e) => {
+    if (!scrollContainerRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = rect.width / 2;
+    const step = scrollContainerRef.current.clientWidth;
+    if (x < half) {
+      scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
+    } else {
+      scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
+    }
+  };
 
   // 进入页面时重置滚动位置
   useEffect(() => {
@@ -128,7 +140,11 @@ function Detail({ name, gallery, onBack, isVisible }) {
           ))}
         </div>
       </div>
-      <button className="slide-button" style={{ backgroundImage: `url(${button1})` }}></button>
+      <button
+        className="slide-button"
+        style={{ backgroundImage: `url(${beforeNext})`, width: 329, height: 79 }}
+        onClick={handleBeforeNextClick}
+      ></button>
       <div
         className="back-to-home-btn"
         onClick={onBack}

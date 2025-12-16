@@ -5,15 +5,18 @@ import backButton from '../../assets/backButton.png';
 import * as mammoth from 'mammoth';
 import result1Docx from '../../assets/result1.docx';
 import result2Docx from '../../assets/result2.docx';
+import result3Docx from '../../assets/result3.docx';
 
 const list = [
   { name: '一、优秀社区工作法100例', file: 'result1.docx' },
   { name: '二、多方参与基层治理、“三治融合”、基层赋能减负、“五社联动”、社会组织相关图表', file: 'result2.docx' },
+  { name: '三、第四批全国社区治理和服务创新实验区（31个）', file: 'result3.docx' },
 ]
 
 const docxFiles = {
   'result1.docx': result1Docx,
-  'result2.docx': result2Docx
+  'result2.docx': result2Docx,
+  'result3.docx': result3Docx
 };
 
 function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
@@ -23,7 +26,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
 
-  // 当页面激活时重置滚动位置和选中状态
+  // 当页面激活时，默认展示第3项内容（list[2]）；若不存在则展示最后一项
   useEffect(() => {
     if (isActive) {
       if (listScrollContainerRef.current) {
@@ -32,8 +35,9 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
       }
-      setSelectedItem(null);
-      setDocxContent('');
+      const defaultItem = list[1];
+      setSelectedItem(defaultItem);
+      loadDocx(defaultItem.file);
     }
   }, [isActive]);
 
@@ -80,6 +84,13 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
     setDocxContent('');
   };
 
+  const handleViewMore = () => {
+    setSelectedItem(null);
+    if (listScrollContainerRef.current) {
+      listScrollContainerRef.current.scrollTop = 0;
+    }
+  };
+
   const handleKeyDown = (callback) => (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -109,6 +120,17 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
         </div>
       ) : (
         <>
+          {selectedItem && selectedItem === list[1] && (
+            <div
+              className="view-more-button"
+              role="button"
+              tabIndex={0}
+              onClick={handleViewMore}
+              onKeyDown={handleKeyDown(handleViewMore)}
+            >
+              查看更多
+            </div>
+          )}
           <div ref={scrollContainerRef} className="docx-scroll-container">
             {loading ? (
               <div className="loading-text">加载中...</div>
@@ -119,15 +141,17 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               />
             )}
           </div>
-          <div
-            className="back-button-doc"
-            role="button"
-            tabIndex={0}
-            onClick={handleBackButton}
-            onKeyDown={handleKeyDown(handleBackButton)}
-          >
-            <img src={backButton} alt="返回" />
-          </div>
+          {selectedItem && selectedItem !== list[1] && (
+            <div
+              className="back-button"
+              role="button"
+              tabIndex={0}
+              onClick={handleBackButton}
+              onKeyDown={handleKeyDown(handleBackButton)}
+            >
+              <img src={backButton} alt="返回" />
+            </div>
+          )}
         </>
       )}
       <div

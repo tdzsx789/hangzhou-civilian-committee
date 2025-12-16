@@ -12,6 +12,11 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
   const childrenScrollRef = useRef(null);
   const orgChildrenScrollRef = useRef(null);
 
+  const stripCnIndexPrefix = (s) => {
+    const t = String(s || '');
+    return t.replace(/^\s*(?:[一二三四五六七八九十零〇百千]+)[、\.．。]\s*/, '');
+  };
+
   // 根据当前显示的是省市列表还是children列表来决定使用哪个容器
   useEffect(() => {
     const container = childrenScrollRef.current;
@@ -140,9 +145,10 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
             const display = partsFull.length > 1
               ? partsFull.slice(0, -1).join('－')
               : (() => {
-                  const parts = src.split('-');
-                  return parts.length > 1 ? parts.slice(0, -1).join('-') : src;
+                  const parts = src.split(/\s*-\s*/);
+                  return parts.length > 1 ? parts.slice(0, -1).join(' - ') : src;
                 })();
+            const displayClean = stripCnIndexPrefix(display);
             return (
               <button
                 type="button"
@@ -151,7 +157,7 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
                 style={{ backgroundImage: `url(${listBg})` }}
                 onClick={() => handleChildClick(index)}
               >
-                {display}
+                {displayClean}
               </button>
             );
           })}
@@ -185,7 +191,7 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
               style={{ backgroundImage: `url(${listBg})` }}
               onClick={() => onSelectOrgDetail && onSelectOrgDetail(child)}
             >
-              {child.name}
+              {stripCnIndexPrefix(child.name)}
             </button>
           ))}
         </div>

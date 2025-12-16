@@ -8,15 +8,26 @@ import gameCompleteImg from '../../assets/game_complete.jpg';
 import photoBgImg from '../../assets/photo_bg.jpg';
 import takePhotoImg from '../../assets/takephoto.png';
 import waitForPhotoImg from '../../assets/wait_for_photo.jpg';
+import gameGamingBgImg from '../../assets/game_gaming_bg.jpg';
 import './index.css';
+import comeTakePhotoMp3 from '../../assets/audios/come_take_photo.MP3';
+import startGameMp3 from '../../assets/audios/start_game.MP3';
+import clickAudioMp3 from '../../assets/audios/click.MP3';
+import finishAudioMp3 from '../../assets/audios/finish.MP3';
+import otherCompleteImg from '../../assets/other_complete.jpg';
 
-import video1 from '../../assets/videos/背箱法.mp4';
-import video2 from '../../assets/videos/豆选法.mp4';
-import video3 from '../../assets/videos/喊选法.mp4';
-import video4 from '../../assets/videos/举手法.mp4';
-import video5 from '../../assets/videos/票选法.mp4';
-import video6 from '../../assets/videos/烧洞法.mp4';
-import video7 from '../../assets/videos/投纸团法.mp4';
+import video1 from '../../assets/shortVideos/背箱法.mp4';
+import video2 from '../../assets/shortVideos/豆选法.mp4';
+import video3 from '../../assets/shortVideos/喊选法.mp4';
+import video4 from '../../assets/shortVideos/举手法.mp4';
+import video5 from '../../assets/shortVideos/票选法.mp4';
+import video6 from '../../assets/shortVideos/烧洞法.mp4';
+import video7 from '../../assets/shortVideos/投纸团法.mp4';
+import avatar1 from '../../assets/头像1.jpg';
+import avatar2 from '../../assets/头像2.jpg';
+import avatar3 from '../../assets/头像3.jpg';
+import avatar4 from '../../assets/头像4.jpg';
+import avatar5 from '../../assets/头像5.jpg';
 
 const videoList = [
   { name: '背箱法', url: video1 },
@@ -64,10 +75,15 @@ const ELECTION_METHODS = [
 ];
 
 function GamePage() {
-  const { gameId = '1' } = useParams();
+  const params = useParams();
+  const hash = typeof window !== 'undefined' ? window.location.hash || '' : '';
+  const search = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams('');
+  const hashMatch = hash.match(/\/game\/(\d+)/);
+  const gameId = (params?.gameId || search.get('game') || search.get('playerId') || (hashMatch ? hashMatch[1] : ''));
   const [countdown, setCountdown] = useState(15);
-  const [photoCountdown, setPhotoCountdown] = useState(20);
-  const [completeCountdown, setCompleteCountdown] = useState(20);
+  const [photoCountdown, setPhotoCountdown] = useState(15);
+  const [completeCountdown, setCompleteCountdown] = useState(15);
+  const [gamingCountdown, setGamingCountdown] = useState(1500);
   const [hasAnnouncedPhoto, setHasAnnouncedPhoto] = useState(false);
   const [photoCompleteSent, setPhotoCompleteSent] = useState(false);
   const [resetRequested, setResetRequested] = useState(false);
@@ -77,8 +93,20 @@ function GamePage() {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [isPhotoCaptured, setIsPhotoCaptured] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [gamingPhotoAnimated, setGamingPhotoAnimated] = useState(false);
+  const [showGamingText, setShowGamingText] = useState(false);
+  const [needsUserAction, setNeedsUserAction] = useState(false);
   const videoRef = useRef(null);
   const cameraVideoRef = useRef(null);
+  const preCaptureTimerRef = useRef(null);
+  const photoAudioRef = useRef(null);
+  const photoAudioPlayedRef = useRef(false);
+  const startGameAudioRef = useRef(null);
+  const startGameAudioPlayedRef = useRef(false);
+  const clickAudioRef = useRef(null);
+  const clickAudioPlayedRef = useRef(false);
+  const finishAudioRef = useRef(null);
+  const finishAudioPlayedRef = useRef(false);
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const lastTouchTimeRef = useRef(0);
@@ -86,13 +114,23 @@ function GamePage() {
   const {
     stage,
     send,
-    meta: { connectionState },
-  } = useElectionChannel({ role: 'game', playerId: gameId });
+    meta: { connectionState, retryCount },
+    playlist,
+    sendPhotoBinary,
+    roles,
+    waitingCountdown,
+    champion,
+  } = useElectionChannel({ role: 'game', playerId: /^([1-5])$/.test(String(gameId || '')) ? gameId : '' });
 
   const isWaiting = stage === STAGE.WAITING;
   const isPrepare = stage === STAGE.PREPARE;
   const isPhoto = stage === STAGE.PHOTO;
+  const isGaming = stage === STAGE.GAMING;
+  const isElection = stage === STAGE.ELECTION;
   const isComplete = stage === STAGE.COMPLETE;
+  const isHuman = Array.isArray(roles?.humans) && roles.humans.includes(gameId);
+  const isNpc = Array.isArray(roles?.npcs) && roles.npcs.includes(gameId);
+  const isChampion = String(champion) === String(gameId);
 
   const buttonCopy = useMemo(() => {
     if (connectionState !== 'connected' && connectionState !== 'idle') {
@@ -123,6 +161,18 @@ function GamePage() {
   ]);
 
   useEffect(() => {
+    if (!photoAudioRef.current) {
+      photoAudioRef.current = new Audio(comeTakePhotoMp3);
+    }
+    if (!startGameAudioRef.current) {
+      startGameAudioRef.current = new Audio(startGameMp3);
+    }
+    if (!clickAudioRef.current) {
+      clickAudioRef.current = new Audio(clickAudioMp3);
+    }
+    if (!finishAudioRef.current) {
+      finishAudioRef.current = new Audio(finishAudioMp3);
+    }
     const buttonElement = redButtonRef.current;
     if (!buttonElement) return;
     const handleRedButtonTouch = (e) => {
@@ -185,76 +235,119 @@ function GamePage() {
 
   const handleStart = useCallback(() => {
     if (!isWaiting) return;
+    if (!/^([1-5])$/.test(String(gameId || ''))) return;
     setHasClickedStart(true);
     send('game:start', { playerId: gameId });
   }, [gameId, isWaiting, send]);
 
-  // 在进入 PREPARE 阶段时，为每个终端分配一个不重复的方法
   useEffect(() => {
-    if (isPrepare && !electionMethod) {
-      const playerIndex = parseInt(gameId, 10) - 1;
-      if (playerIndex >= 0 && playerIndex < 5) {
-        // 使用一个基于当前分钟和阶段的确定性种子来打乱方法列表
-        // 这样所有终端在同一个时间段内会得到相同的打乱顺序
-        const seed = Math.floor(Date.now() / (1000 * 60)); // 每分钟变化一次
-        const methodsToUse = ELECTION_METHODS.slice(0, 7);
-
-        // 创建一个确定性但看起来随机的打乱顺序（改进的 Fisher-Yates 洗牌）
-        const shuffledMethods = [...methodsToUse];
-        for (let i = shuffledMethods.length - 1; i > 0; i--) {
-          // 使用种子生成一个伪随机索引
-          const pseudoRandom = ((seed * 7919 + i * 9973) % 2147483647) % (i + 1);
-          [shuffledMethods[i], shuffledMethods[pseudoRandom]] = [
-            shuffledMethods[pseudoRandom],
-            shuffledMethods[i],
-          ];
-        }
-
-        // 每个终端根据 playerIndex 选择对应的方法（取前5个，确保不重复）
-        setElectionMethod(shuffledMethods[playerIndex]);
-      }
+    if (isPrepare && selectedVideo) {
+      setElectionMethod(selectedVideo.name);
     } else if (!isPrepare) {
       setElectionMethod('');
     }
-  }, [isPrepare, gameId, electionMethod]);
+  }, [isPrepare, selectedVideo]);
 
   useEffect(() => {
     if (isPrepare && !selectedVideo) {
+      if (!/^([1-5])$/.test(String(gameId || ''))) return;
       const playerIndex = parseInt(gameId, 10) - 1;
       if (playerIndex >= 0 && playerIndex < 5) {
-        const seed = Math.floor(Date.now() / (1000 * 60));
-        const shuffled = [...videoList];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const pseudoRandom = ((seed * 7919 + i * 9973) % 2147483647) % (i + 1);
-          [shuffled[i], shuffled[pseudoRandom]] = [shuffled[pseudoRandom], shuffled[i]];
+        const methodName = Array.isArray(playlist) && playlist.length >= 5
+          ? playlist[playerIndex]
+          : null;
+        if (methodName) {
+          const chosen = videoList.find(v => v.name === methodName) || null;
+          setSelectedVideo(chosen);
+          setElectionMethod(chosen ? chosen.name : '');
+        } else {
+          const shuffled = [...videoList];
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          }
+          const mustIndex = shuffled.findIndex(v => v.name === '豆选法');
+          if (mustIndex !== -1 && mustIndex >= 5) {
+            const targetIndex = 0;
+            [shuffled[targetIndex], shuffled[mustIndex]] = [shuffled[mustIndex], shuffled[targetIndex]];
+          }
+          const chosen = shuffled[playerIndex];
+          setSelectedVideo(chosen);
+          setElectionMethod(chosen ? chosen.name : '');
         }
-        setSelectedVideo(shuffled[playerIndex]);
       }
     } else if (!isPrepare) {
       setSelectedVideo(null);
     }
-  }, [isPrepare, gameId, selectedVideo]);
+  }, [isPrepare, gameId, selectedVideo, playlist]);
 
   useEffect(() => {
     if (!isPrepare) {
       setHasAnnouncedPhoto(false);
       setHasClickedStart(false);
-      // 离开 PREPARE 阶段时暂停视频
+      setNeedsUserAction(false);
       if (videoRef.current) {
         videoRef.current.pause();
-        videoRef.current.currentTime = 0; // 重置视频到开始位置
+        videoRef.current.currentTime = 0;
       }
       return undefined;
     }
 
-    // 进入 PREPARE 阶段时播放视频
     if (videoRef.current && !hasAnnouncedPhoto) {
-      videoRef.current.currentTime = 0; // 确保从开始播放
-      videoRef.current.play().catch((err) => {
-        console.warn('Video autoplay failed:', err);
-      });
+      const el = videoRef.current;
+      const run = async () => {
+        try {
+          el.muted = false;
+          el.volume = 1;
+          el.currentTime = 0;
+          await el.play();
+          setNeedsUserAction(false);
+        } catch (_) {
+          try {
+            el.muted = true;
+            el.currentTime = 0;
+            await el.play();
+          } catch (_) {}
+          setNeedsUserAction(true);
+        }
+      };
+      run();
     }
   }, [isPrepare, selectedVideo, hasAnnouncedPhoto]);
+
+  useEffect(() => {
+    if (isGaming) {
+      setGamingPhotoAnimated(true);
+      const t = setTimeout(() => {
+        setShowGamingText(true);
+        send('gaming:show', { playerId: gameId });
+        if (isHuman && !startGameAudioPlayedRef.current && startGameAudioRef.current) {
+          startGameAudioRef.current.currentTime = 0;
+          startGameAudioRef.current.play().catch(() => {});
+          startGameAudioPlayedRef.current = true;
+        }
+      }, 1000);
+      return () => clearTimeout(t);
+    } else {
+      setGamingPhotoAnimated(false);
+      if (!isElection) setShowGamingText(false);
+      startGameAudioPlayedRef.current = false;
+    }
+  }, [isGaming, isElection, isHuman]);
+
+  useEffect(() => {
+    if (isElection && isHuman && !clickAudioPlayedRef.current) {
+      const el = clickAudioRef.current;
+      if (el) {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+        clickAudioPlayedRef.current = true;
+      }
+    }
+    if (!isElection) {
+      clickAudioPlayedRef.current = false;
+    }
+  }, [isElection, isHuman]);
 
   // 启动摄像头
   useEffect(() => {
@@ -263,6 +356,9 @@ function GamePage() {
     if (!isPhoto) {
       // 离开 photo 阶段时停止摄像头
       setIsPhotoCaptured(false);
+      return undefined;
+    }
+    if (isNpc) {
       return undefined;
     }
 
@@ -289,16 +385,126 @@ function GamePage() {
         currentStream.getTracks().forEach(track => track.stop());
       }
     };
-  }, [isPhoto]);
+  }, [isPhoto, isNpc]);
+
+  const capturePhoto = useCallback(() => {
+    if (!cameraVideoRef.current) return false;
+
+    const video = cameraVideoRef.current;
+    if (!video.videoWidth || !video.videoHeight) {
+      return false;
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 685;
+    canvas.height = 685;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const photoDataUrl = canvas.toDataURL('image/png');
+    setCapturedPhoto(photoDataUrl);
+    setIsPhotoCaptured(true);
+
+    return true;
+  }, [gameId]);
 
   useEffect(() => {
     if (!isPhoto) {
-      setPhotoCountdown(20);
+      if (preCaptureTimerRef.current) {
+        clearTimeout(preCaptureTimerRef.current);
+        preCaptureTimerRef.current = null;
+      }
+      return undefined;
+    }
+    if (!isPhotoCaptured && !isNpc) {
+      preCaptureTimerRef.current = setTimeout(() => {
+        capturePhoto();
+      }, 14500);
+    }
+    return () => {
+      if (preCaptureTimerRef.current) {
+        clearTimeout(preCaptureTimerRef.current);
+        preCaptureTimerRef.current = null;
+      }
+    };
+  }, [isPhoto, isPhotoCaptured, capturePhoto, isNpc]);
+
+  useEffect(() => {
+    if (!isPhoto || !isNpc) return;
+    const avatarMap = {
+      '1': avatar1,
+      '2': avatar2,
+      '3': avatar3,
+      '4': avatar4,
+      '5': avatar5,
+    };
+    const src = avatarMap[gameId] || avatar1;
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 685;
+      canvas.height = 685;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/png');
+      setCapturedPhoto(dataUrl);
+      setIsPhotoCaptured(true);
+    };
+    img.src = src;
+  }, [isPhoto, isNpc, gameId]);
+
+  const gamingPhotoSentRef = useRef(false);
+  const dataUrlToArrayBuffer = useCallback(async (src) => {
+    if (!src) return null;
+    if (src.startsWith('data:')) {
+      const parts = src.split(',');
+      if (parts.length < 2) return null;
+      const b64 = parts[1];
+      const raw = atob(b64);
+      const arr = new Uint8Array(raw.length);
+      for (let i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+      return arr.buffer;
+    }
+    try {
+      const res = await fetch(src);
+      const buf = await res.arrayBuffer();
+      return buf;
+    } catch (_) {
+      return null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isGaming) {
+      setGamingCountdown(1500);
+      gamingPhotoSentRef.current = false;
+      return undefined;
+    }
+    setGamingCountdown(1500);
+    const interval = setInterval(() => {
+      setGamingCountdown((prev) => Math.max(prev - 1, 0));
+    }, 1000);
+    if (!gamingPhotoSentRef.current && isHuman) {
+      const src = capturedPhoto || '';
+      Promise.resolve(dataUrlToArrayBuffer(src)).then((buf) => {
+        if (buf) {
+          sendPhotoBinary(buf, 'image/png');
+          gamingPhotoSentRef.current = true;
+        }
+      });
+    }
+    return () => clearInterval(interval);
+  }, [isGaming, capturedPhoto, gameId, sendPhotoBinary, dataUrlToArrayBuffer, isHuman]);
+
+  useEffect(() => {
+    if (!isPhoto) {
+      setPhotoCountdown(15);
       setPhotoCompleteSent(false);
       return undefined;
     }
 
-    setPhotoCountdown(20);
+    setPhotoCountdown(15);
     const interval = setInterval(() => {
       setPhotoCountdown((prev) => Math.max(prev - 1, 0));
     }, 1000);
@@ -319,37 +525,24 @@ function GamePage() {
     return false;
   }, []);
 
-  // 拍照功能（通用函数，可用于手动和自动拍照）
-  const capturePhoto = useCallback(() => {
-    if (!cameraVideoRef.current) return false;
-
-    const video = cameraVideoRef.current;
-    // 如果视频还没有加载或没有流，尝试使用当前的 stream
-    if (!video.videoWidth || !video.videoHeight) {
-      return false;
+  useEffect(() => {
+    if (isPhoto && isHuman && !photoAudioPlayedRef.current) {
+      const el = photoAudioRef.current;
+      if (el) {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+        photoAudioPlayedRef.current = true;
+      }
     }
+    if (!isPhoto) {
+      photoAudioPlayedRef.current = false;
+    }
+  }, [isPhoto, isHuman]);
 
-    const canvas = document.createElement('canvas');
-    canvas.width = 685;
-    canvas.height = 685;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    const photoDataUrl = canvas.toDataURL('image/png');
-    setCapturedPhoto(photoDataUrl);
-    setIsPhotoCaptured(true);
-
-    // 保存到 localStorage
-    const storageKey = `photo_${gameId}`;
-    localStorage.setItem(storageKey, photoDataUrl);
-
-    return true;
-  }, [gameId]);
 
   useEffect(() => {
     if (!isPhoto || photoCompleteSent) return;
     if (photoCountdown === 0) {
-      // 如果还没有拍照，自动拍摄最后一帧
       if (!isPhotoCaptured && cameraVideoRef.current) {
         capturePhoto();
       }
@@ -360,11 +553,11 @@ function GamePage() {
 
   useEffect(() => {
     if (!isComplete) {
-      setCompleteCountdown(20);
+      setCompleteCountdown(15);
       return undefined;
     }
 
-    setCompleteCountdown(20);
+    setCompleteCountdown(15);
     const interval = setInterval(() => {
       setCompleteCountdown((prev) => {
         const next = Math.max(prev - 1, 0);
@@ -377,6 +570,20 @@ function GamePage() {
     }, 1000);
     return () => clearInterval(interval);
   }, [isComplete]);
+
+  useEffect(() => {
+    if (isComplete && isChampion && !finishAudioPlayedRef.current) {
+      const el = finishAudioRef.current;
+      if (el) {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+        finishAudioPlayedRef.current = true;
+      }
+    }
+    if (!isComplete) {
+      finishAudioPlayedRef.current = false;
+    }
+  }, [isComplete, isChampion]);
 
   useEffect(() => {
     if (stage === STAGE.WAITING) {
@@ -421,16 +628,7 @@ function GamePage() {
     }
   }, []);
 
-  // 从 localStorage 加载照片（用于 COMPLETE 阶段显示）
-  useEffect(() => {
-    if (isComplete) {
-      const storageKey = `photo_${gameId}`;
-      const savedPhoto = localStorage.getItem(storageKey);
-      if (savedPhoto) {
-        setCapturedPhoto(savedPhoto);
-      }
-    }
-  }, [isComplete, gameId]);
+
 
   return (
     <div
@@ -450,21 +648,28 @@ function GamePage() {
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
             }
-            : isPhoto
+          : isPhoto
+            ? {
+              backgroundImage: `url(${photoBgImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }
+            : (isGaming || isElection)
               ? {
-                backgroundImage: `url(${photoBgImg})`,
+                backgroundImage: `url(${gameGamingBgImg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
               }
-              : isComplete
-                ? {
-                  backgroundImage: `url(${gameCompleteImg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }
-                : {}
+            : isComplete
+              ? {
+                backgroundImage: `url(${gameCompleteImg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }
+              : {}
       }
     >
       <div
@@ -641,29 +846,7 @@ function GamePage() {
           </div>
         </div>
       )}
-      {!isWaiting && !isPrepare && !isPhoto && !isComplete && (
-        <>
-          <header>
-            <p className="sub-title">终端 {gameId}</p>
-            <h1>基层组织选举互动 - 参赛端</h1>
-          </header>
-
-          <section className="card">
-            <h2>{STAGE_LABEL[stage]}</h2>
-            <StageDescription
-              stage={stage}
-              countdown={countdown}
-              photoCountdown={photoCountdown}
-              completeCountdown={completeCountdown}
-            />
-          </section>
-
-          <footer>
-            <p>当前连接状态：{connectionState}</p>
-            <small>所有信息通过 WebSocket 实时同步。</small>
-          </footer>
-        </>
-      )}
+      
 
       {isPrepare && (
         <>
@@ -682,6 +865,35 @@ function GamePage() {
               onContextMenu={handleVideoContextMenu}
             />
           )}
+          {!hasAnnouncedPhoto && needsUserAction && (
+            <button
+              onClick={async () => {
+                const el = videoRef.current;
+                if (!el) return;
+                try {
+                  el.muted = false;
+                  el.volume = 1;
+                  await el.play();
+                  setNeedsUserAction(false);
+                } catch (_) {}
+              }}
+              style={{
+                position: 'absolute',
+                right: '16px',
+                bottom: '16px',
+                padding: '10px 14px',
+                background: 'rgba(0, 0, 0, 0.55)',
+                color: '#fff',
+                border: '1px solid rgba(51, 36, 36, 0.6)',
+                borderRadius: '8px',
+                backdropFilter: 'blur(6px)',
+                zIndex: 2,
+                opacity: 0
+              }}
+            >
+              点击开启声音
+            </button>
+          )}
           {hasAnnouncedPhoto && (
             <img
               src={waitForPhotoImg}
@@ -698,51 +910,91 @@ function GamePage() {
       {isPhoto && (
         <>
           <div className="countdown-display">倒计时：{photoCountdown}秒</div>
-          {!isPhotoCaptured && (
-            <video
-              ref={cameraVideoRef}
-              className="camera-video"
-              autoPlay
-              playsInline
-              muted
-            />
-          )}
-          {isPhotoCaptured && (
+          {isNpc ? (
             <img src={capturedPhoto} alt="已拍摄" className="captured-photo" />
+          ) : (
+            <>
+              {!isPhotoCaptured && (
+                <video
+                  ref={cameraVideoRef}
+                  className="camera-video"
+                  autoPlay
+                  playsInline
+                  muted
+                />
+              )}
+              {isPhotoCaptured && (
+                <img src={capturedPhoto} alt="已拍摄" className="captured-photo" />
+              )}
+              <div
+                className="photo-btn"
+                onClick={isPhotoCaptured ? handleRetakePhoto : handleCapturePhoto}
+                style={{ backgroundImage: `url(${takePhotoImg})` }}
+              >
+                {isPhotoCaptured ? '重拍' : '拍照'}
+              </div>
+            </>
           )}
-          <button
-            className="photo-btn"
-            onClick={isPhotoCaptured ? handleRetakePhoto : handleCapturePhoto}
-            style={{ backgroundImage: `url(${takePhotoImg})` }}
-          >
-            {isPhotoCaptured ? '重拍' : '拍照'}
-          </button>
         </>
       )}
 
+      {isGaming && capturedPhoto && (
+        <img src={capturedPhoto} alt="已拍摄" className={`captured-photo ${gamingPhotoAnimated ? 'gaming-photo-anim' : ''}`} />
+      )}
+
+      {(isGaming || isElection) && showGamingText && (
+        <div className={`gaming-center-text gaming-center-text-show`}>
+          {"请看大屏幕，\n豆选法游戏现在开始"}
+        </div>
+      )}
+
       {isComplete && (
-        <>
-          <div className="countdown-display">
-            倒计时：{completeCountdown}秒
-          </div>
-          {capturedPhoto && (
-            <img
-              src={capturedPhoto}
-              alt="拍摄结果"
-              className="complete-photo"
-            />
-          )}
-        </>
+        isChampion ? (
+          <>
+            <div className="countdown-display">
+              倒计时：{completeCountdown}秒
+            </div>
+            {capturedPhoto && (
+              <img
+                src={capturedPhoto}
+                alt="拍摄结果"
+                className="complete-photo"
+              />
+            )}
+            <div className="complete-date">
+              {(() => {
+                const d = new Date();
+                const y = d.getFullYear();
+                const m = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${y}年${m}月${day}日`;
+              })()}
+            </div>
+          </>
+        ) : (
+          <img
+            src={otherCompleteImg}
+            alt="完成"
+            className="complete-bg"
+          />
+        )
       )}
 
       {isWaiting && (
         <>
+          {typeof waitingCountdown === 'number' && waitingCountdown > 0 && (
+            <div className="countdown-display">倒计时：{waitingCountdown}秒</div>
+          )}
           <div className="primary-btn" onClick={handleStart}>
           </div>
           {hasClickedStart && (
             <div className="waiting-others-btn"></div>
           )}
         </>
+      )}
+
+      {(connectionState === 'connecting' || connectionState === 'error' || connectionState === 'closed') && (
+        <div className="connecting-hint">连接服务端中...（{retryCount}）</div>
       )}
     </div>
   );

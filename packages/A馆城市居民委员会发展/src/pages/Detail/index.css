@@ -17,7 +17,7 @@
 }
 
 .detail-page > * {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .detail-header {
@@ -153,6 +153,7 @@
   /* Firefox */
   -ms-overflow-style: none;
   /* IE and Edge */
+  padding-left: 10px;
 }
 
 .slides-container::-webkit-scrollbar {
@@ -213,7 +214,6 @@
 
 .page-transitioning > * {
   opacity: 0.5;
-  transform: scale(0.98);
 }
 
 /* 图片画廊样式 */
@@ -224,13 +224,18 @@
   align-items: flex-start;
 }
 
+.gallery-images-list.page4 {
+  justify-content: flex-start;
+}
+
 .gellery-scroll-wrap2 {
   position: absolute;
-  left: 444px;
+  left: 434px;
   top: 460px;
-  width: 1420px;
+  width: 1440px;
   overflow: auto hidden;
   scrollbar-width: none;
+  padding-left: 10px;
 }
 
 .gallery-image-item {
@@ -252,6 +257,20 @@
   box-sizing: border-box;
 }
 
+.gallery-image-wrapper.large {
+  width: 688px;
+}
+
+
+.gallery-images-list.page4 .double-slot.align-left {
+  justify-content: flex-start;
+}
+
+.gallery-images-list.page4 .double-slot.align-right {
+  justify-content: flex-end;
+}
+
+
 .gallery-image {
   width: 100%;
   height: 100%;
@@ -272,7 +291,27 @@
   text-align: center;
 }
 
+.gallery-image-caption.large {
+  width: 688px;
+}
+
 .gallery-image-caption.multi-line {
   text-align: justify;
   text-indent: 2em;
+}
+.double-slot {
+  width: 688px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.double-slot.align-left {
+  justify-content: flex-start;
+}
+
+.double-slot.align-right {
+  justify-content: flex-end;
 }

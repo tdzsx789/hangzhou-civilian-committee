@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "./static/css/main.aa947f75.css",
-    "main.js": "./static/js/main.1c230686.js",
-    "static/media/result3.docx": "./static/media/result3.d4da288f1eb0adff1dd2.docx",
+    "main.css": "./static/css/main.35ae4a76.css",
+    "main.js": "./static/js/main.e9199547.js",
+    "static/media/result3.docx": "./static/media/result3.481999d5a32565e4d5ad.docx",
     "static/media/Alibaba-PuHuiTi-Bold.otf": "./static/media/Alibaba-PuHuiTi-Bold.fc4f40f33824d7265152.otf",
     "static/media/FZCuHeiSong-B-JF.TTF": "./static/media/FZCuHeiSong-B-JF.c990a30c1ceea0b9d688.TTF",
     "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
-    "static/media/cover.jpg": "./static/media/cover.f9d70683e03739c01fe3.jpg",
-    "static/media/bg1_1.jpg": "./static/media/bg1_1.b8a945c2b5073f948aaf.jpg",
+    "static/media/cover.jpg": "./static/media/cover.57dc545f1d27254d62fa.jpg",
+    "static/media/bg1_1.jpg": "./static/media/bg1_1.16ab427ebcbbd43325a1.jpg",
     "static/media/bg2_2.jpg": "./static/media/bg2_2.f00f11d6e95a1f03313f.jpg",
-    "static/media/bg1_2.jpg": "./static/media/bg1_2.684085ee1490a8e23d79.jpg",
-    "static/media/bg2_1.jpg": "./static/media/bg2_1.66566e4bf9b7657f0bae.jpg",
+    "static/media/bg1_2.jpg": "./static/media/bg1_2.cb0b14eb1db257a0dce5.jpg",
+    "static/media/bg2_1.jpg": "./static/media/bg2_1.193972141f7375df15b8.jpg",
     "static/media/蟠龙社区外景.png": "./static/media/蟠龙社区外景.d6dd5d4887be43581212.png",
     "static/media/社会管理网格化.png": "./static/media/社会管理网格化.cc4f3245722d1c6e9ca3.png",
     "static/media/新时代城市建设者管理者之家.png": "./static/media/新时代城市建设者管理者之家.149a94956ef17fdbf197.png",
@@ -28,11 +28,11 @@
     "static/media/result1.docx": "./static/media/result1.abbe4e84c26660018743.docx",
     "static/media/slideBg.png": "./static/media/slideBg.5c6f664c017f0140b306.png",
     "index.html": "./index.html",
-    "main.aa947f75.css.map": "./static/css/main.aa947f75.css.map",
-    "main.1c230686.js.map": "./static/js/main.1c230686.js.map"
+    "main.35ae4a76.css.map": "./static/css/main.35ae4a76.css.map",
+    "main.e9199547.js.map": "./static/js/main.e9199547.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa947f75.css",
-    "static/js/main.1c230686.js"
+    "static/css/main.35ae4a76.css",
+    "static/js/main.e9199547.js"
   ]
 }

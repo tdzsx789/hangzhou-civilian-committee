@@ -29,7 +29,6 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
 
-  // 当页面激活时重置滚动位置和选中状态
   useEffect(() => {
     if (isActive) {
       if (listScrollContainerRef.current) {
@@ -38,8 +37,9 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
       }
-      setSelectedItem(null);
-      setDocxContent('');
+      const defaultItem = list[2];
+      setSelectedItem(defaultItem);
+      loadDocx(defaultItem.file);
     }
   }, [isActive]);
 
@@ -86,6 +86,13 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
     setDocxContent('');
   };
 
+  const handleViewMore = () => {
+    setSelectedItem(null);
+    if (listScrollContainerRef.current) {
+      listScrollContainerRef.current.scrollTop = 0;
+    }
+  };
+
   const handleKeyDown = (callback) => (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -115,6 +122,17 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
         </div>
       ) : (
         <>
+          {selectedItem && selectedItem.file === 'result3.docx' && (
+            <div
+              className="view-more-button"
+              role="button"
+              tabIndex={0}
+              onClick={handleViewMore}
+              onKeyDown={handleKeyDown(handleViewMore)}
+            >
+              查看更多
+            </div>
+          )}
           <div ref={scrollContainerRef} className="docx-scroll-container">
             {loading ? (
               <div className="loading-text">加载中...</div>
@@ -125,15 +143,17 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               />
             )}
           </div>
-          <div
-            className="back-button"
-            role="button"
-            tabIndex={0}
-            onClick={handleBackButton}
-            onKeyDown={handleKeyDown(handleBackButton)}
-          >
-            <img src={backButton} alt="返回" />
-          </div>
+          {selectedItem && selectedItem.file !== 'result3.docx' && (
+            <div
+              className="back-button"
+              role="button"
+              tabIndex={0}
+              onClick={handleBackButton}
+              onKeyDown={handleKeyDown(handleBackButton)}
+            >
+              <img src={backButton} alt="返回" />
+            </div>
+          )}
         </>
       )}
       <div

@@ -117,7 +117,10 @@ function Detail4({ onBack, childData }) {
                         style={{ backgroundImage: `url(${imageUrl})` }}
                       />
                       {image.name && (
-                        <div className="detail2-image-caption">{image.name}</div>
+                        (() => {
+                          const caption = String(image.name || '').replace(/^\s*\d+\.\s*/, '');
+                          return <div className="detail2-image-caption">{caption}</div>;
+                        })()
                       )}
                     </div>
 
@@ -171,7 +174,10 @@ function Detail4({ onBack, childData }) {
                           style={{ backgroundImage: `url("${imageUrl}")` }}
                         />
                         {image.name && (
-                          <div className="detail2-image-caption">{image.name}</div>
+                          (() => {
+                            const caption = String(image.name || '').replace(/^\s*\d+\.\s*/, '');
+                            return <div className="detail2-image-caption">{caption}</div>;
+                          })()
                         )}
                       </div>
                     );

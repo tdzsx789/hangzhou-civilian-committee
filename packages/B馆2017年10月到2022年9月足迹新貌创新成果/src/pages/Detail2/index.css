@@ -87,9 +87,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .back-button:hover {
@@ -216,9 +216,9 @@
 .docx-scroll-container {
   position: absolute;
   width: 820px;
-  height: 1111px;
+  height: 1088px;
   left: 130px;
-  top: 575px;
+  top: 560px;
   overflow-y: auto;
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
@@ -233,7 +233,7 @@
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.8;
   color: #333;
 }
@@ -250,7 +250,7 @@
 
 /* 标题样式优化 - 标题不需要首行缩进 */
 .docx-content h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: bold;
   color: #1a1a1a;
   margin: 24px 0 12px 0;
@@ -261,7 +261,7 @@
 }
 
 .docx-content h2 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   color: #2a2a2a;
   margin: 20px 0 10px 0;
@@ -272,7 +272,7 @@
 }
 
 .docx-content h3 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   color: #333;
   margin: 18px 0 8px 0;
@@ -283,7 +283,7 @@
 .docx-content h4,
 .docx-content h5,
 .docx-content h6 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   color: #444;
   margin: 16px 0 8px 0;
@@ -300,7 +300,7 @@
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   table-layout: auto;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .docx-content table th,
@@ -390,4 +390,23 @@
   padding: 50px;
   color: #333;
   font-size: 18px;
+}
+
+.view-more-button {
+  position: absolute;
+  right: 130px;
+  bottom: 200px;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
