@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 import bg1 from '../../assets/bg1.jpg';
-import beforeNext from '../../assets/beforeNext.png';
+import beforeImg from '../../assets/before.png';
+import nextImg from '../../assets/next.png';
 import backImg from '../../assets/back.png';
 import Modal from '../Modal';
 import image001 from '../../assets/images/image001.jpg';
@@ -25,23 +26,27 @@ import image018 from '../../assets/images/image018.jpg';
 
 export const imageList = [
   {
-    name: '2007年10月，党的十七大把基层群众自治制度确定为我国基本政治制度的重要组成部分',
+    name: '2007年10月，党的十七大把基层群众自治制度确定为我国基本政治制度之一',
     url: image005
   },
+  // {
+  //   name: '2009年6月2日，时任民政部副部长孙绍骋同志视察广西壮族自治区柳州市天鹅湖社区',
+  //   url: image013
+  // },
   {
-    name: '2009年，民政部在苏州召开全国和谐社区建设工作会议',
+    name: '2009年10月，民政部在苏州召开全国和谐社区建设工作会议',
     url: image015
   },
   {
-    name: '2008年6月28日，国家民政部在杭州宣布成立于1949年10月23日的杭州市上城区上羊市街居民委员会是新中国第一个居民委员会',
+    name: '2008年6月28日，民政部在杭州宣布成立于1949年10月23日的杭州市上城区上羊市街居民委员会是新中国第一个居民委员会',
     url: image012
   },
   {
-    name: '2009年6月2日，时任民政部副部长孙绍骋同志视察广西省柳州市天鹅湖社区',
-    url: image013
+    name: '2009年12月21日，中国社区建设展示中心落成',
+    url: image016
   },
   {
-    name: '2009年12月21日，时任杭州市市长蔡奇同志主持中国社区建设展示中心落成典礼',
+    name: '2009年12月21日，时任中共杭州市委副书记、市长蔡奇同志主持中国社区建设展示中心落成典礼',
     url: image018
   },
   {
@@ -100,17 +105,24 @@ function Detail({ name, gallery, onBack, isVisible }) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
-  const handleBeforeNextClick = (e) => {
+  const [atLeft, setAtLeft] = useState(true);
+  const [atRight, setAtRight] = useState(false);
+  const updateEdges = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setAtLeft(el.scrollLeft <= 0);
+    setAtRight(el.scrollLeft >= Math.max(0, max - 1));
+  };
+  const handlePrev = () => {
     if (!scrollContainerRef.current) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const half = rect.width / 2;
     const step = scrollContainerRef.current.clientWidth;
-    if (x < half) {
-      scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
-    } else {
-      scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
-    }
+    scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+  const handleNext = () => {
+    if (!scrollContainerRef.current) return;
+    const step = scrollContainerRef.current.clientWidth;
+    scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
   };
 
   // 进入页面时重置滚动位置
@@ -120,10 +132,22 @@ function Detail({ name, gallery, onBack, isVisible }) {
       requestAnimationFrame(() => {
         if (scrollContainerRef.current) {
           scrollContainerRef.current.scrollLeft = 0;
+          updateEdges();
         }
       });
     }
   }, [isVisible]);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const onScroll = () => updateEdges();
+    el.addEventListener('scroll', onScroll);
+    updateEdges();
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -155,6 +179,12 @@ function Detail({ name, gallery, onBack, isVisible }) {
     setSelectedImage(null);
   };
 
+  const isMultiLine = (text) => {
+    // 假设每行大约20个汉字（根据字体大小和宽度估算，width 400px, font 18px）
+    // 这是一个粗略的估算，实际渲染可能因字符宽度而异
+    return text.length > 24; 
+  };
+
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1})` }}>
       <div
@@ -168,24 +198,68 @@ function Detail({ name, gallery, onBack, isVisible }) {
         {/* <img src={slides1} alt="历史图片" className="slides-image" /> */}
 
         <div className="nanjing-grid">
-          {imageList.map((item) => (
-            <div className="nanjing-item" key={item.url}>
-              <img
-                src={item.url}
-                alt={item.name}
-                className="nanjing-thumb clickable-image"
-                onClick={() => handleImageClick(item)}
-              />
-              <div className="nanjing-caption">{item.name}</div>
-            </div>
-          ))}
+          {(() => {
+            const firstFour = imageList.slice(0, 4);
+            const rest = imageList.slice(4);
+
+            return (
+              <>
+                <div className="special-layout-container">
+                  <div className="special-layout-top">
+                    {firstFour.slice(0, 2).map((item) => (
+                      <div className="nanjing-item" key={item.url}>
+                        <img
+                          src={item.url}
+                          alt={item.name}
+                          className="nanjing-thumb clickable-image"
+                          onClick={() => handleImageClick(item)}
+                        />
+                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="special-layout-bottom">
+                    {firstFour.slice(2).map((item) => (
+                      <div className="nanjing-item" key={item.url}>
+                        <img
+                          src={item.url}
+                          alt={item.name}
+                          className="nanjing-thumb clickable-image"
+                          onClick={() => handleImageClick(item)}
+                        />
+                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {rest.map((item) => (
+                  <div className="nanjing-item" key={item.url}>
+                    <img
+                      src={item.url}
+                      alt={item.name}
+                      className="nanjing-thumb clickable-image"
+                      onClick={() => handleImageClick(item)}
+                    />
+                    <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                  </div>
+                ))}
+              </>
+            );
+          })()}
         </div>
       </div>
-      <button
-        className="slide-button"
-        style={{ backgroundImage: `url(${beforeNext})`, width: 329, height: 79 }}
-        onClick={handleBeforeNextClick}
-      ></button>
+      <div className="slide-button">
+        <button
+          className={`slide-button-prev ${atLeft ? 'edge-left-transparent' : ''}`}
+          style={{ backgroundImage: `url(${beforeImg})`, opacity: atLeft ? 0.7 : 1 }}
+          onClick={handlePrev}
+        ></button>
+        <button
+          className={`slide-button-next ${atRight ? 'edge-right-transparent' : ''}`}
+          style={{ backgroundImage: `url(${nextImg})`, opacity: atRight ? 0.7 : 1 }}
+          onClick={handleNext}
+        ></button>
+      </div>
       <div
         className="back-to-home-btn"
         onClick={onBack}

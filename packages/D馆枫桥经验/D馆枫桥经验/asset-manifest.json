@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.f697b532.css",
+    "main.js": "./static/js/main.38ccc258.js",
+    "static/media/2023年6月，长寿苑物业服务信托导入宣誓仪式.jpg": "./static/media/2023年6月，长寿苑物业服务信托导入宣誓仪式.1df919787628f15b8b24.jpg",
+    "static/media/FZLanTingHeiS-DB-GB.TTF": "./static/media/FZLanTingHeiS-DB-GB.4b97dc5680be20bb7d14.TTF",
+    "static/media/page1.jpg": "./static/media/page1.e62fa4078e5e13bc24a5.jpg",
+    "static/media/cover.jpg": "./static/media/cover.b6fd203832ea72192031.jpg",
+    "static/media/page3.jpg": "./static/media/page3.e4f48e43cd2920a83e95.jpg",
+    "static/media/图为桐城法院孔城人民法庭法官余亮亮在六尺巷调解室内调解一起金融借款合同纠纷案.PNG": "./static/media/图为桐城法院孔城人民法庭法官余亮亮在六尺巷调解室内调解一起金融借款合同纠纷案.4e5dacc77863811f506f.PNG",
+    "static/media/page2.jpg": "./static/media/page2.b3cd47fbcc76585e3656.jpg",
+    "static/media/wuyaoxiang.jpg": "./static/media/wuyaoxiang.75292b83058b9b7a653b.jpg",
+    "static/media/图为八师石河子市幸福路开展集中商圈环境秩序整治活动.jpg": "./static/media/图为八师石河子市幸福路开展集中商圈环境秩序整治活动.0bc3b5e9da7df2102022.jpg",
+    "static/media/图为友谊镇浦寨社区联合友谊关边境派出所开展巡边护边活动.jpg": "./static/media/图为友谊镇浦寨社区联合友谊关边境派出所开展巡边护边活动.50bf6717af39756af7bc.jpg",
+    "static/media/图为栖霞区仙林街道平安志愿者和辖区民警联合巡逻.png": "./static/media/图为栖霞区仙林街道平安志愿者和辖区民警联合巡逻.2dd0ce39c55dc5cf1b59.png",
+    "static/media/beihujiedao.jpeg": "./static/media/beihujiedao.5a16b9f18a9337bfb36e.jpeg",
+    "static/media/图为碑林区西勘社区开展小哥议事会.jpg": "./static/media/图为碑林区西勘社区开展小哥议事会.9d0c237a6bd9505e55a5.jpg",
+    "static/media/start2.png": "./static/media/start2.cdc87df5f010f528fa85.png",
+    "static/media/start.png": "./static/media/start.dcb9b1580e30581a9ad1.png",
+    "static/media/start3.png": "./static/media/start3.37370f5e4ab848e99179.png",
+    "static/media/leftArrow.png": "./static/media/leftArrow.3170ee46c3eeb4eec33d.png",
+    "static/media/rightArrow.png": "./static/media/rightArrow.e60dbdd6b48ba595d94c.png",
+    "index.html": "./index.html",
+    "main.f697b532.css.map": "./static/css/main.f697b532.css.map",
+    "main.38ccc258.js.map": "./static/js/main.38ccc258.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f697b532.css",
+    "static/js/main.38ccc258.js"
+  ]
+}

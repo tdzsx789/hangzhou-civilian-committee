@@ -2,10 +2,33 @@ import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import videoSrc from '../../assets/aihuman.mp4';
 
-function Home() {
+function Home({ volume = 1, playbackCmd }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
   const [udpLog, setUdpLog] = useState([]);
+
+  useEffect(() => {
+    const videoEl = videoRef.current;
+    if (videoEl && playbackCmd) {
+      const cmd = playbackCmd.type;
+      if (cmd === 'PAUSE') {
+        videoEl.pause();
+      } else if (cmd === 'START') {
+        videoEl.play().catch(() => {});
+      } else if (cmd === 'FORWARD') {
+        videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 5);
+      } else if (cmd === 'BACK') {
+        videoEl.currentTime = Math.max(0, videoEl.currentTime - 5);
+      }
+    }
+  }, [playbackCmd]);
+
+  useEffect(() => {
+    const videoEl = videoRef.current;
+    if (videoEl) {
+      videoEl.volume = volume;
+    }
+  }, [volume]);
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -14,7 +37,7 @@ function Home() {
     const playVideo = async () => {
       try {
         videoEl.muted = false;
-        videoEl.volume = 1;
+        videoEl.volume = volume;
         await videoEl.play();
       } catch (err) {
         try {
@@ -81,7 +104,7 @@ function Home() {
             if (!videoEl) return;
             try {
               videoEl.muted = false;
-              videoEl.volume = 1;
+              videoEl.volume = volume;
               await videoEl.play();
               setNeedsUserAction(false);
             } catch (err) {

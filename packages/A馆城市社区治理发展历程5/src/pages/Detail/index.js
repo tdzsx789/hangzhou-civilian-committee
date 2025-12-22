@@ -1,39 +1,85 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 import bg1 from '../../assets/bg1.jpg';
-import beforeNext from '../../assets/beforeNext.png';
+import beforeImg from '../../assets/before.png';
+import nextImg from '../../assets/next.png';
 import backImg from '../../assets/back.png';
 import Modal from '../Modal';
 import image1 from '../../assets/images/image1.jpg';
 import image2 from '../../assets/images/image2.jpg';
 import image3 from '../../assets/images/image3.jpg';
-import image4 from '../../assets/images/image4.png';
+import image4 from '../../assets/images/4.jpg';
 import image5 from '../../assets/images/image5.jpg';
 import image6 from '../../assets/images/image6.jpg';
 import image7 from '../../assets/images/image7.jpg';
 import image8 from '../../assets/images/image8.jpg';
 import image9 from '../../assets/images/image9.jpg';
+import new4 from '../../assets/images/4.jpg';
+import new5 from '../../assets/images/5.jpg';
+import new6 from '../../assets/images/6.jpg';
+import tupian1 from '../../assets/images/tupian1.jpg';
+import tupian2 from '../../assets/images/tupian2.jpg';
+import tupian3 from '../../assets/images/tupian3.jpg';
+import tupian4 from '../../assets/images/tupian4.jpg';
+import tupian5 from '../../assets/images/tupian5.jpg';
+import tupian6 from '../../assets/images/tupian6.jpg';
 
 export const imageList = [
   {
+    name: '2012年11月，中国共产党第十八次全国代表大会在北京召开',
+    url: tupian1
+  },
+  {
+    name: '2017年6月，《中共中央、国务院关于加强和完善城乡社区治理的意见》印发',
+    url: tupian4
+  },
+  {
     name: '2017年10月，中国共产党第十九次全国代表大会在北京召开',
-    url: image5
+    url: tupian2
+  },
+  {
+    name: '2021年4月，《中共中央、国务院关于加强基层治理体系和治理能力现代化建设的意见》印发',
+    url: tupian5
+  },
+  {
+    name: '2022年10月，中国共产党第二十次全国代表大会在北京召开',
+    url: tupian3
+  },
+  {
+    name: '2019年5月，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
+    url: tupian6
+  },
+  // {
+  //   name: '2017年10月，中国共产党第十九次全国代表大会在北京召开',
+  //   url: image5
+  // },
+  // {
+  //   name: '2019年5月，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
+  //   url: new4
+  // },
+  // {
+  //   name: '2017年，《中共中央 国务院关于加强和完善城乡社区治理的意见》印发',
+  //   url: image6
+  // },
+  {
+    name: '2019年2月,中央宣传部、民政部在湖北省武汉市向全社会公开发布2018年“最美城乡社区工作者”先进事迹',
+    url: new5
+  },
+  // {
+  //   name: '2015年，《民政部关于同意将北京市西城区等40个单位确认为全国社区治理和服务创新实验区的批复》印发',
+  //   url: image7
+  // },
+  {
+    name: '2013年11月25日，全国社区公共服务综合信息平台建设推进会在上海召开',
+    url: new6
   },
   {
     name: '建立更加公平更可持续的社会保障制度,实施全民参保计划,基本实现法定人员全覆盖。图为群众在医院一站式服务窗口办理报销结算。',
     url: image9
   },
   {
-    name: '2017年，《中共中央 国务院关于加强和完善城乡社区治理的意见》',
-    url: image6
-  },
-  {
     name: '社会治理转型升级。图为派出所人员走访社区',
     url: image2
-  },
-  {
-    name: '2015年，《民政部关于同意将北京市东城区等31个单位确认为“全国社区治理和服务创新实验区”的批复》',
-    url: image7
   },
   {
     name: '全面加强纪律建设,把纪律挺在前面,严明政治纪律和政治规矩,运用监督执纪“四种形态”,真抓真严、敢管敢严、长管长严。图为基层党员宣讲《廉洁自律准则》和《党纪处分条例》',
@@ -43,10 +89,10 @@ export const imageList = [
     name: '2013年，全国社区公共服务综合信息平台建设推进会在上海召开',
     url: image8
   },
-  {
-    name: '2019年，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
-    url: image4
-  },
+  // {
+  //   name: '2019年，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
+  //   url: image4
+  // },
   {
     name: '深入开展党的群众路线教育实践活动、“三严三实”专题教育和“两学一做”学习教育,党员干部“四个意识”显著增强。图为社区党员在学习党章',
     url: image1
@@ -59,17 +105,24 @@ function Detail({ name, gallery, onBack, isVisible }) {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
-  const handleBeforeNextClick = (e) => {
+  const [atLeft, setAtLeft] = useState(true);
+  const [atRight, setAtRight] = useState(false);
+  const updateEdges = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setAtLeft(el.scrollLeft <= 0);
+    setAtRight(el.scrollLeft >= Math.max(0, max - 1));
+  };
+  const handlePrev = () => {
     if (!scrollContainerRef.current) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const half = rect.width / 2;
     const step = scrollContainerRef.current.clientWidth;
-    if (x < half) {
-      scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
-    } else {
-      scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
-    }
+    scrollContainerRef.current.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+  const handleNext = () => {
+    if (!scrollContainerRef.current) return;
+    const step = scrollContainerRef.current.clientWidth;
+    scrollContainerRef.current.scrollBy({ left: step, behavior: 'smooth' });
   };
 
   // 进入页面时重置滚动位置
@@ -79,10 +132,22 @@ function Detail({ name, gallery, onBack, isVisible }) {
       requestAnimationFrame(() => {
         if (scrollContainerRef.current) {
           scrollContainerRef.current.scrollLeft = 0;
+          updateEdges();
         }
       });
     }
   }, [isVisible]);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const onScroll = () => updateEdges();
+    el.addEventListener('scroll', onScroll);
+    updateEdges();
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -127,7 +192,41 @@ function Detail({ name, gallery, onBack, isVisible }) {
         {/* <img src={slides1} alt="历史图片" className="slides-image" /> */}
 
         <div className="nanjing-grid">
-          {imageList.map((item) => (
+          <div className="special-first-group">
+            <div className="special-row-top">
+              {[0, 2, 4].map((i) => {
+                const item = imageList[i];
+                return (
+                  <div className="nanjing-item" key={item.url}>
+                    <img
+                      src={item.url}
+                      alt={item.name}
+                      className="nanjing-thumb clickable-image"
+                      onClick={() => handleImageClick(item)}
+                    />
+                    <div className="nanjing-caption">{item.name}</div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="special-row-bottom">
+              {[1, 3, 5].map((i) => {
+                const item = imageList[i];
+                return (
+                  <div className="nanjing-item small-item" key={item.url}>
+                    <img
+                      src={item.url}
+                      alt={item.name}
+                      className="nanjing-thumb clickable-image"
+                      onClick={() => handleImageClick(item)}
+                    />
+                    <div className="nanjing-caption">{item.name}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          {imageList.slice(6).map((item) => (
             <div className="nanjing-item" key={item.url}>
               <img
                 src={item.url}
@@ -140,11 +239,18 @@ function Detail({ name, gallery, onBack, isVisible }) {
           ))}
         </div>
       </div>
-      <button
-        className="slide-button"
-        style={{ backgroundImage: `url(${beforeNext})`, width: 329, height: 79 }}
-        onClick={handleBeforeNextClick}
-      ></button>
+      <div className="slide-button">
+        <button
+          className={`slide-button-prev ${atLeft ? 'edge-left-transparent' : ''}`}
+          style={{ backgroundImage: `url(${beforeImg})`, opacity: atLeft ? 0.7 : 1 }}
+          onClick={handlePrev}
+        ></button>
+        <button
+          className={`slide-button-next ${atRight ? 'edge-right-transparent' : ''}`}
+          style={{ backgroundImage: `url(${nextImg})`, opacity: atRight ? 0.7 : 1 }}
+          onClick={handleNext}
+        ></button>
+      </div>
       <div
         className="back-to-home-btn"
         onClick={onBack}

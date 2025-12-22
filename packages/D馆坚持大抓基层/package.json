@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=D-party-building-governance react-scripts build",
+    "build": "BUILD_PATH=D馆坚持大抓基层 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

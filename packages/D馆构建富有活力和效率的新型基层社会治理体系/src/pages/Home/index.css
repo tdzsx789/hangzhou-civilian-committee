@@ -31,7 +31,7 @@
 .learn-more-btn {
   position: absolute;
   top: 680px;
-  left: 20%;
+  left: 33%;
   transform: translateX(-50%);
   
   transition: all 0.3s ease;
@@ -72,7 +72,7 @@
 .learn-more-btn2 {
   position: absolute;
   top: 680px;
-  left: 50%;
+  left: 67%;
   transform: translateX(-50%);
   
   transition: all 0.3s ease;

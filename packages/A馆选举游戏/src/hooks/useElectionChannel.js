@@ -33,6 +33,7 @@ export function useElectionChannel({ role, playerId }) {
   const [photosBin, setPhotosBin] = useState([]);
   const [roles, setRoles] = useState({ humans: [], npcs: [] });
   const [waitingCountdown, setWaitingCountdown] = useState(null);
+  const [photoCountdown, setPhotoCountdown] = useState(null);
   const [gamingShowPlayers, setGamingShowPlayers] = useState([]);
   const [championPlayerId, setChampionPlayerId] = useState('');
 
@@ -108,6 +109,11 @@ export function useElectionChannel({ role, playerId }) {
         case 'waiting:countdown':
           if (typeof payload.payload?.seconds === 'number') {
             setWaitingCountdown(payload.payload.seconds);
+          }
+          break;
+        case 'photo:countdown':
+          if (typeof payload.payload?.seconds === 'number') {
+            setPhotoCountdown(payload.payload.seconds);
           }
           break;
         case 'gaming:show':
@@ -232,6 +238,7 @@ export function useElectionChannel({ role, playerId }) {
     photosBin,
     roles,
     waitingCountdown,
+    photoCountdown,
     gamingShowPlayers,
     champion: championPlayerId,
   };

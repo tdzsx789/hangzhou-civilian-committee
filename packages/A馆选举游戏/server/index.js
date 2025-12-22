@@ -120,38 +120,33 @@ function handleGameStart(client, message) {
     readyPlayers.add(playerId);
     humanPlayers.add(playerId);
     npcPlayers.delete(playerId);
+    
+    // 立即填充NPC
+    for (let i = 1; i <= GAME_COUNT; i++) {
+      const pid = String(i);
+      if (!humanPlayers.has(pid)) {
+        npcPlayers.add(pid);
+      }
+    }
+    
     broadcastReadyList();
     broadcastRoles();
-    if (!startWindowActive) {
-      startWindowActive = true;
-      waitingCountdown = 10;
-      broadcast({ type: 'waiting:countdown', payload: { seconds: waitingCountdown } });
-      if (waitingInterval) {
-        clearInterval(waitingInterval);
-        waitingInterval = null;
-      }
-      waitingInterval = setInterval(() => {
-        waitingCountdown = Math.max(waitingCountdown - 1, 0);
-        broadcast({ type: 'waiting:countdown', payload: { seconds: waitingCountdown } });
-        if (waitingCountdown <= 0) {
-          clearInterval(waitingInterval);
-          waitingInterval = null;
-        }
-      }, 1000);
-      startWindowTimer = setTimeout(() => {
-        startWindowTimer = null;
-        startWindowActive = false;
-        waitingCountdown = 0;
-        for (let i = 1; i <= GAME_COUNT; i++) {
-          const pid = String(i);
-          if (!humanPlayers.has(pid)) {
-            npcPlayers.add(pid);
-          }
-        }
-        broadcastRoles();
-        updateStage(STAGE.PREPARE);
-      }, 10000);
-    }
+
+    // 即使跳过PREPARE，也生成播放列表以保持一致性
+    const order = generatePlaylist();
+    broadcast({ type: 'playlist:update', payload: { methods: order } });
+    
+    // 直接进入拍照阶段，不再等待
+    updateStage(STAGE.PHOTO);
+  } else if (currentStage === STAGE.PHOTO) {
+    // PHOTO阶段也允许加入并成为人类玩家
+    readyPlayers.add(playerId);
+    humanPlayers.add(playerId);
+    npcPlayers.delete(playerId);
+    photoPlayers.delete(playerId); // 重置拍照状态，等待新的人类玩家拍照
+    
+    broadcastReadyList();
+    broadcastRoles();
   } else {
     readyPlayers.add(playerId);
     photoPlayers.delete(playerId);
@@ -206,7 +201,7 @@ function handleClientReload() {
 
 function updateStage(nextStage) {
   if (photoTimer) {
-    clearTimeout(photoTimer);
+    clearInterval(photoTimer);
     photoTimer = null;
   }
 
@@ -254,9 +249,27 @@ function updateStage(nextStage) {
 
   if (nextStage === STAGE.PHOTO) {
     photoDonePlayers.clear();
-    photoTimer = setTimeout(() => {
-      updateStage(STAGE.GAMING);
-    }, 15000);
+    let photoCountdown = 10;
+    
+    // 立即广播一次初始倒计时
+    broadcast({ type: 'photo:countdown', payload: { seconds: photoCountdown } });
+
+    // 清除旧的倒计时定时器（如果有）
+    if (photoTimer) {
+      clearInterval(photoTimer); // 注意这里改为 clearInterval
+      photoTimer = null;
+    }
+
+    photoTimer = setInterval(() => {
+      photoCountdown--;
+      broadcast({ type: 'photo:countdown', payload: { seconds: photoCountdown } });
+      
+      if (photoCountdown <= 0) {
+        clearInterval(photoTimer);
+        photoTimer = null;
+        updateStage(STAGE.GAMING);
+      }
+    }, 1000);
   }
 
   if (nextStage === STAGE.GAMING) {
@@ -274,22 +287,7 @@ function updateStage(nextStage) {
   if (nextStage === STAGE.COMPLETE) {
     completeTimer = setTimeout(() => {
       console.log('[ws] complete timer expired, auto resetting to waiting');
-      // 清除定时器引用
-      completeTimer = null;
-      // 手动执行重置逻辑，避免 updateStage 的定时器清除干扰
-      currentStage = STAGE.WAITING;
-      readyPlayers.clear();
-      photoPlayers.clear();
-      photoDonePlayers.clear();
-      humanPlayers.clear();
-      npcPlayers.clear();
-      championPlayerId = '';
-      // 广播状态更新
-      broadcastStage();
-      broadcastReadyList();
-      broadcastRoles();
-      broadcast({ type: 'champion:update', payload: { playerId: championPlayerId } });
-      console.log('[ws] auto reset completed, stage is now:', currentStage);
+      resetState();
     }, 15000);
     console.log('[ws] complete timer started, will reset in 15s');
   }

@@ -14,7 +14,8 @@ import handImg from '../../assets/hand.png';
 import pageSlides1Img from '../../assets/pageSlides1.png';
 import pageSlides2Img from '../../assets/pageSlides2.png';
 import pageSlides3Img from '../../assets/pageSlides3.png';
-import beforeNextImg from '../../assets/beforeNext.png';
+import beforeImg from '../../assets/before.png';
+import nextImg from '../../assets/next.png';
 
 // 导入 chubujianli 文件夹的图片
 import chubujianli1 from '../../assets/chubujianli/1952-east-china-military-administrative-committee-pilot-scheme.jpg';
@@ -86,21 +87,21 @@ import xinshidai11 from '../../assets/xinshidai/12th-npc-5th-session.jpg';
 const galleryImages = [
   // chubujianli 文件夹
   { name: '1952年，华东军政委员会民政部关于《城市居民委员会经费收支情况调查摘要》', url: chubujianli13, from: 'chubujianli' },
-  { name: '城市街道办事处四个条例单行本照片', url: chubujianli14, from: 'chubujianli' },
   { name: '上海市居民委员会调查综合报告', url: chubujianli11, from: 'chubujianli' },
   { name: '1954年，山东省张周市（现淄博市张店区、周村区）建立居民委员会试点工作总结', url: chubujianli6, from: 'chubujianli' },
   { name: '1952年，广州市金华街干部群众组织起来整治街内卫生', url: chubujianli2, from: 'chubujianli' },
   { name: '1952年，华东军政委员会制定了第一个行政大区试点方案——《关于10万人口以上城市建立居民委员会试行方案（草案）》', url: chubujianli1, from: 'chubujianli' },
-  { name: '1953年，居民委员会发放的杭州居民购粮证', url: chubujianli3, from: 'chubujianli' },
-  { name: '1953年，彭真同志向中共中央建议在各城市区以下和不设区的市以下同时建立城市街道办事处、城市居民委员会两个组织。图为彭真同志', url: chubujianli4, from: 'chubujianli' },
-  { name: '1954年，广东省珠江区水上居民参加全国第一次普选', url: chubujianli5, from: 'chubujianli' },
+    { name: `彭真同志向毛主席和中共中央报送“城市应建立街道办事处和居民委员会”报告的节录`, url: chubujianli16, from: 'chubujianli' },
+  { name: '城市街道办事处组织条例、城市居民委员会组织条例等条例单行本照片', url: chubujianli14, from: 'chubujianli' },
+  // { name: '1953年，彭真同志向中共中央建议在各城市区以下和不设区的市以下同时建立城市街道办事处、城市居民委员会两个组织。图为彭真同志', url: chubujianli4, from: 'chubujianli' },
   { name: '1955年7月28日，辽宁省鞍山市出台《居民委员会生活补助费使用办法》的文件', url: chubujianli7, from: 'chubujianli' },
+  { name: '1953年，居民委员会发放的杭州居民购粮证', url: chubujianli3, from: 'chubujianli' },
+  { name: '1954年，广东省珠江区水上居民参加全国第一次普选', url: chubujianli5, from: 'chubujianli' },
   { name: '1955年，山东省潍坊市潍城区南关西南关居民委员会开展青少年教育活动', url: chubujianli8, from: 'chubujianli' },
   { name: '时任上城区区公所区长田奎荣', url: chubujianli9, from: 'chubujianli' },
   { name: '《上海市委关于一九五四年全市进行里弄整顿工作的决定》', url: chubujianli10, from: 'chubujianli' },
   { name: '五十年代，上海市居民委员会工作的照片（上海市黄浦区宝兴里家庭妇女捐寒衣救济灾民。上海市黄浦区宝兴里居民委员会工作剪影。上海市老闸区汇中里、曲江里居民委员会慰问军烈属）', url: chubujianli12, from: 'chubujianli' },
   { name: '居民群众积极参加居民委员会选举，行使当家作主权利。图为1956年安徽省合肥市居民群众核对选民榜情景', url: chubujianli15, from: 'chubujianli' },
-  { name: '彭真同志向毛泽东和中共中央递交“城市应建立街道办事处和居民委员会”报告的节录', url: chubujianli16, from: 'chubujianli' },
   { name: '时任中共杭州市委书记、市长江华', url: chubujianli17, from: 'chubujianli' },
   { name: '新中国第一个居民委员会首任主任陈福林', url: chubujianli18, from: 'chubujianli' },
   { name: '黑龙江省哈尔滨街道居民委员会在新年期间，给朝鲜战场上的烈士家属家门口挂光荣灯', url: chubujianli19, from: 'chubujianli' },
@@ -124,9 +125,9 @@ const galleryImages = [
   { name: '六十年代初，黑龙江省哈尔滨市居民委员会代表开会情景', url: quzhefazhan16, from: 'quzhefazhan' },
 
   // huifu 文件夹
-  { name: '1982年重新修订颁布的宪法首次以根本大法的形式明确了居民委员会的性质任务和作用。图为1982年宪法', url: huifu3, from: 'huifu' },
-  { name: '1989年12月26日，第七届全国人民代表大会常务委员会第十一次会议通过《中华人民共和国城市居民委员会组织法》。图为1989年《中华人民共和国城市居民委员会组织法》', url: huifu4, from: 'huifu' },
-  { name: '2009年12月21日，纪念《中华人民共和国城市居民委员会组织法》颁布实施满二十周年座谈会在浙江省杭州市召开', url: huifu6, from: 'huifu' },
+  { name: '1982年重新修订颁布的宪法中，首次以根本大法的形式明确了居民委员会的性质任务和作用。图为1982年《中华人民共和国宪法》', url: huifu3, from: 'huifu' },
+  { name: '1989年12月26日，第七届全国人民代表大会常务委员会第十一次会议通过《中华人民共和国城市居民委员会组织法》，标志着我国城市居民委员会的建设和发展，进入了一个新的全面发展的时期。图为1989年《中华人民共和国城市居民委员会组织法》', url: huifu4, from: 'huifu' },
+  { name: '2009年12月21日，纪念《中华人民共和国城市居民委员会组织法》颁布实施二十周年座谈会在浙江省杭州市召开', url: huifu6, from: 'huifu' },
   { name: '2010年10月28日，新中国第一个居民委员会成立61周年纪念大会暨上羊市街社区第七届邻居节隆重举行', url: huifu8, from: 'huifu' },
   { name: '1979年，山东省潍坊市潍城区城关街道增福堂居民委员会办公会议', url: huifu1, from: 'huifu' },
   { name: '1982年，四川省成都市西城区（现青羊区）召开居民委员会先进集体、先进个人代表大会', url: huifu2, from: 'huifu' },
@@ -138,8 +139,8 @@ const galleryImages = [
   { name: '杭州市下城区积极推进社区老年食堂建设，图为武林街道“金叟园”社区老年食堂', url: huifu12, from: 'huifu' },
 
   // xinshidai 文件夹
-  { name: '第十二届全国人民代表大会第五次会议', url: xinshidai11, from: 'xinshidai' },
   { name: '中国共产党第十八次全国代表大会', url: xinshidai9, from: 'xinshidai' },
+  { name: '第十二届全国人民代表大会第五次会议', url: xinshidai11, from: 'xinshidai' },
   { name: '《民法总则》', url: xinshidai1, from: 'xinshidai' },
   { name: '2014年11月5日，青海省西宁市城北区建设巷社区联合小桥大街小学开展消防安全演练活动', url: xinshidai2, from: 'xinshidai' },
   { name: '2017年1月25日，辽宁省大连市中山区青泥洼桥街道双合社区组织开展文明祭祀活动，居民、未成年人在“移风易俗，平安是福”展板上签名承诺', url: xinshidai3, from: 'xinshidai' },
@@ -154,16 +155,16 @@ const galleryImages = [
 const selectList = [
   { name: '初步建立阶段', period: '1949-1956年', top: 442, selectKey: 'select1' },
   { name: '探索与曲折发展阶段', period: '1957-1978年', top: 597, selectKey: 'page2' },
-  { name: '恢复与拓展阶段', period: '1979-2011年', top: 752, selectKey: 'page3' },
-  { name: '新时代转型完善阶段', period: '2012年至今', top: 907, selectKey: 'page4' },
+  { name: '恢复与发展阶段', period: '1979-2011年', top: 752, selectKey: 'page3' },
+  { name: '新时代创新发展阶段', period: '2012年至今', top: 907, selectKey: 'page4' },
 ]
 
 const selectParams = {
   select1: {
-    left: 444, top: 101, url: select1Img, downButtonLeft: 1252, downButtonTop: 900, upButtonTop: 253, upButtonRight: 50, beforeButtonTop: 840, beforeButtonRight: 50
+    left: 444, top: 101, url: select1Img, downButtonLeft: 1252, downButtonTop: 900, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 1230
   },
   select2: {
-    left: 444, top: 101, url: select2Img, downButtonLeft: 987, downButtonTop: 910, upButtonTop: 253, upButtonRight: 50, beforeButtonTop: 840, beforeButtonRight: 50
+    left: 444, top: 101, url: select2Img, downButtonLeft: 987, downButtonTop: 910, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 1230
   },
   select3: {
     left: 444, top: 101, url: select3Img, downButtonLeft: 1252, downButtonTop: 822,
@@ -175,7 +176,7 @@ const selectParams = {
     left: 444, top: 101, url: page2Img, beforeButtonTop: 920, beforeButtonRight: 642
   },
   page3: {
-    left: 444, top: 101, url: page3Img, beforeButtonTop: 986, beforeButtonRight: 642
+    left: 444, top: 101, url: page3Img, beforeButtonTop: 1000, beforeButtonRight: 642
   },
   page4: {
     left: 444, top: 101, url: page4Img, beforeButtonTop: 886, beforeButtonRight: 642
@@ -192,6 +193,27 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   const page2Container1Ref = useRef(null);
   const page2Container2Ref = useRef(null);
   const page3ContainerRef = useRef(null);
+  const [atLeft, setAtLeft] = useState(true);
+  const [atRight, setAtRight] = useState(false);
+
+  const getActiveScrollElement = () => {
+    const el = (selectedSelectKey === 'select1' || selectedSelectKey === 'select2')
+      ? galleryContainerRef.current
+      : (selectedSelectKey === 'page2')
+        ? page2Container1Ref.current
+        : (selectedSelectKey === 'page3' || selectedSelectKey === 'page4')
+          ? page3ContainerRef.current
+          : null;
+    return el;
+  };
+
+  const updateEdges = () => {
+    const el = getActiveScrollElement();
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setAtLeft(el.scrollLeft <= 0);
+    setAtRight(el.scrollLeft >= Math.max(0, max - 1));
+  };
 
   useEffect(() => {
     setSelectedSelectKey(index);
@@ -204,6 +226,20 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
       } else {
         galleryContainerRef.current.scrollLeft = 0;
       }
+      updateEdges();
+    }
+    if (selectedSelectKey === 'page2') {
+        if (page2Container1Ref.current) {
+            page2Container1Ref.current.scrollLeft = 0;
+        }
+        if (page2Container2Ref.current) {
+            page2Container2Ref.current.scrollLeft = 0;
+        }
+        updateEdges();
+    }
+    if ((selectedSelectKey === 'page3' || selectedSelectKey === 'page4') && page3ContainerRef.current) {
+        page3ContainerRef.current.scrollLeft = 0;
+        updateEdges();
     }
   }, [selectedSelectKey]);
 
@@ -247,6 +283,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
 
     const handleScroll = (e) => {
       setShowHand(false);
+      updateEdges();
     };
 
     containers.forEach(container => {
@@ -269,7 +306,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
     return text.length > 18;
   };
 
-  
+
 
   // 根据 selectKey 获取对应的图片列表
   const getImagesBySelectKey = (selectKey) => {
@@ -323,25 +360,18 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
     }
   };
 
-  const handleBeforeNextClick = (e) => {
-    const el = (selectedSelectKey === 'select1' || selectedSelectKey === 'select2')
-      ? galleryContainerRef.current
-      : (selectedSelectKey === 'page2')
-        ? page2Container1Ref.current
-        : (selectedSelectKey === 'page3' || selectedSelectKey === 'page4')
-          ? page3ContainerRef.current
-          : null;
+  const handlePrev = () => {
+    const el = getActiveScrollElement();
     if (!el) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const half = rect.width / 2;
     const step = 4 * (324 + 40);
-    if (x < half) {
-      el.scrollBy({ left: -step, behavior: 'smooth' });
-    } else {
-      el.scrollBy({ left: step, behavior: 'smooth' });
-    }
+    el.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+
+  const handleNext = () => {
+    const el = getActiveScrollElement();
+    if (!el) return;
+    const step = 4 * (324 + 40);
+    el.scrollBy({ left: step, behavior: 'smooth' });
   };
 
   const handleBackClick = () => {
@@ -395,10 +425,10 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           onClick={() => handleSelectClick('select3')}
           style={{
             position: 'absolute',
-            width: '100px',
-            height: '35px',
-            top: `${currentImageParam.upButtonTop}px`,
-            right: `${currentImageParam.upButtonRight}px`,
+            width: '200px',
+            height: '65px',
+            top: '240px',
+            left: "400px"
           }}
         />
       )}
@@ -434,23 +464,52 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           className="slides-container"
         >
           <div className="gallery-images-list">
-            {getImagesBySelectKey(selectedSelectKey).map((img, index) => {
-              const multiLine = isMultiLine(img.name);
+            {(() => {
+              const images = getImagesBySelectKey(selectedSelectKey);
+              const firstThree = images.slice(0, 3);
+              const rest = images.slice(3);
+
               return (
-                <div key={index} className="gallery-image-item">
-                  <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
-                    <img
-                      src={img.url}
-                      alt={img.name}
-                      className="gallery-image"
-                    />
-                  </div>
-                  <div className={`gallery-image-caption ${multiLine ? 'multi-line' : ''}`}>
-                    {img.name}
-                  </div>
-                </div>
+                <>
+                  {firstThree.map((img, index) => {
+                    const multiLine = isMultiLine(img.name);
+                    return (
+                      <div key={img.url} className="wide-item-wrapper">
+                        <div className="gallery-image-item">
+                          <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
+                            <img
+                              src={img.url}
+                              alt={img.name}
+                              className="gallery-image"
+                            />
+                          </div>
+                          <div className={`gallery-image-caption ${multiLine ? 'multi-line' : ''}`}>
+                            {img.name}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {rest.map((img, index) => {
+                    const multiLine = isMultiLine(img.name);
+                    return (
+                      <div key={img.url} className="gallery-image-item">
+                        <div className="gallery-image-wrapper" onClick={() => handleImageClick(img)} >
+                          <img
+                            src={img.url}
+                            alt={img.name}
+                            className="gallery-image"
+                          />
+                        </div>
+                        <div className={`gallery-image-caption ${multiLine ? 'multi-line' : ''}`}>
+                          {img.name}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
               );
-            })}
+            })()}
           </div>
         </div>
       )}
@@ -528,7 +587,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
         </div>
       )}
       {(selectedSelectKey === 'page3') && (
-        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 600 }}>
+        <div className="gellery-scroll-wrap2" ref={page3ContainerRef} style={{ top: 575 }}>
           <div className="gallery-images-list">
             {getImagesBySelectKey(selectedSelectKey).map((img, index) => {
               const multiLine = isMultiLine(img.name);
@@ -566,7 +625,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
               );
             })}
           </div>
-          
+
         </div>
       )}
       {(selectedSelectKey === 'page4') && (
@@ -610,7 +669,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
               );
             })}
           </div>
-          
+
         </div>
       )}
       {(selectedSelectKey === 'select1' || selectedSelectKey === 'select2' ||
@@ -628,12 +687,30 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           />
         )}
       {currentImageParam && currentImageParam.beforeButtonTop && (
-        <img
-          src={beforeNextImg}
-          alt="beforeNext"
-          onClick={handleBeforeNextClick}
-          style={{ position: 'absolute', width: 250, height: 60, right: currentImageParam.beforeButtonRight, top: currentImageParam.beforeButtonTop, cursor: 'pointer', userSelect: 'none' }}
-        />
+        <>
+          <img
+            src={beforeImg}
+            alt="prev"
+            onClick={handlePrev}
+            style={{
+              position: 'absolute', width: 125, height: 60,
+              right: (currentImageParam.beforeButtonRight + 125), top: currentImageParam.beforeButtonTop,
+              cursor: 'pointer', userSelect: 'none',
+              opacity: atLeft ? 0.5 : 1,
+            }}
+          />
+          <img
+            src={nextImg}
+            alt="next"
+            onClick={handleNext}
+            style={{
+              position: 'absolute', width: 125, height: 60,
+              right: currentImageParam.beforeButtonRight, top: currentImageParam.beforeButtonTop,
+              cursor: 'pointer', userSelect: 'none',
+              opacity: atRight ? 0.5 : 1,
+            }}
+          />
+        </>
       )}
       <div className="back-btn2" onClick={handleBackClick}></div>
       {selectList.map((ele, i) => {

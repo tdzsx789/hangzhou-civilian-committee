@@ -66,8 +66,10 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 132px;
+  height: 100px;
   outline: none;
+  /* background-color: red;
+  opacity: 0.5; */
 }
 
 .page2-button1 {
@@ -97,10 +99,10 @@
 
 .slides-container {
   position: absolute;
-  left: 98px;
-  top: 465px;
-  width: 884px;
-  height: 1090px;
+  left: 80px;
+  top: 515px;
+  width: 920px;
+  height: 1130px;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;

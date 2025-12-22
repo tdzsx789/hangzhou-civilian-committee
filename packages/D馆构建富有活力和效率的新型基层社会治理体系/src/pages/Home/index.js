@@ -14,9 +14,9 @@ function Home({ onLearnMore, onLearnMore2, onLearnMore3 }) {
       <div className="learn-more-btn2" onClick={onLearnMore2}>
         <img src={startImg2} alt="了解更多2" />
       </div>
-      <div className="learn-more-btn3" onClick={onLearnMore3}>
+      {/* <div className="learn-more-btn3" onClick={onLearnMore3}>
         <img src={startImg3} alt="了解更多3" />
-      </div>
+      </div> */}
     </div>
   );
 }

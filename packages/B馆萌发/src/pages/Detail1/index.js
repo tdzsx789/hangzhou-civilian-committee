@@ -5,6 +5,8 @@ import slides1 from '../../assets/slides1.png';
 import startButton from '../../assets/start.png';
 import handImg from '../../assets/hand.png';
 
+const topList = [0, 125, 250, 375, 500, 635, 760, 885, 1020, 1155, 1280, 1405, 1525, 1665, 1790, 1925, 2050, 2175, 2300, 2435];
+
 function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys }) {
   const [scrollTop, setScrollTop] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -208,7 +210,7 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys 
               tabIndex={0}
               onClick={() => handleButtonClick(key)}
               onKeyDown={handleKeyDown1_2(key)}
-              style={{ top: index * 158 + 'px' }}
+              style={{ top: topList[index] + 'px' }}
             ></div>
           })}
         </div>

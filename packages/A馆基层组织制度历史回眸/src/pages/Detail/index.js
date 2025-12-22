@@ -39,23 +39,23 @@ import qitaQingBaoJia from '../../assets/qita/清朝保甲制.webp';
 import slideButton from '../../assets/slideButton.png';
 
 export const imageList = [
-  { name: '1942年7月，派募壮丁安家费收据。', url: nj1942PaimuZhuangdingAnjiafei, from: 'nanjing' },
-  { name: '民国警察', url: njMinguoJingcha, from: 'nanjing' },
-  { name: '壮丁训练证书——证书证明单据', url: njZhuangdingZhengshu, from: 'nanjing' },
-  { name: '民国的街景', url: njMinguoJiejing, from: 'nanjing' },
+  { name: '1942年7月，派募壮丁安家费收据', url: nj1942PaimuZhuangdingAnjiafei, from: 'nanjing' },
+  { name: '民国三十年天津警察局保甲干部身份证', url: njMinguoSanshiNianJingchaju, from: 'nanjing' },
+  // { name: '民国警察', url: njMinguoJingcha, from: 'nanjing' },
+  { name: '壮丁训练证书证明单据', url: njZhuangdingZhengshu, from: 'nanjing' },
+  { name: '民国街景', url: njMinguoJiejing, from: 'nanjing' },
   { name: '训练壮丁团', url: njXunlianZhuangdingTuan, from: 'nanjing' },
   { name: '1942年11月,新津县政府征收壮丁安家费商民缴纳款项数目花名册。', url: nj1942XinjianZhengfuZhuangdingAnjiafei, from: 'nanjing' },
-  { name: '民国三十年天津警察局保甲干部身份证', url: njMinguoSanshiNianJingchaju, from: 'nanjing' },
   { name: '民国身份证', url: njMinguoShenfenzheng, from: 'nanjing' },
   { name: '民国的货币', url: njMinguoHuobi, from: 'nanjing' },
   { name: '壮丁训练书', url: njZhuangdingShu, from: 'nanjing' },
   { name: '民国时期保甲壮丁团员必携', url: njBaojiaZhuangdingTuanYuan, from: 'nanjing' },
   { name: '民国时期伪新民会保甲团在进行体操训练', url: njWeixinminHuatiCao, from: 'nanjing' },
   { name: '拉壮丁告示', url: njLazhuangdingGaoshi, from: 'nanjing' },
-  { name: '毛泽东同志为苏维埃政府题词：“苏维埃是工农劳苦群众自己管理自己生活的机关，是革命战争的组织者与领导者。”', url: gcdMaoZedongTici, from: 'gongchandang' },
-  { name: '1949年4月23日，南京国民党政府的覆灭，为新中国城市居民委员会制度的创立开辟了道路。图为解放军把胜利的红旗插上了蒋介石“总统府”的门楼上', url: gcd1949NanjingGuomindangGov, from: 'gongchandang' },
+  { name: `毛泽东同志为苏维埃政府题词：“苏维埃是工农劳苦群众自己管理自己生活的机关，是革命战争的组织者与领导者。”`, url: gcdMaoZedongTici, from: 'gongchandang' },
   { name: '土地革命时期重庆市巴县土地改革纪念册', url: gcdTudiGemingJiniance, from: 'gongchandang' },
-  { name: '农民协会是中国共产党首次在农村建立的基层社会组织。图为彭湃在广东省海丰县建立的农民协会旧址', url: gcdNongminXiehuiJiuzhi, from: 'gongchandang' },
+  { name: '农民协会是中国共产党首次在农村建立的基层政权组织。图为彭湃在广东省海丰县建立的农民协会旧址', url: gcdNongminXiehuiJiuzhi, from: 'gongchandang' },
+  // { name: `1949年4月23日，南京国民党政府的覆灭，为新中国城市居民委员会制度的创立开辟了道路。图为解放军把胜利的红旗插上了“总统府”的门楼`, url: gcd1949NanjingGuomindangGov, from: 'gongchandang' },
   { name: '江西省吉安农民协会会员徽章', url: gcdJiangxiJianNongminXiehuiHuizhang, from: 'gongchandang' },
   { name: '1933年12月，《中华苏维埃共和国地方苏维埃暂行组织法（草案）》对乡苏维埃这一组织形式作出规定。图为中华苏维埃共和国临时中央政府旧址', url: gcd1933ZhonghuaSuWeiAiZuzhifa, from: 'gongchandang' },
 ];
@@ -121,7 +121,26 @@ function Detail({ name, gallery, onBack, active }) {
 
   const handleJumpTo7835 = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft = 7550;
+      scrollContainerRef.current.scrollLeft = 6850;
+    }
+  };
+
+  const getCaptionStyle = (text) => {
+    let length = 0;
+    for (let i = 0; i < text.length; i++) {
+      if (text.charCodeAt(i) > 255) {
+        length += 1;
+      } else {
+        length += 0.6;
+      }
+    }
+    
+    // 容器宽度 312px，字体 16px，一行大约容纳 19.5 个汉字
+    // 考虑到标点符号等，取 19 作为阈值
+    if (length <= 19) {
+      return { textAlign: 'center', textIndent: '0' };
+    } else {
+      return { textAlign: 'justify', textIndent: '2em' };
     }
   };
 
@@ -190,7 +209,7 @@ function Detail({ name, gallery, onBack, active }) {
                 className="nanjing-thumb clickable-image"
                 onClick={() => openModal(item)}
               />
-              <div className="nanjing-caption">{item.name}</div>
+              <div className="nanjing-caption" style={getCaptionStyle(item.name)}>{item.name}</div>
             </div>
           ))}
         </div>
@@ -201,17 +220,66 @@ function Detail({ name, gallery, onBack, active }) {
           onClick={() => openModal({ url: slidesGcd, name: '历史图片3' })}
         />
         <div className="gongchandang-grid">
-          {gongchandangList.map((item) => (
-            <div className="gongchandang-item" key={item.url}>
-              <img
-                src={item.url}
-                alt={item.name}
-                className="gongchandang-thumb clickable-image"
-                onClick={() => openModal(item)}
-              />
-              <div className="gongchandang-caption">{item.name}</div>
-            </div>
-          ))}
+          {(() => {
+            const first = gongchandangList[0];
+            const secondAndThird = gongchandangList.slice(1, 3);
+            const rest = gongchandangList.slice(3);
+
+            return (
+              <>
+                <div className="special-layout-column">
+                  {/* 第一张图 */}
+                  {first && (
+                    <div className="wide-wrapper">
+                      <div className="gongchandang-item" key={first.url}>
+                        <img
+                          src={first.url}
+                          alt={first.name}
+                          className="gongchandang-thumb clickable-image"
+                          onClick={() => openModal(first)}
+                        />
+                        <div className="gongchandang-caption" style={getCaptionStyle(first.name)}>
+                          {first.name}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 第二、三张图 */}
+                  <div className="sub-row">
+                    {secondAndThird.map((item) => (
+                      <div className="gongchandang-item" key={item.url}>
+                        <img
+                          src={item.url}
+                          alt={item.name}
+                          className="gongchandang-thumb clickable-image"
+                          onClick={() => openModal(item)}
+                        />
+                        <div className="gongchandang-caption" style={getCaptionStyle(item.name)}>
+                          {item.name}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 其余图片 */}
+                {rest.map((item) => (
+                  <div className="gongchandang-item" key={item.url}>
+                    <img
+                      src={item.url}
+                      alt={item.name}
+                      className="gongchandang-thumb clickable-image"
+                      onClick={() => openModal(item)}
+                    />
+                    <div className="gongchandang-caption" style={getCaptionStyle(item.name)}>
+                      {item.name}
+                    </div>
+                  </div>
+                ))}
+              </>
+            );
+          })()}
         </div>
       </div>
       <button className="slide-button" style={{ backgroundImage: `url(${button1})` }}></button>

@@ -19,11 +19,86 @@
   left: 108px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+
   user-select: none;
   -webkit-user-select: none;
+}
+
+/* result2.docx specialized styles */
+.result2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  row-gap: 40px;
+  padding: 20px 0;
+}
+
+.result2-button {
+  width: 360px;
+  height: 114px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-family: 'FZLanTingHeiS-DB-GB', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  padding: 0 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.result2-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom is handled by row-gap */
+}
+
+.result2-img-div {
+  width: 360px;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: 0px 0px 13px rgba(80, 75, 66, 0.5);
+  border-radius: 4px;
+}
+
+.result2-caption {
+  font-family: 'FZLanTingHeiS-DB-GB', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #544025;
+  margin-top: 10px;
+  width: 380px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.result2-caption.single-line {
+  text-align: center;
+}
+
+.result2-caption.multi-line {
+  text-align: justify;
+  text-indent: 2em;
 }
 
 .back-button-doc {
@@ -40,11 +115,12 @@
 .back-button-doc img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .scroll-container-doc::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .card-item {
@@ -221,12 +297,15 @@
   top: 560px;
   overflow-y: auto;
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .docx-scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .docx-content {
@@ -240,7 +319,8 @@
 
 .docx-content p {
   margin: 8px 0;
-  text-indent: 2em; /* 首行缩进2个汉字 */
+  text-indent: 2em;
+  /* 首行缩进2个汉字 */
 }
 
 /* 列表项也添加首行缩进 */
@@ -257,7 +337,8 @@
   padding-bottom: 8px;
   border-bottom: 2px solid #333;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h2 {
@@ -268,7 +349,8 @@
   padding-bottom: 6px;
   border-bottom: 1px solid #666;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h3 {
@@ -277,7 +359,8 @@
   color: #333;
   margin: 18px 0 8px 0;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 .docx-content h4,
@@ -288,7 +371,8 @@
   color: #444;
   margin: 16px 0 8px 0;
   line-height: 1.4;
-  text-indent: 0; /* 标题不缩进 */
+  text-indent: 0;
+  /* 标题不缩进 */
 }
 
 /* 表格样式优化 */
@@ -325,11 +409,13 @@
 .docx-content table td {
   background-color: #fff;
   color: #333;
-  text-indent: 2em; /* 表格单元格文字首行缩进2个汉字 */
+  text-indent: 2em;
+  /* 表格单元格文字首行缩进2个汉字 */
 }
 
 .docx-content table td p {
-  text-indent: 0; /* 表格单元格内的段落不重复缩进 */
+  text-indent: 0;
+  /* 表格单元格内的段落不重复缩进 */
   margin: 4px 0;
 }
 
@@ -345,6 +431,7 @@
 .docx-content img {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
   display: block;
   margin: 20px auto;
   border-radius: 4px;
@@ -374,8 +461,8 @@
 }
 
 /* 图片前后间距优化 */
-.docx-content img + p,
-.docx-content p + img {
+.docx-content img+p,
+.docx-content p+img {
   margin-top: 20px;
 }
 

@@ -19,13 +19,22 @@
   to { opacity: 1; }
 }
 
-.screen-video {
+/* .screen-video {
   position: absolute;
   top: 265px;
   left: 50%;
   transform: translateX(-50%);
   width: 1400px;
   height: 723px;
+  z-index: 0;
+} */
+
+.screen-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
   z-index: 0;
 }
 
@@ -255,12 +264,12 @@
 
 .complete-date {
   position: absolute;
-  left: 1141px;
+  left: 1130px;
   top: 694px;
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 21px;
   color: #000000;
 }

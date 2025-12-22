@@ -200,7 +200,7 @@ function ScreenPage() {
 
   let backgroundImage = coverImg;
   if (isWaiting) {
-    backgroundImage = screenStartImg;
+    // backgroundImage = screenStartImg;
   } else if (isPrepare) {
     backgroundImage = screenPrepareImg;
   } else if (isPhoto) {
@@ -218,6 +218,7 @@ function ScreenPage() {
 
   useEffect(() => {
     if (!isElection) {
+      championSentRef.current = '';
       return;
     }
     const imgs = [bean1, bean2, bean3, bean4, bean5, bean6, bean7, bean8, bean9, bean10, bean11, bean12];
@@ -243,8 +244,12 @@ function ScreenPage() {
         return isHuman || (!isNpc && !isHuman) ? i : null;
       })
       .filter((i) => i !== null);
-    const largeHumanIdx = humanGroupIndices.length > 0
-      ? humanGroupIndices[Math.floor(Math.random() * humanGroupIndices.length)]
+    
+    // 如果没有真人，则从所有玩家中随机选一个
+    const candidates = humanGroupIndices.length > 0 ? humanGroupIndices : [0, 1, 2, 3, 4];
+    
+    const largeHumanIdx = candidates.length > 0
+      ? candidates[Math.floor(Math.random() * candidates.length)]
       : null;
     if (largeHumanIdx !== null) {
       const championPid = order[largeHumanIdx];
@@ -429,6 +434,25 @@ function ScreenPage() {
         >
           点击开启声音
         </button>
+      )}
+      {isWaiting && (
+        <div style={{
+          position: 'absolute',
+          right: '20px',
+          bottom: '0px',
+          transform: 'translateY(-50%)',
+          fontFamily: "'FZCuHeiSong-B-JF'",
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: '40px',
+          // lineHeight: '97px',
+          textAlign: 'left',
+          color: '#ffffff',
+          zIndex: 2,
+          opacity: 0.9
+        }}>
+          基层选举方式演变
+        </div>
       )}
       {shouldShowContent && <div className="screen-overlay" />}
       {shouldShowContent && (

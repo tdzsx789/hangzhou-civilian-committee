@@ -3,26 +3,51 @@ const dgram = require('dgram');
 
 const HTTP_PORT = process.env.PORT || 5050;
 const UDP_PORT = 6000;
-const isDev = false;
+const isDev = true;
 
-const getIp = (label) => (isDev ? '127.0.0.1' : (label === 'P1-2' || label === 'P2-2' ? '192.168.22.12' : '192.168.22.28'));
+const getIp = (label) => {
+  if (isDev) return ['127.0.0.1'];
+  if (['ZJS', 'ZJSHZS', 'ZJSHZS1', 'SHS', 'SCSCDS', 'QUIT', 'LARGE', 'SMALL', 'ZTGS1', 'ZTGS2', 'ZTGS3', 'ZTGS4'].includes(label)) {
+    return ['192.168.22.41', '192.168.22.42'];
+  }
+  if (label === 'P1-2' || label === 'P2-2') {
+    return ['192.168.22.12'];
+  }
+  return ['192.168.22.28'];
+};
 
 const sendUdp = (label) => new Promise((resolve, reject) => {
-  const ip = getIp(String(label));
-  console.log('ip', ip)
+  const ips = getIp(String(label));
+  console.log('targets', ips);
   const socket = dgram.createSocket('udp4');
   const payload = label === 'P1-2' ? 'P1' : (label === 'P2-2' ? 'P2' : String(label));
   const msg = Buffer.from(payload);
-  console.log('UDP_SEND', ip + ':' + UDP_PORT, payload);
-  socket.send(msg, UDP_PORT, ip, (err) => {
+  
+  let pending = ips.length;
+  let errors = [];
+
+  if (pending === 0) {
     socket.close();
-    if (err) {
-      console.error('UDP_ERROR', err);
-      reject(err);
-    } else {
-      console.log('UDP_SENT', payload);
-      resolve();
-    }
+    resolve();
+    return;
+  }
+
+  ips.forEach(ip => {
+    console.log('UDP_SEND', ip + ':' + UDP_PORT, payload);
+    socket.send(msg, UDP_PORT, ip, (err) => {
+      if (err) {
+        console.error('UDP_ERROR', ip, err);
+        errors.push(err);
+      } else {
+        console.log('UDP_SENT', ip, payload);
+      }
+      pending--;
+      if (pending === 0) {
+        socket.close();
+        if (errors.length > 0) reject(errors[0]);
+        else resolve();
+      }
+    });
   });
 });
 
