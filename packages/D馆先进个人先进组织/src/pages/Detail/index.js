@@ -4,10 +4,8 @@ import button1 from '../../assets/button1.png';
 import listBg2 from '../../assets/listBg2.png';
 import listBg from '../../assets/list.png';
 import backButton from '../../assets/backButton.png';
-import handImg from '../../assets/hand.png';
 
 function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data = [], orgData = [], isActive, selectedProvinceName }) {
-  const [showHand, setShowHand] = useState(true);
   const [selectedProvinceIndex, setSelectedProvinceIndex] = useState(null);
   const childrenScrollRef = useRef(null);
   const orgChildrenScrollRef = useRef(null);
@@ -21,19 +19,10 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
   useEffect(() => {
     const container = childrenScrollRef.current;
     if (!isActive || !container) {
-      setShowHand(false);
       return undefined;
     }
 
-    setShowHand(true);
-    const hideHand = () => setShowHand(false);
-    const timer = setTimeout(hideHand, 6000);
-
-    container.addEventListener('touchstart', hideHand);
-
     return () => {
-      clearTimeout(timer);
-      container.removeEventListener('touchstart', hideHand);
     };
   }, [isActive]);
 
@@ -162,13 +151,6 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
             );
           })}
         </div>
-        {showHand && selectedProvinceIndex !== null && (
-          <img
-            src={handImg}
-            alt="hand"
-            className="hand-swipe-animation hand-children"
-          />
-        )}
       </div>
 
       {/* 右侧：先进组织 */}

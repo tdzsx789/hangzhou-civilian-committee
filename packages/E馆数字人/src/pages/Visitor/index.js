@@ -1,9 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 
-function Visitor({ image, video, onBack, className }) {
+function Visitor({ image, video, onBack, className, volume = 1, playbackCmd }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !playbackCmd) return;
+    const { type } = playbackCmd;
+    if (type === 'PAUSE') {
+      el.pause();
+    } else if (type === 'START') {
+      el.play().catch(() => {});
+    } else if (type === 'FORWARD') {
+      el.currentTime = Math.min(el.duration, el.currentTime + 5);
+    } else if (type === 'BACK') {
+      el.currentTime = Math.max(0, el.currentTime - 5);
+    }
+  }, [playbackCmd]);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -11,7 +32,7 @@ function Visitor({ image, video, onBack, className }) {
     const run = async () => {
       try {
         el.muted = false;
-        el.volume = 1;
+        el.volume = volume;
         await el.play();
         setNeedsUserAction(false);
       } catch (e) {
@@ -38,7 +59,6 @@ function Visitor({ image, video, onBack, className }) {
           ref={videoRef}
           src={video}
           autoPlay
-          loop
           playsInline
           controls={false}
           className="visitor-media"

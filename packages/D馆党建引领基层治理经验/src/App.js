@@ -4,6 +4,33 @@ import Home from './pages/Home';
 
 function App() {
   const appRef = useRef(null);
+  const [volume, setVolume] = useState(() => {
+    const saved = localStorage.getItem('app_volume');
+    return saved !== null ? parseFloat(saved) : 1;
+  });
+  const [playbackCmd, setPlaybackCmd] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('app_volume', volume);
+  }, [volume]);
+
+  useEffect(() => {
+    const url = process.env.REACT_APP_SSE_URL || 'http://localhost:5280/events';
+    const es = new EventSource(url);
+    es.onmessage = (e) => {
+      const cmd = String(e.data).trim().toUpperCase();
+      if (cmd === 'UP') {
+        setVolume((v) => Math.min(1, parseFloat((v + 0.1).toFixed(1))));
+      } else if (cmd === 'DOWN') {
+        setVolume((v) => Math.max(0, parseFloat((v - 0.1).toFixed(1))));
+      } else if (['START', 'PAUSE', 'FORWARD', 'BACK'].includes(cmd)) {
+        setPlaybackCmd({ type: cmd, t: Date.now() });
+      }
+    };
+    return () => {
+      es.close();
+    };
+  }, []);
 
   // 密码输入功能
   const [showPasswordInput, setShowPasswordInput] = useState(false);
@@ -314,7 +341,7 @@ function App() {
       )}
 
 
-      <Home />
+      <Home volume={volume} playbackCmd={playbackCmd} />
     </div>
   );
 }

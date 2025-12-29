@@ -1,13 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './index.css';
 import bg1_1 from '../../assets/bg1_1.jpg';
-import handImg from '../../assets/hand.png';
 
 function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = [], isActive = false }) {
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragStateRef = useRef({ startY: 0, scrollTop: 0 });
-  const [showHand, setShowHand] = useState(true);
 
   // 当页面激活时重置滚动位置
   useEffect(() => {
@@ -16,18 +14,10 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = 
     }
     const container = scrollContainerRef.current;
     if (!isActive || !container) {
-      setShowHand(false);
       return undefined;
     }
 
-    setShowHand(true);
-    const hideHand = () => setShowHand(false);
-    const timer = setTimeout(hideHand, 6000);
-    container.addEventListener('touchstart', hideHand);
-
     return () => {
-      clearTimeout(timer);
-      container.removeEventListener('touchstart', hideHand);
     };
   }, [isActive]);
 
@@ -113,19 +103,6 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = 
 
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1_1})` }}>
-      {showHand && (
-        <img
-          src={handImg}
-          alt="hand"
-          className="hand-swipe-animation"
-          style={{
-            position: 'absolute',
-            left: '520px',
-            top: '1200px',
-            zIndex: 3
-          }}
-        />
-      )}
       <div
         ref={scrollContainerRef}
         className="scroll-container"

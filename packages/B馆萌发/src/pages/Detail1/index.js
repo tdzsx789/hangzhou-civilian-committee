@@ -3,7 +3,6 @@ import './index.css';
 import bg1_1 from '../../assets/bg1_1.jpg';
 import slides1 from '../../assets/slides1.png';
 import startButton from '../../assets/start.png';
-import handImg from '../../assets/hand.png';
 
 const topList = [0, 125, 250, 375, 500, 635, 760, 885, 1020, 1155, 1280, 1405, 1525, 1665, 1790, 1925, 2050, 2175, 2300, 2435];
 
@@ -15,25 +14,12 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys 
   const scrollContainerRef = useRef(null);
   const imageWrapRef = useRef(null);
   const [imageHeight, setImageHeight] = useState(0);
-  const [showHand, setShowHand] = useState(true);
 
   // 当进入 select1、select2、page2 或 page3 时显示 hand，6秒后隐藏
   useEffect(() => {
     const container = scrollContainerRef.current;
-    setShowHand(true);
-    const timer = setTimeout(() => {
-      setShowHand(false);
-    }, 6000);
-
-    const handleScroll = () => {
-      setShowHand(false);
-    };
-
-    container.addEventListener('touchstart', handleScroll);
 
     return () => {
-      clearTimeout(timer);
-      container.removeEventListener('touchstart', handleScroll);
     };
   }, []);
 
@@ -215,18 +201,6 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys 
           })}
         </div>
       </div>
-      {showHand && (
-        <img
-          src={handImg}
-          alt="hand"
-          className="hand-swipe-animation"
-          style={{
-            position: 'absolute',
-            left: '520px',
-            top: '1200px'
-          }}
-        />
-      )}
     </div>
   );
 }

@@ -1,12 +1,87 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './index.css';
-import detailBg from '../../assets/detailBg.jpg';
+import videoSrc from '../../assets/future.mp4';
 
-function Detail({ onBack, className }) {
+function Detail({ onBack, volume = 1, playbackCmd }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !playbackCmd) return;
+    const { type } = playbackCmd;
+    if (type === 'START') {
+      video.play().catch(() => {});
+    } else if (type === 'PAUSE') {
+      video.pause();
+    } else if (type === 'FORWARD') {
+      video.currentTime = Math.min(video.duration, video.currentTime + 5);
+    } else if (type === 'BACK') {
+      video.currentTime = Math.max(0, video.currentTime - 5);
+    }
+  }, [playbackCmd]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // 自动播放逻辑
+    const playVideo = async () => {
+      try {
+        // 尝试有声播放
+        video.muted = false;
+        video.volume = volume;
+        await video.play();
+      } catch (err) {
+        console.log('Autoplay with sound failed, trying muted', err);
+        // 失败则静音播放
+        video.muted = true;
+        try {
+          await video.play();
+        } catch (e) {
+          console.error('Autoplay failed', e);
+        }
+      }
+    };
+
+    playVideo();
+
+    // 播放结束回到第一帧
+    const handleEnded = () => {
+      video.currentTime = 0;
+      video.pause();
+    };
+
+    video.addEventListener('ended', handleEnded);
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
   return (
-    <div className={`detail-page ${className || ''}`} style={{ backgroundImage: `url(${detailBg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      <div className="learn-more-btn" onClick={onBack}>
-      </div>
+    <div className="detail-page">
+      <video
+        ref={videoRef}
+        src={videoSrc}
+        className="detail-video"
+        controls={false}
+        playsInline
+      />
+      {/* 点击任意位置返回首页，或者预留返回区域 */}
+      <div 
+        className="back-mask" 
+        onClick={onBack} 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1
+        }}
+      />
     </div>
   );
 }

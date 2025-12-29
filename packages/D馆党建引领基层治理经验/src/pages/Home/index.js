@@ -2,9 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import videoSrc from '../../assets/aihuman.mp4';
 
-function Home() {
+function Home({ volume = 1, playbackCmd }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !playbackCmd) return;
+    const { type } = playbackCmd;
+    if (type === 'PAUSE') {
+      el.pause();
+    } else if (type === 'START') {
+      el.play().catch(() => {});
+    } else if (type === 'FORWARD') {
+      el.currentTime = Math.min(el.duration, el.currentTime + 5);
+    } else if (type === 'BACK') {
+      el.currentTime = Math.max(0, el.currentTime - 5);
+    }
+  }, [playbackCmd]);
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -13,7 +34,7 @@ function Home() {
     const playVideo = async () => {
       try {
         videoEl.muted = false;
-        videoEl.volume = 1;
+        videoEl.volume = volume;
         await videoEl.play();
       } catch (err) {
         try {

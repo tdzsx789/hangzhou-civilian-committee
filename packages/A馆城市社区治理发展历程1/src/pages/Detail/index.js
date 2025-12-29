@@ -15,7 +15,7 @@ import Modal from '../Modal';
 
 export const imageList = [
   {
-    name: '1989年，时任民政部副部长张德江调研浙江省杭州市小营巷居委会社区服务工作',
+    name: '1989年10月，时任民政部副部长张德江调研浙江省杭州市小营巷居民委员会社区服务工作',
     url: image1989
   },
   {

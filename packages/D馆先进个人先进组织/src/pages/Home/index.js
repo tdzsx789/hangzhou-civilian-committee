@@ -201,7 +201,8 @@ function Home({ onStart1Click, onStart2Click, onMarkerClick }) {
     echarts.registerMap('china', chinaMap);
     const data = provinces.map((p) => {
       const lat = p.lat > 31.072559 ? +(p.lat - 0.1).toFixed(6) : p.lat;
-      return { name: p.name, value: [p.lng, lat, 1] };
+      const itemStyle = (p.name === '江西省' || p.name === '河北省') ? { color: '#f86d10ff' } : undefined;
+      return { name: p.name, value: [p.lng, lat, 1], itemStyle };
     });
     const projection = mapProjectionType === 'mercator'
       ? null
@@ -250,7 +251,7 @@ function Home({ onStart1Click, onStart2Click, onMarkerClick }) {
           emphasis: {
             label: { show: true },
           },
-          itemStyle: { color: '#ffb040ff' },
+          itemStyle: { color: '#f89710ff' },
           data,
           encode: { tooltip: 2 },
         },

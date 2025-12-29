@@ -10,12 +10,15 @@ import select4Img from '../../assets/step4.png';
 import page2Img from '../../assets/page2.png';
 import page3Img from '../../assets/page3.png';
 import page4Img from '../../assets/page4.png';
-import handImg from '../../assets/hand.png';
 import pageSlides1Img from '../../assets/pageSlides1.png';
 import pageSlides2Img from '../../assets/pageSlides2.png';
 import pageSlides3Img from '../../assets/pageSlides3.png';
 import beforeImg from '../../assets/before.png';
 import nextImg from '../../assets/next.png';
+import speekBackImg from '../../assets/speekBack.svg';
+import speekGoImg from '../../assets/speekGo.svg';
+import speedOutImg from '../../assets/speedOut.svg';
+import speedStartImg from '../../assets/speedStart.svg'; // 导入开始讲解按钮图标
 
 // 导入 chubujianli 文件夹的图片
 import chubujianli1 from '../../assets/chubujianli/1952-east-china-military-administrative-committee-pilot-scheme.jpg';
@@ -91,7 +94,7 @@ const galleryImages = [
   { name: '1954年，山东省张周市（现淄博市张店区、周村区）建立居民委员会试点工作总结', url: chubujianli6, from: 'chubujianli' },
   { name: '1952年，广州市金华街干部群众组织起来整治街内卫生', url: chubujianli2, from: 'chubujianli' },
   { name: '1952年，华东军政委员会制定了第一个行政大区试点方案——《关于10万人口以上城市建立居民委员会试行方案（草案）》', url: chubujianli1, from: 'chubujianli' },
-    { name: `彭真同志向毛主席和中共中央报送“城市应建立街道办事处和居民委员会”报告的节录`, url: chubujianli16, from: 'chubujianli' },
+  { name: `彭真同志向毛主席和中共中央报送“城市应建立街道办事处和居民委员会”报告的节录`, url: chubujianli16, from: 'chubujianli' },
   { name: '城市街道办事处组织条例、城市居民委员会组织条例等条例单行本照片', url: chubujianli14, from: 'chubujianli' },
   // { name: '1953年，彭真同志向中共中央建议在各城市区以下和不设区的市以下同时建立城市街道办事处、城市居民委员会两个组织。图为彭真同志', url: chubujianli4, from: 'chubujianli' },
   { name: '1955年7月28日，辽宁省鞍山市出台《居民委员会生活补助费使用办法》的文件', url: chubujianli7, from: 'chubujianli' },
@@ -161,16 +164,16 @@ const selectList = [
 
 const selectParams = {
   select1: {
-    left: 444, top: 101, url: select1Img, downButtonLeft: 1252, downButtonTop: 900, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 1230
+    left: 444, top: 101, url: select1Img, downButtonLeft: 700, downButtonTop: 875, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 630
   },
   select2: {
-    left: 444, top: 101, url: select2Img, downButtonLeft: 987, downButtonTop: 910, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 1230
+    left: 444, top: 101, url: select2Img, downButtonLeft: 435, downButtonTop: 875, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 630
   },
   select3: {
-    left: 444, top: 101, url: select3Img, downButtonLeft: 1252, downButtonTop: 822,
+    left: 444, top: 101, url: select3Img, downButtonLeft: 700, downButtonTop: 805,
   },
   select4: {
-    left: 444, top: 101, url: select4Img, downButtonLeft: 987, downButtonTop: 972,
+    left: 444, top: 101, url: select4Img, downButtonLeft: 645, downButtonTop: 960,
   },
   page2: {
     left: 444, top: 101, url: page2Img, beforeButtonTop: 920, beforeButtonRight: 642
@@ -185,7 +188,6 @@ const selectParams = {
 
 function Detail({ name, gallery, onBack, index = 'select1' }) {
   const [selectedSelectKey, setSelectedSelectKey] = useState(index);
-  const [showHand, setShowHand] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -195,6 +197,39 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   const page3ContainerRef = useRef(null);
   const [atLeft, setAtLeft] = useState(true);
   const [atRight, setAtRight] = useState(false);
+
+  const [explanationMode, setExplanationMode] = useState(false);
+  const [explanationStep, setExplanationStep] = useState(0); // 1-based index
+  const EXPLANATION_STEPS = ['select1', 'select2', 'select3', 'select4', 'page2', 'page3', 'page4'];
+
+  const handleSpeekGo = () => {
+    if (!explanationMode) {
+      setExplanationMode(true);
+      setExplanationStep(1);
+      setSelectedSelectKey(EXPLANATION_STEPS[0]);
+    } else {
+      if (explanationStep < EXPLANATION_STEPS.length) {
+        const nextStep = explanationStep + 1;
+        setExplanationStep(nextStep);
+        setSelectedSelectKey(EXPLANATION_STEPS[nextStep - 1]);
+      } else {
+        // Exit explanation mode
+        setExplanationMode(false);
+        setExplanationStep(0);
+      }
+    }
+  };
+
+  const handleSpeekBack = () => {
+    if (explanationStep === 1) {
+      setExplanationMode(false);
+      setExplanationStep(0);
+    } else if (explanationStep > 1) {
+      const prevStep = explanationStep - 1;
+      setExplanationStep(prevStep);
+      setSelectedSelectKey(EXPLANATION_STEPS[prevStep - 1]);
+    }
+  };
 
   const getActiveScrollElement = () => {
     const el = (selectedSelectKey === 'select1' || selectedSelectKey === 'select2')
@@ -229,34 +264,17 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
       updateEdges();
     }
     if (selectedSelectKey === 'page2') {
-        if (page2Container1Ref.current) {
-            page2Container1Ref.current.scrollLeft = 0;
-        }
-        if (page2Container2Ref.current) {
-            page2Container2Ref.current.scrollLeft = 0;
-        }
-        updateEdges();
+      if (page2Container1Ref.current) {
+        page2Container1Ref.current.scrollLeft = 0;
+      }
+      if (page2Container2Ref.current) {
+        page2Container2Ref.current.scrollLeft = 0;
+      }
+      updateEdges();
     }
     if ((selectedSelectKey === 'page3' || selectedSelectKey === 'page4') && page3ContainerRef.current) {
-        page3ContainerRef.current.scrollLeft = 0;
-        updateEdges();
-    }
-  }, [selectedSelectKey]);
-
-  // 当进入 select1、select2、page2、page3 或 page4 时显示 hand，6秒后隐藏
-  useEffect(() => {
-    if (selectedSelectKey === 'select1' || selectedSelectKey === 'select2' ||
-      selectedSelectKey === 'page2' || selectedSelectKey === 'page3' || selectedSelectKey === 'page4') {
-      setShowHand(true);
-      const timer = setTimeout(() => {
-        setShowHand(false);
-      }, 6000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    } else {
-      setShowHand(false);
+      page3ContainerRef.current.scrollLeft = 0;
+      updateEdges();
     }
   }, [selectedSelectKey]);
 
@@ -282,7 +300,6 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
     }
 
     const handleScroll = (e) => {
-      setShowHand(false);
       updateEdges();
     };
 
@@ -438,13 +455,14 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           onClick={handleDownButtonClick}
           style={{
             position: 'absolute',
-            width: '70px',
-            height: '70px',
+            width: '100px',
+            height: '100px',
             left: `${currentImageParam.downButtonLeft}px`,
             top: `${currentImageParam.downButtonTop}px`,
             outline: 'none',
             WebkitTapHighlightColor: 'transparent',
-            userSelect: 'none'
+            userSelect: 'none',
+            // background: 'red'
           }}
         />
       )}
@@ -672,20 +690,6 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
 
         </div>
       )}
-      {(selectedSelectKey === 'select1' || selectedSelectKey === 'select2' ||
-        selectedSelectKey === 'page2' || selectedSelectKey === 'page3' || selectedSelectKey === 'page4') && showHand && (
-          <img
-            src={handImg}
-            alt="hand"
-            className={selectedSelectKey === 'page3' ? 'hand-swipe-animation-page3' : 'hand-swipe-animation'}
-            style={{
-              position: 'absolute',
-              // left: selectedSelectKey === 'page3' ? '1000px' : '1400px',
-              left: 1400,
-              top: selectedSelectKey === 'page3' ? '820px' : '690px'
-            }}
-          />
-        )}
       {currentImageParam && currentImageParam.beforeButtonTop && (
         <>
           <img
@@ -712,6 +716,32 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           />
         </>
       )}
+      {explanationMode && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+          zIndex: 9, background: 'rgba(0,0,0,0)'
+        }} onClick={(e) => e.stopPropagation()}></div>
+      )}
+      <div style={{ position: 'absolute', top: 300, left: 10, zIndex: 10, opacity: 0.6, width: 55 }}>
+        <img
+          src={speekBackImg}
+          alt="speekBack"
+          onClick={handleSpeekBack}
+          style={{
+            width: 55,
+            height: 55,
+            marginBottom: 15,
+            opacity: explanationMode ? 1 : 0,
+            pointerEvents: explanationMode ? 'auto' : 'none'
+          }}
+        />
+        <img
+          src={(!explanationMode) ? speedStartImg : ((explanationStep === 7) ? speedOutImg : speekGoImg)}
+          alt="speekGo"
+          onClick={handleSpeekGo}
+          style={{ width: 55, height: 55 }}
+        />
+      </div>
       <div className="back-btn2" onClick={handleBackClick}></div>
       {selectList.map((ele, i) => {
         return <div key={i} className={`selectButton${i + 1}`} onClick={() => handleSelectClick(ele.selectKey)}></div>

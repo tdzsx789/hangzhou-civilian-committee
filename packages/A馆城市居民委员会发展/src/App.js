@@ -19,7 +19,6 @@ import page3Img from './assets/page3.png';
 import page4Img from './assets/page4.png';
 import slides1Img from './assets/slides1.png';
 import slides2Img from './assets/slides2.png';
-import handImg from './assets/hand.png';
 import pageSlides1Img from './assets/pageSlides1.png';
 import pageSlides2Img from './assets/pageSlides2.png';
 import pageSlides3Img from './assets/pageSlides3.png';
@@ -41,7 +40,6 @@ const preloadImages = () => {
     page4Img,
     slides1Img,
     slides2Img,
-    handImg,
     pageSlides1Img,
     pageSlides2Img,
     pageSlides3Img,
@@ -141,6 +139,7 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedIndex, setSelectedIndex] = useState('select1');
+  const [detailKey, setDetailKey] = useState(0);
 
   // 预加载所有图片
   useEffect(() => {
@@ -161,6 +160,7 @@ function App() {
 
   const handleNavigateToDetail = (index) => {
     setSelectedIndex(index);
+    setDetailKey(prev => prev + 1);
     setCurrentPage('detail');
   };
   // 1个小时无交互自动返回Home页
@@ -384,7 +384,7 @@ function App() {
         <Menu onBack={handleBack} onNavigateToDetail={handleNavigateToDetail} />
       </div>
       <div className={`page-container ${currentPage === 'detail' ? 'active' : 'inactive'}`}>
-        <Detail name="城市居民委员会发展1" gallery="A馆" onBack={handleBackToMenu} index={selectedIndex} />
+        <Detail key={detailKey} name="城市居民委员会发展1" gallery="A馆" onBack={handleBackToMenu} index={selectedIndex} />
       </div>
     </div>
   );

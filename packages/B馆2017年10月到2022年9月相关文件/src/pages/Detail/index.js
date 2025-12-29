@@ -2,10 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
 import bg2 from '../../assets/bg2.jpg';
 import slideBg from '../../assets/slideBg.png';
-import handImg from '../../assets/hand.png';
 
 function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = false }) {
-  const [showHand, setShowHand] = useState(true);
   const scrollContainerRef = useRef(null);
 
   // 重置滚动位置：从其他页面进来时
@@ -19,19 +17,10 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!isActive || !container) {
-      setShowHand(false);
       return undefined;
     }
 
-    setShowHand(true);
-    const hideHand = () => setShowHand(false);
-    const timer = setTimeout(hideHand, 6000);
-
-    container.addEventListener('touchstart', hideHand);
-
     return () => {
-      clearTimeout(timer);
-      container.removeEventListener('touchstart', hideHand);
     };
   }, [isActive, data.length]);
 
@@ -75,18 +64,6 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
           );
         })}
       </div>
-      {showHand && (
-        <img
-          src={handImg}
-          alt="hand"
-          className="hand-swipe-animation"
-          style={{
-            position: 'absolute',
-            left: '520px',
-            top: '1200px'
-          }}
-        />
-      )}
     </div>
   );
 }

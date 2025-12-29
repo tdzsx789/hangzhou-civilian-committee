@@ -2,9 +2,9 @@ import React from 'react';
 import './index.css';
 import coverImg from '../../assets/cover.jpg';
 
-function Home({ }) {
+function Home({ onEnter }) {
   return (
-    <div className="home-page">
+    <div className="home-page" onClick={onEnter}>
     </div>
   );
 }

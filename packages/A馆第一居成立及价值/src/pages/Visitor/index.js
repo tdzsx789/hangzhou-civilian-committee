@@ -31,6 +31,7 @@ function Visitor({ image, video, className, volume = 1, playbackCmd }) {
   }, [volume]);
 
   useEffect(() => {
+    let isMounted = true;
     const el = videoRef.current;
     if (!video || !el) return;
     const playVideo = async () => {
@@ -39,15 +40,19 @@ function Visitor({ image, video, className, volume = 1, playbackCmd }) {
         el.volume = volume;
         await el.play();
       } catch (err) {
+        if (!isMounted) return;
         try {
           el.muted = true;
           await el.play();
         } catch (e) {}
-        setNeedsUserAction(true);
+        if (isMounted) {
+          setNeedsUserAction(true);
+        }
       }
     };
     playVideo();
     return () => {
+      isMounted = false;
       el.pause();
     };
   }, [video]);

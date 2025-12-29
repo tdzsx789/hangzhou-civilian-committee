@@ -1,16 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
-import videoSrc from '../../assets/aihuman.mp4';
+// import videoSrc from '../../assets/aihuman.mp4';
 import { useVideoDebugControls } from './utils';
 
 const isTest = false;
 
-function Home() {
+function Home({ volume = 1, playbackCmd }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
   const { getVideoInfo } = useVideoDebugControls(videoRef, isTest);
   const [videoInfo, setVideoInfo] = useState({ left: 0, top: 0, width: 1080, height: 1080 });
   const [sseStatus, setSseStatus] = useState('disconnected');
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !playbackCmd) return;
+    const { type } = playbackCmd;
+    if (type === 'PAUSE') {
+      el.pause();
+    } else if (type === 'START') {
+      el.play().catch(() => {});
+    } else if (type === 'FORWARD') {
+      el.currentTime = Math.min(el.duration, el.currentTime + 5);
+    } else if (type === 'BACK') {
+      el.currentTime = Math.max(0, el.currentTime - 5);
+    }
+  }, [playbackCmd]);
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -19,7 +40,7 @@ function Home() {
     const playVideo = async () => {
       try {
         videoEl.muted = false;
-        videoEl.volume = 1;
+        videoEl.volume = volume;
         await videoEl.play();
       } catch (err) {
         try {
@@ -67,7 +88,7 @@ function Home() {
 
   return (
     <div className="home-page">
-      <video
+      {/* <video
         ref={videoRef}
         className="home-bg-video"
         src={videoSrc}
@@ -75,7 +96,7 @@ function Home() {
         loop
         playsInline
         controls={false}
-      />
+      /> */}
       {isTest && (
         <div className="video-debug-info">
           <div>left: {videoInfo.left}px</div>

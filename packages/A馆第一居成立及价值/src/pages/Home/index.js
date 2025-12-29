@@ -31,6 +31,7 @@ function Home({ volume = 1, playbackCmd }) {
   }, [volume]);
 
   useEffect(() => {
+    let isMounted = true;
     const videoEl = videoRef.current;
     if (!videoEl) return;
 
@@ -40,19 +41,23 @@ function Home({ volume = 1, playbackCmd }) {
         videoEl.volume = volume;
         await videoEl.play();
       } catch (err) {
+        if (!isMounted) return;
         try {
           videoEl.muted = true;
           await videoEl.play();
         } catch (e) {
           // ignore if autoplay still blocked
         }
-        setNeedsUserAction(true);
+        if (isMounted) {
+          setNeedsUserAction(true);
+        }
       }
     };
 
     playVideo();
 
     return () => {
+      isMounted = false;
       videoEl.pause();
     };
   }, []);

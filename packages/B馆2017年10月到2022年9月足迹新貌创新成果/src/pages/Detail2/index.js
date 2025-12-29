@@ -123,12 +123,41 @@ const processResult2Html = (html, otherItems = [], buttonBgImage) => {
 };
 
 function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
-  const [docxContent, setDocxContent] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [allDocxContent, setAllDocxContent] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalData, setModalData] = useState(null);
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
+
+  // 预加载所有文件
+  useEffect(() => {
+    const loadAllDocs = async () => {
+      const contentMap = {};
+      const promises = Object.entries(docxFiles).map(async ([fileName, fileUrl]) => {
+        try {
+          const response = await fetch(fileUrl);
+          const arrayBuffer = await response.arrayBuffer();
+          const result = await mammoth.convertToHtml({ arrayBuffer });
+          
+          let htmlContent = result.value;
+          // Special handling for result2.docx
+          if (fileName === 'result2.docx') {
+            const otherItems = list.filter(item => item.file !== 'result2.docx');
+            htmlContent = processResult2Html(htmlContent, otherItems, buttonBg);
+          }
+          
+          contentMap[fileName] = htmlContent;
+        } catch (error) {
+          console.error(`Error loading ${fileName}:`, error);
+        }
+      });
+
+      await Promise.all(promises);
+      setAllDocxContent(contentMap);
+    };
+
+    loadAllDocs();
+  }, []);
 
   // 当页面激活时，默认展示第3项内容（list[2]）；若不存在则展示最后一项
   useEffect(() => {
@@ -141,41 +170,11 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
       }
       const defaultItem = list[1];
       setSelectedItem(defaultItem);
-      loadDocx(defaultItem.file);
     }
   }, [isActive]);
 
-  const loadDocx = async (fileName) => {
-    setLoading(true);
-    setDocxContent('');
-    try {
-      // 使用映射对象加载文件
-      const docxFile = docxFiles[fileName];
-      if (!docxFile) {
-        throw new Error(`File ${fileName} not found`);
-      }
-      const response = await fetch(docxFile);
-      const arrayBuffer = await response.arrayBuffer();
-      const result = await mammoth.convertToHtml({ arrayBuffer });
-      
-      let htmlContent = result.value;
-      // Special handling for result2.docx
-      if (fileName === 'result2.docx') {
-        const otherItems = list.filter(item => item.file !== 'result2.docx');
-        htmlContent = processResult2Html(htmlContent, otherItems, buttonBg);
-      }
-      
-      setDocxContent(htmlContent);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error loading docx file:', error);
-      setLoading(false);
-    }
-  };
-
   const handleCardClick = (item) => {
     setSelectedItem(item);
-    loadDocx(item.file);
   };
 
   const handleCardKeyDown = (event, item) => {
@@ -195,7 +194,6 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
     // Return to result2.docx
     const defaultItem = list[1];
     setSelectedItem(defaultItem);
-    loadDocx(defaultItem.file);
   };
 
   const handleViewMore = () => {
@@ -284,15 +282,11 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
             </div>
           )} */}
           <div ref={scrollContainerRef} className="docx-scroll-container">
-            {loading ? (
-              <div className="loading-text">加载中...</div>
-            ) : (
-              <div
-                className="docx-content"
-                dangerouslySetInnerHTML={{ __html: docxContent }}
-                onClick={handleDocxContentClick}
-              />
-            )}
+            <div
+              className="docx-content"
+              dangerouslySetInnerHTML={{ __html: allDocxContent[selectedItem.file] || '' }}
+              onClick={handleDocxContentClick}
+            />
           </div>
           {selectedItem && selectedItem !== list[1] && (
             <div

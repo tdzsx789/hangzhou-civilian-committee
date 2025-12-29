@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import Home from './pages/Home';
 import Visitor from './pages/Visitor';
 import P1 from './assets/P1.jpg';
 import Video from './assets/video.mp4';
@@ -12,9 +11,18 @@ function App() {
   const lastTouchTimeRef = useRef(0);
   const redButtonRef = useRef(null);
 
-  const [showVisitor, setShowVisitor] = useState(false);
-  const [visitorImage, setVisitorImage] = useState(null);
+  const [showVisitor, setShowVisitor] = useState(true);
+  const [visitorImage, setVisitorImage] = useState(P1);
   const [visitorVideo, setVisitorVideo] = useState(null);
+  const [volume, setVolume] = useState(() => {
+    const saved = localStorage.getItem('app_volume');
+    return saved !== null ? parseFloat(saved) : 1;
+  });
+  const [playbackCmd, setPlaybackCmd] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('app_volume', volume);
+  }, [volume]);
 
   // 使用原生事件监听器，设置 passive: false 以允许 preventDefault
   useEffect(() => {
@@ -99,9 +107,21 @@ function App() {
     es.onmessage = (e) => {
       const cmd = String(e.data).trim().toUpperCase();
       if (cmd === 'AUTO') {
-        setShowVisitor(false);
-        setVisitorImage(null);
+        setVisitorImage(P1);
         setVisitorVideo(null);
+        setShowVisitor(true);
+        return;
+      }
+      if (cmd === 'UP') {
+        setVolume((v) => Math.min(1, parseFloat((v + 0.1).toFixed(1))));
+        return;
+      }
+      if (cmd === 'DOWN') {
+        setVolume((v) => Math.max(0, parseFloat((v - 0.1).toFixed(1))));
+        return;
+      }
+      if (['PAUSE', 'START', 'FORWARD', 'BACK'].includes(cmd)) {
+        setPlaybackCmd({ type: cmd, t: Date.now() });
         return;
       }
       if (cmd === 'P2') {
@@ -112,10 +132,6 @@ function App() {
         setVisitorImage(P1);
         setVisitorVideo(null);
         setShowVisitor(true);
-      } else {
-        setShowVisitor(false);
-        setVisitorImage(null);
-        setVisitorVideo(null);
       }
     };
     return () => {
@@ -125,11 +141,7 @@ function App() {
 
   return (
     <div className="App">
-      {showVisitor ? (
-        <Visitor image={visitorImage} video={visitorVideo} onBack={() => setShowVisitor(false)} />
-      ) : (
-        <Home />
-      )}
+      <Visitor image={visitorImage} video={visitorVideo} onBack={() => setShowVisitor(false)} volume={volume} playbackCmd={playbackCmd} />
     </div>
   );
 }

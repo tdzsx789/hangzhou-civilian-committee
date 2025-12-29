@@ -6,7 +6,6 @@ import leftNoneImg from '../../assets/left-none.png';
 import leftYesImg from '../../assets/left-yes.png';
 import rightNoneImg from '../../assets/right-none.png';
 import rightYesImg from '../../assets/right-yes.png';
-import handImg from '../../assets/hand.png';
 
 // 动态导入所有图片
 const requireImage = (name) => {
@@ -50,25 +49,6 @@ function Detail2({ name, gallery, onBack, isActive }) {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isLeftAtStart, setIsLeftAtStart] = useState(true);
   const [isRightAtEnd, setIsRightAtEnd] = useState(false);
-  const [showHand, setShowHand] = useState(true);
-
-  // 当进入 select1、select2、page2 或 page3 时显示 hand，6秒后隐藏
-  useEffect(() => {
-    setShowHand(true);
-    const timer = setTimeout(() => {
-      setShowHand(false);
-    }, 6000);
-
-    const handleScroll = () => {
-      setShowHand(false);
-    };
-
-    scrollContainerRef.current.addEventListener('scroll', handleScroll);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isActive]);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -147,20 +127,6 @@ function Detail2({ name, gallery, onBack, isActive }) {
         alt="right"
         className="nav-btn-right"
       />
-      {
-        showHand && (
-          <img
-            src={handImg}
-            alt="hand"
-            className={'hand-swipe-animation'}
-            style={{
-              position: 'absolute',
-              left: 1200,
-              top: 600,
-              zIndex: 10
-            }}
-          />
-        )}
       <div
         className="scroll-container"
         ref={scrollContainerRef}

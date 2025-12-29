@@ -19,6 +19,14 @@
   pointer-events: none;
 }
 
+/* 强制隐藏视频控件 */
+.home-bg-video::-webkit-media-controls {
+  display: none !important;
+}
+.home-bg-video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 .sound-btn {
   position: absolute;
   right: 0.76%; /* 16 / 2092 = 0.76% */
