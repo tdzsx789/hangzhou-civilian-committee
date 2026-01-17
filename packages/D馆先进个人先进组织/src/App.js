@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
@@ -8,8 +8,33 @@ import Detail4 from './pages/Detail4';
 import info1 from './assets/info1.png';
 import info2 from './assets/info2.png';
 import info3 from './assets/info3.png';
-import newPeopleData from './assets/newPeopleData.json';
+import { newPeopleData } from './assets/newPeopleData';
 import { zuzhiData } from './assets/zuzhiData';
+
+// 辅助排序函数：按指定字段开头的数字进行升序排序
+const sortChildrenByNumericPrefix = (data, keyField) => {
+  if (!Array.isArray(data)) return data;
+
+  return data.map(province => {
+    // 如果没有 children 或 children 不是数组，直接返回原对象
+    if (!province.children || !Array.isArray(province.children)) return province;
+
+    // 浅拷贝并排序 children
+    const sortedChildren = [...province.children].sort((a, b) => {
+      const getNum = (str) => {
+        // 匹配开头的数字
+        const match = String(str || '').match(/^\s*(\d+)/);
+        // 如果有数字则解析，否则设为最大值放到最后（或者根据需求设为0放到最前）
+        return match ? parseInt(match[1], 10) : Number.MAX_SAFE_INTEGER;
+      };
+      const numA = getNum(a[keyField]);
+      const numB = getNum(b[keyField]);
+      return numA - numB;
+    });
+
+    return { ...province, children: sortedChildren };
+  });
+};
 
 function App() {
 
@@ -101,15 +126,27 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
-  const initialPeople = Array.isArray(newPeopleData) ? newPeopleData : (newPeopleData.peopleData || []);
-  const [detailData, setDetailData] = useState(initialPeople);
+
+  // 使用 useMemo 对数据进行排序
+  const sortedPeopleData = useMemo(() => {
+    const rawData = Array.isArray(newPeopleData) ? newPeopleData : (newPeopleData.peopleData || []);
+    return sortChildrenByNumericPrefix(rawData, 'name');
+  }, []);
+
+  const sortedZuzhiData = useMemo(() => {
+    return sortChildrenByNumericPrefix(zuzhiData, 'originName');
+  }, []);
+
+  const [detailData, setDetailData] = useState(sortedPeopleData);
   const [selectedProvinceName, setSelectedProvinceName] = useState(null);
   const [detailInfoImage, setDetailInfoImage] = useState(null);
   const [detailChildData, setDetailChildData] = useState(null);
+  const [shouldResetDetailScroll, setShouldResetDetailScroll] = useState(false);
 
   const handleStart1Click = () => {
-    setDetailData(initialPeople);
+    setDetailData(sortedPeopleData);
     setSelectedProvinceName(null);
+    setShouldResetDetailScroll(true);
     setCurrentPage('detail');
   };
 
@@ -119,7 +156,7 @@ function App() {
 
   const handleBackHome = () => {
     setCurrentPage('home');
-    setDetailData(initialPeople);
+    setDetailData(sortedPeopleData);
     setSelectedProvinceName(null);
   };
 
@@ -130,6 +167,7 @@ function App() {
   };
 
   const handleBackToDetail = () => {
+    setShouldResetDetailScroll(false);
     setCurrentPage('detail');
     setDetailChildData(null);
   };
@@ -146,6 +184,7 @@ function App() {
   };
   const handleMarkerClick = (provinceName) => {
     setSelectedProvinceName(provinceName || null);
+    setShouldResetDetailScroll(true);
     setCurrentPage('detail');
   };
   // 1个小时无交互自动返回Home页
@@ -373,9 +412,10 @@ function App() {
           onSelectDetail={handleEnterDetail2}
           onSelectOrgDetail={handleEnterDetail4}
           data={detailData}
-          orgData={zuzhiData}
+          orgData={sortedZuzhiData}
           selectedProvinceName={selectedProvinceName}
           isActive={currentPage === 'detail'}
+          shouldResetScroll={shouldResetDetailScroll}
         />
       </div>
       <div className={`page-container ${currentPage === 'detail2' ? 'active' : 'inactive'}`}>

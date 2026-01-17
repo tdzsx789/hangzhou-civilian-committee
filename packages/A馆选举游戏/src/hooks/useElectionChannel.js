@@ -34,6 +34,8 @@ export function useElectionChannel({ role, playerId }) {
   const [roles, setRoles] = useState({ humans: [], npcs: [] });
   const [waitingCountdown, setWaitingCountdown] = useState(null);
   const [photoCountdown, setPhotoCountdown] = useState(null);
+  const [isPhotoWaiting, setIsPhotoWaiting] = useState(false);
+  const [waitingForPhotos, setWaitingForPhotos] = useState(false);
   const [gamingShowPlayers, setGamingShowPlayers] = useState([]);
   const [championPlayerId, setChampionPlayerId] = useState('');
 
@@ -87,7 +89,18 @@ export function useElectionChannel({ role, playerId }) {
           case 'stage:update':
             if (payload.payload?.stage) {
               console.log('[socket] received stage update:', payload.payload.stage);
-              setCurrentStage(payload.payload.stage);
+              const newStage = payload.payload.stage;
+              setCurrentStage(newStage);
+              if (newStage === STAGE.WAITING) {
+                setPhotosBin([]);
+                setGamingShowPlayers([]);
+                setChampionPlayerId('');
+              }
+              if (newStage !== STAGE.PHOTO && newStage !== STAGE.UDPPHOTO) {
+                setIsPhotoWaiting(false);
+                setWaitingForPhotos(false);
+                setPhotoCountdown(null);
+              }
             }
             break;
           case 'game:ready:list':
@@ -111,9 +124,21 @@ export function useElectionChannel({ role, playerId }) {
             setWaitingCountdown(payload.payload.seconds);
           }
           break;
+        case 'photo:waiting':
+          if (typeof payload.payload?.seconds === 'number') {
+            setWaitingCountdown(payload.payload.seconds);
+          }
+          setIsPhotoWaiting(true);
+          setWaitingForPhotos(!!payload.payload?.waitingForPhotos);
+          setPhotoCountdown(null);
+          break;
         case 'photo:countdown':
           if (typeof payload.payload?.seconds === 'number') {
             setPhotoCountdown(payload.payload.seconds);
+            setIsPhotoWaiting(false);
+            setWaitingForPhotos(false);
+          } else if (payload.payload?.seconds === null) {
+            setPhotoCountdown(null);
           }
           break;
         case 'gaming:show':
@@ -239,6 +264,8 @@ export function useElectionChannel({ role, playerId }) {
     roles,
     waitingCountdown,
     photoCountdown,
+    isPhotoWaiting,
+    waitingForPhotos,
     gamingShowPlayers,
     champion: championPlayerId,
   };

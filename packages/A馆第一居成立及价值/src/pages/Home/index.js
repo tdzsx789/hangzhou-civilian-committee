@@ -16,7 +16,9 @@ function Home({ volume = 1, playbackCmd }) {
       } else if (cmd === 'START') {
         videoEl.play().catch(() => {});
       } else if (cmd === 'FORWARD') {
-        videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 5);
+        if (Number.isFinite(videoEl.duration)) {
+          videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 5);
+        }
       } else if (cmd === 'BACK') {
         videoEl.currentTime = Math.max(0, videoEl.currentTime - 5);
       }

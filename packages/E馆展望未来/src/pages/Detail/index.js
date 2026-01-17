@@ -20,7 +20,9 @@ function Detail({ onBack, volume = 1, playbackCmd }) {
     } else if (type === 'PAUSE') {
       video.pause();
     } else if (type === 'FORWARD') {
-      video.currentTime = Math.min(video.duration, video.currentTime + 5);
+      if (Number.isFinite(video.duration)) {
+        video.currentTime = Math.min(video.duration, video.currentTime + 5);
+      }
     } else if (type === 'BACK') {
       video.currentTime = Math.max(0, video.currentTime - 5);
     }
@@ -51,9 +53,8 @@ function Detail({ onBack, volume = 1, playbackCmd }) {
 
     playVideo();
 
-    // 播放结束回到第一帧
+    // 播放结束停留在最后一帧
     const handleEnded = () => {
-      video.currentTime = 0;
       video.pause();
     };
 

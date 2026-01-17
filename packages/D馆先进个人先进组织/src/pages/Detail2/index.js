@@ -14,6 +14,11 @@ function Detail2({ onBack, childData }) {
     setCurrentIndex(0);
   }, [childData]);
 
+  // 组件挂载时强制重置（确保每次进入页面都是第一张）
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, []);
+
   if (!childData) return null;
 
   const currentImage = images[currentIndex] || null;

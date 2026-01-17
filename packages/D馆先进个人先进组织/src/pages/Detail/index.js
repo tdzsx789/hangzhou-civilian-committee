@@ -5,7 +5,7 @@ import listBg2 from '../../assets/listBg2.png';
 import listBg from '../../assets/list.png';
 import backButton from '../../assets/backButton.png';
 
-function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data = [], orgData = [], isActive, selectedProvinceName }) {
+function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data = [], orgData = [], isActive, selectedProvinceName, shouldResetScroll }) {
   const [selectedProvinceIndex, setSelectedProvinceIndex] = useState(null);
   const childrenScrollRef = useRef(null);
   const orgChildrenScrollRef = useRef(null);
@@ -44,10 +44,20 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
   }, [orgData]);
 
   useEffect(() => {
+    if (!isActive) return;
     const idxByName = selectedProvinceName ? sortedData.findIndex((p) => p.name === selectedProvinceName) : -1;
-    const chosenIdx = idxByName !== -1 ? idxByName : (sortedData.length ? 0 : null);
+    
+    let chosenIdx;
+    if (selectedProvinceName) {
+      // 如果指定了省份，必须匹配到才显示，否则为 null
+      chosenIdx = idxByName !== -1 ? idxByName : null;
+    } else {
+      // 如果没指定省份（默认进入），才默认显示第一个
+      chosenIdx = sortedData.length ? 0 : null;
+    }
+    
     setSelectedProvinceIndex(chosenIdx);
-  }, [selectedProvinceName, sortedData]);
+  }, [selectedProvinceName, sortedData, isActive]);
 
   // 从省市列表点击到children列表时，children列表scroll归0
   useEffect(() => {
@@ -61,6 +71,18 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
       orgChildrenScrollRef.current.scrollTop = 0;
     }
   }, [selectedProvinceIndex]);
+
+  // 当页面激活时（从Home进来），重置滚动条
+  useEffect(() => {
+    if (isActive && shouldResetScroll) {
+      if (childrenScrollRef.current) {
+        childrenScrollRef.current.scrollTop = 0;
+      }
+      if (orgChildrenScrollRef.current) {
+        orgChildrenScrollRef.current.scrollTop = 0;
+      }
+    }
+  }, [isActive, shouldResetScroll]);
 
 
 
@@ -92,7 +114,8 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
       const found = orgData.find(p => p.name === targetName);
       if (found) return found;
     }
-    return orgSortedData[0] || null;
+    // 如果找不到对应的组织数据，返回 null，不再默认返回第一个
+    return null;
   }, [orgData, orgSortedData, selectedProvince, selectedProvinceName]);
 
   const orgChildren = orgSelectedProvince?.children || [];
@@ -155,7 +178,7 @@ function Detail({ name, gallery, onBack, onSelectDetail, onSelectOrgDetail, data
 
       {/* 右侧：先进组织 */}
       <div style={{ width: '800px', paddingLeft: '20px' }}>
-        <div className="detail-title" style={{ left: '75%' }}>党建引领基层治理领域先进先进组织</div>
+        <div className="detail-title" style={{ left: '75%' }}>党建引领基层治理领域先进组织</div>
         <div
           ref={orgChildrenScrollRef}
           className="list-scroll children-scroll"

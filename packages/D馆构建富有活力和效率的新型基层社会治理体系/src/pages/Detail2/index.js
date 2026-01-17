@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import page2Img from '../../assets/page2.jpg';
 import button1 from '../../assets/button1.png';
@@ -101,8 +101,15 @@ const list = [
   },
 ]
 
-function Detail2({ name, gallery, onBack, currentIndex = 0 }) {
+function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
   const [index, setIndex] = useState(currentIndex);
+
+  useEffect(() => {
+    if (visible) {
+      setIndex(0);
+    }
+  }, [visible]);
+
   const allList = list;
   const currentItem = allList[index] || allList[0];
   const firstImage = currentItem?.images?.[0];

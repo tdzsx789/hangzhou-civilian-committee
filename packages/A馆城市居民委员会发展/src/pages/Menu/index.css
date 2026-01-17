@@ -18,7 +18,7 @@
 
 .menu-page .back-btn {
   position: absolute;
-  right: 50px;
+  right: 436px;
   bottom: 40px;
   width: 150px;
   height: 66px;
@@ -43,40 +43,35 @@
 .button2,
 .button3,
 .button4 {
-  
+  /* background-color: red;
+  opacity: 0.5; */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+  width: 400px;
+  height: 120px;
 }
 
 .button1 {
   position: absolute;
-  left: 677px;
-  top: 220px;
-  width: 300px;
-  height: 100px;
+  left: 760px;
+  top: 200px;
 }
 
 .button2 {
   position: absolute;
-  left: 677px;
-  top: 396px;
-  width: 366px;
-  height: 100px;
+  left: 760px;
+  top: 370px;
 }
 
 .button3 {
   position: absolute;
-  left: 677px;
-  top: 584px;
-  width: 300px;
-  height: 100px;
+  left: 760px;
+  top: 550px;
 }
 
 .button4 {
   position: absolute;
-  left: 677px;
-  top: 755px;
-  width: 380px;
-  height: 100px;
+  left: 760px;
+  top: 730px;
 }

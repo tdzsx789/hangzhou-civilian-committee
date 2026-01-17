@@ -1,0 +1,1003 @@
+{
+  "generatedAt": "2026-01-07T03:47:09.030Z",
+  "sameNameFolders": [
+    {
+      "folder": "上海",
+      "provinceName": "上海市"
+    },
+    {
+      "folder": "云南",
+      "provinceName": "云南省"
+    },
+    {
+      "folder": "内蒙古",
+      "provinceName": "内蒙古自治区"
+    },
+    {
+      "folder": "吉林省",
+      "provinceName": "吉林省"
+    },
+    {
+      "folder": "四川",
+      "provinceName": "四川省"
+    },
+    {
+      "folder": "宁夏回族自治区",
+      "provinceName": "宁夏回族自治区"
+    },
+    {
+      "folder": "安徽",
+      "provinceName": "安徽省"
+    },
+    {
+      "folder": "山东",
+      "provinceName": "山东省"
+    },
+    {
+      "folder": "广西壮族自治区",
+      "provinceName": "广西壮族自治区"
+    },
+    {
+      "folder": "新疆维吾尔自治区",
+      "provinceName": "新疆维吾尔自治区"
+    },
+    {
+      "folder": "江西省",
+      "provinceName": "江西省"
+    },
+    {
+      "folder": "河北省",
+      "provinceName": "河北省"
+    },
+    {
+      "folder": "浙江",
+      "provinceName": "浙江省"
+    },
+    {
+      "folder": "海南省",
+      "provinceName": "海南省"
+    },
+    {
+      "folder": "湖北",
+      "provinceName": "湖北省"
+    },
+    {
+      "folder": "湖南省",
+      "provinceName": "湖南省"
+    },
+    {
+      "folder": "福建",
+      "provinceName": "福建省"
+    },
+    {
+      "folder": "辽宁省",
+      "provinceName": "辽宁省"
+    },
+    {
+      "folder": "陕西",
+      "provinceName": "陕西省"
+    },
+    {
+      "folder": "青海省",
+      "provinceName": "青海省"
+    }
+  ],
+  "matched": [
+    {
+      "province": "上海",
+      "fileName": "10上海市青浦区盈浦街道万寿社区党总支副书记、居委会主任－王钰－爱国拥军模范.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "11上海市闵行区虹桥镇西郊居民区党总支书记－高君锋－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "12上海市普陀区桃浦镇社区党委副书记－杨兆顺－全国优秀党务工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "13上海市青浦区夏阳街道章浜居民区党总支书记、居委会主任－顾婕－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "1上海市长宁区虹桥街道虹储居民区居委会党总支书记、萍聚工作室党支部书记－朱国萍－第十一、十二、十三届全国人大代表.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "2上海市闵行区莘庄镇康城社区党委专职副书记－张军萍－党的二十大代表、第十四届全国政协委员.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "3上海市长宁区虹桥街道古北荣华第四居民区党总支书记－盛弘－全国先进工作者、全国优秀党务工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "上海",
+      "fileName": "4上海市长宁区江苏路街道岐山社区党总支书记、居委会主任－朱卫红－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "5上海市虹口区嘉兴路街道瑞一居民区党总支书记－华磊－全国最美城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "6上海市浦东新区宣桥镇艺泰安邦第一居民区党总支书记－陈凤英－全国先进工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "7上海市金山区石化街道东礁二居委会主任－何晓英－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "8上海市普陀区长寿路街道普雄路居民区党总支书记、居委会主任－张婧－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "上海",
+      "fileName": "9上海市杨浦区江浦路街道五环居民区党总支书记、居委会主任－虞净－全国优秀城乡社区工作者.docx",
+      "matchedBy": "name"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省开远市非公经济组织联合党委书记－代红辉－全国优秀党务工作者、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省德宏州瑞丽市勐卯镇兴安社区党总支书记、居委会主任－周全国－全国优秀共产党员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省文山州文山市开化街道永通社区党委书记－陆永艾－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省昆明市官渡区关上街道关上中心社区党委书记、居委会主任－张惠－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省昆明市盘龙区东华街道文艺路社区党委书记、居委会主任－苏琼芬－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省昆明市盘龙区云南顺丰速运有限公司收派员－者发贵－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省普洱市思茅区南屏镇倒生根社区党委书记、居委会主任－李亚玲－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省曲靖市麒麟区寥廓街道天池社区党委书记、居委会主任－张恒辅－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省楚雄市鹿城镇栗子园社区党总支书记－吕燕－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "云南",
+      "fileName": "云南省玉溪市红塔区玉兴街道北苑社区党总支书记、居委会主任－周希－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区乌海市海勃湾区林荫街道海馨社区党委书记、居委会主任－王玉静－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区包头市昆都仑区昆工路街道东友谊22社区党委书记、居委会主任－郭孝红－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区呼伦贝尔市陈巴尔虎旗巴彦社区党委书记、居委会主任－宫晓杰－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区巴彦淖尔市杭锦后旗陕坝镇西环社区党总支书记兼主任－王俊－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区鄂尔多斯市东胜区建设街道新巷社区党支部书记－张立萍－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区鄂尔多斯市准格尔旗迎泽街道南苑社区党支部书记兼居委会主任－邓郁－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "内蒙古",
+      "fileName": "内蒙古自治区阿拉善盟阿左旗新华街道民族街社区党委书记兼居委会主任－李亮－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "吉林省",
+      "fileName": "吉林省吉林市丰满区红旗街道田园社区党委书记、居委会主任－薛晓婉－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "吉林省",
+      "fileName": "吉林省吉林市昌邑区文庙街道天胜社区党委书记、居委会主任－樊晨－全国优秀共产党员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "吉林省",
+      "fileName": "吉林省通化市二道江区东通化街道绿园社区党总支书记、居委会主任－刘芷君－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川益路同行慈善服务中心理事长－李强－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省内江市东兴区新江街道东风社区党委书记、居委会主任－王钦－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省广安市武胜县沿口镇建设北路社区党委副书记－赵国锋－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省成都市四川圆通速递有限公司党员快递员－唐建－全国优秀共产党员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省成都市天府新区华阳街道安公社区党委书记－张彪－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省成都市武侯区黉门街社区党委书记、居委会主任－申民辉－全国先进工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省成都市网约车协会熊猫志愿车队党支部副书记、队长，成都吉利优行科技有限公司网约车司机－张桂容－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省成都市锦江区爱有戏社区文化发展中心主任－刘飞－全国三八红旗手、全国社会工作领军人才、全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "四川",
+      "fileName": "四川省攀枝花市仁和区仁和镇银华社区原书记－唐应萍－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区吴忠市利通区胜利镇正源社区党委书记、居委会主任－马自琴－全国抗击新冠肺炎疫情先进个人.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区吴忠市利通区金星镇人民政府金星镇统战干部、镇公用事业中心干部－张丽萍－全国最美城乡社区工作者、全国民族团结进步模范个人.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区吴忠市利通区金星镇王兰花热心小组党支部书记、慈善协会会长－王兰花－全国优秀社区工作者、全国三八红旗手、全国奉献之星、全国优秀志愿者、全国道德模范提名奖.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区吴忠市红寺堡区大正畜禽生产技术服务专业合作社理事长－寇启芳－全国劳动模范.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区固原市原州区北塬街道文化巷社区党支部书记、居委会主任－高冠茹－全国优秀城乡社区工作者.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区固原市彭阳县白阳镇社区服务中心主任－刘蕊－全国民族团结进步模范个人.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区石嘴山市平罗县城关镇明珠社区党支部书记、居委会主任－李红梅－全国三八红旗手、全国民族团结进步模范个人、全国最美志愿者.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区银川市永宁县南环社区党委书记、居委会主任－赵敬如－全国优秀城乡社区工作者.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区银川市西夏区共享社区居民－王菊茹－全国民族团结进步模范个人.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "宁夏回族自治区",
+      "fileName": "宁夏回族自治区银川市金凤区长城花园社区党委书记－赵耐香－党的二十大代表、2025年全国劳动模范.doc",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "安徽",
+      "fileName": "安徽省铜陵市枞阳县枞阳镇新华社区党委书记－张仕仪－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "安徽",
+      "fileName": "安徽省阜阳市颍州区西湖镇党委副书记、白行社区党委书记－闫永志－全国优秀党务工作者、全国人大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "安徽",
+      "fileName": "安徽省马鞍山市花山区金家庄街道新风社区党委书记－邢春桂－全国人大代表、党的十八大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "山东",
+      "fileName": "1山东省济南市天桥区工人新村南村街道西区社区党委书记－田象霞－全国优秀共产党员.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "山东",
+      "fileName": "2山东省东营市胜利街道胜宏社区党委书记、居委会主任－梅玉莲－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "山东",
+      "fileName": "3山东省烟台市龙口市东江街道锦里社区党总支书记－邢燕－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "山东",
+      "fileName": "4山东省济宁市任城区古槐街道北门街社区党委书记、居委会主任－吕秀云－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "广西壮族自治区",
+      "fileName": "广西壮族自治区桂林市秀峰区丽君街道飞凤社区党委书记、居委会主任－叶晓明－全国模范人民调解员、广西第二次全国经济普查工作中被评为自治区级先进个人、自治区优秀共产党员、全.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "广西壮族自治区",
+      "fileName": "广西壮族自治区桂林市秀峰区秀峰街道解东社区党委书记、居委会主任－车志龙－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "广西壮族自治区",
+      "fileName": "广西壮族自治区桂林市象山区南门街道翠竹路社区党委书记、居委会主任－汤瑛－全国抗击新冠肺炎疫情先进个人、全国优秀共产党员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "广西壮族自治区",
+      "fileName": "广西壮族自治区贵港市港南区江南街道廉石社区党总支书记、居委会主任－李卓献－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "广西壮族自治区",
+      "fileName": "广西壮族自治区钦州市钦南区文峰街道文昌社区党委书记、居委会主任－关中艳－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "fileName": "新疆维吾尔自治区乌鲁木齐市天山区大湾街道办事处党工委委员、办事处副主任－热孜万古丽·沙吾提－党的二十大代表、全国优秀党务工作者、全国优秀城乡社区工作者、全国民族团结进步.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "fileName": "新疆维吾尔自治区乌鲁木齐市头屯河区中亚南路街道广州街社区党委书记－热先古力·托乎提－党的十九大代表、全国最美城乡社区工作者、全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "fileName": "新疆维吾尔自治区哈密市伊州区城北街道光辉社区党委书记、居委会主任－刘玲丽－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "fileName": "新疆维吾尔自治区昌吉州吉木萨尔县满城路社区干部－巴哈义古丽·尼合买提－全国三八红旗手、全国先进工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "新疆维吾尔自治区",
+      "fileName": "新疆维吾尔自治区昌吉州阜康市阜新街道阜兴花苑小区网格党总支书记、业委会主任－杨文仁－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省九江市濂溪区赛阳镇赛阳社区党支部书记、居委会主任－刘慧萍－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省南昌市东湖区董家窑街道杏苑社区党委书记、居委会主任－周莉芳－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省南昌市南昌县莲塘街道莲安南路社区党委书记、居委会主任－钟松梅－全国劳动模范.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省吉安市青原区值夏镇值夏社区党支部书记、居委会主任－白保忠－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省妇联第十三届执行委员会兼职副主席－甘公荣－全国劳动模范、全国三八红旗手、全国道德模范.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省宜春市樟树市福城街道福城社区党支部书记、居委会主任－朱林－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省抚州市临川区西大街街道西大街社区党委书记、居委会主任－吴乐怡－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省新余市渝水区仙来街道龙州社区党支部书记、居委会主任－简小红－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省贵溪市花园街道贵化社区党委书记、居委会主任－尹利－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "江西省",
+      "fileName": "江西省赣州市章贡区东外街道东外社区党委书记、居委会主任－崔建华－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "河北省",
+      "fileName": "河北省廊坊市广阳区爱民东道街道逸锦家苑社区党总支书记－刘军霞－全国模范人民调解员.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "河北省",
+      "fileName": "河北省秦皇岛市海港区天洋新城社区党委书记、居委会主任－周慧霞－全国优秀党务工作者、党的二十大代表、全国模范人民调解员、全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "河北省",
+      "fileName": "河北省衡水市桃城区南盐道社区党组织书记－王所香－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省台州市仙居县留守儿童之家“东篱之家”负责人－王雪娟－全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省台州市天台县新乡贤和合调解团团长、天台县人民调解协会副会长－施仁利－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省台州市温岭市石塘海上平安民间救助站站长－郭文标－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省宁波市劳模工匠协会副会长、宁波市农产品经纪人协会会长－裘银芳－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省宁波市北仑区大碶街道灵峰工业社区党委书记－史孟艳－党的二十大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省宁波市北仑区新碶街道大港工业社区党委书记－陈雪波－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省宁波市北仑区红领之家社会服务中心党总支书记、主任－陈军浩－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省曹操出行平台担任网约车司机车队长－原永辉－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市上城区小营街道小营巷社区党委书记、居委会主任－曹琛－全国人大代.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市志愿者协会综合队九分队队长－顾雅娟－全国优秀志愿者、浙江省优秀志愿服务工作者、浙江好人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市拱墅区东新街道东新园社区党委书记、居委会主任－费建军－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市拱墅区天水街道灯芯巷社区原党委书记－朱雅仙－全国优秀党务工作者、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市西湖区文新街道骆家庄社区党委书记、居委会主任－章忠萍－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省杭州市西湖区翠苑街道翠苑一区社区原党委书记－张爱民－党的十九大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省温州市乐清市仁和社会工作师事务所理事长，乐清市社会工作者协会副会长，乐清市平安建设促进会柳市分会副会长－黄首东－全国专业社会工作领军人才.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省温州市瑞安市安阳街道育才社区党总支书记、居委会主任－李群微－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省温州市鹿城区松台街道桂柑社区原党委书记、居委会主任－柯建华－全国人大代表、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省温州市鹿城区松台街道郭公山社区党委书记、居委会主任－周雪飞－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省湖州市吴兴区爱山街道红丰西塘社区党委书记、居委会主任－崔庆峰－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省湖州市吴兴区龙泉街道白鱼潭社区党委书记、居委会主任－谈国琴－全国先进工作者、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省湖州市安吉县人民调解委员会主任－王正平－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省湖州市德清县“德清嫂”调解品牌工作室负责人－姚惠文－全国三八红旗手、全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省绍兴市柯桥区柯桥街道大渡社区党总支书记、居委会主任－张晓鸿－全国优秀共产党员、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省绍兴市柯桥区柯桥街道立新社区党委书记、居委会主任－莫慧英－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省绍兴市越城区府山街道越都社区党委书记、居委会主任－诸妙茵－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省舟山市定海区干览镇新建村党总支书记、主任－余金红－全国优秀党务工作者、全国三八红旗手标兵.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "浙江",
+      "fileName": "浙江省金华市婺城区苏孟乡和悦社区党委书记、居委会主任－汪燕飞－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "海南省",
+      "fileName": "海南省文昌市龙楼镇航天社区党支部书记、居委会主任－符芳福－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省仙桃市沙嘴街道春天社区党总支书记、居委会主任－杨胜雄－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省十堰市张湾区汉江路街道阳光社区党委书记、居委会主任－马丽－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省咸宁市赤壁市蒲圻街道华舟社区党委书记、居委会主任－金玲－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省天门市侯口街道侨乡社区党总支书记、居委会主任－李敬华－全国优秀城乡社区工作者、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省孝感市汉川市仙女山街道祥和花园社区党总支书记、居委会主任－栾艳平－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省宜昌市伍家岗区宝塔河街道韩家坝社区人民调解委员会主任－娄义－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省宜昌市当阳市两河镇麦城社区党支部委员－张青山－全国劳动模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省宜昌市猇亭区古老背街道桐岭新村社区党委委员、居委会副主任－冯金玉－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省恩施州宣恩县珠山镇上湖塘社区党委书记－汪明菊－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省恩施州来凤县翔凤镇花园堡社区党委书记、居委会主任－连芳－全国三八红旗手、全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市东湖新区佛祖岭街道佛祖岭B社区党总支书记、居委会主任－田鸣－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市东湖新城社区党总支书记、居委会主任－陶久娣－全国优秀共产党员、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市东西湖区常青花园第一社区党委书记、居委会主任－白宓－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市武昌区紫阳街起义门社区党委书记－魏玉萍－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市武昌区茶港社区党委书记、居委会主任－帅霞－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市汉阳区琴断口街七里一村社区党委书记、居委会主任－孙睿华－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市汉阳区龙阳街道芳草社区党总支书记－杜云－全国优秀共产党员、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市江岸区百步亭社区党委副书记、管委会主任－王波－政府特殊津贴、全国优秀党务工作者、全国最美城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市洪山区珞南街尤李社区党委专职副书记－黄恒－全国优秀共产党员、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省武汉市长江新区武湖街道青龙社区党总支书记、居委会主任－孙德欣－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省潜江市园林街道红庙社区党支部书记、居委会主任－李焕森－全国优秀党务工作者、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省荆州市监利市精华水稻种植专业合作社理事长－毕丽霞－全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省荆州市荆州区城南街道新风社区居委会委员、治调主任－李孝明－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省荆州市荆州区郢城镇凤鸣社区党委书记、居委会主任－郭兵－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省荆州市蒲公英爱心协会志愿者－玉苏普江·艾比布拉－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省荆门市东宝区龙泉街道离退休干部党支部书记－樊翠兰－全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省鄂州市鄂城区凤凰街道菜园头社区党委书记、居委会主任－许红艳－全国三八红旗手、全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省鄂州市鄂城区西山街道西山社区党委书记、居委会主任－熊学敏－全国优秀共产党员、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省随州市曾都区东城街道舜井道社区党委书记、居委会主任－卢志明－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省随州市曾都区何店镇王家河社区党支部书记、居委会主任－顾娟－党的二十大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省随州市曾都区北郊街道八里岔社区党委书记、居委会主任－许旭－党的十九大代表、全国优秀共产党员、全国三八红旗手、全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省随州市曾都区西城街道白云湖社区党委书记、居委会主任－裴海娥－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖北",
+      "fileName": "湖北省黄冈市黄梅县爱心义工协会会长－虞红霞－全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省湘潭市岳塘区岳塘街道纯冲塘社区党总支书记、居委会主任－李畅－全国抗击新冠肺炎疫情优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省湘潭市湘潭经济技术开发区和平街道吉利社区党总支书记、居委会主任－颜秀芝－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省益阳市赫山区会龙山街道龙山岗社区党总支书记、居委会主任－张跃－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省邵阳市北塔区状元洲街道柘木社区党总支书记、居委会主任－李躲胜－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省邵阳市北塔区状元洲街道柘木社区妇联主席、社区调委会主任－邓安华－全国模范人民调解员.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省郴州市北湖区燕泉街道阳光苑社区党总支书记、居委会主任－陈杰－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省长沙市开福区秀峰街道湘民社区党委书记、居委会主任－章丽霞－全国优秀城乡社区工作者.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "湖南省",
+      "fileName": "湖南省长沙市雨花区井湾子街道井湘社区党总支书记、居委会主任－许各利－全国模范人民调解员.docx",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省南平市延平区四鹤街道党工委书记、一级主任科员－段闽杰－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省南平市邵武市昭阳街道载云桥社区党委书记、居委会主任－张莲英－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省厦门市湖里区金山街道金安社区党委书记－吴丽敏－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省平潭综合实验区潭城镇东门社区党支部书记－薛玉凤－全国人大代表.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省永安市燕南街道巴溪湾社区党委书记、居委会主任－叶薇－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "福建",
+      "fileName": "福建省福州市鼓楼区军门社区党委书记－林丹－七一勋章、党的二十大代表、全国优秀共产党员、全国劳动模范、全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "辽宁省",
+      "fileName": "辽宁省大连市沙河口区李家街道锦华社区党委书记兼居委会主任－党立－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "辽宁省",
+      "fileName": "辽宁省大连市西岗区八一路街道林茂社区党委书记、居委会主任－郭志英－全国先进工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "辽宁省",
+      "fileName": "辽宁省抚顺市望花区和平街道雷锋社区党委书记－吴振华－全国优秀党务工作者、全国优秀城乡社区工作者、全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "辽宁省",
+      "fileName": "辽宁省沈阳市和平区南湖街道文安路社区党委第一书记－胡静琴－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "辽宁省",
+      "fileName": "辽宁省沈阳市大东区津桥街道铁岭社区党委书记－孔艳－全国抗击新冠肺炎疫情先进个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省咸阳市杨陵区李台街道阳光社区人民调解委员会主任、党支部书记、居委会主任－万传慧－全国优秀党务工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省咸阳市秦都区渭滨街道七〇四社区党支部书记、居委会主任－赵亚莉－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省商洛市商州区城关街道名人街社区工作者－褚妍－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省安康市旬阳市桐木镇人民政府平安法治办主任、镇调委会副主任－黄家华－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省安康市汉江志愿者救生队队长－周云康－全国道德模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省安康市汉滨区鼓楼社区党总支书记、居委会主任－马英－全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省延安市黄龙县龙门城东社区党总支书记、居委会主任－王丹－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省榆林市榆阳区新明楼街道三官会社区党支部书记－李小玲－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省汉中市勉县勉阳街道何营社区工作者－杨芬－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市新城区中山门街道万达社区党委书记、居委会主任－武峰－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市新城区长乐中路街道东尚社区原社区党委书记、居委会主任－刘丹－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市灞桥区洪庆街道庆华社区党支部书记、居委会主任－党芳玲－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市碑林区南院门街道钟楼社区治安指导员－姚六一－全国先进工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市碑林区太乙路街道铁路局社区人民调解委员会调解员－陈晓军－全国模范人民调解员.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省西安市碑林区张家村街道办安监所负责人－张小蔚－全国先进工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省铜川市王益区红旗街街道红旗社区党支部书记、居委会主任－李秋莲－全国三八红旗手.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省铜川市耀州区永安路街道东站社区党总支书记－杨怀勇－全国模范退役军人、全国民族团结进步模范个人.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省铜川市耀州区永安路街道解放社区居民－李艳华－全国道德模范.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "陕西",
+      "fileName": "陕西省铜川市耀州区解放社区党总支书记－杨莎－全国优秀城乡社区工作者.wps",
+      "matchedBy": "trueName"
+    },
+    {
+      "province": "青海省",
+      "fileName": "青海省西宁市南滩街道建新社区党委书记、居委会主任－马兰－全国民族团结进步模范个人.docx",
+      "matchedBy": "trueName"
+    }
+  ],
+  "unmatched": [],
+  "totals": {
+    "matched": 182,
+    "unmatched": 0,
+    "totalWps": 182
+  }
+}

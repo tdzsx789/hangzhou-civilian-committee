@@ -8,6 +8,7 @@ import P4 from './assets/P4.png';
 import P5 from './assets/P5.png';
 import P6 from './assets/P6.png';
 import P3 from './assets/P3.mp4';
+import P3_LONG from './assets/P3_LONG.mp4';
 
 function App() {
 
@@ -84,6 +85,9 @@ function App() {
       }
       setShowVisitor(true);
       if (cmd === 'P3') {
+        setVisitorVideo(P3_LONG);
+        setVisitorImage(null);
+      } else if (cmd === 'P3V20S') {
         setVisitorVideo(P3);
         setVisitorImage(null);
       } else {

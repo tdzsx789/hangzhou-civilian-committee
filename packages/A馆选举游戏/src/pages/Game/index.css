@@ -27,8 +27,8 @@
 
 
 .primary-btn {
-  width: 898px;
-  height: 205px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -99,22 +99,22 @@
 
 .camera-video {
   position: absolute;
-  width: 685px;
-  height: 685px;
+  width: 800px;
+  height: 800px;
   left: 50%;
   transform: translateX(-50%);
-  top: 280px;
+  top: 200px;
   object-fit: cover;
   border-radius: 8px;
 }
 
 .captured-photo {
   position: absolute;
-  width: 685px;
-  height: 685px;
+  width: 800px;
+  height: 800px;
   left: 50%;
   transform: translateX(-50%);
-  top: 280px;
+  top: 200px;
   object-fit: cover;
   border-radius: 8px;
   transition: border-radius 1s ease-in-out;
@@ -189,10 +189,10 @@
 
 .photo-btn {
   position: absolute;
-  left: 1681px;
-  top: 863px;
-  width: 132px;
-  height: 132px;
+  left: 1425px;
+  top: 780px;
+  width: 200px;
+  height: 200px;
   border: none;
   transition: all 0.3s;
   background-size: contain;
@@ -201,8 +201,8 @@
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 64px;
+  line-height: 78px;
   text-align: center;
   color: #000000;
   display: flex;
@@ -217,6 +217,21 @@
   left: 0;
   top: 0;
   object-fit: cover;
+}
+
+.photo-countdown-display {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  font-family: 'FZCuHeiSong-B-JF';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  /* line-height: 196px; */
+  color: #3C0505;
+  white-space: nowrap;
+  z-index: 20;
 }
 
 .countdown-display {
@@ -242,8 +257,8 @@
 
 .complete-date {
   position: absolute;
-  left: 1130px;
-  top: 694px;
+  left: 1100px;
+  top: 664px;
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
   font-weight: 400;
@@ -260,4 +275,38 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 10000;
+}
+
+.hand-hint {
+  position: absolute;
+  left: 1550px;
+  top: 900px;
+  width: 120px;
+  height: auto;
+  z-index: 13;
+  pointer-events: none;
+  animation: handPoint 3s infinite;
+}
+
+@keyframes handPoint {
+  0% {
+    transform: translate(0, 0) rotate(-15deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-10px, -10px) rotate(-25deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0, 0) rotate(-15deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-10px, -10px) rotate(-25deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) rotate(-15deg);
+    opacity: 1;
+  }
 }

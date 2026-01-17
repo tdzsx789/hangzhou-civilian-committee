@@ -23,23 +23,7 @@ import bean12 from '../../assets/beans/bean12.png';
 import { STAGE, STAGE_LABEL } from '../../constants/stages';
 import { useElectionChannel } from '../../hooks/useElectionChannel';
 
-import video1 from '../../assets/videos/背箱法.mp4';
-import video2 from '../../assets/videos/豆选法.mp4';
-import video3 from '../../assets/videos/喊选法.mp4';
-import video4 from '../../assets/videos/举手法.mp4';
-import video5 from '../../assets/videos/票选法.mp4';
-import video6 from '../../assets/videos/烧洞法.mp4';
-import video7 from '../../assets/videos/投纸团法.mp4';
-
-const videoList = [
-  { name: '背箱法', url: video1 },
-  { name: '豆选法', url: video2 },
-  { name: '喊选法', url: video3 },
-  { name: '举手法', url: video4 },
-  { name: '票选法', url: video5 },
-  { name: '烧洞法', url: video6 },
-  { name: '投纸团法', url: video7 },
-]
+import waitingVideo from '../../assets/videos/豆选法.mp4';
 
 function ScreenPage() {
   const {
@@ -50,14 +34,12 @@ function ScreenPage() {
     roles,
     send,
     champion,
+    isPhotoWaiting,
   } = useElectionChannel({ role: 'screen' });
 
-  const [shuffledVideos, setShuffledVideos] = useState([]);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
   const [photoItems, setPhotoItems] = useState([]); // { playerId, url }
-  const [completeCountdown, setCompleteCountdown] = useState(15);
 
   const timeline = [
     { key: STAGE.WAITING, label: '等待开始' },
@@ -67,9 +49,9 @@ function ScreenPage() {
     { key: STAGE.COMPLETE, label: '本轮结束' },
   ];
 
-  const isWaiting = stage === STAGE.WAITING;
+  const isWaiting = stage === STAGE.WAITING || ((stage === STAGE.PHOTO || stage === STAGE.UDPPHOTO) && isPhotoWaiting);
   const isPrepare = stage === STAGE.PREPARE;
-  const isPhoto = stage === STAGE.PHOTO;
+  const isPhoto = (stage === STAGE.PHOTO || stage === STAGE.UDPPHOTO) && !isPhotoWaiting;
   const isGaming = stage === STAGE.GAMING;
   const isElection = stage === STAGE.ELECTION;
   const isComplete = stage === STAGE.COMPLETE;
@@ -79,6 +61,29 @@ function ScreenPage() {
   const [gamingOverlayFading, setGamingOverlayFading] = useState(false);
   const [showElectionContainer, setShowElectionContainer] = useState(false);
   const [electionContainerFading, setElectionContainerFading] = useState(false);
+
+  // Preload images
+  useEffect(() => {
+    const images = [
+      coverImg,
+      screenStartImg,
+      screenPrepareImg,
+      screenPhotoImg,
+      gameCompleteImg,
+      beforeGameImg,
+      gamingImg,
+      bowlImg,
+      bean1, bean2, bean3, bean4, bean5, bean6,
+      bean7, bean8, bean9, bean10, bean11, bean12
+    ];
+    images.forEach((src) => {
+      if (src) {
+        const img = new Image();
+        img.src = src;
+      }
+    });
+  }, []);
+
   useEffect(() => {
     const items = (Array.isArray(photosBin) ? photosBin : []).map((p) => {
       const blob = new Blob([p.buffer], { type: p.mime || 'image/png' });
@@ -92,30 +97,9 @@ function ScreenPage() {
   }, [photosBin]);
   useEffect(() => {
     if (isWaiting) {
-      const arr = [...videoList];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      setShuffledVideos(arr);
-      setCurrentVideoIndex(0);
       setNeedsUserAction(false);
     }
   }, [isWaiting]);
-
-  
-
-  useEffect(() => {
-    if (!isComplete) {
-      setCompleteCountdown(15);
-      return undefined;
-    }
-    setCompleteCountdown(15);
-    const interval = setInterval(() => {
-      setCompleteCountdown((prev) => Math.max(prev - 1, 0));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [isComplete]);
 
   useEffect(() => {
     if (isGaming) {
@@ -189,14 +173,7 @@ function ScreenPage() {
     return () => {
       el.pause();
     };
-  }, [isWaiting, currentVideoIndex, shuffledVideos]);
-
-  const playNext = () => {
-    setCurrentVideoIndex((idx) => {
-      const len = shuffledVideos.length || 1;
-      return (idx + 1) % len;
-    });
-  };
+  }, [isWaiting]);
 
   let backgroundImage = coverImg;
   if (isWaiting) {
@@ -236,21 +213,40 @@ function ScreenPage() {
     const order = ['1', '2', '3', '4', '5'];
     const humans = Array.isArray(roles?.humans) ? roles.humans : [];
     const npcs = Array.isArray(roles?.npcs) ? roles.npcs : [];
+    // 过滤出有照片的玩家
+    const playersWithPhotos = photoItems.map(p => p.playerId);
+    
     const humanGroupIndices = anchors
       .map((_, i) => {
         const pid = order[i];
         const isHuman = humans.includes(pid);
         const isNpc = npcs.includes(pid);
-        return isHuman || (!isNpc && !isHuman) ? i : null;
+        // 必须是有人类玩家或者NPC，且必须有照片
+        const hasPhoto = playersWithPhotos.includes(pid);
+        return (isHuman || (!isNpc && !isHuman)) && hasPhoto ? i : null;
       })
       .filter((i) => i !== null);
     
-    // 如果没有真人，则从所有玩家中随机选一个
-    const candidates = humanGroupIndices.length > 0 ? humanGroupIndices : [0, 1, 2, 3, 4];
+    // 如果没有真人（或真人没照片），则从所有有照片的玩家中随机选一个
+    let candidates = humanGroupIndices;
+    if (candidates.length === 0) {
+       // 尝试找任何有照片的
+       candidates = anchors.map((_, i) => {
+         const pid = order[i];
+         return playersWithPhotos.includes(pid) ? i : null;
+       }).filter(i => i !== null);
+    }
     
-    const largeHumanIdx = candidates.length > 0
-      ? candidates[Math.floor(Math.random() * candidates.length)]
-      : null;
+    let largeHumanIdx;
+    // 优先让 avatar3 (index 2) 成为 champion
+    if (candidates.includes(2)) {
+      largeHumanIdx = 2;
+    } else {
+      largeHumanIdx = candidates.length > 0
+        ? candidates[Math.floor(Math.random() * candidates.length)]
+        : null;
+    }
+
     if (largeHumanIdx !== null) {
       const championPid = order[largeHumanIdx];
       if (championSentRef.current !== championPid) {
@@ -291,7 +287,7 @@ function ScreenPage() {
       setBeanItems(items);
     }, 1000);
     return () => clearTimeout(t);
-  }, [isElection, roles]);
+  }, [isElection, roles, photoItems]);
 
   return (
     <div
@@ -322,7 +318,7 @@ function ScreenPage() {
         const humans = Array.isArray(roles?.humans) ? roles.humans : [];
         return order.map((pid) => {
           const isHuman = humans.includes(pid);
-          const show = isHuman && gamingShowPlayers.includes(pid) && urlByPlayer[pid];
+          const show = isHuman && urlByPlayer[pid];
           if (!show) return null;
           const pos = positions[pid] || { left: 100, top: 100 };
           return (
@@ -368,7 +364,7 @@ function ScreenPage() {
             const humans = Array.isArray(roles?.humans) ? roles.humans : [];
             return order.map((pid) => {
               const isHuman = humans.includes(pid);
-              const show = isHuman && gamingShowPlayers.includes(pid) && urlByPlayer[pid];
+              const show = isHuman && urlByPlayer[pid];
               if (!show) return null;
               const pos = positions[pid] || { left: 100, top: 100 };
               return (
@@ -389,7 +385,7 @@ function ScreenPage() {
         const src = championPhoto ? championPhoto.url : '';
         return (
           <>
-            <div className="countdown-display">倒计时：{completeCountdown}秒</div>
+            {/* <div className="countdown-display">倒计时：{completeCountdown}秒</div> */}
             {src && (
               <img src={src} alt="拍摄结果" className="complete-photo" />
             )}
@@ -405,17 +401,16 @@ function ScreenPage() {
           </>
         );
       })()}
-      {isWaiting && shuffledVideos.length > 0 && (
+      {isWaiting && (
         <video
-          key={shuffledVideos[currentVideoIndex]?.url}
           className="screen-video"
-          src={shuffledVideos[currentVideoIndex]?.url}
+          src={waitingVideo}
           autoPlay
+          loop
           ref={videoRef}
           playsInline
           controls={false}
-          onEnded={playNext}
-          onError={playNext}
+          onError={() => setNeedsUserAction(true)}
         />
       )}
       {isWaiting && needsUserAction && (
@@ -518,6 +513,7 @@ function stageName(stage) {
   if (stage === STAGE.WAITING) return '等待';
   if (stage === STAGE.PREPARE) return '准备';
   if (stage === STAGE.PHOTO) return '拍照';
+  if (stage === STAGE.UDPPHOTO) return '拍照';
   if (stage === STAGE.GAMING) return '游戏中';
   if (stage === STAGE.ELECTION) return '选举';
   if (stage === STAGE.COMPLETE) return '完成';
@@ -525,6 +521,7 @@ function stageName(stage) {
 }
 
 function stageOrder(stage) {
+  if (stage === STAGE.UDPPHOTO) return stageOrder(STAGE.PHOTO);
   return [STAGE.WAITING, STAGE.PREPARE, STAGE.PHOTO, STAGE.GAMING, STAGE.ELECTION, STAGE.COMPLETE].indexOf(stage);
 }
 

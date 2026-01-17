@@ -157,34 +157,37 @@ const galleryImages = [
 
 const selectList = [
   { name: '初步建立阶段', period: '1949-1956年', top: 442, selectKey: 'select1' },
-  { name: '探索与曲折发展阶段', period: '1957-1978年', top: 597, selectKey: 'page2' },
-  { name: '恢复与发展阶段', period: '1979-2011年', top: 752, selectKey: 'page3' },
+  { name: '探索与曲折发展阶段', period: '1956-1978年', top: 597, selectKey: 'page2' },
+  { name: '恢复与发展阶段', period: '1978-2012年', top: 752, selectKey: 'page3' },
   { name: '新时代创新发展阶段', period: '2012年至今', top: 907, selectKey: 'page4' },
 ]
 
 const selectParams = {
   select1: {
-    left: 444, top: 101, url: select1Img, downButtonLeft: 700, downButtonTop: 875, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 630
+    left: 60, top: 101, url: select1Img, downButtonLeft: 1390, downButtonTop: 875, upButtonTop: 815, upButtonLeft: 1330, beforeButtonTop: 850, beforeButtonRight: 1020
   },
   select2: {
-    left: 444, top: 101, url: select2Img, downButtonLeft: 435, downButtonTop: 875, upButtonTop: 253, upButtonLeft: 400, beforeButtonTop: 850, beforeButtonRight: 630
+    left: 60, top: 101, url: select2Img, downButtonLeft: 1125, downButtonTop: 875, upButtonTop: 815, upButtonLeft: 1330, beforeButtonTop: 850, beforeButtonRight: 1020
   },
   select3: {
-    left: 444, top: 101, url: select3Img, downButtonLeft: 700, downButtonTop: 805,
+    left: 60, top: 101, url: select3Img, downButtonLeft: 1390, downButtonTop: 805,
   },
   select4: {
-    left: 444, top: 101, url: select4Img, downButtonLeft: 645, downButtonTop: 960,
+    left: 60, top: 101, url: select4Img, downButtonLeft: 950, downButtonTop: 960,
   },
   page2: {
-    left: 444, top: 101, url: page2Img, beforeButtonTop: 920, beforeButtonRight: 642
+    left: 60, top: 101, url: page2Img, beforeButtonTop: 920, beforeButtonRight: 1020
   },
   page3: {
-    left: 444, top: 101, url: page3Img, beforeButtonTop: 1000, beforeButtonRight: 642
+    left: 60, top: 101, url: page3Img, beforeButtonTop: 1000, beforeButtonRight: 1020
   },
   page4: {
-    left: 444, top: 101, url: page4Img, beforeButtonTop: 886, beforeButtonRight: 642
+    left: 60, top: 101, url: page4Img, beforeButtonTop: 886, beforeButtonRight: 1020
   },
 }
+
+// 动画时长配置（单位：毫秒）
+const ANIMATION_DURATION = 150;
 
 function Detail({ name, gallery, onBack, index = 'select1' }) {
   const [selectedSelectKey, setSelectedSelectKey] = useState(index);
@@ -350,7 +353,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
         setTimeout(() => {
           setIsTransitioning(false);
         }, 50);
-      }, 300);
+      }, ANIMATION_DURATION);
     }
   };
 
@@ -366,14 +369,8 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
       newKey = 'select3';
     }
 
-    if (newKey && newKey !== selectedSelectKey) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setSelectedSelectKey(newKey);
-        setTimeout(() => {
-          setIsTransitioning(false);
-        }, 50);
-      }, 300);
+    if (newKey) {
+      handleSelectClick(newKey);
     }
   };
 
@@ -387,19 +384,13 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   const handleNext = () => {
     const el = getActiveScrollElement();
     if (!el) return;
-    const step = 4 * (324 + 40);
+    const step = 4 * (324 + 40) + 4;
     el.scrollBy({ left: step, behavior: 'smooth' });
   };
 
   const handleBackClick = () => {
     if (selectedSelectKey === 'select3' || selectedSelectKey === 'select4') {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setSelectedSelectKey('select1');
-        setTimeout(() => {
-          setIsTransitioning(false);
-        }, 50);
-      }, 300);
+      handleSelectClick('select1');
     } else {
       onBack();
     }
@@ -416,7 +407,13 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
   };
 
   return (
-    <div className={`detail-page ${isTransitioning ? 'page-transitioning' : ''}`} style={{ backgroundImage: `url(${detailBgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className={`detail-page ${isTransitioning ? 'page-transitioning' : ''}`} style={{ 
+      backgroundImage: `url(${detailBgImg})`, 
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center', 
+      backgroundRepeat: 'no-repeat',
+      '--transition-duration': `${ANIMATION_DURATION}ms`
+    }}>
       <div className="select-image" style={{ top: `${selectedItem.top}px` }}>
         <img src={selectImg} alt="select" />
         <div className="select-text">
@@ -444,8 +441,8 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
             position: 'absolute',
             width: '200px',
             height: '65px',
-            top: '240px',
-            left: "400px"
+            top: '815px',
+            left: "1330px"
           }}
         />
       )}
@@ -471,7 +468,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           ref={galleryContainerRef}
           style={{
             position: 'absolute',
-            left: '434px',
+            left: '50px',
             top: '460px',
             width: '1440px',
             overflowX: 'auto',
@@ -537,7 +534,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
         //     ref={page2Container1Ref}
         //     style={{
         //       position: 'absolute',
-        //       left: '444px',
+        //       left: '60px',
         //       top: '470px',
         //       width: '688px',
         //       height: '327px',
@@ -722,7 +719,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           zIndex: 9, background: 'rgba(0,0,0,0)'
         }} onClick={(e) => e.stopPropagation()}></div>
       )}
-      <div style={{ position: 'absolute', top: 300, left: 10, zIndex: 10, opacity: 0.6, width: 55 }}>
+      {/* <div style={{ position: 'absolute', top: 300, left: 10, zIndex: 10, opacity: 0.6, width: 55 }}>
         <img
           src={speekBackImg}
           alt="speekBack"
@@ -741,7 +738,7 @@ function Detail({ name, gallery, onBack, index = 'select1' }) {
           onClick={handleSpeekGo}
           style={{ width: 55, height: 55 }}
         />
-      </div>
+      </div> */}
       <div className="back-btn2" onClick={handleBackClick}></div>
       {selectList.map((ele, i) => {
         return <div key={i} className={`selectButton${i + 1}`} onClick={() => handleSelectClick(ele.selectKey)}></div>

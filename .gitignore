@@ -56,11 +56,11 @@ packages/A馆选举游戏/A-election-game/
 packages/E馆展望未来/E馆展望未来/
 packages/D馆党建引领基层治理经验/D馆党建引领基层治理经验/
 packages/B馆2012年11月到2017年9月足迹新貌创新成果/B馆2012年11月到2017年9月足迹新貌创新成果/
-packages/A馆城市居民委员会发展/城市居民委员会发展/
-packages/A馆基层组织制度历史回眸/基层组织制度历史回眸/
+packages/A馆城市居民委员会发展/A馆城市居民委员会发展/
+packages/A馆基层组织制度历史回眸/A馆基层组织制度历史回眸/
 packages/E馆前言/E馆前言/
-packages/A馆城市社区治理发展历程4/城市社区治理发展历程4/
-packages/E馆总平介绍导览/总平介绍导览/
+packages/A馆城市社区治理发展历程4/A馆城市社区治理发展历程4/
+packages/E馆总平介绍导览/E馆总平介绍导览/
 packages/B馆2022年10月至今足迹新貌创新成果/B馆2022年10月至今足迹新貌创新成果/
 packages/B馆2017年10月到2022年9月足迹新貌创新成果/B馆2017年10月到2022年9月足迹新貌创新成果/
 packages/E馆寻访历程/E-first-journey/
@@ -71,11 +71,11 @@ packages/B馆萌发/萌发/
 packages/B馆2022年10月至今相关文件/B馆2022年10月至今相关文件/
 packages/B馆2017年10月到2022年9月相关文件/B馆2017年10月到2022年9月相关文件/
 packages/B馆2012年11月到2017年9月相关文件/B馆2012年11月到2017年9月相关文件/
-packages/A馆城市社区治理发展历程5/城市社区治理发展历程5/
-packages/A馆城市社区治理发展历程3/城市社区治理发展历程3/
-packages/A馆城市社区治理发展历程2/城市社区治理发展历程2/
-packages/A馆城市社区治理发展历程1/城市社区治理发展历程1/
-packages/A馆城市社区治理发展历程/城市社区治理发展历程/
+packages/A馆城市社区治理发展历程5/A馆城市社区治理发展历程5/
+packages/A馆城市社区治理发展历程3/A馆城市社区治理发展历程3/
+packages/A馆城市社区治理发展历程2/A馆城市社区治理发展历程2/
+packages/A馆城市社区治理发展历程1/A馆城市社区治理发展历程1/
+packages/A馆城市社区治理发展历程/A馆城市社区治理发展历程/
 
 packages/A馆选举游戏/src/assets/videos/
 
@@ -91,4 +91,8 @@ packages/A馆选举游戏/game3
 packages/A馆选举游戏/game4
 packages/A馆选举游戏/game5
 packages/A馆选举游戏/src/assets/shortVideos/
-packages/E馆展望未来/src/assets/future.mp4
+packages/E馆展望未来/src/assets
+packages/D馆先进个人先进组织/先进个人更新
+packages/D馆先进个人先进组织/先进组织更新
+packages/D馆先进个人先进组织/zuzhiImages_old
+packages/A馆第一居成立及价值/src/assets

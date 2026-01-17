@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import page2Img from '../../assets/page2.jpg';
 import leftArrow from '../../assets/leftArrow.png';
@@ -16,7 +16,7 @@ import list2Image8 from '../../assets/images2/wuyaoxiang.jpg';
 const list2 = [
   {
     name: '安徽省桐城市：\n“六尺巷工作法”推动基层善治',
-    summary: `桐城市创新推行“新时代六尺巷工作法”，将传统“和为贵”智慧融入现代基层治理，取得显著成效。该方法源于当地“六尺巷”历史典故，历经探索形成（运用“听、辨、劝、借、让、和”六步法则调解纠纷）、迭代升级（构建“源头治理、多元共治”工作体系）等阶段，现已发展为成熟的治理品牌。其核心是通过“党建领事、礼让和事、村民说事、多元解事、网格管事、群力防事”六大路径，实现“矛盾不上交、平安不出事、服务不缺位”的目标。
+    summary: `桐城市创新推行“新时代六尺巷工作法”，将传统“和为贵”智慧融入现代基层治理，取得显著成效。该方法源于当地“六尺巷”历史典故，历经探索形成（运用“听、辨、劝、借、让、和”六步法则调解纠纷）、迭代升级（构建“源头治理、多方共治”工作体系）等阶段，现已发展为成熟的治理品牌。其核心是通过“党建领事、礼让和事、村民说事、多方解事、网格管事、群力防事”六大路径，实现“矛盾不上交、平安不出事、服务不缺位”的目标。
 2024年10月17日，习近平总书记来到安徽安庆桐城市考察时强调，“六尺巷体现了先人化解矛盾的历史智慧，要作为弘扬中华优秀传统文化的教育场所，发挥好中华民族讲求礼让、以和为贵传统美德的作用，营造安居乐业的和谐社会环境。”`,
     images: [
       {
@@ -115,8 +115,15 @@ const list2 = [
   },
 ]
 
-function Detail2({ name, gallery, onBack, currentIndex = 0 }) {
+function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
   const [index, setIndex] = useState(currentIndex);
+
+  useEffect(() => {
+    if (visible) {
+      setIndex(0);
+    }
+  }, [visible]);
+
   const allList = list2;
   const currentItem = allList[index] || allList[0];
   const firstImage = currentItem?.images?.[0];

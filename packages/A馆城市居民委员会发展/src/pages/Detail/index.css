@@ -13,11 +13,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity var(--transition-duration, 0.3s) ease-in-out;
 }
 
 .detail-page>* {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity var(--transition-duration, 0.3s) ease-in-out;
 }
 
 .detail-header {
@@ -59,7 +59,7 @@
   position: absolute;
   width: 394px;
   height: 143px;
-  left: 0px;
+  right: 0px;
   background: linear-gradient(90deg, #544025 0%, #BA9762 100%);
   display: flex;
   align-items: center;
@@ -77,13 +77,14 @@
 }
 
 .select-text {
+  width: 333px;
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
-  left: 54px;
+  left: 0;
 }
 
 .select-text-line1 {
@@ -94,7 +95,7 @@
   line-height: 37px;
   color: #FFFFFF;
   margin-bottom: 5px;
-  text-align: left;
+  text-align: right;
 }
 
 .select-text-line2 {
@@ -104,29 +105,31 @@
   font-size: 20px;
   line-height: 24px;
   color: #FFFFFF;
-  text-align: left;
+  text-align: right;
 }
 
 .back-btn2 {
   position: absolute;
-  left: 428px;
+  right: 428px;
   bottom: 35px;
   width: 150px;
   height: 66px;
+  /* background-color: red; */
 }
 
 
 .selectButton1 {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 442px;
   width: 396px;
   height: 143px;
+  /* background-color: rgba(255, 0, 0, 0.5); */
 }
 
 .selectButton2 {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 585px;
   width: 396px;
   height: 143px;
@@ -134,7 +137,7 @@
 
 .selectButton3 {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 740px;
   width: 396px;
   height: 143px;
@@ -142,7 +145,7 @@
 
 .selectButton4 {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 908px;
   width: 396px;
   height: 143px;
@@ -230,7 +233,7 @@
 
 .gellery-scroll-wrap2 {
   position: absolute;
-  left: 434px;
+  left: 50px;
   top: 460px;
   width: 1440px;
   overflow: auto hidden;

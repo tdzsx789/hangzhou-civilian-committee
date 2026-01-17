@@ -34,10 +34,12 @@
 
 .detail2-back-btn {
   position: absolute;
-  left: 1794px;
-  bottom: 50px;
-  width: 75px;
-  height: 75px;
+  /* left: 1794px; */
+  left: 70px;
+  /* top: 142px; */
+  bottom: 40px;
+  width: 90px;
+  height: 90px;
   z-index: 99;
   background-image: url('../../assets/backButton.png');
   background-size: 100% 100%;
@@ -86,7 +88,7 @@
 .detail2-child-summary-scroll {
   position: absolute;
   width: 860px;
-  height: 492px;
+  height: 504px;
   left: 160px;
   top: 396px;
   overflow-y: auto;

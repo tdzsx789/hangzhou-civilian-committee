@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH=基层组织制度历史回眸 react-scripts build",
+    "build": "BUILD_PATH=A馆基层组织制度历史回眸 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

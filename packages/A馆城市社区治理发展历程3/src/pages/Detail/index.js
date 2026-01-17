@@ -27,7 +27,7 @@ export const imageList = [
     url: image200107
   },
   {
-    name: '2002年9月，民政部召开全国城市社区建设四平现场会议，标志着全国社区建设已经迈入新的、更高的发展阶段',
+    name: '2002年9月8-9日，民政部召开全国城市社区建设四平现场会议，标志着全国社区建设已经迈入新的、更高的发展阶段',
     url: image200209
   },
   {
@@ -147,27 +147,51 @@ function Detail({ name, gallery, onBack, isVisible }) {
               return <div key={index} style={{ width: item.width, height: 1 }}></div>;
             }
 
-            const content = (
-              <div className="nanjing-item" key={item.url}>
-                <img
-                  src={item.url}
-                  alt={item.name}
-                  className="nanjing-thumb clickable-image"
-                  onClick={() => handleImageClick(item)}
-                />
-                <div className="nanjing-caption">{item.name}</div>
-              </div>
-            );
+            const renderItem = (itemData, isWide, alignment = 'center') => {
+              const content = (
+                <div className="nanjing-item" key={itemData.url}>
+                  <img
+                    src={itemData.url}
+                    alt={itemData.name}
+                    className="nanjing-thumb clickable-image"
+                    onClick={() => handleImageClick(itemData)}
+                  />
+                  <div className="nanjing-caption">{itemData.name}</div>
+                </div>
+              );
 
-            if (index < 4) {
+              if (isWide) {
+                return (
+                  <div className="wide-wrapper" key={itemData.url} style={{ justifyContent: alignment }}>
+                    {content}
+                  </div>
+                );
+              }
+
+              return content;
+            };
+
+            if (index === 0) {
               return (
-                <div className="wide-wrapper" key={item.url}>
-                  {content}
+                <div className="special-layout-container" key="special-layout">
+                  <div className="special-layout-top">
+                    {renderItem(imageList[0], true, 'flex-end')}
+                    {renderItem(imageList[1], true, 'flex-start')}
+                  </div>
+                  <div className="special-layout-bottom">
+                    {renderItem(imageList[2], false)}
+                    {renderItem(imageList[3], false)}
+                    {renderItem(imageList[4], false)}
+                  </div>
                 </div>
               );
             }
 
-            return content;
+            if (index > 0 && index < 5) {
+              return null;
+            }
+
+            return renderItem(item, false);
           })}
         </div>
       </div>

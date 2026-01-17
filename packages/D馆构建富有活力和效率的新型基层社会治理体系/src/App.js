@@ -345,7 +345,7 @@ function App() {
           pointerEvents: currentPage === 'detail' ? 'auto' : 'none'
         }}
       >
-        <Detail name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} />
+        <Detail name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail'} />
       </div>
       <div
         className={`page-container ${currentPage === 'detail2' ? 'active' : ''}`}
@@ -354,7 +354,7 @@ function App() {
           pointerEvents: currentPage === 'detail2' ? 'auto' : 'none'
         }}
       >
-        <Detail2 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} />
+        <Detail2 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail2'} />
       </div>
       <div
         className={`page-container ${currentPage === 'detail3' ? 'active' : ''}`}

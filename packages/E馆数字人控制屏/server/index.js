@@ -4,9 +4,10 @@ const dgram = require('dgram');
 const HTTP_PORT = process.env.PORT || 5050;
 const UDP_PORT = 6000;
 const isDev = true;
-const currentIP = '192.168.22.12';
+// const currentIP = '192.168.22.12'; 
 // const currentIP = '192.168.22.60';
-// const currentIP = '192.168.22.51';
+// const currentIP = '192.168.22.28';
+const currentIP = '192.168.22.51';
 
 const getIp = (label) => {
   if (isDev) return ['127.0.0.1'];
@@ -15,6 +16,10 @@ const getIp = (label) => {
   }
   if (label === 'P1-2' || label === 'P2-2') {
     return ['192.168.22.12'];
+  }
+  
+  if (['PHOTO', 'REPHOTO', 'GAME'].includes(label)) {
+    return ['192.168.22.16'];
   }
   return [currentIP];
 };

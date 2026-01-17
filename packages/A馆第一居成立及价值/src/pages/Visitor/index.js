@@ -16,7 +16,9 @@ function Visitor({ image, video, className, volume = 1, playbackCmd }) {
       } else if (cmd === 'START') {
         el.play().catch(() => {});
       } else if (cmd === 'FORWARD') {
-        el.currentTime = Math.min(el.duration, el.currentTime + 5);
+        if (Number.isFinite(el.duration)) {
+          el.currentTime = Math.min(el.duration, el.currentTime + 5);
+        }
       } else if (cmd === 'BACK') {
         el.currentTime = Math.max(0, el.currentTime - 5);
       }

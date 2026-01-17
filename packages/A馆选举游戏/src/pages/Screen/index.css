@@ -258,14 +258,14 @@
   left: 612px;
   top: 478px;
   object-fit: cover;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .complete-date {
   position: absolute;
-  left: 1130px;
-  top: 694px;
+  left: 1100px;
+  top: 664px;
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
   font-weight: 400;

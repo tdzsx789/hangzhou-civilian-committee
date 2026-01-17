@@ -167,11 +167,12 @@
 
 .back-top-btn {
   position: absolute;
-  left: 1794px;
+  /* left: 1794px; */
+  left: 70px;
   /* top: 142px; */
-  bottom: 50px;
-  width: 75px;
-  height: 75px;
+  bottom: 40px;
+  width: 90px;
+  height: 90px;
   z-index: 99;
   background-size: 100% 100%;
   background-position: center;

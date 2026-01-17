@@ -49,3 +49,24 @@
   font-size: 24px;
   line-height: 1.8;
 }
+
+.scroll-container {
+  position: absolute;
+  width: 1460px;
+  height: 464px;
+  left: 230px;
+  top: 460px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container img {
+  width: 100%;
+  display: block;
+}
