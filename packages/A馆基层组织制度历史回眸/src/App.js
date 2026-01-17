@@ -93,6 +93,11 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [language, setLanguage] = useState('zh');
+
+  const toggleLanguage = () => {
+    setLanguage(prev => (prev === 'zh' ? 'en' : 'zh'));
+  };
 
   const handleLearnMore = () => {
     setCurrentPage('detail');
@@ -325,7 +330,7 @@ function App() {
           transition: 'opacity 0.3s ease'
         }}
       >
-        <Home onLearnMore={handleLearnMore} />
+        <Home onLearnMore={handleLearnMore} language={language} onToggleLanguage={toggleLanguage} />
       </div>
       <div
         style={{
@@ -340,6 +345,7 @@ function App() {
         <Detail
           name="基层组织制度历史回眸"
           gallery="A馆"
+          language={language}
           onBack={handleBack}
           active={currentPage === 'detail'}
         />
