@@ -1,8 +1,11 @@
 import React from 'react';
 import './index.css';
-import menuImg from '../../assets/menu.jpg';
+import menuImgZh from '../../assets/menu.jpg';
+import menuImgEn from '../../assets_english/menu.jpg';
 
-function Menu({ onBack, onNavigateToDetail }) {
+function Menu({ onBack, onNavigateToDetail, language }) {
+  const menuImg = language === 'zh' ? menuImgZh : menuImgEn;
+
   return (
     <div className="menu-page" style={{ backgroundImage: `url(${menuImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="menu-content">

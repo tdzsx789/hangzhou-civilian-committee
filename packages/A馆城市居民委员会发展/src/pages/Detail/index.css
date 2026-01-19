@@ -98,6 +98,13 @@
   text-align: right;
 }
 
+.select-text-line1.en {
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 10px;
+  white-space: pre-wrap;
+}
+
 .select-text-line2 {
   font-family: 'FZCuHeiSong-B-JF';
   font-style: normal;
@@ -106,6 +113,10 @@
   line-height: 24px;
   color: #FFFFFF;
   text-align: right;
+}
+
+.select-text-line2.en {
+  font-size: 16px;
 }
 
 .back-btn2 {
@@ -296,6 +307,11 @@
 
 .gallery-image-caption.large {
   width: 688px;
+}
+
+.gallery-image-caption.en {
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .gallery-image-caption.multi-line {

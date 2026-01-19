@@ -140,6 +140,11 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedIndex, setSelectedIndex] = useState('select1');
   const [detailKey, setDetailKey] = useState(0);
+  const [language, setLanguage] = useState('zh');
+
+  const toggleLanguage = () => {
+    setLanguage(prev => (prev === 'zh' ? 'en' : 'zh'));
+  };
 
   // 预加载所有图片
   useEffect(() => {
@@ -378,13 +383,13 @@ function App() {
 
       
       <div className={`page-container ${currentPage === 'home' ? 'active' : 'inactive'}`}>
-        <Home onLearnMore={handleLearnMore} />
+        <Home onLearnMore={handleLearnMore} language={language} onToggleLanguage={toggleLanguage} />
       </div>
       <div className={`page-container ${currentPage === 'menu' ? 'active' : 'inactive'}`}>
-        <Menu onBack={handleBack} onNavigateToDetail={handleNavigateToDetail} />
+        <Menu onBack={handleBack} onNavigateToDetail={handleNavigateToDetail} language={language} />
       </div>
       <div className={`page-container ${currentPage === 'detail' ? 'active' : 'inactive'}`}>
-        <Detail key={detailKey} name="城市居民委员会发展1" gallery="A馆" onBack={handleBackToMenu} index={selectedIndex} />
+        <Detail key={detailKey} name="城市居民委员会发展1" gallery="A馆" onBack={handleBackToMenu} index={selectedIndex} language={language} />
       </div>
     </div>
   );
