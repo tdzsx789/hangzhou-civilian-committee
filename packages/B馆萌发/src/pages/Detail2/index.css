@@ -162,6 +162,11 @@
   letter-spacing: 4px;
 }
 
+.detail-text-content.en p {
+  font-size: 20px;
+  line-height: 26px;
+}
+
 .detail-text-content p strong {
   font-weight: bolder;
   color: #000000;

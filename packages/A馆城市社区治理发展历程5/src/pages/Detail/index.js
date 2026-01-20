@@ -32,42 +32,42 @@ export const imageList = [
   {
     name: {
       zh: '2012年11月，中国共产党第十八次全国代表大会在北京召开',
-      en: 'In November 2012, the 18th National Congress of the Communist Party of China was held in Beijing'
+      en: `The 18th National Congress of the CPC was held in Beijing in November 2012`
     },
     url: tupian1
   },
   {
     name: {
       zh: '2017年6月，《中共中央、国务院关于加强和完善城乡社区治理的意见》印发',
-      en: 'In June 2017, the "Opinions of the CPC Central Committee and the State Council on Strengthening and Improving Urban and Rural Community Governance" was issued'
+      en: `The Opinions of the CPC Central Committee and the State Council on Strengthening and Improving Urban and Rural Community Governance was issued in June 2017`
     },
     url: tupian4
   },
   {
     name: {
       zh: '2017年10月，中国共产党第十九次全国代表大会在北京召开',
-      en: 'In October 2017, the 19th National Congress of the Communist Party of China was held in Beijing'
+      en: `The 19th National Congress of the CPC was held in Beijing in October 2017`
     },
     url: tupian2
   },
   {
     name: {
       zh: '2021年4月，《中共中央、国务院关于加强基层治理体系和治理能力现代化建设的意见》印发',
-      en: 'In April 2021, the "Opinions of the CPC Central Committee and the State Council on Strengthening the Construction of Modernization of Grassroots Governance System and Governance Capacity" was issued'
+      en: `The Opinions of the CPC Central Committee and the State Council on Strengthening the Modernization of the Community-Level Governance System and Governance Capacity was issued in April 2021`
     },
     url: tupian5
   },
   {
     name: {
       zh: '2022年10月，中国共产党第二十次全国代表大会在北京召开',
-      en: 'In October 2022, the 20th National Congress of the Communist Party of China was held in Beijing'
+      en: `The 20th National Congress of the CPC was held in Beijing in October 2022`
     },
     url: tupian3
   },
   {
     name: {
       zh: '2019年5月，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
-      en: 'In May 2019, the General Office of the CPC Central Committee issued the "Opinions on Strengthening and Improving Urban Grassroots Party Building Work"'
+      en: `The Opinions on Strengthening and Improving the Construction of the Party at the Urban Community Level issued by the General Office of the CPC Central Committee in May 2019`
     },
     url: tupian6
   },

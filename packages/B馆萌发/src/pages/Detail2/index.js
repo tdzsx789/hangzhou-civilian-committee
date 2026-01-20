@@ -1,10 +1,14 @@
 import React from 'react';
 import './index.css';
-import bg2_1 from '../../assets/bg2_1.jpg';
-import startButton from '../../assets/start.png';
+import bg2_1Zh from '../../assets/bg2_1.jpg';
+import bg2_1En from '../../assets_english/bg2_1.jpg';
+import startButtonZh from '../../assets/start.png';
+import startButtonEn from '../../assets_english/start.png';
 
-function Detail2({ onBack, onOpenDetail3, selectedKey, list }) {
-  const textContent = selectedKey && list && list[selectedKey] ? list[selectedKey].text : '';
+function Detail2({ onBack, onOpenDetail3, selectedKey, list, language }) {
+  const bg2_1 = language === 'zh' ? bg2_1Zh : bg2_1En;
+  const startButton = language === 'zh' ? startButtonZh : startButtonEn;
+  const textContent = selectedKey && list && list[selectedKey] ? list[selectedKey].text[language] : '';
 
   const renderQuotedBold = (text) => {
     if (!text) return null;
@@ -71,7 +75,7 @@ function Detail2({ onBack, onOpenDetail3, selectedKey, list }) {
         <img src={startButton} alt="返回" />
       </div>
       {textContent && (
-        <div className="detail-text-content">
+        <div className={`detail-text-content ${language === 'en' ? 'en' : ''}`}>
           <p>{renderQuotedBold(textContent)}</p>
         </div>
       )}

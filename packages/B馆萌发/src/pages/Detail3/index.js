@@ -1,9 +1,13 @@
 import React from 'react';
 import './index.css';
-import bg2_2 from '../../assets/bg2_2.jpg';
-import startButton from '../../assets/start.png';
+import bg2_2Zh from '../../assets/bg2_2.jpg';
+import bg2_2En from '../../assets_english/bg2_2.jpg';
+import startButtonZh from '../../assets/start.png';
+import startButtonEn from '../../assets_english/start.png';
 
-function Detail3({ onBackToDetail1, onOpenDetail2 }) {
+function Detail3({ onBackToDetail1, onOpenDetail2, language }) {
+  const bg2_2 = language === 'zh' ? bg2_2Zh : bg2_2En;
+  const startButton = language === 'zh' ? startButtonZh : startButtonEn;
   const handleBackToDetail1 = () => {
     if (onBackToDetail1) {
       onBackToDetail1();

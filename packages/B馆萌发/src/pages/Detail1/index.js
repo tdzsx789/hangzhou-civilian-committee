@@ -1,12 +1,18 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import './index.css';
-import bg1_1 from '../../assets/bg1_1.jpg';
-import slides1 from '../../assets/slides1.png';
-import startButton from '../../assets/start.png';
+import bg1_1Zh from '../../assets/bg1_1.jpg';
+import bg1_1En from '../../assets_english/bg1_1.jpg';
+import slides1Zh from '../../assets/slides1.png';
+import slides1En from '../../assets_english/slides1.png';
+import startButtonZh from '../../assets/start.png';
+import startButtonEn from '../../assets_english/start.png';
 
 const topList = [0, 125, 250, 375, 500, 635, 760, 885, 1020, 1155, 1280, 1405, 1525, 1665, 1790, 1925, 2050, 2175, 2300, 2435];
 
-function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys }) {
+function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail3, listKeys, language }) {
+  const bg1_1 = language === 'zh' ? bg1_1Zh : bg1_1En;
+  const slides1 = language === 'zh' ? slides1Zh : slides1En;
+  const startButton = language === 'zh' ? startButtonZh : startButtonEn;
   const [scrollTop, setScrollTop] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
