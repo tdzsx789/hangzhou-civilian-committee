@@ -52,7 +52,15 @@
   height: auto;
 }
 
-
+.language-toggle-btn {
+  position: absolute;
+  top: 920px;
+  right: 70px;
+  width: 200px;
+  height: 90px;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  z-index: 10;
+}
 
 
 

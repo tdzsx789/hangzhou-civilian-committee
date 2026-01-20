@@ -178,7 +178,7 @@ export const imageListData = [
     from: 'gongchandang',
     name: {
       zh: '农民协会是中国共产党首次在农村建立的基层政权组织。图为彭湃在广东省海丰县建立的农民协会旧址',
-      en: `The Peasants' Association was the first grassroots political power organization established by the CPC in rural areas. The picture shows the site of the Peasants' Association founded by Peng Pai in Haifeng County, Guangdong Province.`,
+      en: `The Peasants' Association was the first grassroots political power organization established by the CPC in rural areas. The picture shows the site of the Peasants' Association founded by Peng Pai in Haifeng County, Guangdong Province`,
     },
   },
   {

@@ -93,6 +93,12 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [language, setLanguage] = useState('zh');
+
+  const handleToggleLanguage = (e) => {
+    e.stopPropagation();
+    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
+  };
 
   const handleLearnMore = () => {
     setCurrentPage('detail');
@@ -315,24 +321,20 @@ function App() {
       )}
 
 
-      <div
-        className="page-container"
-        style={{
-          opacity: currentPage === 'home' ? 1 : 0,
-          pointerEvents: currentPage === 'home' ? 'auto' : 'none'
-        }}
-      >
-        <Home onLearnMore={handleLearnMore} />
-      </div>
-      <div
-        className="page-container"
-        style={{
-          opacity: currentPage === 'detail' ? 1 : 0,
-          pointerEvents: currentPage === 'detail' ? 'auto' : 'none'
-        }}
-      >
-        <Detail name="新中国第一个居民委员会" gallery="A馆" onBack={handleBack} isVisible={currentPage === 'detail'} />
-      </div>
+      {currentPage === 'home' && (
+        <Home 
+          onLearnMore={handleLearnMore} 
+          language={language}
+          onToggleLanguage={handleToggleLanguage}
+        />
+      )}
+      {currentPage === 'detail' && (
+        <Detail 
+          onBack={() => setCurrentPage('home')} 
+          isVisible={currentPage === 'detail'} 
+          language={language}
+        />
+      )}
     </div>
   );
 }

@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
-import bg1 from '../../assets/bg1.jpg';
-import beforeImg from '../../assets/before.png';
-import nextImg from '../../assets/next.png';
-import backImg from '../../assets/back.png';
+import bg1Zh from '../../assets/bg1.jpg';
+import beforeZh from '../../assets/before.png';
+import nextZh from '../../assets/next.png';
+import backZh from '../../assets/back.png';
+import bg1En from '../../assets_english/bg1.jpg';
+import beforeEn from '../../assets_english/before.png';
+import nextEn from '../../assets_english/next.png';
+import backEn from '../../assets_english/back.png';
 import Modal from '../Modal';
 import image001 from '../../assets/images/image001.jpg';
 import image002 from '../../assets/images/image002.jpg';
@@ -26,80 +30,144 @@ import image018 from '../../assets/images/image018.jpg';
 
 export const imageList = [
   {
-    name: '2007年10月，党的十七大把基层群众自治制度确定为我国基本政治制度之一',
+    name: {
+      zh: '2007年10月，党的十七大把基层群众自治制度确定为我国基本政治制度之一',
+      en: `The 17th National Congress of the CPC designated the system of community-level mass self-government as one of China's basic political systems in October 2007`
+    },
     url: image005
   },
   // {
-  //   name: '2009年6月2日，时任民政部副部长孙绍骋同志视察广西壮族自治区柳州市天鹅湖社区',
+  //   name: {
+  //     zh: '2009年6月2日，时任民政部副部长孙绍骋同志视察广西壮族自治区柳州市天鹅湖社区',
+  //     en: 'June 2, 2009, Comrade Sun Shaocheng, then Vice Minister of Civil Affairs, inspected Tian\'ehu Community in Liuzhou City, Guangxi Zhuang Autonomous Region'
+  //   },
   //   url: image013
   // },
   {
-    name: '2009年10月，民政部在苏州召开全国和谐社区建设工作会议',
+    name: {
+      zh: '2009年10月，民政部在苏州召开全国和谐社区建设工作会议',
+      en: `The Ministry of Civil Affairs held the National Harmonious Community Construction Work Conference in Suzhou in October 2009`
+    },
     url: image015
   },
   {
-    name: '2008年6月28日，民政部在杭州宣布成立于1949年10月23日的杭州市上城区上羊市街居民委员会是新中国第一个居民委员会',
+    name: {
+      zh: '2008年6月28日，民政部在杭州宣布成立于1949年10月23日的杭州市上城区上羊市街居民委员会是新中国第一个居民委员会',
+      en: `On June 28, 2008, the Ministry of Civil Affairs announced in Hangzhou that the Shangyangshijie Neighborhood Committee in Shangcheng District, Hangzhou, established on October 23, 1949, was the first neighborhood committee of the People's Republic of China`
+    },
     url: image012
   },
   {
-    name: '2009年12月21日，时任中共杭州市委副书记、市长蔡奇同志主持中国社区建设展示中心落成典礼',
+    name: {
+      zh: '2009年12月21日，时任中共杭州市委副书记、市长蔡奇同志主持中国社区建设展示中心落成典礼',
+      en: 'December 21, 2009, Comrade Cai Qi, then Deputy Secretary of the CPC Hangzhou Municipal Committee and Mayor, presided over the completion ceremony of the China Community Construction Exhibition Center'
+    },
     url: image018
   },
   {
-    name: '2009年12月21日，中国社区建设展示中心落成',
+    name: {
+      zh: '2009年12月21日，中国社区建设展示中心落成',
+      en: `The China Community Construction Exhibition Center was completed on December 21, 2009`
+    },
     url: image016
   },
   {
-    name: '2009年7月，杭州市城乡和谐社区建设结对签约仪式',
+    name: {
+      zh: '2009年7月，杭州市城乡和谐社区建设结对签约仪式',
+      en: 'July 2009, Hangzhou Urban and Rural Harmonious Community Construction Twinning Signing Ceremony'
+    },
     url: image014
   },
   {
-    name: '2005年8月，民政部在长春召开全国社区建设工作会议',
+    name: {
+      zh: '2005年8月，民政部在长春召开全国社区建设工作会议',
+      en: 'August 2005, the Ministry of Civil Affairs held the National Community Construction Work Conference in Changchun'
+    },
     url: image001
   },
   {
-    name: '2006年10月15日，时任中央政治局委员、国务院副总理回良玉同志视察上海市杨浦区殷行街道社区“阳光之家”',
+    name: {
+      zh: '2006年10月15日，时任中央政治局委员、国务院副总理回良玉同志视察上海市杨浦区殷行街道社区“阳光之家”',
+      en: 'October 15, 2006, Comrade Hui Liangyu, then Member of the Political Bureau of the CPC Central Committee and Vice Premier of the State Council, inspected the "Sunshine Home" in Yinxing Subdistrict Community, Yangpu District, Shanghai'
+    },
     url: image002
   },
   {
-    name: '2006年，《国务院关于加强和改进社区服务工作的意见》',
+    name: {
+      zh: '2006年，《国务院关于加强和改进社区服务工作的意见》',
+      en: '2006, "Opinions of the State Council on Strengthening and Improving Community Service Work"'
+    },
     url: image003
   },
   {
-    name: '2006年，全国部分省市社区信息化工作经验交流会在大连召开',
+    name: {
+      zh: '2006年，全国部分省市社区信息化工作经验交流会在大连召开',
+      en: '2006, Experience Exchange Meeting on Community Informatization Work in Some Provinces and Cities Nationwide was held in Dalian'
+    },
     url: image004
   },
   {
-    name: '2007年，《国家发展改革委、民政部关于印发“十一五”社区服务体系发展规划的通知》',
+    name: {
+      zh: '2007年，《国家发展改革委、民政部关于印发“十一五”社区服务体系发展规划的通知》',
+      en: '2007, "Notice of the National Development and Reform Commission and the Ministry of Civil Affairs on Printing and Distributing the Development Plan for Community Service System during the 11th Five-Year Plan"'
+    },
     url: image008
   },
   {
-    name: '原中央政治局常委、全国人大常委会委员长吴邦国同志题词：和谐社区',
+    name: {
+      zh: '原中央政治局常委、全国人大常委会委员长吴邦国同志题词：和谐社区',
+      en: 'Inscription by Comrade Wu Bangguo, former Member of the Standing Committee of the Political Bureau of the CPC Central Committee and Chairman of the Standing Committee of the National People\'s Congress: Harmonious Community'
+    },
     url: image017
   },
   {
-    name: '2007年3月，民政部在青岛召开全国农村社区建设座谈会',
+    name: {
+      zh: '2007年3月，民政部在青岛召开全国农村社区建设座谈会',
+      en: 'March 2007, the Ministry of Civil Affairs held the National Rural Community Construction Symposium in Qingdao'
+    },
     url: image007
   },
   {
-    name: '2007年3月29日，民政部关于印发《全国农村社区建设实验县（市、区）工作实施方案》的通知',
+    name: {
+      zh: '2007年3月29日，民政部关于印发《全国农村社区建设实验县（市、区）工作实施方案》的通知',
+      en: 'March 29, 2007, Notice of the Ministry of Civil Affairs on Printing and Distributing the "Implementation Plan for the Work of National Rural Community Construction Pilot Counties (Cities, Districts)"'
+    },
     url: image006
   },
   {
-    name: '2007年，民政部关于发放全国农村社区建设实验县（市、区）牌匾的通知',
+    name: {
+      zh: '2007年，民政部关于发放全国农村社区建设实验县（市、区）牌匾的通知',
+      en: '2007, Notice of the Ministry of Civil Affairs on Issuing Plaques for National Rural Community Construction Pilot Counties (Cities, Districts)'
+    },
     url: image009
   },
   {
-    name: '2008年10月13日，在浙江省杭州市召开全国和谐社区建设理论研讨会暨首届城区论坛',
+    name: {
+      zh: '2008年10月13日，在浙江省杭州市召开全国和谐社区建设理论研讨会暨首届城区论坛',
+      en: 'October 13, 2008, the National Harmonious Community Construction Theory Seminar and the First Urban Forum were held in Hangzhou, Zhejiang Province'
+    },
     url: image010
   },
   {
-    name: '2008年10月，福建省沙县凤岗街道城东社区召开社区治安分析会',
+    name: {
+      zh: '2008年10月，福建省沙县凤岗街道城东社区召开社区治安分析会',
+      en: 'October 2008, Chengdong Community, Fenggang Subdistrict, Shaxian County, Fujian Province held a Community Security Analysis Meeting'
+    },
     url: image011
   },
 ];
 
-function Detail({ name, gallery, onBack, isVisible }) {
+function Detail({ name, gallery, onBack, isVisible, language }) {
+  const bg1 = language === 'zh' ? bg1Zh : bg1En;
+  const beforeImg = language === 'zh' ? beforeZh : beforeEn;
+  const nextImg = language === 'zh' ? nextZh : nextEn;
+  const backImg = language === 'zh' ? backZh : backEn;
+
+  const localizedList = imageList.map(item => ({
+    ...item,
+    name: item.name === 'placeholder' ? 'placeholder' : item.name[language]
+  }));
+
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -185,10 +253,21 @@ function Detail({ name, gallery, onBack, isVisible }) {
     return text.length > 24; 
   };
 
+  const getCaptionStyle = (text) => {
+    if (language === 'en' && text.length > 150) {
+      return {
+        fontSize: '14px',
+        lineHeight: '16px'
+      };
+    }
+    return {};
+  };
+
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1})` }}>
       <div
         className="slides-container"
+        style={{ height: language === 'en' ? '842px' : '806px', top: language === 'en' ? '100px' : '150px' }}
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
@@ -199,8 +278,8 @@ function Detail({ name, gallery, onBack, isVisible }) {
 
         <div className="nanjing-grid">
           {(() => {
-            const firstFour = imageList.slice(0, 4);
-            const rest = imageList.slice(4);
+            const firstFour = localizedList.slice(0, 4);
+            const rest = localizedList.slice(4);
 
             return (
               <>
@@ -214,7 +293,7 @@ function Detail({ name, gallery, onBack, isVisible }) {
                           className="nanjing-thumb clickable-image"
                           onClick={() => handleImageClick(item)}
                         />
-                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`} style={getCaptionStyle(item.name)}>{item.name}</div>
                       </div>
                     ))}
                   </div>
@@ -227,7 +306,7 @@ function Detail({ name, gallery, onBack, isVisible }) {
                           className="nanjing-thumb clickable-image"
                           onClick={() => handleImageClick(item)}
                         />
-                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                        <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`} style={getCaptionStyle(item.name)}>{item.name}</div>
                       </div>
                     ))}
                   </div>
@@ -240,7 +319,7 @@ function Detail({ name, gallery, onBack, isVisible }) {
                       className="nanjing-thumb clickable-image"
                       onClick={() => handleImageClick(item)}
                     />
-                    <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`}>{item.name}</div>
+                    <div className={`nanjing-caption ${isMultiLine(item.name) ? 'multi-line' : 'single-line'}`} style={getCaptionStyle(item.name)}>{item.name}</div>
                   </div>
                 ))}
               </>

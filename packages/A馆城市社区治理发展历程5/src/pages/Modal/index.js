@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-function Modal({ image, onClose }) {
+function Modal({ image, onClose, language }) {
     if (!image) return null;
 
     const handleMaskClick = () => {
@@ -18,10 +18,10 @@ function Modal({ image, onClose }) {
             <div className="modal-content" onClick={handleContentClick}>
                 <img
                     src={image.url}
-                    alt={image.name}
+                    alt={image.name[language]}
                     className="modal-image"
                 />
-                <div className="modal-caption">{image.name}</div>
+                <div className="modal-caption">{image.name[language]}</div>
             </div>
         </div>
     );

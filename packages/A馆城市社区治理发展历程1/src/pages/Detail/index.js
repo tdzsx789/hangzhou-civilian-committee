@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
-import bg1 from '../../assets/bg1.jpg';
-import beforeImg from '../../assets/before.png';
-import nextImg from '../../assets/next.png';
-import backImg from '../../assets/back.png';
+import bg1Zh from '../../assets/bg1.jpg';
+import beforeZh from '../../assets/before.png';
+import nextZh from '../../assets/next.png';
+import backZh from '../../assets/back.png';
+import bg1En from '../../assets_english/bg1.jpg';
+import beforeEn from '../../assets_english/before.png';
+import nextEn from '../../assets_english/next.png';
+import backEn from '../../assets_english/back.png';
 import image1989 from '../../assets/images/image1989.jpg';
 import image1990 from '../../assets/images/image1990.jpg';
 import image1991_03 from '../../assets/images/image1991_03.jpg';
@@ -15,41 +19,75 @@ import Modal from '../Modal';
 
 export const imageList = [
   {
-    name: '1989年10月，时任民政部副部长张德江调研浙江省杭州市小营巷居民委员会社区服务工作',
+    name: {
+      zh: '1989年10月，时任民政部副部长张德江调研浙江省杭州市小营巷居民委员会社区服务工作',
+      en: 'In 1989, Zhang Dejiang, then Vice Minister of Civil Affairs, inspected the community services at the Xiaoyingxiang Neighborhood Committee in Hangzhou, Zhejiang Province'
+    },
     url: image1989
   },
   {
-    name: '1991年7月，时任民政部部长崔乃夫题词“发展社区服务，建立新型邻里关系”',
+    name: {
+      zh: '1991年7月，时任民政部部长崔乃夫题词“发展社区服务，建立新型邻里关系”',
+      en: 'In July 1991, Cui Naifu, then Minister of Civil Affairs, wrote an inscription calling for “developing community services and establishing a new model of neighborhood relations'
+    },
     url: image1991_07
   },
   {
-    name: '1992年6月，民政部基层政权和社区建设司在天津市河西区召开“全国城市街道社区建设研讨会”',
+    name: {
+      zh: '1992年6月，民政部基层政权和社区建设司在天津市河西区召开“全国城市街道社区建设研讨会”',
+      en: 'In June 1992, the Department of Grassroots Governance and Community Building of the Ministry of Civil Affairs held the National Seminar on Urban Sub-district Community Construction in Hexi District, Tianjin'
+    },
     url: image1992_06
   },
   {
-    name: '1993年5月，时任全国人大常委会副委员长、著名社会学家雷洁琼题词：“凝集社会力量，推动社区发展”',
+    name: {
+      zh: '1993年5月，时任全国人大常委会副委员长、著名社会学家雷洁琼题词：“凝集社会力量，推动社区发展”',
+      en: `In May 1993, Lei Jieqiong, then Vice Chairperson of the Standing Committee of the National People's Congress and a famous sociologist, wrote an inscription calling for the "mobilizing of social forces to promote community development."`
+    },
     url: image1993_05
   },
   {
-    name: '1990年，广东省广州市先进居民委员会及工作者表彰大会',
+    name: {
+      zh: '1990年，广东省广州市先进居民委员会及工作者表彰大会',
+      en: `In 1990, a commendation ceremony was held in Guangzhou, Guangdong Province, to honor outstanding residents' committees and their workers`
+    },
     url: image1990
   },
   {
-    name: '1991年3月，浙江省杭州市拱墅区长征桥居民区召开第一次居民代表大会',
+    name: {
+      zh: '1991年3月，浙江省杭州市拱墅区长征桥居民区召开第一次居民代表大会',
+      en: `In March 1991, the first residents' representative assembly was held in the Changzheng Bridge residential area of ​​Gongshu District, Hangzhou City, Zhejiang Province`
+    },
     url: image1991_03
   },
   {
-    name: '1993年9月十四部委关于加快发展社区服务业的意见',
+    name: {
+      zh: '1993年9月十四部委关于加快发展社区服务业的意见',
+      en: `Opinions of fourteen ministries and commissions in September 1993 on accelerating the development of community service industries`
+    },
     url: image1993_09
   },
   {
-    name: 'placeholder',
+    name: {
+      zh: 'placeholder',
+      en: 'placeholder'
+    },
     url: '',
     width: 880
   }
 ];
 
-function Detail({ name, gallery, onBack, isVisible }) {
+function Detail({ name, gallery, onBack, isVisible, language }) {
+  const bg1 = language === 'zh' ? bg1Zh : bg1En;
+  const beforeImg = language === 'zh' ? beforeZh : beforeEn;
+  const nextImg = language === 'zh' ? nextZh : nextEn;
+  const backImg = language === 'zh' ? backZh : backEn;
+
+  const localizedList = imageList.map(item => ({
+    ...item,
+    name: item.name === 'placeholder' ? 'placeholder' : item.name[language]
+  }));
+
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -142,7 +180,7 @@ function Detail({ name, gallery, onBack, isVisible }) {
         {/* <img src={slides1} alt="历史图片" className="slides-image" /> */}
 
         <div className="nanjing-grid">
-          {imageList.map((item, index) => {
+          {localizedList.map((item, index) => {
             if (item.name === 'placeholder') {
               return <div key={index} style={{ width: item.width, height: 1 }}></div>;
             }

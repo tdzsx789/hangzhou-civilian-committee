@@ -93,6 +93,12 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [language, setLanguage] = useState('zh');
+
+  const handleToggleLanguage = (e) => {
+    e.stopPropagation();
+    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
+  };
 
   const handleLearnMore = () => {
     setCurrentPage('detail');
@@ -323,7 +329,11 @@ function App() {
         pointerEvents: currentPage === 'home' ? 'auto' : 'none',
         transition: 'opacity 0.3s ease'
       }}>
-        <Home onLearnMore={handleLearnMore} />
+        <Home 
+          onLearnMore={handleLearnMore} 
+          language={language}
+          onToggleLanguage={handleToggleLanguage}
+        />
       </div>
       <div style={{
         position: 'absolute',
@@ -333,7 +343,13 @@ function App() {
         pointerEvents: currentPage === 'detail' ? 'auto' : 'none',
         transition: 'opacity 0.3s ease'
       }}>
-        <Detail name="城市社区治理发展历程1" gallery="A馆" onBack={handleBack} isVisible={currentPage === 'detail'} />
+        <Detail 
+          name="城市社区治理发展历程1" 
+          gallery="A馆" 
+          onBack={handleBack} 
+          isVisible={currentPage === 'detail'} 
+          language={language}
+        />
       </div>
     </div>
   );

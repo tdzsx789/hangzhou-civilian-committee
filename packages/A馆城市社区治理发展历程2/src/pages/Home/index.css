@@ -52,9 +52,15 @@
   height: auto;
 }
 
-
-
-
+.language-toggle-btn {
+  position: absolute;
+  top: 920px;
+  right: 70px;
+  width: 200px;
+  height: 90px;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  z-index: 10;
+}
 
 /* 呼吸灯动画关键帧 - 变大变小效果，带中间停顿 */
 @keyframes breathe {
