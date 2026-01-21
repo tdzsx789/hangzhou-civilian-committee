@@ -119,8 +119,15 @@
   max-width: 600px;
   position: absolute;
   left: 155px;
-  top: 120px;
+  top: 55%;
+  transform: translateY(-50%);
   text-indent: 2em;
+}
+
+.page2-button-name.en {
+  font-size: 24px;
+  line-height: 30px;
+  text-indent: 0;
 }
 
 @keyframes handSwipe {
@@ -143,4 +150,15 @@
   height: 100px;
   animation: handSwipe 2s infinite;
   animation-timing-function: linear;
+}
+
+.detail-back-btn2 {
+  position: absolute;
+  top: 1700px;
+  left: 760px;
+  width: 272px;
+  height: 152px;
+  background-image: url(../../assets/back.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }

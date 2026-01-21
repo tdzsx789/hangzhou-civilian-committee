@@ -121,6 +121,17 @@
   
 }
 
+.detail-back-btn2 {
+  position: absolute;
+  top: 1700px;
+  left: 760px;
+  width: 272px;
+  height: 152px;
+  background-image: url(../../assets/back.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 @keyframes handSwipe {
   0% {
     top: 1200px;

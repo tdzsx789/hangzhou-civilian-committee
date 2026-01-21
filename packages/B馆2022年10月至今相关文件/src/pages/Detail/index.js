@@ -1,10 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './index.css';
-import bg2 from '../../assets/bg2.jpg';
-import slideBg from '../../assets/slideBg.png';
+import bg2Zh from '../../assets/bg2.jpg';
+import bg2En from '../../assets_english/bg2.jpg';
+import slideBgZh from '../../assets/slideBg.png';
+import slideBgEn from '../../assets_english/slideBg.png';
+import backZh from '../../assets/back.png';
+import backEn from '../../assets_english/back.png';
 
-function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = false }) {
+function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = false, language = 'zh' }) {
   const scrollContainerRef = useRef(null);
+
+  const bg2 = language === 'en' ? bg2En : bg2Zh;
+  const slideBg = language === 'en' ? slideBgEn : slideBgZh;
 
   // 重置滚动位置：从其他页面进来时
   useEffect(() => {
@@ -39,11 +46,12 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
 
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg2})` }}>
+          <div className="detail-back-btn2" onClick={onBack} style={{ backgroundImage: `url(${language === 'en' ? backEn : backZh})` }}></div>
       <div className="page2-button-scroll" ref={scrollContainerRef}>
         {(data || []).map((item, idx) => {
           const numberLabel = String(idx + 1).padStart(2, '0');
-          const name = item?.name || '';
-          const isLongName = name.length > 50;
+          const currentName = language === 'en' ? (item?.name_en || '') : (item?.name_zh || '');
+          const isLongName = currentName.length > 50;
           return (
             <div
               key={numberLabel}
@@ -56,10 +64,10 @@ function Detail({ name, gallery, onBack, onOpenDetail2, data = [], isActive = fa
             >
               <div className="page2-button-number">{numberLabel}</div>
               <div
-                className="page2-button-name"
-                style={isLongName ? { top: 95 } : undefined}
+                className={`page2-button-name ${language === 'en' ? 'en' : ''}`}
+                // style={language !== 'en' && isLongName ? { top: 95 } : undefined}
               >
-                {name}
+                {currentName}
               </div>
             </div>
           );

@@ -1,11 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
-import bg3 from '../../assets/bg3.jpg';
-import leftImg from '../../assets/left.png';
-import rightImg from '../../assets/right.png';
+import bg3Zh from '../../assets/bg3.jpg';
+import leftImgZh from '../../assets/left.png';
+import rightImgZh from '../../assets/right.png';
+import bg3En from '../../assets_english/bg3.jpg';
+import leftImgEn from '../../assets_english/left.png';
+import rightImgEn from '../../assets_english/right.png';
 
-function Detail2({ onBack, item, isActive, currentIndex = 0, total = 0, onNext, onPrev }) {
+function Detail2({ onBack, item, isActive, currentIndex = 0, total = 0, onNext, onPrev, language = 'zh' }) {
   const scrollContainerRef = useRef(null);
+  
+  const bg3 = language === 'en' ? bg3En : bg3Zh;
+  const leftImg = language === 'en' ? leftImgEn : leftImgZh;
+  const rightImg = language === 'en' ? rightImgEn : rightImgZh;
 
   // 重置滚动位置
   useEffect(() => {

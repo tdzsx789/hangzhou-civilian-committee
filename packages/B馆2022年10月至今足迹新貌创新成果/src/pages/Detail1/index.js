@@ -96,6 +96,7 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = 
 
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1_1})` }}>
+      <div className="detail-back-btn2" onClick={onBack}></div>
       <div
         ref={scrollContainerRef}
         className="scroll-container"

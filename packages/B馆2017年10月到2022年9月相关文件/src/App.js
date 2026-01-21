@@ -7,36 +7,47 @@ import { work1, work2, work3, work4, work5, work6, work7 } from './works';
 
 const data = [
   {
-    name: '2017年10月，党的十九大报告《决胜全面建成小康社会 夺取新时代中国特色社会主义伟大胜利》',
+    name_zh: '2017年10月，党的十九大报告《决胜全面建成小康社会 夺取新时代中国特色社会主义伟大胜利》',
+    name_en: `Report to the 19th National Congress of the CPC: Securing a Decisive Victory in Building a Moderately Prosperous Society in All Respects and Striving for the Great Victory of Socialism with Chinese Characteristics for a New Era delivered in October 2017.`,
     work: work1,
   },
   {
-    name: '2019年10月，中国共产党第十九届中央委员会第四次全体会议通过的《中共中央关于坚持和完善中国特色社会主义制度 推进国家治理体系和治理能力现代化若干重大问题的决定》',
+    name_zh: '2019年10月，中国共产党第十九届中央委员会第四次全体会议通过的《中共中央关于坚持和完善中国特色社会主义制度 推进国家治理体系和治理能力现代化若干重大问题的决定》',
+    name_en: `Decision of the Central Committee of the CPC on Some Major Issues Concerning Upholding and Improving the System of Socialism with Chinese Characteristics and Modernizing the National Governance System and Governance Capacity adopted at the Fourth Plenary Session of the 19th Central Committee of the CPC in October 2019`,
     work: work2,
   },
   {
-    name: '2020年10月，中国共产党第十九届中央委员会第五次全体会议通过的《中共中央关于制定国民经济和社会发展第十四个五年规划和二〇三五年远景目标的建议》',
+    name_zh: '2020年10月，中国共产党第十九届中央委员会第五次全体会议通过的《中共中央关于制定国民经济和社会发展第十四个五年规划和二〇三五年远景目标的建议》',
+    name_en: `Proposals of the Central Committee of the CPC on Formulating the 14th Five-Year Plan for National Economic and Social Development and the Long-Range Objectives Through the Year 2035 adopted at the Fifth Plenary Session of the 19th Central Committee of the CPC in October 2020.`,
     work: work3,
   },
   {
-    name: '2021年4月，《中共中央、国务院关于加强基层治理体系和治理能力现代化建设的意见》',
+    name_zh: '2021年4月，《中共中央、国务院关于加强基层治理体系和治理能力现代化建设的意见》',
+    name_en: `Opinions of the Central Committee of the CPC and the State Council on Strengthening the Modernization of the Grassroots Governance System and Governance Capacity issued in April 2021.`,
     work: work4,
   },
   {
-    name: '2019年5月，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
+    name_zh: '2019年5月，中共中央办公厅印发《关于加强和改进城市基层党的建设工作的意见》',
+    name_en: `Circular on Addressing Prominent Formalist Issues to Alleviate the Burden on the Grassroots issued by the General Office of the Central Committee of the CPC in March 2019.`,
     work: work5
   },
   {
-    name: '2020年5月，《中华人民共和国民法典》',
+    name_zh: '2020年5月，《中华人民共和国民法典》',
+    name_en: `Opinions on Strengthening and Improving the Party Building Work at the Urban Community Level issued by the General Office of the Central Committee of the CPC in May 2019.`,
     work: work6
   },
   {
-    name: '2021年12月，国务院办公厅印发《“十四五”城乡社区服务体系建设规划》',
+    name_zh: '2021年12月，国务院办公厅印发《“十四五”城乡社区服务体系建设规划》',
+    name_en: `The 14th Five-Year Plan for the Construction of Urban and Rural Community Service Systems issued by the General Office of the State Council in December 2021.`,
     work: work7
   }
 ];
 
 function App() {
+  const [language, setLanguage] = useState('zh');
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
+  };
 
   // 密码输入功能
   const [showPasswordInput, setShowPasswordInput] = useState(false);
@@ -158,7 +169,7 @@ function App() {
   const pageConfigs = [
     {
       key: 'home',
-      element: <Home onLearnMore={handleLearnMore} />,
+      element: <Home onLearnMore={handleLearnMore} language={language} onToggleLanguage={toggleLanguage} />,
     },
     {
       key: 'detail',
@@ -170,6 +181,7 @@ function App() {
           onOpenDetail2={handleEnterDetail2}
           data={data}
           isActive={currentPage === 'detail'}
+          language={language}
         />
       ),
     },
@@ -184,6 +196,7 @@ function App() {
           onNext={handleNextWork}
           onPrev={handlePrevWork}
           isActive={currentPage === 'detail2'}
+          language={language}
         />
       ),
     },
