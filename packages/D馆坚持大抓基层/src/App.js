@@ -114,6 +114,11 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [language, setLanguage] = useState('zh');
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
+  };
 
   // 组件挂载时预加载所有图片
   useEffect(() => {
@@ -356,16 +361,18 @@ function App() {
           onLearnMore={handleLearnMore}
           onLearnMore2={handleLearnMore2}
           onLearnMore3={handleLearnMore3}
+          language={language}
+          onToggleLanguage={toggleLanguage}
         />
       </div>
       <div className={`page-container ${currentPage === 'detail' ? 'active' : 'inactive'}`}>
-        <Detail name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail'} />
+        <Detail name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail'} language={language} />
       </div>
       <div className={`page-container ${currentPage === 'detail2' ? 'active' : 'inactive'}`}>
-        <Detail2 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail2'} />
+        <Detail2 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail2'} language={language} />
       </div>
       <div className={`page-container ${currentPage === 'detail3' ? 'active' : 'inactive'}`}>
-        <Detail3 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} />
+        <Detail3 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} language={language} />
       </div>
     </div>
   );

@@ -63,6 +63,7 @@ let championPlayerId = '';
 let isPhotoWaiting = false;
 let waitingForPhotos = false;
 let photoCountdownVal = 0;
+let currentMode = '游客模式';
 
 let currentStage = STAGE.WAITING;
 
@@ -146,6 +147,9 @@ function handleMessage(client, message) {
       break;
     case 'champion:update':
       handleChampionUpdate(client, message);
+      break;
+    case 'mode:update':
+      handleModeUpdate(client, message);
       break;
     default:
       console.warn('[ws] unknown message type', type);
@@ -368,7 +372,7 @@ function updateStage(nextStage) {
     completeTimer = setTimeout(() => {
       console.log('[ws] complete timer expired, auto resetting to waiting');
       resetState();
-    }, 9000);
+    }, 20000);
     console.log('[ws] complete timer started, will reset in 9s');
   }
 
@@ -546,6 +550,12 @@ function sendStateSnapshot(ws) {
       payload: { playerId: championPlayerId },
     }),
   );
+  ws.send(
+    JSON.stringify({
+      type: 'mode:update',
+      payload: { mode: currentMode },
+    }),
+  );
   if (isPhotoWaiting) {
     ws.send(
       JSON.stringify({
@@ -570,6 +580,15 @@ function sendStateSnapshot(ws) {
   }
 }
 
+function handleModeUpdate(client, message) {
+  const mode = message.mode || message.payload?.mode;
+  if (mode) {
+    currentMode = mode;
+    console.log(`[ws] mode updated to: ${currentMode}`);
+    broadcast({ type: 'mode:update', payload: { mode: currentMode } });
+  }
+}
+
 function handleChampionUpdate(client, message) {
   let pid = getPlayerId(client, message);
 
@@ -577,14 +596,12 @@ function handleChampionUpdate(client, message) {
   // 如果客户端传来空字符串（清除champion），则允许
   if (pid && !playerPhotos.has(pid)) {
     console.log(`[ws] champion candidate ${pid} has no photo, rejecting`);
-    // 尝试找一个有照片的玩家代替，或者保持当前状态
-    // 这里简单处理：如果所选玩家没照片，尝试找 avatar3，如果 avatar3 也没照片，则随机找一个有照片的
     const candidates = Array.from(playerPhotos.keys());
     if (candidates.length > 0) {
-      if (candidates.includes('3')) {
+      if (currentMode === '领导模式' && candidates.includes('3')) {
         pid = '3';
       } else {
-        pid = candidates[0];
+        pid = candidates[Math.floor(Math.random() * candidates.length)];
       }
       console.log(`[ws] champion falling back to ${pid}`);
     } else {
@@ -593,8 +610,8 @@ function handleChampionUpdate(client, message) {
     }
   }
 
-  // 如果 avatar3 (id=3) 是人类玩家且有照片，强制其获得 champion
-  if (humanPlayers.has('3') && playerPhotos.has('3')) {
+  // 根据模式决定是否强制 avatar3 (id=3) 为 champion
+  if (currentMode === '领导模式' && humanPlayers.has('3') && playerPhotos.has('3')) {
     console.log('[ws] champion override: avatar3 is human and has photo, forcing champion to 3');
     pid = '3';
   }

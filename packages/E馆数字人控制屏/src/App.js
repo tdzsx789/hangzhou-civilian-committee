@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   // const labels = ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'PAUSE', 'START', 'FORWARD', 'BACK', 'UP', 'DOWN', 'P1-2', 'P2-2'];
-  const labels = ['P1', 'P2', 'P3','P3V20S', 'P4', 'P5', 'P6', 'AUTO', 'P1-2', 'P2-2', 'UP', 'DOWN', 'START', 'PAUSE', 'FORWARD', 'BACK',
+  const labels = ['P1', 'P2', 'P3','P3V20S', 'P4', 'P5', 'P6', 'ENGLISH', 'CHINESE', 'AUTO', 'P1-2', 'P2-2', 'UP', 'DOWN', 'START', 'PAUSE', 'FORWARD', 'BACK',
     '“141”体系夯实基层治理根基', //ZJS
     '打造“最美红巷”治理品牌', //ZJSHZS
     '“民呼我为”擦亮幸福底色', //ZJSHZS1

@@ -3,10 +3,6 @@ import './index.css';
 import bg2_1 from '../../assets/bg2_1.jpg';
 import backButton from '../../assets/backButton.png';
 import * as mammoth from 'mammoth';
-import result1Docx from '../../assets/result1.docx';
-import result2Docx from '../../assets/result2.docx';
-import result3Docx from '../../assets/result3.docx';
-
 const list = [
   { name: '一、第一至第四批全国社区治理和服务创新实验区名单及主题。', file: 'result1.docx' },
   { name: '二、中国社区治理十大创新成果（2013-2015）', file: 'result2.docx' },
@@ -14,9 +10,9 @@ const list = [
 ]
 
 const docxFiles = {
-  'result1.docx': result1Docx,
-  'result2.docx': result2Docx,
-  'result3.docx': result3Docx
+  'result1.docx': process.env.PUBLIC_URL + '/images/result1.docx',
+  'result2.docx': process.env.PUBLIC_URL + '/images/result2.docx',
+  'result3.docx': process.env.PUBLIC_URL + '/images/result3.docx'
 };
 
 function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {

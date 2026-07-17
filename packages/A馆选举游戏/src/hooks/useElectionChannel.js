@@ -38,6 +38,7 @@ export function useElectionChannel({ role, playerId }) {
   const [waitingForPhotos, setWaitingForPhotos] = useState(false);
   const [gamingShowPlayers, setGamingShowPlayers] = useState([]);
   const [championPlayerId, setChampionPlayerId] = useState('');
+  const [currentMode, setCurrentMode] = useState('游客模式');
 
   useEffect(() => {
     const shouldMock = process.env.REACT_APP_ENABLE_SOCKET !== 'true';
@@ -158,6 +159,11 @@ export function useElectionChannel({ role, playerId }) {
             setChampionPlayerId('');
           }
           break;
+        case 'mode:update':
+          if (payload.payload && payload.payload.mode) {
+            setCurrentMode(payload.payload.mode);
+          }
+          break;
         default:
           break;
         }
@@ -268,6 +274,7 @@ export function useElectionChannel({ role, playerId }) {
     waitingForPhotos,
     gamingShowPlayers,
     champion: championPlayerId,
+    currentMode,
   };
 }
 

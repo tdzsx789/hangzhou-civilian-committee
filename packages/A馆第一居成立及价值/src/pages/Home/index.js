@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
-import videoSrc from '../../assets/aihuman.mp4';
 
-function Home({ volume = 1, playbackCmd }) {
+function Home({ volume = 1, playbackCmd, videoSrc }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
   const [udpLog, setUdpLog] = useState([]);

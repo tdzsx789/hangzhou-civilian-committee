@@ -1,10 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Visitor from './pages/Visitor';
-import P1 from './assets/P1.jpg';
-import Video from './assets/video.mp4';
+import defaultData from './defaultData.json';
 
 function App() {
+  const [assetsData, setAssetsData] = useState(defaultData);
+
+  useEffect(() => {
+    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
+    fetch(dataUrl)
+      .then(res => {
+        if(!res.ok) throw new Error('Failed to load data');
+        return res.json();
+      })
+      .then(data => {
+        if(data) setAssetsData(data);
+      })
+      .catch(e => console.error(e));
+  }, []);
+
+  const getPublicPath = (path) => {
+    if (!path) return null;
+    return (process.env.PUBLIC_URL || '') + '/' + path;
+  };
+
     // 密码输入功能
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
@@ -12,7 +31,8 @@ function App() {
   const redButtonRef = useRef(null);
 
   const [showVisitor, setShowVisitor] = useState(true);
-  const [visitorImage, setVisitorImage] = useState(P1);
+  const [isEnglish, setIsEnglish] = useState(false);
+  const [visitorImageKey, setVisitorImageKey] = useState('P1');
   const [visitorVideo, setVisitorVideo] = useState(null);
   const [volume, setVolume] = useState(() => {
     const saved = localStorage.getItem('app_volume');
@@ -106,8 +126,18 @@ function App() {
     const es = new EventSource(url);
     es.onmessage = (e) => {
       const cmd = String(e.data).trim().toUpperCase();
+
+      if (cmd === 'ENGLISH') {
+        setIsEnglish(true);
+        return;
+      }
+      if (cmd === 'CHINESE') {
+        setIsEnglish(false);
+        return;
+      }
+
       if (cmd === 'AUTO') {
-        setVisitorImage(P1);
+        setVisitorImageKey('P1');
         setVisitorVideo(null);
         setShowVisitor(true);
         return;
@@ -125,11 +155,11 @@ function App() {
         return;
       }
       if (cmd === 'P2') {
-        setVisitorVideo(Video);
-        setVisitorImage(null);
+        setVisitorVideo(getPublicPath(assetsData.videos.video));
+        setVisitorImageKey(null);
         setShowVisitor(true);
       } else if (cmd === 'P1') {
-        setVisitorImage(P1);
+        setVisitorImageKey('P1');
         setVisitorVideo(null);
         setShowVisitor(true);
       }
@@ -138,6 +168,9 @@ function App() {
       es.close();
     };
   }, []);
+
+  const currentLang = isEnglish ? 'en' : 'zh';
+  const visitorImage = visitorImageKey ? getPublicPath(assetsData.assets[currentLang][visitorImageKey]) : null;
 
   return (
     <div className="App">

@@ -95,6 +95,11 @@ function App() {
 
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [language, setLanguage] = useState('zh');
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
+  };
 
   const handleLearnMore = () => {
     setCurrentPage('detail');
@@ -326,21 +331,64 @@ function App() {
 
 
       {/* 所有页面同时渲染，通过透明度控制显示 */}
-      <div className={`page-container ${currentPage === 'home' ? 'active' : 'inactive'}`}>
+      <div
+        className={`page-container ${currentPage === 'home' ? 'active' : ''}`}
+        style={{
+          opacity: currentPage === 'home' ? 1 : 0,
+          pointerEvents: currentPage === 'home' ? 'auto' : 'none'
+        }}
+      >
         <Home
           onLearnMore={handleLearnMore}
           onLearnMore2={handleLearnMore2}
           onLearnMore3={handleLearnMore3}
+          language={language}
+          toggleLanguage={toggleLanguage}
         />
       </div>
-      <div className={`page-container ${currentPage === 'detail' ? 'active' : 'inactive'}`}>
-        <Detail name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail'} />
+      <div
+        className={`page-container ${currentPage === 'detail' ? 'active' : ''}`}
+        style={{
+          opacity: currentPage === 'detail' ? 1 : 0,
+          pointerEvents: currentPage === 'detail' ? 'auto' : 'none'
+        }}
+      >
+        <Detail
+          name="城市居民委员会发展2"
+          gallery="A馆"
+          onBack={handleBack}
+          visible={currentPage === 'detail'}
+          language={language}
+        />
       </div>
-      <div className={`page-container ${currentPage === 'detail2' ? 'active' : 'inactive'}`}>
-        <Detail2 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} visible={currentPage === 'detail2'} />
+      <div
+        className={`page-container ${currentPage === 'detail2' ? 'active' : ''}`}
+        style={{
+          opacity: currentPage === 'detail2' ? 1 : 0,
+          pointerEvents: currentPage === 'detail2' ? 'auto' : 'none'
+        }}
+      >
+        <Detail2
+          name="城市居民委员会发展2"
+          gallery="A馆"
+          onBack={handleBack}
+          visible={currentPage === 'detail2'}
+          language={language}
+        />
       </div>
-      <div className={`page-container ${currentPage === 'detail3' ? 'active' : 'inactive'}`}>
-        <Detail3 name="城市居民委员会发展2" gallery="A馆" onBack={handleBack} />
+      <div
+        className={`page-container ${currentPage === 'detail3' ? 'active' : ''}`}
+        style={{
+          opacity: currentPage === 'detail3' ? 1 : 0,
+          pointerEvents: currentPage === 'detail3' ? 'auto' : 'none'
+        }}
+      >
+        <Detail3
+          name="城市居民委员会发展2"
+          gallery="A馆"
+          onBack={handleBack}
+          language={language}
+        />
       </div>
     </div>
   );

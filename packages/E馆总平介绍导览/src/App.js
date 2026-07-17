@@ -2,12 +2,33 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
-// 预加载图片
-import coverImg from './assets/cover.jpg';
-import detailBg from './assets/detailBg.jpg';
+import defaultData from './defaultData.json';
 
 function App() {
+  const [assetsData, setAssetsData] = useState(defaultData);
   const [currentPage, setCurrentPage] = useState('home');
+
+  const getPublicPath = (path) => {
+    if (!path) return null;
+    const publicUrl = process.env.PUBLIC_URL;
+    if (publicUrl === '.' || !publicUrl) {
+      return path;
+    }
+    return publicUrl + '/' + path;
+  };
+ ,.m,Ue,GYDE mrf,yfryffHnhnjmnn         m   nm                                                        juuhbh  CookieChangeEvent nb 
+  useEffect(() => {
+    const dataUrl = getPublicPath('data.json');
+    fetch(dataUrl)
+      .then(res => {
+        if(!res.ok) throw new Error('Failed to load data');
+        return res.json();
+      })
+      .then(data => {
+        if(data) setAssetsData(data);
+      })
+      .catch(e => console.error(e));
+  }, []);
 
     // 密码输入功能
   const [showPasswordInput, setShowPasswordInput] = useState(false);
@@ -94,14 +115,6 @@ function App() {
 
 
   
-
-  // 预加载图片
-  useEffect(() => {
-    const img1 = new Image();
-    img1.src = coverImg;
-    const img2 = new Image();
-    img2.src = detailBg;
-  }, []);
 
   const handleLearnMore = () => {
     setCurrentPage('detail');
@@ -325,10 +338,12 @@ function App() {
       <Home 
         onLearnMore={handleLearnMore} 
         className={currentPage === 'home' ? 'page-visible' : 'page-hidden'}
+        coverImg={getPublicPath(assetsData.images.cover)}
       />
       <Detail 
         onBack={handleBack} 
         className={currentPage === 'detail' ? 'page-visible' : 'page-hidden'}
+        detailBg={getPublicPath(assetsData.images.detailBg)}
       />
     </div>
   );

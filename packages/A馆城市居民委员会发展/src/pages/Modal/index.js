@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-function Modal({ image, onClose }) {
+function Modal({ image, onClose, language }) {
     if (!image) return null;
 
     const handleMaskClick = () => {
@@ -12,6 +12,8 @@ function Modal({ image, onClose }) {
         e.stopPropagation();
     };
 
+    const captionStyle = language === 'en' ? { textIndent: '0' } : {};
+
     return (
         <div className="modal-mask" onClick={handleMaskClick}>
             <div className="modal-mask-bg"></div>
@@ -21,11 +23,10 @@ function Modal({ image, onClose }) {
                     alt={image.name}
                     className="modal-image"
                 />
-                <div className="modal-caption">{image.name}</div>
+                <div className="modal-caption" style={captionStyle}>{image.name}</div>
             </div>
         </div>
     );
 }
 
 export default Modal;
-

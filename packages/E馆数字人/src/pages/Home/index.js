@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
-// import videoSrc from '../../assets/aihuman.mp4';
 import { useVideoDebugControls } from './utils';
 
 const isTest = false;

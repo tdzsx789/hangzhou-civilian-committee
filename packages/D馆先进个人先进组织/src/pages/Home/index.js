@@ -65,7 +65,7 @@ const provinces = [
     {
         "name": "广东省",
         "lng": 113.429919,
-        "lat": 23.334643
+        "lat": 23.734643
     },
     {
         "name": "广西壮族自治区",
@@ -74,13 +74,13 @@ const provinces = [
     },
     {
         "name": "新疆生产建设兵团",
-        "lng": 85.294711,
-        "lat": 41.371801
+        "lng": 88,
+        "lat": 39
     },
     {
         "name": "新疆维吾尔自治区",
-        "lng": 91.294711,
-        "lat": 40.371801
+        "lng": 88,
+        "lat": 42
     },
     {
         "name": "江苏省",
@@ -166,8 +166,31 @@ const provinces = [
         "name": "黑龙江省",
         "lng": 127.693027,
         "lat": 46.040465
+    },
+    {
+        "name": "台湾省",
+        "lng": 120.5,
+        "lat": 24.2
+    },
+    {
+        "name": "澳门特别行政区",
+        "lng": 113.4,
+        "lat": 22.3
+    },
+    {
+        "name": "香港特别行政区",
+        "lng": 114.4,
+        "lat": 22.5
     }
 ]
+
+const labelOnlyRegions = new Set(['台湾省', '澳门特别行政区', '香港特别行政区']);
+
+// 特殊地区的标签偏移配置
+const labelOffsetConfig = {
+  '澳门特别行政区': { lng: 0, lat: -1 }, // 向左下偏移
+  '香港特别行政区': { lng: 2, lat: 0 },  // 向右下偏移
+};
 
 export const mapContainerStyle = {
   width: '100%',
@@ -199,11 +222,46 @@ function Home({ onStart1Click, onStart2Click, onMarkerClick }) {
     let disposed = false;
     chart = echarts.init(chartRef.current);
     echarts.registerMap('china', chinaMap);
-    const data = provinces.map((p) => {
+    const data = [];
+    const labelOnlyData = [];
+    const linesData = []; // 用于存储引导线数据
+
+    provinces.forEach((p) => {
       const lat = p.lat > 31.072559 ? +(p.lat - 0.1).toFixed(6) : p.lat;
-      // const itemStyle = (p.name === '江西省' || p.name === '河北省') ? { color: '#f86d10ff' } : undefined;
-      const itemStyle = undefined;
-      return { name: p.name, value: [p.lng, lat, 1], itemStyle };
+      const originalPoint = { name: p.name, value: [p.lng, lat, 1] };
+
+      if (labelOnlyRegions.has(p.name)) {
+        if (labelOffsetConfig[p.name]) {
+          // 如果有偏移配置，创建引导线
+          const offset = labelOffsetConfig[p.name];
+          const offsetLng = p.lng + offset.lng;
+          const offsetLat = lat + offset.lat;
+          
+          // 添加引导线
+          linesData.push({
+            coords: [
+              [p.lng, lat],       // 起点：实际位置
+              [offsetLng, offsetLat] // 终点：标签位置
+            ]
+          });
+          
+          // 添加标签点到偏移位置，并根据地区设置不同的标签位置
+          const labelConfig = {
+            '香港特别行政区': 'right',  // 香港标签在引导线右方
+            '澳门特别行政区': 'bottom'  // 澳门标签在引导线下方
+          };
+          labelOnlyData.push({ 
+            name: p.name, 
+            value: [offsetLng, offsetLat, 1],
+            label: { position: labelConfig[p.name] || 'bottom' }
+          });
+        } else {
+          // 没有偏移配置的直接添加
+          labelOnlyData.push(originalPoint);
+        }
+        return;
+      }
+      data.push(originalPoint);
     });
     const projection = mapProjectionType === 'mercator'
       ? null
@@ -255,6 +313,45 @@ function Home({ onStart1Click, onStart2Click, onMarkerClick }) {
           itemStyle: { color: '#f89710ff' },
           data,
           encode: { tooltip: 2 },
+        },
+        {
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          symbolSize: 1,
+          silent: true,
+          label: {
+            show: true,
+            formatter: '{b}',
+            position: 'bottom',
+            color: 'rgb(0,0,0)',
+            opacity: 0.7,
+            fontSize: 20,
+            padding: 0,
+            fontFamily: 'FZLanTingHeiS-DB-GB',
+          },
+          itemStyle: {
+            color: 'rgba(0,0,0,0)',
+          },
+          emphasis: {
+            label: { show: true },
+            itemStyle: {
+              color: 'rgba(0,0,0,0)',
+            },
+          },
+          data: labelOnlyData,
+          encode: { tooltip: 2 },
+        },
+        {
+          type: 'lines',
+          coordinateSystem: 'geo',
+          symbol: ['none', 'none'],
+          lineStyle: {
+            color: 'rgb(0,0,0)',
+            opacity: 0.7,
+            width: 1,
+            type: 'solid',
+          },
+          data: linesData,
         },
       ],
     });

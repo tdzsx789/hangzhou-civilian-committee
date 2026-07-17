@@ -3,22 +3,35 @@ import './index.css';
 import bg2_1 from '../../assets/bg2_1.jpg';
 import backButton from '../../assets/backButton.png';
 import buttonBg from '../../assets/buttonBg.png';
+import bg2_1_en from '../../assets_english/bg2_1.jpg';
+import backButton_en from '../../assets_english/backButton.png';
+import buttonBg_en from '../../assets_english/buttonBg.png';
 import * as mammoth from 'mammoth';
-import result1Docx from '../../assets/result1.docx';
-import result2Docx from '../../assets/result2.docx';
-import result3Docx from '../../assets/result3.docx';
 import Modal from '../Modal';
 
-const list = [
-  { name: '一、第一至第三批全国社区治理和服务创新实验区名单及主题。', file: 'result1.docx' },
-  { name: '二、中国社区治理十大创新成果（2013-2015）', file: 'result2.docx' },
-  { name: '三、社区建设、居民自治、社区议事协商、网格化管理、城乡发展一体化、“三社联动”相关图表', file: 'result3.docx' }
-]
+const listData = [
+  { 
+    name: '一、第一至第三批全国社区治理和服务创新实验区名单及主题。', 
+    name_en: 'I. List and Themes of the First to Third Batches of National Community Governance and Service Innovation Experimental Zones',
+    file: 'result1.docx' 
+  },
+  { 
+    name: '二、中国社区治理十大创新成果（2013-2015）', 
+    name_en: 'II. Top Ten Innovation Achievements in Community Governance in China (2013-2015)',
+    file: 'result2.docx' 
+  },
+  { 
+    name: '三、社区建设、居民自治、社区议事协商、网格化管理、城乡发展一体化、“三社联动”相关图表', 
+    name_en: 'III. Charts related to Community Construction, Resident Autonomy, Community Consultation, Grid Management, Urban-Rural Integrated Development, and "Three-Community Linkage"',
+    file: 'result3.docx' 
+  }
+];
 
+const publicUrl = process.env.PUBLIC_URL || '';
 const docxFiles = {
-  'result1.docx': result1Docx,
-  'result2.docx': result2Docx,
-  'result3.docx': result3Docx
+  'result1.docx': `${publicUrl}/images/result1.docx`,
+  'result2.docx': `${publicUrl}/images/result2.docx`,
+  'result3.docx': `${publicUrl}/images/result3.docx`
 };
 
 const processResult3Html = (html, otherItems = [], buttonBgImage) => {
@@ -122,12 +135,18 @@ const processResult3Html = (html, otherItems = [], buttonBgImage) => {
   return resultContainer.innerHTML;
 };
 
-function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
+function Detail2({ onBack, onOpenDetail2_2, isActive = false, language = 'zh' }) {
   const [allDocxContent, setAllDocxContent] = useState({});
+  const [rawDocxContent, setRawDocxContent] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalData, setModalData] = useState(null);
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
+
+  const list = listData;
+  const currentBg = language === 'en' ? bg2_1_en : bg2_1;
+  const currentBackButton = language === 'en' ? backButton_en : backButton;
+  const currentButtonBg = language === 'en' ? buttonBg_en : buttonBg;
 
   // 预加载所有文件
   useEffect(() => {
@@ -138,25 +157,33 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
           const response = await fetch(fileUrl);
           const arrayBuffer = await response.arrayBuffer();
           const result = await mammoth.convertToHtml({ arrayBuffer });
-          
-          if (fileName === 'result3.docx') {
-              const otherItems = list.filter(item => item.file !== 'result3.docx');
-              const processedHtml = processResult3Html(result.value, otherItems, buttonBg);
-              contentMap[fileName] = processedHtml;
-          } else {
-              contentMap[fileName] = result.value;
-          }
+          contentMap[fileName] = result.value;
         } catch (error) {
           console.error(`Error loading ${fileName}:`, error);
         }
       });
 
       await Promise.all(promises);
-      setAllDocxContent(contentMap);
+      setRawDocxContent(contentMap);
     };
 
     loadAllDocs();
   }, []);
+
+  // Process raw content when language or raw content changes
+  useEffect(() => {
+    if (Object.keys(rawDocxContent).length === 0) return;
+
+    const processedMap = { ...rawDocxContent };
+    
+    // Process result3.docx specifically
+    if (processedMap['result3.docx']) {
+        const otherItems = list.filter(item => item.file !== 'result3.docx');
+        processedMap['result3.docx'] = processResult3Html(processedMap['result3.docx'], otherItems, currentButtonBg);
+    }
+
+    setAllDocxContent(processedMap);
+  }, [rawDocxContent, language, list, currentButtonBg]);
 
   useEffect(() => {
     if (isActive) {
@@ -248,7 +275,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg2_1})` }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
       {!selectedItem ? (
         <div
           ref={listScrollContainerRef}
@@ -263,7 +290,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               onClick={() => handleCardClick(item)}
               onKeyDown={(e) => handleCardKeyDown(e, item)}
             >
-              <div className="card-content">{item.name}</div>
+              <div className="card-content">{language === 'en' ? (item.name_en || item.name) : item.name}</div>
             </div>
           ))}
         </div>
@@ -284,7 +311,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               onClick={handleBackButton}
               onKeyDown={handleKeyDown(handleBackButton)}
             >
-              <img src={backButton} alt="返回" />
+              <img src={currentBackButton} alt="返回" />
             </div>
           )}
         </>

@@ -10,39 +10,28 @@ import startImg from './assets/start.png';
 import menuImg from './assets/menu.jpg';
 import detailBgImg from './assets/detailBg.jpg';
 import selectImg from './assets/select.png';
-import select1Img from './assets/step1.png';
-import select2Img from './assets/step2.png';
-import select3Img from './assets/step3.png';
-import select4Img from './assets/step4.png';
-import page2Img from './assets/page2.png';
-import page3Img from './assets/page3.png';
-import page4Img from './assets/page4.png';
-import slides1Img from './assets/slides1.png';
-import slides2Img from './assets/slides2.png';
-import pageSlides1Img from './assets/pageSlides1.png';
-import pageSlides2Img from './assets/pageSlides2.png';
-import pageSlides3Img from './assets/pageSlides3.png';
 
 // 预加载所有图片
 const preloadImages = () => {
+  const publicUrl = process.env.PUBLIC_URL || '';
   const images = [
     coverImg,
     startImg,
     menuImg,
     detailBgImg,
     selectImg,
-    select1Img,
-    select2Img,
-    select3Img,
-    select4Img,
-    page2Img,
-    page3Img,
-    page4Img,
-    slides1Img,
-    slides2Img,
-    pageSlides1Img,
-    pageSlides2Img,
-    pageSlides3Img,
+    `${publicUrl}/images/step1.png`,
+    `${publicUrl}/images/step2.png`,
+    `${publicUrl}/images/step3.png`,
+    `${publicUrl}/images/step4.png`,
+    `${publicUrl}/images/page2.png`,
+    `${publicUrl}/images/page3.png`,
+    `${publicUrl}/images/page4.png`,
+    `${publicUrl}/images/slides1.png`,
+    `${publicUrl}/images/slides2.png`,
+    `${publicUrl}/images/pageSlides1.png`,
+    `${publicUrl}/images/pageSlides2.png`,
+    `${publicUrl}/images/pageSlides3.png`,
   ];
 
   images.forEach((src) => {

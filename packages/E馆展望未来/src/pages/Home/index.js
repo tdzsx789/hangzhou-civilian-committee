@@ -1,10 +1,15 @@
 import React from 'react';
 import './index.css';
-import coverImg from '../../assets/cover.jpg';
 
-function Home({ onEnter }) {
+function Home({ onEnter, coverImage }) {
   return (
-    <div className="home-page" onClick={onEnter}>
+    <div 
+      className="home-page" 
+      onClick={onEnter}
+      style={{
+        backgroundImage: coverImage ? `url(${coverImage})` : undefined
+      }}
+    >
     </div>
   );
 }

@@ -120,9 +120,9 @@
 .slides-container {
   position: absolute;
   left: 436px;
-  top: 130px;
+  top: 100px;
   width: 1330px;
-  height: 856px;
+  height: 906px;
   overflow: hidden;
   overflow-x: auto;
   overflow-y: hidden;

@@ -2,10 +2,11 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import './index.css';
 import bg1_1Zh from '../../assets/bg1_1.jpg';
 import bg1_1En from '../../assets_english/bg1_1.jpg';
-import slides1Zh from '../../assets/slides1.png';
 import slides1En from '../../assets_english/slides1.png';
 import startButtonZh from '../../assets/start.png';
 import startButtonEn from '../../assets_english/start.png';
+
+const slides1Zh = (process.env.PUBLIC_URL || '') + '/images/slides1.png';
 
 const topList = [0, 125, 250, 375, 500, 635, 760, 885, 1020, 1155, 1280, 1405, 1525, 1665, 1790, 1925, 2050, 2175, 2300, 2435];
 

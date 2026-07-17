@@ -2,15 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Visitor from './pages/Visitor';
-import P1 from './assets/P1.jpg';
-import P2 from './assets/P2.png';
-import P4 from './assets/P4.png';
-import P5 from './assets/P5.png';
-import P6 from './assets/P6.png';
-import P3 from './assets/P3.mp4';
-import P3_LONG from './assets/P3_LONG.mp4';
+import defaultData from './defaultData.json';
 
 function App() {
+  const [assetsData, setAssetsData] = useState(defaultData);
+
+  useEffect(() => {
+    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
+    fetch(dataUrl)
+      .then(res => {
+        if(!res.ok) throw new Error('Failed to load data');
+        return res.json();
+      })
+      .then(data => {
+        if(data) setAssetsData(data);
+      })
+      .catch(e => console.error(e));
+  }, []);
+
+  const getPublicPath = (path) => {
+    if (!path) return null;
+    return (process.env.PUBLIC_URL || '') + '/' + path;
+  };
 
 
   
@@ -21,7 +34,8 @@ function App() {
   const lastTouchTimeRef = useRef(0);
   const redButtonRef = useRef(null);
   const [showVisitor, setShowVisitor] = useState(false);
-  const [visitorImage, setVisitorImage] = useState(null);
+  const [isEnglish, setIsEnglish] = useState(false);
+  const [visitorImageKey, setVisitorImageKey] = useState(null);
   const [visitorVideo, setVisitorVideo] = useState(null);
   const [volume, setVolume] = useState(() => {
     const saved = localStorage.getItem('app_volume');
@@ -65,9 +79,19 @@ function App() {
     const es = new EventSource(url);
     es.onmessage = (e) => {
       const cmd = String(e.data).trim().toUpperCase();
+      
+      if (cmd === 'ENGLISH') {
+        setIsEnglish(true);
+        return;
+      }
+      if (cmd === 'CHINESE') {
+        setIsEnglish(false);
+        return;
+      }
+
       if (cmd === 'AUTO') {
         setShowVisitor(false);
-        setVisitorImage(null);
+        setVisitorImageKey(null);
         setVisitorVideo(null);
         return;
       }
@@ -85,19 +109,19 @@ function App() {
       }
       setShowVisitor(true);
       if (cmd === 'P3') {
-        setVisitorVideo(P3_LONG);
-        setVisitorImage(null);
+        setVisitorVideo(getPublicPath(assetsData.videos.P3_LONG));
+        setVisitorImageKey(null);
       } else if (cmd === 'P3V20S') {
-        setVisitorVideo(P3);
-        setVisitorImage(null);
+        setVisitorVideo(getPublicPath(assetsData.videos.P3));
+        setVisitorImageKey(null);
       } else {
         setVisitorVideo(null);
-        if (cmd === 'P1') setVisitorImage(P1);
-        else if (cmd === 'P2') setVisitorImage(P2);
-        else if (cmd === 'P4') setVisitorImage(P4);
-        else if (cmd === 'P5') setVisitorImage(P5);
-        else if (cmd === 'P6') setVisitorImage(P6);
-        else setVisitorImage(null);
+        if (cmd === 'P1') setVisitorImageKey('P1');
+        else if (cmd === 'P2') setVisitorImageKey('P2');
+        else if (cmd === 'P4') setVisitorImageKey('P4');
+        else if (cmd === 'P5') setVisitorImageKey('P5');
+        else if (cmd === 'P6') setVisitorImageKey('P6');
+        else setVisitorImageKey(null);
       }
     };
     return () => {
@@ -106,9 +130,27 @@ function App() {
   }, []);
 
 
+  const currentLang = isEnglish ? 'en' : 'zh';
+  const visitorImage = visitorImageKey ? getPublicPath(assetsData.assets[currentLang][visitorImageKey]) : null;
+  const defaultVisitorImage = getPublicPath(assetsData.assets[currentLang]['P1']);
+
   return (
     <div className="App">
-      {showVisitor ? <Visitor image={visitorImage} video={visitorVideo} volume={volume} playbackCmd={playbackCmd} /> : <Home volume={volume} playbackCmd={playbackCmd} />}
+      {showVisitor ? (
+        <Visitor 
+          image={visitorImage} 
+          defaultImage={defaultVisitorImage}
+          video={visitorVideo} 
+          volume={volume} 
+          playbackCmd={playbackCmd} 
+        />
+      ) : (
+        <Home 
+          volume={volume} 
+          playbackCmd={playbackCmd} 
+          videoSrc={getPublicPath(assetsData.videos.aihuman)}
+        />
+      )}
     </div>
   );
 }

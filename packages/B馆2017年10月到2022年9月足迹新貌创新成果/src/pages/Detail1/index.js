@@ -1,11 +1,17 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './index.css';
 import bg1_1 from '../../assets/bg1_1.jpg';
+import bg1_1En from '../../assets_english/bg1_1.jpg';
+import backButton from '../../assets/back.png';
+import backButtonEn from '../../assets_english/back.png';
 
-function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = [], isActive = false }) {
+function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = [], isActive = false, language = 'zh' }) {
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragStateRef = useRef({ startY: 0, scrollTop: 0 });
+
+  const currentBg = language === 'en' ? bg1_1En : bg1_1;
+  const currentBackButton = language === 'en' ? backButtonEn : backButton;
 
   // 当页面激活时重置滚动位置
   useEffect(() => {
@@ -102,8 +108,8 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = 
   }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg1_1})` }}>
-      <div className="detail-back-btn2" onClick={onBack}></div>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
+      <div className="detail-back-btn2" onClick={onBack} style={{ backgroundImage: `url(${currentBackButton})` }}></div>
       <div
         ref={scrollContainerRef}
         className="scroll-container"
@@ -119,7 +125,7 @@ function Detail({ name, gallery, onBack, onOpenDetail2, onOpenDetail1_2, list = 
             onClick={() => handleCardClick(item)}
             onKeyDown={(e) => handleCardKeyDown(e, item)}
           >
-            <div className="card-content">{item.name}</div>
+            <div className={`card-content ${language === 'en' ? 'en' : ''}`}>{language === 'en' ? (item.name_en || item.name) : item.name}</div>
           </div>
         ))}
       </div>

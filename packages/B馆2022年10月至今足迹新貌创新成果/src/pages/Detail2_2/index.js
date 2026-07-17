@@ -2,7 +2,9 @@ import React from 'react';
 import './index.css';
 import bg2_2 from '../../assets/bg2_2.jpg';
 
-function Detail2Second({ onBackToDetail1, onOpenDetail2 }) {
+function Detail2Second({ onBackToDetail1, onOpenDetail2, language = 'zh' }) {
+  const currentBg = bg2_2;
+
   const handleBackToDetail1 = () => {
     if (onBackToDetail1) {
       onBackToDetail1();
@@ -23,7 +25,7 @@ function Detail2Second({ onBackToDetail1, onOpenDetail2 }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg2_2})` }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
       <div
         className="link2_2"
         role="button"

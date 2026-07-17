@@ -8,76 +8,21 @@ import bg1En from '../../assets_english/bg1.jpg';
 import beforeEn from '../../assets_english/before.png';
 import nextEn from '../../assets_english/next.png';
 import backEn from '../../assets_english/back.png';
-import image1989 from '../../assets/images/image1989.jpg';
-import image1990 from '../../assets/images/image1990.jpg';
-import image1991_03 from '../../assets/images/image1991_03.jpg';
-import image1991_07 from '../../assets/images/image1991_07.jpg';
-import image1992_06 from '../../assets/images/image1992_06.jpg';
-import image1993_05 from '../../assets/images/image1993_05.jpg';
-import image1993_09 from '../../assets/images/image1993_09.jpg';
 import Modal from '../Modal';
+import defaultData from '../../defaultData.json';
 
-export const imageList = [
-  {
-    name: {
-      zh: '1989年10月，时任民政部副部长张德江调研浙江省杭州市小营巷居民委员会社区服务工作',
-      en: 'In 1989, Zhang Dejiang, then Vice Minister of Civil Affairs, inspected the community services at the Xiaoyingxiang Neighborhood Committee in Hangzhou, Zhejiang Province'
-    },
-    url: image1989
-  },
-  {
-    name: {
-      zh: '1991年7月，时任民政部部长崔乃夫题词“发展社区服务，建立新型邻里关系”',
-      en: 'In July 1991, Cui Naifu, then Minister of Civil Affairs, wrote an inscription calling for “developing community services and establishing a new model of neighborhood relations'
-    },
-    url: image1991_07
-  },
-  {
-    name: {
-      zh: '1992年6月，民政部基层政权和社区建设司在天津市河西区召开“全国城市街道社区建设研讨会”',
-      en: 'In June 1992, the Department of Grassroots Governance and Community Building of the Ministry of Civil Affairs held the National Seminar on Urban Sub-district Community Construction in Hexi District, Tianjin'
-    },
-    url: image1992_06
-  },
-  {
-    name: {
-      zh: '1993年5月，时任全国人大常委会副委员长、著名社会学家雷洁琼题词：“凝集社会力量，推动社区发展”',
-      en: `In May 1993, Lei Jieqiong, then Vice Chairperson of the Standing Committee of the National People's Congress and a famous sociologist, wrote an inscription calling for the "mobilizing of social forces to promote community development."`
-    },
-    url: image1993_05
-  },
-  {
-    name: {
-      zh: '1990年，广东省广州市先进居民委员会及工作者表彰大会',
-      en: `In 1990, a commendation ceremony was held in Guangzhou, Guangdong Province, to honor outstanding residents' committees and their workers`
-    },
-    url: image1990
-  },
-  {
-    name: {
-      zh: '1991年3月，浙江省杭州市拱墅区长征桥居民区召开第一次居民代表大会',
-      en: `In March 1991, the first residents' representative assembly was held in the Changzheng Bridge residential area of ​​Gongshu District, Hangzhou City, Zhejiang Province`
-    },
-    url: image1991_03
-  },
-  {
-    name: {
-      zh: '1993年9月十四部委关于加快发展社区服务业的意见',
-      en: `Opinions of fourteen ministries and commissions in September 1993 on accelerating the development of community service industries`
-    },
-    url: image1993_09
-  },
-  {
-    name: {
-      zh: 'placeholder',
-      en: 'placeholder'
-    },
-    url: '',
-    width: 880
-  }
-];
+export const imageList = [];
 
 function Detail({ name, gallery, onBack, isVisible, language }) {
+  const [imageList, setImageList] = useState(defaultData);
+
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + '/data.json')
+      .then(res => res.json())
+      .then(data => setImageList(data))
+      .catch(err => console.warn('Failed to load external config, using default data:', err));
+  }, []);
+
   const bg1 = language === 'zh' ? bg1Zh : bg1En;
   const beforeImg = language === 'zh' ? beforeZh : beforeEn;
   const nextImg = language === 'zh' ? nextZh : nextEn;
@@ -85,7 +30,8 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
 
   const localizedList = imageList.map(item => ({
     ...item,
-    name: item.name === 'placeholder' ? 'placeholder' : item.name[language]
+    name: item.name === 'placeholder' ? 'placeholder' : item.name[language],
+    url: item.url ? process.env.PUBLIC_URL + item.url : ''
   }));
 
   const scrollContainerRef = useRef(null);
@@ -167,6 +113,18 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
     setSelectedImage(null);
   };
 
+  const getCaptionStyle = (text) => {
+    const style = {};
+    if (language === 'en' && text.length > 150) {
+      style.fontSize = '14px';
+      style.lineHeight = '16px';
+    }
+    if (language !== 'zh') {
+      style.textIndent = '0';
+    }
+    return style;
+  };
+
   return (
     <div className="detail-page" style={{ backgroundImage: `url(${bg1})` }}>
       <div
@@ -193,7 +151,7 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
                   className="nanjing-thumb clickable-image"
                   onClick={() => handleImageClick(item)}
                 />
-                <div className="nanjing-caption">{item.name}</div>
+                <div className="nanjing-caption" style={getCaptionStyle(item.name)}>{item.name}</div>
               </div>
             );
 
@@ -227,7 +185,7 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
         style={{ backgroundImage: `url(${backImg})` }}
       ></div>
       {selectedImage && (
-        <Modal image={selectedImage} onClose={handleCloseModal} />
+        <Modal image={selectedImage} onClose={handleCloseModal} language={language} />
       )}
     </div>
   );

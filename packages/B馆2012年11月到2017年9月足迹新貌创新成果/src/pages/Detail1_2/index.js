@@ -1,11 +1,14 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './index.css';
 import bg1_2 from '../../assets/bg1_2.jpg';
+import bg1_2_en from '../../assets_english/bg1_2.jpg';
 
-function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive = false }) {
+function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive = false, language = 'zh' }) {
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragStateRef = useRef({ startY: 0, scrollTop: 0 });
+
+  const currentBg = language === 'en' ? bg1_2_en : bg1_2;
 
   // 当页面激活时重置滚动位置
   useEffect(() => {
@@ -83,7 +86,7 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
 
   if (!selectedItem) {
     return (
-      <div className="detail-page" style={{ backgroundImage: `url(${bg1_2})` }}>
+      <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
         <div
           className="back-btn1_2"
           role="button"
@@ -99,12 +102,12 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
   const hasTwoImages = images.length === 2;
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg1_2})` }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
       <div className="content-wrapper">
 
         {/* 标题 */}
         {selectedItem.address && (
-          <div className="content-title">{selectedItem.address}</div>
+          <div className="content-title">{language === 'en' ? (selectedItem.address_en || selectedItem.address) : selectedItem.address}</div>
         )}
 
         {/* 图片区域 */}
@@ -116,8 +119,10 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
                   className={`content-image ${hasTwoImages ? 'two-images' : 'one-image'}`}
                   style={{ backgroundImage: `url(${image.url})` }}
                 ></div>
-                {image.name && (
-                  <div className="image-caption">{image.name}</div>
+                {(image.name || image.name_en) && (
+                  <div className="image-caption">
+                    {language === 'en' ? (image.name_en || image.name) : image.name}
+                  </div>
                 )}
               </div>
             ))}
@@ -125,7 +130,7 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
         )}
 
         {/* 正文滚动容器 */}
-        {selectedItem.text && (
+        {(selectedItem.text || selectedItem.text_en) && (
           <div
             ref={scrollContainerRef}
             className="text-scroll-container"
@@ -133,11 +138,13 @@ function Detail({ name, gallery, onBack, onOpenDetail2, selectedItem, isActive =
             onTouchStart={handleTouchStart}
           >
             <div className="content-text">
-              {selectedItem.text.split('\n').map((paragraph, index) => (
-                <p key={index} className="text-paragraph">
-                  {paragraph}
-                </p>
-              ))}
+              {(language === 'en' ? (selectedItem.text_en || selectedItem.text) : selectedItem.text)
+                .split('\n')
+                .map((paragraph, index) => (
+                  <p key={index} className="text-paragraph">
+                    {paragraph}
+                  </p>
+                ))}
             </div>
           </div>
         )}

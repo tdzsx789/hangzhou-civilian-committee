@@ -48,3 +48,6 @@
     display: inline-block;
     word-break: break-word;
 }
+.modal-caption i {
+  font-style: italic;
+}

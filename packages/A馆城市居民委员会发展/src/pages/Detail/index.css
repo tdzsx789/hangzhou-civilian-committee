@@ -252,6 +252,10 @@
   padding-left: 10px;
 }
 
+.detail-page.en .gellery-scroll-wrap2 {
+  top: 560px;
+}
+
 .gallery-image-item {
   display: flex;
   flex-direction: column;
@@ -317,6 +321,10 @@
 .gallery-image-caption.multi-line {
   text-align: justify;
   text-indent: 2em;
+}
+
+.gallery-image-caption.multi-line.en {
+  text-indent: 0;
 }
 
 .wide-item-wrapper {

@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import './index.css';
-import videoSrc from '../../assets/future.mp4';
 
-function Detail({ onBack, volume = 1, playbackCmd }) {
+function Detail({ onBack, volume = 1, playbackCmd, videoSrc }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -72,6 +71,9 @@ function Detail({ onBack, volume = 1, playbackCmd }) {
         className="detail-video"
         controls={false}
         playsInline
+        autoPlay
+        muted
+        preload="auto"
       />
       {/* 点击任意位置返回首页，或者预留返回区域 */}
       <div 

@@ -35,6 +35,7 @@ function ScreenPage() {
     send,
     champion,
     isPhotoWaiting,
+    currentMode,
   } = useElectionChannel({ role: 'screen' });
 
   const videoRef = useRef(null);
@@ -238,9 +239,14 @@ function ScreenPage() {
     }
     
     let largeHumanIdx;
-    // 优先让 avatar3 (index 2) 成为 champion
-    if (candidates.includes(2)) {
-      largeHumanIdx = 2;
+    if (currentMode === '领导模式') {
+      if (candidates.includes(2)) {
+        largeHumanIdx = 2;
+      } else {
+        largeHumanIdx = candidates.length > 0
+          ? candidates[Math.floor(Math.random() * candidates.length)]
+          : null;
+      }
     } else {
       largeHumanIdx = candidates.length > 0
         ? candidates[Math.floor(Math.random() * candidates.length)]
@@ -287,7 +293,7 @@ function ScreenPage() {
       setBeanItems(items);
     }, 1000);
     return () => clearTimeout(t);
-  }, [isElection, roles, photoItems]);
+  }, [isElection, roles, photoItems, currentMode]);
 
   return (
     <div

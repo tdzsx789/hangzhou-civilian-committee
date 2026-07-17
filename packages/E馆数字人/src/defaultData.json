@@ -1,0 +1,13 @@
+{
+  "assets": {
+    "zh": {
+      "P1": "images/P1.jpg"
+    },
+    "en": {
+      "P1": "assets_english/P1.jpg"
+    }
+  },
+  "videos": {
+    "video": "images/video.mp4"
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import './index.css';
-import coverImgZh from '../../assets/cover.jpg';
 import coverImgEn from '../../assets_english/cover.jpg';
+
+const coverImgZh = (process.env.PUBLIC_URL || '') + '/images/cover.jpg';
 
 function Home({ onLearnMore, language, setLanguage }) {
   const coverImg = language === 'zh' ? coverImgZh : coverImgEn;

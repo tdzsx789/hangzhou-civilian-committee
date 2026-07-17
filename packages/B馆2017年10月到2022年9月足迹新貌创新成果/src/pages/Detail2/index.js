@@ -3,10 +3,10 @@ import './index.css';
 import bg2_1 from '../../assets/bg2_1.jpg';
 import backButton from '../../assets/backButton.png';
 import buttonBg from '../../assets/buttonBg.png';
+import bg2_1En from '../../assets_english/bg2_1.jpg';
+import backButtonEn from '../../assets_english/backButton.png';
+import buttonBgEn from '../../assets_english/buttonBg.png';
 import * as mammoth from 'mammoth';
-import result1Docx from '../../assets/result1.docx';
-import result2Docx from '../../assets/result2.docx';
-import result3Docx from '../../assets/result3.docx';
 import Modal from '../Modal';
 
 const list = [
@@ -16,9 +16,9 @@ const list = [
 ]
 
 const docxFiles = {
-  'result1.docx': result1Docx,
-  'result2.docx': result2Docx,
-  'result3.docx': result3Docx
+  'result1.docx': process.env.PUBLIC_URL + '/images/result1.docx',
+  'result2.docx': process.env.PUBLIC_URL + '/images/result2.docx',
+  'result3.docx': process.env.PUBLIC_URL + '/images/result3.docx'
 };
 
 const processResult2Html = (html, otherItems = [], buttonBgImage) => {
@@ -122,12 +122,15 @@ const processResult2Html = (html, otherItems = [], buttonBgImage) => {
   return resultContainer.innerHTML;
 };
 
-function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
+function Detail2({ onBack, onOpenDetail2_2, isActive = false, language = 'zh' }) {
   const [allDocxContent, setAllDocxContent] = useState({});
+  const [rawDocxContent, setRawDocxContent] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalData, setModalData] = useState(null);
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
+  const currentBg = language === 'en' ? bg2_1En : bg2_1;
+  const currentBackButton = language === 'en' ? backButtonEn : backButton;
 
   // 预加载所有文件
   useEffect(() => {
@@ -138,26 +141,32 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
           const response = await fetch(fileUrl);
           const arrayBuffer = await response.arrayBuffer();
           const result = await mammoth.convertToHtml({ arrayBuffer });
-          
-          let htmlContent = result.value;
-          // Special handling for result2.docx
-          if (fileName === 'result2.docx') {
-            const otherItems = list.filter(item => item.file !== 'result2.docx');
-            htmlContent = processResult2Html(htmlContent, otherItems, buttonBg);
-          }
-          
-          contentMap[fileName] = htmlContent;
+          contentMap[fileName] = result.value;
         } catch (error) {
           console.error(`Error loading ${fileName}:`, error);
         }
       });
 
       await Promise.all(promises);
-      setAllDocxContent(contentMap);
+      setRawDocxContent(contentMap);
     };
 
     loadAllDocs();
   }, []);
+
+  useEffect(() => {
+    const currentButtonBg = language === 'en' ? buttonBgEn : buttonBg;
+    const newContent = {};
+    Object.entries(rawDocxContent).forEach(([fileName, html]) => {
+      if (fileName === 'result2.docx') {
+        const otherItems = list.filter(item => item.file !== 'result2.docx');
+        newContent[fileName] = processResult2Html(html, otherItems, currentButtonBg);
+      } else {
+        newContent[fileName] = html;
+      }
+    });
+    setAllDocxContent(newContent);
+  }, [rawDocxContent, language]);
 
   // 当页面激活时，默认展示第3项内容（list[2]）；若不存在则展示最后一项
   useEffect(() => {
@@ -249,7 +258,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg2_1})` }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
       {!selectedItem ? (
         <div
           ref={listScrollContainerRef}
@@ -296,7 +305,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               onClick={handleBackButton}
               onKeyDown={handleKeyDown(handleBackButton)}
             >
-              <img src={backButton} alt="返回" />
+              <img src={currentBackButton} alt="返回" />
             </div>
           )}
         </>

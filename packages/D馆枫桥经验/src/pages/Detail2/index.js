@@ -3,132 +3,88 @@ import './index.css';
 import page2Img from '../../assets/page2.jpg';
 import leftArrow from '../../assets/leftArrow.png';
 import rightArrow from '../../assets/rightArrow.png';
-// list2 图片导入
-import list2Image1 from '../../assets/images2/图为八师石河子市幸福路开展集中商圈环境秩序整治活动.jpg';
-import list2Image2 from '../../assets/images2/图为碑林区西勘社区开展小哥议事会.jpg';
-import list2Image3 from '../../assets/images2/2023年6月，长寿苑物业服务信托导入宣誓仪式.jpg';
-import list2Image4 from '../../assets/images2/图为友谊镇浦寨社区联合友谊关边境派出所开展巡边护边活动.jpg';
-import list2Image5 from '../../assets/images2/beihujiedao.jpeg';
-import list2Image6 from '../../assets/images2/图为桐城法院孔城人民法庭法官余亮亮在六尺巷调解室内调解一起金融借款合同纠纷案.PNG';
-import list2Image7 from '../../assets/images2/图为栖霞区仙林街道平安志愿者和辖区民警联合巡逻.png';
-import list2Image8 from '../../assets/images2/wuyaoxiang.jpg';
+import page2ImgEn from '../../assets_english/page2.jpg';
+import leftArrowEn from '../../assets_english/leftArrow.png';
+import rightArrowEn from '../../assets_english/rightArrow.png';
+import defaultData from '../../defaultData.json';
 
-const list2 = [
-  {
-    name: '安徽省桐城市：\n“六尺巷工作法”推动基层善治',
-    summary: `桐城市创新推行“新时代六尺巷工作法”，将传统“和为贵”智慧融入现代基层治理，取得显著成效。该方法源于当地“六尺巷”历史典故，历经探索形成（运用“听、辨、劝、借、让、和”六步法则调解纠纷）、迭代升级（构建“源头治理、多方共治”工作体系）等阶段，现已发展为成熟的治理品牌。其核心是通过“党建领事、礼让和事、村民说事、多方解事、网格管事、群力防事”六大路径，实现“矛盾不上交、平安不出事、服务不缺位”的目标。
-2024年10月17日，习近平总书记来到安徽安庆桐城市考察时强调，“六尺巷体现了先人化解矛盾的历史智慧，要作为弘扬中华优秀传统文化的教育场所，发挥好中华民族讲求礼让、以和为贵传统美德的作用，营造安居乐业的和谐社会环境。”`,
-    images: [
-      {
-        name: '图为桐城法院孔城人民法庭法官在六尺巷调解室内调解纠纷',
-        url: list2Image6
-      }
-    ]
-  },
-  {
-    name: '河北省保定市莲池区：\n“风险型”分类精准解纷',
-    summary: `保定市莲池区五尧乡创新推行“风险型”家庭解纷工作法，在31平方公里辖区服务4.7万常住人口（含2.5万外来务工人员），实现基层治理精准化。
-该乡组建400余人服务队伍，通过“家庭关系、成员性格、外部诱因”三大特征将家庭风险划分为低中高三级，建立“1+3+N”专群联动调解机制。依托“数字尧乡”智慧平台，开发基层民生走访模块，设立智慧法庭线上解纷。目前已调处矛盾纠纷1600余起，调解成功率98%，为农民工追回薪资1700余万元。
-该做法荣获全国新时代“枫桥经验”先进典型，构建起“分级识别－精准干预－多元化解”的治理闭环，实现了“小事不出村、大事不出乡”的治理目标。`,
-    images: [
-      {
-        name: '图为五尧乡践行“枫桥经验”，全面打造“数字尧乡”智慧治理平台',
-        url: list2Image8
-      }
-    ]
-  },
-  {
-    name: '江苏省南京市栖霞区：\n“网格化”织就和谐网',
-    summary: `南京市栖霞区仙林街道通过创新网格化治理模式，在32.67平方公里辖区内服务2668个驻街单位，连续14年实现“矛盾不上交”。
-该街道将辖区划分为90个综合网格和195个专属网格，创新“123”调解工作法：1日内网格员上门走访，2日内社区协调，3日内街道介入。近三年累计化解小纠纷800余件、较复杂矛盾150余件、重大涉众纠纷67件，处理信访事项269件，成功化解率达100%。
-通过“四个化解”机制和“一站式”矛调中心，街道实现了“小事不出网格、大事不出社区”的治理目标，荣获21项国家级荣誉，2023年被评为全国新时代“枫桥经验”先进典型，为超大型社区治理提供了可复制的实践样本。`,
-    images: [
-      {
-        name: '图为栖霞区仙林街道平安志愿者和辖区民警联合巡逻',
-        url: list2Image7
-      }
-    ]
-  },
-  {
-    name: '湖北省武汉市江汉区：\n“邻里夜话”话出和谐新图景',
-    summary: `武汉市江汉区横堤社区创新打造“邻里夜话”协商平台，在0.33平方公里辖区内服务3128户、9638位居民，探索出老旧社区治理新路径。
-该社区依托4个片区党支部、24个楼栋党小组、480名党员，构建“4+X”协商议事机制。十年来通过“一月一期一会”常态化开展夜话活动，衍生出“邻里管得宽”志愿服务队等治理载体，实现“大事大议、急事快议、小事小议”。平台坚持“切口小、立意高、关联广”原则，将协商触角延伸到居民身边，成功化解各类邻里矛盾。
-通过推动居民从“旁观者”转变为“参与者”，社区培育了共建共治共享的治理生态，荣获湖北省终身学习品牌项目，为老旧社区治理提供了可复制的实践样本。`,
-    images: [
-      {
-        name: '图为北湖街道横堤社区开展“小区治理面对面”系列夜话活动',
-        url: list2Image5
-      }
-    ]
-  },
-  {
-    name: '广西壮族自治区凭祥市：\n“以商调商”巧解边贸纠纷',
-    summary: `作为边境口岸城市，凭祥市创新“以商调商”模式，有效破解中越客商民间贸易纠纷调解难题。2020年以来成功化解边贸纠纷165件，为客商挽回经济损失4700余万元，实现“矛盾不上交、纠纷不出国”。
-该市在浦寨边贸区设立“老周涉外调解室”，组建18人调解团队（含3名外籍调解员），配备107名客商网格员源头排查纠纷。创新推行“客商主调+跨境联调+线上直调”机制，在越南新清边贸区设立驻越调解室，通过中越社交软件开展视频连线调解。同时培育21名客商“法律明白人”，建立“3－15－30天”三级回访制度，确保纠纷彻底化解。
-这一模式实现了边贸纠纷就地解决，助力凭祥连续两次荣获社会治安综合治理最高奖“长安杯”，为边境地区社会治理提供了成功范例。
-
-`,
-    images: [
-      {
-        name: '图为友谊镇浦寨社区联合友谊关边境派出所开展巡边护边活动',
-        url: list2Image4
-      }
-    ]
-  },
-  {
-    name: '四川省成都市武侯区：\n“信托制”重构小区信任基础',
-    summary: `成都市武侯区创新推行党建引领“信托制”物业服务模式，将信托理念引入小区治理，有效破解物业矛盾纠纷难题。该模式自2018年探索以来，通过重构业主、业委会、物业三方信义关系，建立透明化管理机制，实现物业费8%－15%作为企业固定报酬，其余资金专项用于服务的良性循环。
-目前全区已有101个小区落地实施，其中26个小区主动上调物业费，物业缴费率和居民满意度显著提升。该模式推动全市1000余个小区推广实施，吸引全国30多个城市学习借鉴，2023年入选全国新时代“枫桥经验”典型案例。
-通过设立独立账户、开放式预算、多维度监管等举措，“信托制”实现了小区财务全透明、服务全过程监督，为破解小区治理难题提供了可复制的实践样本。`, images: [
-      {
-        name: '2023年6月，长寿苑物业服务信托导入宣誓仪式',
-        url: list2Image3
-      }
-    ]
-  },
-  {
-    name: '陕西省西安市碑林区：\n“骑手友好”破解治理难题',
-    summary: `西安市碑林区针对外卖骑手“进门难、休息难、管理难”问题，创新打造“骑手友好街区”，探索出新就业群体服务管理新路径。
-该区通过“三抓三推进”破解进门难题：分类管理小区准入，设置平面图和楼栋标识；建成125个“碑邻驿”红色驿站，构建15分钟服务圈；联动160余家商户提供用餐、理发等优惠服务。同时组建西北地区首批外卖平台企业党支部，成立行业调解委员会和联合工会，开展义诊服务600余人次，举办关爱活动90余场。
-通过党建引领、资源整合、制度保障，实现了骑手权益保障与基层治理的双向促进，为新就业群体融入城市治理提供了可复制的实践经验。`,
-    images: [
-      {
-        name: '图为碑林区西勘社区开展小哥议事会',
-        url: list2Image2
-      }
-    ]
-  },
-  {
-    name: '新疆生产建设兵团第八师石河子市：\n“疏、定、调、防”四招构建商圈消费环境新格局',
-    summary: `第八师石河子市老街街道幸福路商圈拥有10个大型商业综合体、3200余家商铺，日均客流量超5万人次，消费纠纷易发多发。近年来，老街街道践行新时代“枫桥经验”，以“疏、定、调、防”四招推动纠纷高效化解，实现投诉量较2019年下降82%，群众满意度达98%。
-一“疏”到底，打通维权末梢。整合多方力量动态排查，设置商圈警务站、调处点，推广维权APP，建立分级响应机制，确保纠纷早发现、快处置。
-二“定”职责，凝聚共治合力。建立“1+1+N”联动机制，推动执法力量下沉，明确“三项清单”，由市场监管专班主抓5类高频纠纷，多部门“潮汐式”入驻，实现一站式调处。
-三“调”为先，提升化解效能。健全“街道派单、部门接单”机制，落实首接负责，规范流程指引，强化诉调对接，推动90%以上纠纷就地化解。
-四“防”源头，优化消费环境。深化法治宣传，开展诚信评比并公示“红黑榜”，推行商户“五相”公约，选设“十铺长”和“联铺说事点”，以最小单元发挥治理大效能。
-`,
-    images: [
-      {
-        name: '图为八师石河子市幸福路开展集中商圈环境秩序整治活动',
-        url: list2Image1
-      }
-    ]
-  },
-]
-
-function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
+function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language }) {
   const [index, setIndex] = useState(currentIndex);
+  const [data, setData] = useState(defaultData);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
+
+  const currentBg = language === 'en' ? page2ImgEn : page2Img;
+  const currentLeftArrow = language === 'en' ? leftArrowEn : leftArrow;
+  const currentRightArrow = language === 'en' ? rightArrowEn : rightArrow;
+
+  useEffect(() => {
+    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
+    fetch(dataUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(jsonData => {
+        if (jsonData && Array.isArray(jsonData)) {
+          setData(jsonData);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   useEffect(() => {
     if (visible) {
       setIndex(0);
+      setIsImageModalOpen(false);
+      setModalImage(null);
     }
   }, [visible]);
 
-  const allList = list2;
+  const allList = data;
   const currentItem = allList[index] || allList[0];
   const firstImage = currentItem?.images?.[0];
   const isFirst = index === 0;
   const isLast = index === allList.length - 1;
+  const titleText = language === 'en' && currentItem?.name_en ? currentItem.name_en : currentItem.name;
+  const summaryText = language === 'en' && currentItem?.summary_en ? currentItem.summary_en : currentItem.summary;
+  const captionText = language === 'en' && firstImage?.name_en ? firstImage.name_en : firstImage?.name;
+  const mediaUrl = firstImage?.url
+    ? ((process.env.PUBLIC_URL || '') + '/' + String(firstImage.url).replace(/^\/+/, ''))
+    : '';
+  const isVideo = Boolean(mediaUrl) && /\.(mp4|webm|ogg)(\?.*)?$/i.test(mediaUrl);
+
+  useEffect(() => {
+    setIsImageModalOpen(false);
+    setModalImage(null);
+  }, [index]);
+
+  useEffect(() => {
+    if (!isImageModalOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsImageModalOpen(false);
+        setModalImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isImageModalOpen]);
+
+  const openImageModal = () => {
+    if (!mediaUrl) return;
+    setModalImage({ url: mediaUrl, name: captionText, type: isVideo ? 'video' : 'image' });
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+    setModalImage(null);
+  };
 
   const handlePrev = () => {
     if (!isFirst) {
@@ -143,38 +99,70 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${page2Img})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      <img className="detail-bg" src={currentBg} alt="" aria-hidden="true" />
       <div className="back-btn" onClick={onBack}></div>
 
       {currentItem && (
         <>
           {/* 标题 */}
           <div className="card-title">
-            {currentItem.name.split('\n').map((line, index) => (
+            {titleText.split('\n').map((line, index) => (
               <React.Fragment key={index}>
                 {line}
-                {index < currentItem.name.split('\n').length - 1 && <br />}
+                {index < titleText.split('\n').length - 1 && <br />}
               </React.Fragment>
             ))}
           </div>
 
           {/* 正文 */}
-          <div className="card-summary">
-            {currentItem.summary.split('\n').filter(Boolean).map((para, idx) => (
+          <div className={`card-summary ${language === 'en' ? 'en' : ''}`}>
+            {summaryText.split('\n').filter(Boolean).map((para, idx) => (
               <p key={idx}>{para}</p>
             ))}
           </div>
 
           {/* 图片和注释 */}
-          {firstImage && firstImage.url && (
+          {mediaUrl && (
             <>
-              <div
-                className="card-image"
-                style={{ backgroundImage: `url(${firstImage.url})` }}
-              ></div>
-              {firstImage.name && (
-                <div className="card-image-caption">
-                  {firstImage.name}
+              {!isVideo ? (
+                <div
+                  className="card-image"
+                  style={{ backgroundImage: `url(${mediaUrl})` }}
+                  onClick={openImageModal}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openImageModal();
+                  }}
+                ></div>
+              ) : (
+                <video
+                  className="card-media"
+                  src={mediaUrl}
+                  muted
+                  playsInline
+                  autoPlay
+                  loop
+                  onClick={openImageModal}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openImageModal();
+                  }}
+                />
+              )}
+              {captionText && (
+                <div
+                  className={`card-image-caption ${language === 'en' ? 'en' : ''}`}
+                  onClick={openImageModal}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openImageModal();
+                  }}
+                >
+                  {captionText}
                 </div>
               )}
             </>
@@ -187,7 +175,7 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
         className={`nav-button nav-button-left ${isFirst ? 'disabled' : ''}`}
         onClick={handlePrev}
         disabled={isFirst}
-        style={{ backgroundImage: `url(${leftArrow})` }}
+        style={{ backgroundImage: `url(${currentLeftArrow})` }}
       ></button>
 
       {/* 右切换按钮 */}
@@ -195,8 +183,31 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible }) {
         className={`nav-button nav-button-right ${isLast ? 'disabled' : ''}`}
         onClick={handleNext}
         disabled={isLast}
-        style={{ backgroundImage: `url(${rightArrow})` }}
+        style={{ backgroundImage: `url(${currentRightArrow})` }}
       ></button>
+
+      {isImageModalOpen && modalImage?.url && (
+        <div className="image-modal-overlay" onClick={closeImageModal}>
+          <div className="image-modal" onClick={(e) => e.stopPropagation()}>
+            {modalImage.type === 'video' ? (
+              <video
+                className="image-modal-video"
+                src={modalImage.url}
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : (
+              <img className="image-modal-img" src={modalImage.url} alt={modalImage.name || ''} />
+            )}
+            {modalImage.name && (
+              <div className={`image-modal-caption ${language === 'en' ? 'en' : ''}`}>
+                {modalImage.name}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* <button className="slide-button" style={{ backgroundImage: `url(${button1})` }}></button> */}
     </div>

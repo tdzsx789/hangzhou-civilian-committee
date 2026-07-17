@@ -3,62 +3,30 @@ import './App.css';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Detail2 from './pages/Detail2';
-import { work1, work2, work3, work4, work5, work6, work7, work8, work9, work10 } from './works';
-
-const data = [
-  {
-    name_zh: '2022年10月，党的二十大报告《高举中国特色社会主义伟大旗帜 为全面建设社会主义现代化国家而团结奋斗》',
-    name_en: `Report to the 20th National Congress of the CPC: Holding High the Great Banner of Socialism with Chinese Characteristics and Striving Together for Building a Modern Socialist Country in All Respects delivered in October 2022.`,
-    work: work1,
-  },
-  {
-    name_zh: '2022年10月，党的二十大部分修改并通过的《中国共产党章程》',
-    name_en: `The Constitution of the CPC, partially revised and adopted at the 20th National Congress of the CPC in October 2022.`,
-    work: work2,
-  },
-  {
-    name_zh: '2023年2月，中国共产党第二十届中央委员会第二次全体会议审议通过的《党和国家机构改革方案》',
-    name_en: `The Plan for the Reform of Party and State Institutions issued by the Central Committee of the CPC and the State Council in March 2023. `,
-    work: work3,
-  },
-  {
-    name_zh: '2024年7月，中国共产党第二十届中央委员会第三次全体会议通过的《中共中央关于进一步全面深化改革 推进中国式现代化的决定》',
-    name_en: `The Decision of the Central Committee of the CPC on Further Deepening Reform Comprehensively to Advance Chinese Modernization adopted at the Third Plenary Session of the 20th Central Committee of the CPC in July 2024.`,
-    work: work6,
-  },
-  {
-    name_zh: '2025年10月23日，中国共产党第二十届中央委员会第四次全体会议通过的《中共中央关于制定国民经济和社会发展第十五个五年规划的建议》',
-    name_en: `Proposal of the Central Committee of the CPC on Formulating the 15th Five-Year Plan for National Economic and Social Development, adopted at the Fourth Plenary Session of the 20th Central Committee of the CPC in October 2025.`,
-    work: work9
-  },
-  {
-    name_zh: '2024年11月3日，习近平总书记对社会工作作出重要指示',
-    name_en: `Important Instructions by General Secretary Xi Jinping on Social Work in 3 November 2024.`,
-    work: work7
-  },
-  {
-    name_zh: '2024年3月，《中共中央办公厅、国务院办公厅关于加强社区工作者队伍建设的意见》',
-    name_en: `Opinions of the General Office of the Central Committee of the CPC and the General Office of the State Council on Strengthening the Development of Community Workers in March 2024.`,
-    work: work4
-  },
-  {
-    name_zh: '2024年4月，《中共中央办公厅、国务院办公厅关于健全新时代志愿服务体系的意见》',
-    name_en: `Opinions of the General Office of the Central Committee of the CPC and the General Office of the State Council on Improving the Volunteer Service System in the New Era in April 2024.`,
-    work: work5
-  },
-  {
-    name_zh: '2024年8月，中共中央办公厅、国务院办公厅印发《整治形式主义为基层减负若干规定》',
-    name_en: `Several Provisions on Addressing Formalism to Reduce Burdens on the Community Level issued by the General Office of the Central Committee of the CPC and the General Office of the State Council in August 2024.`,
-    work: work8
-  },
-  {
-    name_zh: '2025年10月28日，第十四届全国人民代表大会常务委员会第十八次会议修订的《中华人民共和国城市居民委员会组织法》',
-    name_en: `Organic Law of the Urban Residents Committees of the People’s Republic of China, revised at the 18th Session of the Standing Committee of the 14th National People’s Congress in 8 October 2025.`,
-    work: work10
-  }
-];
+import defaultData from './defaultData.json';
 
 function App() {
+  const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
+    fetch(dataUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(jsonData => {
+        if (jsonData && Array.isArray(jsonData)) {
+          setData(jsonData);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   const [language, setLanguage] = useState('zh');
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'zh' ? 'en' : 'zh');

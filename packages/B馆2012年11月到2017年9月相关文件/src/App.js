@@ -3,42 +3,30 @@ import './App.css';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Detail2 from './pages/Detail2';
-import { work1, work2, work3, work4, work5, work6 } from './works';
-
-const data = [
-  {
-    name_zh: '2012年11月，党的十八大报告《坚定不移沿着中国特色社会主义道路前进 为全面建成小康社会而奋斗》',
-    name_en: `The report to the 18th National Congress of the CPC, Firmly March on the Path of Socialism with Chinese Characteristics and Strive to Complete the Building of a Moderately Prosperous Society in All Respects in November 2012.`,
-    work: work1,
-  },
-  {
-    name_zh: '2013年11月，中国共产党第十八届中央委员会第三次全体会议通过的《中共中央关于全面深化改革若干重大问题的决定》',
-    name_en: `Decision of the Central Committee of the CPC on Some Major Issues Concerning Comprehensively Deepening Reform adopted at the Third Plenary Session of the 18th Central Committee of the CPC in November 2013.`,
-    work: work2,
-  },
-  {
-    name_zh: '2014年10月，中国共产党第十八届中央委员会第四次全体会议通过的《中共中央关于全面推进依法治国若干重大问题的决定》',
-    name_en: `Decision of the Central Committee of the CPC on Some Major Issues Concerning Comprehensively Advancing the Rule of Law adopted at the Fourth Plenary Session of the 18th Central Committee of the CPC in October 2014.`,
-    work: work3,
-  },
-  {
-    name_zh: '2015年10月，中国共产党第十八届中央委员会第五次全体会议通过的《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》',
-    name_en: `Proposal of the Central Committee of the CPC on Formulating the 13th Five-Year Plan for National Economic and Social Development Adopted at the Fifth Plenary Session of the 18th Central Committee of the CPC in October 2015.`,
-    work: work4,
-  },
-  {
-    name_zh: '2017年6月，《中共中央、国务院关于加强和完善城乡社区治理的意见》',
-    name_en: `Opinions of the CPC Central Committee and the State Council on Strengthening and Improving Urban and Rural Community Governance in June 2017.`,
-    work: work5
-  },
-  {
-    name_zh: '2015年7月，《中共中央办公厅、国务院办公厅关于加强城乡社区协商的意见》',
-    name_en: `Opinions on Strengthening Consultation in Urban and Rural Communities issued by the General Office of the Central Committee of the CPC and the General Office of the State Council in July 2015.`,
-    work: work6
-  }
-];
+import defaultData from './defaultData.json';
 
 function App() {
+
+  const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
+    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
+    fetch(dataUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(jsonData => {
+        if (jsonData && Array.isArray(jsonData)) {
+          setData(jsonData);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   const [language, setLanguage] = useState('zh'); // 'zh' or 'en'
 

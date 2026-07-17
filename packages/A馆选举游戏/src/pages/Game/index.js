@@ -94,6 +94,10 @@ function GamePage() {
   const [passwordInput, setPasswordInput] = useState('');
   const lastTouchTimeRef = useRef(0);
   const redButtonRef = useRef(null);
+  const [showModeModal, setShowModeModal] = useState(false);
+  const lastTouchTimeModeModalRef = useRef(0);
+  const npcPhotoUploadedRef = useRef(false);
+  const npcUdpPhotoUploadedRef = useRef(false);
   const {
     stage,
     send,
@@ -106,6 +110,7 @@ function GamePage() {
     waitingForPhotos,
     champion,
     lastMessage,
+    currentMode,
   } = useElectionChannel({ role: 'game', playerId: /^([1-5])$/.test(String(gameId || '')) ? gameId : '' });
 
   const prevWaitingForPhotos = useRef(false);
@@ -237,6 +242,30 @@ function GamePage() {
         bgAudioRef.current.currentTime = 0;
       }
     };
+  }, []);
+
+  const handleBottomRightTouch = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (showModeModal) return;
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastTouchTimeModeModalRef.current;
+    
+    if (timeDiff < 200 && timeDiff > 0 && lastTouchTimeModeModalRef.current > 0) {
+      setShowModeModal(true);
+      lastTouchTimeModeModalRef.current = 0;
+    } else {
+      lastTouchTimeModeModalRef.current = currentTime;
+    }
+  }, [showModeModal]);
+
+  const handleModeSelect = useCallback((mode) => {
+    setShowModeModal(false);
+    send('mode:update', { mode });
+  }, [send]);
+
+  const handleCloseModeModal = useCallback(() => {
+    setShowModeModal(false);
   }, []);
 
   const handlePasswordSubmit = () => {
@@ -509,9 +538,23 @@ function GamePage() {
       const dataUrl = canvas.toDataURL('image/png');
       setCapturedPhoto(dataUrl);
       setIsPhotoCaptured(true);
+      if (!npcPhotoUploadedRef.current) {
+        npcPhotoUploadedRef.current = true;
+        canvas.toBlob((blob) => {
+          if (!blob) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            const buf = reader.result;
+            if (buf && buf.byteLength) {
+              sendPhotoBinary(buf, blob.type || 'image/png');
+            }
+          };
+          reader.readAsArrayBuffer(blob);
+        }, 'image/png');
+      }
     };
     img.src = src;
-  }, [isPhoto, isNpc, gameId]);
+  }, [isPhoto, isNpc, gameId, sendPhotoBinary]);
 
   // UDPPHOTO 头像逻辑（复制自 PHOTO）
   useEffect(() => {
@@ -535,9 +578,35 @@ function GamePage() {
       const dataUrl = canvas.toDataURL('image/png');
       setCapturedPhoto(dataUrl);
       setIsPhotoCaptured(true);
+      if (!npcUdpPhotoUploadedRef.current) {
+        npcUdpPhotoUploadedRef.current = true;
+        canvas.toBlob((blob) => {
+          if (!blob) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            const buf = reader.result;
+            if (buf && buf.byteLength) {
+              sendPhotoBinary(buf, blob.type || 'image/png');
+            }
+          };
+          reader.readAsArrayBuffer(blob);
+        }, 'image/png');
+      }
     };
     img.src = src;
-  }, [isUdpPhoto, isNpc, gameId]);
+  }, [isUdpPhoto, isNpc, gameId, sendPhotoBinary]);
+
+  useEffect(() => {
+    if (!isPhoto) {
+      npcPhotoUploadedRef.current = false;
+    }
+  }, [isPhoto]);
+
+  useEffect(() => {
+    if (!isUdpPhoto) {
+      npcUdpPhotoUploadedRef.current = false;
+    }
+  }, [isUdpPhoto]);
 
   const gamingPhotoSentRef = useRef(false);
   const dataUrlToArrayBuffer = useCallback(async (src) => {
@@ -1278,6 +1347,38 @@ function GamePage() {
 
       {(connectionState === 'connecting' || connectionState === 'error' || connectionState === 'closed') && (
         <div className="connecting-hint">连接服务端中...（{retryCount}）</div>
+      )}
+
+      <div
+        className="bottom-right-hotspot"
+        onTouchStart={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        onTouchEnd={handleBottomRightTouch}
+      />
+
+      {showModeModal && (
+        <div className="mode-modal-overlay" onClick={handleCloseModeModal}>
+          <div className="mode-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="mode-modal-title">当前模式</div>
+            <div className="mode-modal-current">{currentMode}</div>
+            <div className="mode-modal-buttons">
+              <button
+                className="mode-modal-btn"
+                onClick={() => handleModeSelect('领导模式')}
+              >
+                领导模式
+              </button>
+              <button
+                className="mode-modal-btn"
+                onClick={() => handleModeSelect('游戏模式')}
+              >
+                游戏模式
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

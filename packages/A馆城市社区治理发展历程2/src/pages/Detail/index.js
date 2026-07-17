@@ -8,74 +8,19 @@ import bg1En from '../../assets_english/bg1.jpg';
 import beforeEn from '../../assets_english/before.png';
 import nextEn from '../../assets_english/next.png';
 import backEn from '../../assets_english/back.png';
-import image1933 from '../../assets/images/image1933.jpg';
-import image1996 from '../../assets/images/image1996.jpg';
-import image1997 from '../../assets/images/image1997.jpg';
-import image1998_06 from '../../assets/images/image1998_06.jpg';
-import image1999 from '../../assets/images/image1999.jpg';
-import image1999_08 from '../../assets/images/image1999_08.jpg';
-import image1999_10 from '../../assets/images/image1999_10.jpg';
-import new2 from '../../assets/images/new2.jpg';
+import defaultData from '../../defaultData.json';
 import Modal from '../Modal';
 
-export const imageList = [
-  {
-    name: {
-      zh: '1998年6月，国务院机构改革“三定方案”赋予民政部“推动社区建设”的职能',
-      en: `In June 1998, the "Three Definitions" (defining functions, institutional structures, and staffing) Plan for the Restructuring of State Council Organs mandated the Ministry of Civil Affairs with the function of "promoting community building"`
-    },
-    url: image1998_06
-  },
-  {
-    name: {
-      zh: '民政部批复社区建设实验区文件',
-      en: `Official Reply from the Ministry of Civil Affairs approving community building pilot zones`
-    },
-    url: new2
-  },
-  {
-    name: {
-      zh: '1999年8月，民政部在浙江省杭州市召开全国社区建设实验区工作座谈会',
-      en: `In August 1999, the Ministry of Civil Affairs held the National Forum on Community Building Pilot Zones in Hangzhou, Zhejiang Province`
-    },
-    url: image1999_08
-  },
-  {
-    name: {
-      zh: '1999年10月社区体制改革——沈阳模式专家论证会',
-      en: `In October 1999, an Expert Evaluation Meeting was convened on the Shenyang Model of Community System Reform`
-    },
-    url: image1999_10
-  },
-  {
-    name: {
-      zh: '1996年，山东省淄博市博山区新坦社区工作人员记事本及合影',
-      en: '1996, notebook and group photo of staff at Xintan Community, Boshan District, Zibo City, Shandong Province'
-    },
-    url: image1996
-  },
-  {
-    name: {
-      zh: '1997年，上海市积极开展创建文明社区，文明小区活动。上海黄浦区人民广场街道有一支由7000多人组成的志愿者队伍，他们设立了10多个服务网点，热忱为市民排忧解难',
-      en: '1997, Shanghai actively launched activities to create civilized communities and residential areas. People\'s Square Subdistrict in Huangpu District, Shanghai had a volunteer team of over 7,000 people, setting up more than 10 service outlets to enthusiastically solve problems for citizens'
-    },
-    url: image1997
-  },
-  {
-    name: {
-      zh: '1933年，社会学家费孝通等第一次将“community”一词译成“社区”，成为中国社会学的通用术语。图为费孝通先生与宁波市海曙区社区工作者合影',
-      en: '1933, sociologist Fei Xiaotong and others first translated the word "community" into "Shequ" (社区), becoming a common term in Chinese sociology. The picture shows Mr. Fei Xiaotong with community workers in Haishu District, Ningbo'
-    },
-    url: image1933
-  },
-  {
-    name: 'placeholder',
-    url: '',
-    width: 880
-  }
-];
-
 function Detail({ name, gallery, onBack, isVisible, language }) {
+  const [imageList, setImageList] = useState(defaultData);
+
+  useEffect(() => {
+    fetch(process.env.PUBLIC_URL + '/data.json')
+      .then(res => res.json())
+      .then(data => setImageList(data))
+      .catch(err => console.warn('Failed to load external config, using default data:', err));
+  }, []);
+
   const bg1 = language === 'zh' ? bg1Zh : bg1En;
   const beforeImg = language === 'zh' ? beforeZh : beforeEn;
   const nextImg = language === 'zh' ? nextZh : nextEn;
@@ -83,7 +28,8 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
 
   const localizedList = imageList.map(item => ({
     ...item,
-    name: item.name === 'placeholder' ? 'placeholder' : item.name[language]
+    name: item.name === 'placeholder' ? 'placeholder' : item.name[language] || item.name['zh'],
+    url: item.url ? process.env.PUBLIC_URL + item.url : ''
   }));
 
   const scrollContainerRef = useRef(null);
@@ -166,13 +112,15 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
   };
 
   const getCaptionStyle = (text) => {
+    const style = {};
     if (language === 'en' && text.length > 150) {
-      return {
-        fontSize: '14px',
-        lineHeight: '16px'
-      };
+      style.fontSize = '14px';
+      style.lineHeight = '16px';
     }
-    return {};
+    if (language !== 'zh') {
+      style.textIndent = '0';
+    }
+    return style;
   };
 
   return (
@@ -235,7 +183,7 @@ function Detail({ name, gallery, onBack, isVisible, language }) {
         style={{ backgroundImage: `url(${backImg})` }}
       ></div>
       {selectedImage && (
-        <Modal image={selectedImage} onClose={handleCloseModal} />
+        <Modal image={selectedImage} onClose={handleCloseModal} language={language} />
       )}
     </div>
   );

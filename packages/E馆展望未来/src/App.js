@@ -2,9 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
+import defaultData from './defaultData.json';
 
 function App() {
+  const [assetsData, setAssetsData] = useState(defaultData);
+
+  const getPublicPath = (path) => {
+    if (!path) return null;
+    const publicUrl = process.env.PUBLIC_URL;
+    if (publicUrl === '.' || !publicUrl) {
+      return path;
+    }
+    return publicUrl + '/' + path;
+  };
+
+  useEffect(() => {
+    const dataUrl = getPublicPath('data.json');
+    fetch(dataUrl)
+      .then(res => {
+        if(!res.ok) throw new Error('Failed to load data');
+        return res.json();
+      })
+      .then(data => {
+        if(data) setAssetsData(data);
+      })
+      .catch(e => console.error(e));
+  }, []);
+
   const [showDetail, setShowDetail] = useState(false);
+  const [isEnglish, setIsEnglish] = useState(false);
   const [volume, setVolume] = useState(() => {
     const saved = localStorage.getItem('app_volume');
     return saved !== null ? parseFloat(saved) : 1;
@@ -20,6 +46,16 @@ function App() {
     const es = new EventSource(url);
     es.onmessage = (e) => {
       const cmd = String(e.data).trim().toUpperCase();
+      
+      if (cmd === 'ENGLISH') {
+        setIsEnglish(true);
+        return;
+      }
+      if (cmd === 'CHINESE') {
+        setIsEnglish(false);
+        return;
+      }
+      
       if (cmd === 'AUTO') {
         setShowDetail(false);
       } else if (cmd === 'P1') {
@@ -122,12 +158,15 @@ function App() {
     }
   };
 
+  const currentLang = isEnglish ? 'en' : 'zh';
+  const currentCover = getPublicPath(assetsData.assets[currentLang].cover);
+
   return (
     <div className="App">
       {showDetail ? (
-        <Detail onBack={() => setShowDetail(false)} volume={volume} playbackCmd={playbackCmd} />
+        <Detail onBack={() => setShowDetail(false)} volume={volume} playbackCmd={playbackCmd} videoSrc={getPublicPath(assetsData.videos.future)} />
       ) : (
-        <Home onEnter={() => setShowDetail(true)} />
+        <Home onEnter={() => setShowDetail(true)} coverImage={currentCover} />
       )}
       
       {/* 密码输入框 - 保持在最上层 */}

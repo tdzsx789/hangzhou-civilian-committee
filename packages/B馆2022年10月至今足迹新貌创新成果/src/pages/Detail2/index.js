@@ -1,27 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
 import bg2_1 from '../../assets/bg2_1.jpg';
+import bg2_1En from '../../assets_english/bg2_1.jpg';
 import backButton from '../../assets/backButton.png';
+import backButtonEn from '../../assets_english/backButton.png';
 import buttonBg from '../../assets/buttonBg.png';
 import Modal from '../Modal';
 import * as mammoth from 'mammoth';
-import result1Docx from '../../assets/result1.docx';
-import result2Docx from '../../assets/result2.docx';
-import result3Docx from '../../assets/result3.docx';
-// import result4Docx from '../../assets/result4.docx';
 
 const list = [
-  { name: '一、中央社会工作部工作职责及重点工作相关内容', file: 'result1.docx' },
-  { name: '二、完整社区试点名单', file: 'result2.docx' },
-  { name: '三、基层党组织、新时代“枫桥经验”各地实践、全过程人民民主、基层矛盾化解、志愿服务、社会工作队伍建设等相关图表', file: 'result3.docx' },
-  // { name: '四、相关书籍手册实物展示', file: 'result4.docx' },
-]
+  { name: '成果展示一', file: 'result1.docx' },
+  { name: '成果展示二', file: 'result2.docx' },
+  { name: '成果展示三', file: 'result3.docx' },
+  // { name: '成果展示四', file: 'result4.docx' }
+];
 
 const docxFiles = {
-  'result1.docx': result1Docx,
-  'result2.docx': result2Docx,
-  'result3.docx': result3Docx,
-  // 'result4.docx': result4Docx
+  'result1.docx': process.env.PUBLIC_URL + '/images/result1.docx',
+  'result2.docx': process.env.PUBLIC_URL + '/images/result2.docx',
+  'result3.docx': process.env.PUBLIC_URL + '/images/result3.docx',
+  // 'result4.docx': process.env.PUBLIC_URL + '/images/result4.docx'
 };
 
 const processResult3Html = (html, otherItems = [], buttonBgImage) => {
@@ -125,12 +123,15 @@ const processResult3Html = (html, otherItems = [], buttonBgImage) => {
   return resultContainer.innerHTML;
 };
 
-function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
+function Detail2({ onBack, onOpenDetail2_2, isActive = false, language = 'zh' }) {
   const [allDocxContent, setAllDocxContent] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalData, setModalData] = useState(null);
   const scrollContainerRef = useRef(null);
   const listScrollContainerRef = useRef(null);
+
+  const currentBg = language === 'en' ? bg2_1En : bg2_1;
+  const currentBackButton = language === 'en' ? backButtonEn : backButton;
 
   // 预加载所有文件
   useEffect(() => {
@@ -252,7 +253,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
   };
 
   return (
-    <div className="detail-page" style={{ backgroundImage: `url(${bg2_1})` }}>
+    <div className="detail-page" style={{ backgroundImage: `url(${currentBg})` }}>
       {!selectedItem ? (
         <div
           ref={listScrollContainerRef}
@@ -299,7 +300,7 @@ function Detail2({ onBack, onOpenDetail2_2, isActive = false }) {
               onClick={handleBackButton}
               onKeyDown={handleKeyDown(handleBackButton)}
             >
-              <img src={backButton} alt="返回" />
+              <img src={currentBackButton} alt="返回" />
             </div>
           )}
         </>

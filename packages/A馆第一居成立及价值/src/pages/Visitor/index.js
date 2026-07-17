@@ -1,9 +1,8 @@
 import './index.css';
 import React, { useEffect, useRef, useState } from 'react';
-import P1 from '../../assets/P1.jpg';
 
 
-function Visitor({ image, video, className, volume = 1, playbackCmd }) {
+function Visitor({ image, defaultImage, video, className, volume = 1, playbackCmd }) {
   const videoRef = useRef(null);
   const [needsUserAction, setNeedsUserAction] = useState(false);
 
@@ -99,7 +98,7 @@ function Visitor({ image, video, className, volume = 1, playbackCmd }) {
       ) : image ? (
         <img className="visitor-image" src={image} alt="visitor" />
       ) : (
-        <img className="visitor-image" src={P1} alt="visitor" />
+        <img className="visitor-image" src={defaultImage} alt="visitor" />
       )}
     </div>
   );
