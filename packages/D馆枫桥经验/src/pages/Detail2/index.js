@@ -6,11 +6,10 @@ import rightArrow from '../../assets/rightArrow.png';
 import page2ImgEn from '../../assets_english/page2.jpg';
 import leftArrowEn from '../../assets_english/leftArrow.png';
 import rightArrowEn from '../../assets_english/rightArrow.png';
-import defaultData from '../../defaultData.json';
 
 function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language }) {
   const [index, setIndex] = useState(currentIndex);
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useState([]);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
@@ -19,8 +18,9 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language })
   const currentRightArrow = language === 'en' ? rightArrowEn : rightArrow;
 
   useEffect(() => {
-    const dataUrl = (process.env.PUBLIC_URL || '') + '/data.json';
-    fetch(dataUrl)
+    const baseUrl = process.env.PUBLIC_URL || '';
+    const dataUrl = `${baseUrl}/data.json?_=${Date.now()}`;
+    fetch(dataUrl, { cache: 'no-store' })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -49,13 +49,14 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language })
   const currentItem = allList[index] || allList[0];
   const firstImage = currentItem?.images?.[0];
   const isFirst = index === 0;
-  const isLast = index === allList.length - 1;
-  const titleText = language === 'en' && currentItem?.name_en ? currentItem.name_en : currentItem.name;
-  const summaryText = language === 'en' && currentItem?.summary_en ? currentItem.summary_en : currentItem.summary;
+  const isLast = allList.length === 0 || index === allList.length - 1;
+  const titleText = language === 'en' && currentItem?.name_en ? currentItem.name_en : currentItem?.name || '';
+  const summaryText = language === 'en' && currentItem?.summary_en ? currentItem.summary_en : currentItem?.summary || '';
   const captionText = language === 'en' && firstImage?.name_en ? firstImage.name_en : firstImage?.name;
   const mediaUrl = firstImage?.url
     ? ((process.env.PUBLIC_URL || '') + '/' + String(firstImage.url).replace(/^\/+/, ''))
     : '';
+  const safeMediaUrl = mediaUrl ? encodeURI(mediaUrl) : '';
   const isVideo = Boolean(mediaUrl) && /\.(mp4|webm|ogg)(\?.*)?$/i.test(mediaUrl);
 
   useEffect(() => {
@@ -76,8 +77,8 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language })
   }, [isImageModalOpen]);
 
   const openImageModal = () => {
-    if (!mediaUrl) return;
-    setModalImage({ url: mediaUrl, name: captionText, type: isVideo ? 'video' : 'image' });
+    if (!safeMediaUrl) return;
+    setModalImage({ url: safeMediaUrl, name: captionText, type: isVideo ? 'video' : 'image' });
     setIsImageModalOpen(true);
   };
 
@@ -123,12 +124,12 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language })
           </div>
 
           {/* 图片和注释 */}
-          {mediaUrl && (
+          {safeMediaUrl && (
             <>
               {!isVideo ? (
                 <div
                   className="card-image"
-                  style={{ backgroundImage: `url(${mediaUrl})` }}
+                  style={{ backgroundImage: `url("${safeMediaUrl}")` }}
                   onClick={openImageModal}
                   role="button"
                   tabIndex={0}
@@ -139,7 +140,7 @@ function Detail2({ name, gallery, onBack, currentIndex = 0, visible, language })
               ) : (
                 <video
                   className="card-media"
-                  src={mediaUrl}
+                  src={safeMediaUrl}
                   muted
                   playsInline
                   autoPlay

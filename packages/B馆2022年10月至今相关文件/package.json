@@ -10,7 +10,9 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "sync-data": "cp public/data.json src/defaultData.json",
     "start": "react-scripts start",
+    "prebuild": "npm run sync-data",
     "build": "BUILD_PATH=B馆2022年10月至今相关文件 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
