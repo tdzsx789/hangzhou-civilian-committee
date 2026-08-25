@@ -7,9 +7,8 @@ import rightBtn from '../../assets/right.png';
 function Detail4({ onBack, childData }) {
   const images = childData?.images || [];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const hasSummary = Boolean(childData?.summary);
-  const hasImages = images.length > 0;
-  const showTextOnlyLayout = !hasImages;
+  const hasSummary = childData?.summary;
+  const showTextOnlyLayout = images.length === 0;
   
   // 如果有 summary，使用 Detail2 的展示形式（单张图片切换）
   // 如果没有 summary，使用多图片展示形式（每页3张）
@@ -70,53 +69,30 @@ function Detail4({ onBack, childData }) {
       /> */}
       <div className="detail2-back-btn" onClick={onBack} />
 
-      {showTextOnlyLayout ? (
-        <div className="detail2-text-only-layout">
-          <div className="detail2-text-only-inner">
-            <div className="detail2-name-title-container detail2-name-title-container--center">
-              <div className="detail2-child-name">{childData.name}</div>
-              {childData.title && (
-                <div className="detail2-child-title">{childData.title}</div>
-              )}
-            </div>
+      {/* child name and title */}
+      <div className="detail2-name-title-container">
+        <div className="detail2-child-name">{childData.name}</div>
+        {childData.title && (
+          <div className="detail2-child-title">{childData.title}</div>
+        )}
+      </div>
 
-            {hasSummary && (
-              <div className="detail2-child-summary-scroll detail2-child-summary-scroll--centered">
-                <div className="detail2-child-summary">
-                  {childData.summary.split('\n').map((paragraph, index) => (
-                    paragraph.trim() && (
-                      <p key={index}>{paragraph.trim()}</p>
-                    )
-                  ))}
-                </div>
-              </div>
-            )}
+      {/* child summary */}
+      {hasSummary && (
+        <div className="detail2-child-summary-scroll">
+          <div className="detail2-child-summary">
+            {childData.summary.split('\n').map((paragraph, index) => (
+              paragraph.trim() && (
+                <p key={index}>{paragraph.trim()}</p>
+              )
+            ))}
           </div>
         </div>
-      ) : (
+      )}
+
+      {/* child images */}
+      {images.length > 0 && (
         <>
-          {/* child name and title */}
-          <div className="detail2-name-title-container">
-            <div className="detail2-child-name">{childData.name}</div>
-            {childData.title && (
-              <div className="detail2-child-title">{childData.title}</div>
-            )}
-          </div>
-
-          {/* child summary */}
-          {hasSummary && (
-            <div className="detail2-child-summary-scroll">
-              <div className="detail2-child-summary">
-                {childData.summary.split('\n').map((paragraph, index) => (
-                  paragraph.trim() && (
-                    <p key={index}>{paragraph.trim()}</p>
-                  )
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* child images */}
           {hasSummary ? (
             // 有 summary：使用 Detail2 的展示形式（单张图片，右侧显示）
             <>
