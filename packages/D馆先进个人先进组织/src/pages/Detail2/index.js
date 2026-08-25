@@ -7,6 +7,8 @@ import rightBtn from '../../assets/right.png';
 function Detail2({ onBack, childData }) {
   const images = childData?.images || [];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const hasImages = images.length > 0;
+  const showTextOnlyLayout = !hasImages;
   const showNavigation = images.length > 1;
 
   // 当 childData 变化时重置索引
@@ -58,7 +60,7 @@ function Detail2({ onBack, childData }) {
   const isAtEnd = currentIndex === images.length - 1;
 
   return (
-    <div className="detail-page2">
+    <div className={`detail-page2 ${showTextOnlyLayout ? 'detail-page2--text-only' : ''}`}>
       {/* <div
         className="slide-button"
         style={{ backgroundImage: `url(${button1})` }}
@@ -66,57 +68,82 @@ function Detail2({ onBack, childData }) {
       /> */}
       <div className="detail2-back-btn" onClick={onBack} />
       
-      {/* child name */}
-      <div className="detail2-name-title-container">
-        <div className="detail2-child-name">{childData.address} {childData.people}</div>
-        <div className="detail2-child-title">{childData.title}</div>
-      </div>
-      
-      {/* child summary */}
-      {childData.summary && (
-        <div className="detail2-child-summary-scroll">
-          <div className="detail2-child-summary">
-            {childData.summary.split('\n').map((paragraph, index) => (
-              paragraph.trim() && (
-                <p key={index}>{paragraph.trim()}</p>
-              )
-            ))}
-          </div>
-        </div>
-      )}
-      
-      {/* child image */}
-      {imageUrl && (
-        <>
-          <div className="detail2-image-container">
-            <div 
-              className="detail2-child-image"
-              style={{ backgroundImage: `url(${imageUrl})` }}
-            />
-            {currentImage.name && (
-              <div className="detail2-image-caption">{currentImage.name}</div>
+      {showTextOnlyLayout ? (
+        <div className="detail2-text-only-layout">
+          <div className="detail2-text-only-inner">
+            <div className="detail2-name-title-container detail2-name-title-container--center">
+              <div className="detail2-child-name">{childData.address} {childData.people}</div>
+              <div className="detail2-child-title">{childData.title}</div>
+            </div>
+
+            {childData.summary && (
+              <div className="detail2-child-summary-scroll detail2-child-summary-scroll--centered">
+                <div className="detail2-child-summary">
+                  {childData.summary.split('\n').map((paragraph, index) => (
+                    paragraph.trim() && (
+                      <p key={index}>{paragraph.trim()}</p>
+                    )
+                  ))}
+                </div>
+              </div>
             )}
           </div>
-
-          {/* navigation buttons */}
-          {showNavigation && (
+        </div>
+      ) : (
+        <>
+          {/* child name */}
+          <div className="detail2-name-title-container">
+            <div className="detail2-child-name">{childData.address} {childData.people}</div>
+            <div className="detail2-child-title">{childData.title}</div>
+          </div>
+          
+          {/* child summary */}
+          {childData.summary && (
+            <div className="detail2-child-summary-scroll">
+              <div className="detail2-child-summary">
+                {childData.summary.split('\n').map((paragraph, index) => (
+                  paragraph.trim() && (
+                    <p key={index}>{paragraph.trim()}</p>
+                  )
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* child image */}
+          {imageUrl && (
             <>
-              <div 
-                className={`detail2-nav-btn2 detail2-nav-left2 ${isAtStart ? 'disabled' : ''}`}
-                onClick={isAtStart ? undefined : handlePrev}
-                style={{ 
-                  backgroundImage: `url(${leftBtn})`,
-                  opacity: isAtStart ? 0.3 : 1,
-                }}
-              />
-              <div 
-                className={`detail2-nav-btn2 detail2-nav-right2 ${isAtEnd ? 'disabled' : ''}`}
-                onClick={isAtEnd ? undefined : handleNext}
-                style={{ 
-                  backgroundImage: `url(${rightBtn})`,
-                  opacity: isAtEnd ? 0.3 : 1,
-                }}
-              />
+              <div className="detail2-image-container">
+                <div
+                  className="detail2-child-image"
+                  style={{ backgroundImage: `url(${imageUrl})` }}
+                />
+                {currentImage.name && (
+                  <div className="detail2-image-caption">{currentImage.name}</div>
+                )}
+              </div>
+
+              {/* navigation buttons */}
+              {showNavigation && (
+                <>
+                  <div
+                    className={`detail2-nav-btn2 detail2-nav-left2 ${isAtStart ? 'disabled' : ''}`}
+                    onClick={isAtStart ? undefined : handlePrev}
+                    style={{
+                      backgroundImage: `url(${leftBtn})`,
+                      opacity: isAtStart ? 0.3 : 1,
+                    }}
+                  />
+                  <div
+                    className={`detail2-nav-btn2 detail2-nav-right2 ${isAtEnd ? 'disabled' : ''}`}
+                    onClick={isAtEnd ? undefined : handleNext}
+                    style={{
+                      backgroundImage: `url(${rightBtn})`,
+                      opacity: isAtEnd ? 0.3 : 1,
+                    }}
+                  />
+                </>
+              )}
             </>
           )}
         </>
